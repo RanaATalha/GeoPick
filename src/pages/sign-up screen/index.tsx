@@ -14,7 +14,7 @@ export default class SignUpScreen extends React.Component<SignUpProps> {
                         </h1>
                         <div className="Sign-Up">
                             <p>
-                                Enter some of your <br></br> <span>personal details</span>...
+                               Enter some of your <br></br> <span>personal details</span>...
                             </p>
                             <form>
                                 <input type="text" className="form" placeholder="Email" />
@@ -26,7 +26,7 @@ export default class SignUpScreen extends React.Component<SignUpProps> {
                                 <input type="radio" className="radio-btn" />
                                 <span>
                                     {' '}
-                                    By signing up i conform that i have read and accepted the terms and conditions of
+                                    By signing up i confirm that i have read and accepted the terms and conditions of
                                     using the application.
                                 </span>
                                 <br></br>
