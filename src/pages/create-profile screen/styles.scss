@@ -36,6 +36,7 @@
     border-radius: 18px;
 }
 
+
 .eclipse7 {
     position: absolute;
     width: 161px;
@@ -43,10 +44,7 @@
     margin: 10px 10px 10px 80px;
     padding: 25px;
     border-radius: 50%;
-    background-position: bottom;
-    object-fit: contain;
-    background-size: cover;
-    background: url(./sample-avatar.png);
+    background: url(./sample-avatar.png) no-repeat center/contain;
 }
 
 .Add-Avatar {
@@ -61,29 +59,49 @@
     background: url(./Add-avatar.png);
 }
 
-.textField {
+.User-Details {
     width: 320px;
     height: 53px;
     margin: 60px 0 29px;
     padding: 11px 18px 12px 14px;
     border-radius: 20px;
-    border: solid 1px var(--orange);
-    background-color: var(--white);
+    position: relative;
+    top: 30%;
 }
 
 .Condition {
-    width: 365px;
-    height: 562px;
-    margin: 53px 0 0 3px;
-    padding: 19px 25px 41px 20px;
-    border-radius: 18px;
-    background-color: var(--orange);
+  width: 319px;
+  height: 32px;
+  margin: 18px 0 47px 1px;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.13;
+  letter-spacing: normal;
+  text-align: left;
+  color: black;
+  -webkit-text-stroke: thin;
 }
 
-.Common {
-    position: absolute;
-    width: 302px;
-    height: 49px;
-    left: 51px;
-    top: 702px;
+.Registeration-Button {
+    width: 310px;
+    height: 47px;
+    border-radius: 18px;
+    margin-top: 8%;
+    border: none;
+    color: orange;
+    font-weight: bolder;
+    position: relative;
+    top: -60%;
+    background: #FAFAFA;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 112.5%;
 }
+
+
+

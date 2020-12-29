@@ -1,4 +1,6 @@
 import * as React from 'react';
+import PasswordField from '../../components/Inputs/PasswordField';
+import TextField from '../../components/Inputs/TextField';
 import './styles.scss';
 export interface SignUpProps {}
 
@@ -17,11 +19,11 @@ export default class SignUpScreen extends React.Component<SignUpProps> {
                                 Enter some of your <br></br> <span>personal details</span>...
                             </p>
                             <form>
-                                <input type="text" className="form" placeholder="Email" />
+                                <TextField label="email" />
                                 <br></br>
-                                <input type="password" className="form" placeholder="Password" required />
+                                <PasswordField />
                                 <br></br>
-                                <input type="password" className="form" placeholder="Confirm password" required />
+                                <PasswordField label="Confirm Password" />
                                 <br></br>
                                 <input type="radio" className="radio-btn" />
                                 <span>

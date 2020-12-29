@@ -8,6 +8,7 @@ import BackwardBtn from './components/Buttons/BackwardBtn';
 import TextField from './components/Inputs/TextField';
 import CreateProfileScreen from './pages/create-profile screen';
 
+
 function App(): JSX.Element {
     return (
         <div className="App">

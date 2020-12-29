@@ -2,6 +2,7 @@ import { createMuiTheme, responsiveFontSizes } from '@material-ui/core';
 
 const theme = createMuiTheme({
     palette: {
+        type: 'dark',
         primary: {
             main: '#F56920',
             light: '#F56920',
@@ -11,11 +12,12 @@ const theme = createMuiTheme({
             main: '#2F4858',
         },
     },
+
     typography: {
         fontFamily: [
+            'Poppins',
             'Quicksand',
             'Montserrat',
-            'Poppins',
             '-apple-system',
             'BlinkMacSystemFont',
             '"Segoe UI"',

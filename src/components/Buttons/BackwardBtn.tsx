@@ -4,7 +4,7 @@ import { ArrowBackRounded } from '@material-ui/icons';
 
 const BackBtn: React.FunctionComponent<ButtonBaseProps> = () => {
     return (
-        <IconButton aria-label="forward">
+        <IconButton aria-label="backward">
             <ArrowBackRounded />
         </IconButton>
     );
