@@ -6,12 +6,18 @@ import SignInScreen from './pages/sign-in screen';
 import SignUpScreen from './pages/sign-up screen';
 import BackwardBtn from './components/Buttons/BackwardBtn';
 import TextField from './components/Inputs/TextField';
+import Card from './components/Layouts/Card';
+import Checkbox from './components/Inputs/Checkbox';
+import { RegularBtn } from './components/Buttons/RegularBtn';
 
 function App(): JSX.Element {
     return (
         <div className="App">
             <Router>
                 <Nav />
+                <div style={{ background: 'black' }}>
+                    <RegularBtn colorType="auto">Hello</RegularBtn>
+                </div>
                 <Switch>
                     <Route exact path="/welcome">
                         <WelcomeScreen />
