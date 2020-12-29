@@ -4,14 +4,15 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import WelcomeScreen from './pages/welcome screen';
 import SignInScreen from './pages/sign-in screen';
 import SignUpScreen from './pages/sign-up screen';
-import PasswordField from './components/Inputs/PasswordField';
+import BackwardBtn from './components/Buttons/BackwardBtn';
+import TextField from './components/Inputs/TextField';
+import CreateProfileScreen from './pages/create-profile screen';
 
 function App(): JSX.Element {
     return (
         <div className="App">
             <Router>
                 <Nav />
-                <PasswordField />
                 <Switch>
                     <Route exact path="/welcome">
                         <WelcomeScreen />
@@ -21,6 +22,9 @@ function App(): JSX.Element {
                     </Route>
                     <Route exact path="/sign-up">
                         <SignUpScreen />
+                    </Route>
+                    <Route exact path="/create-profile">
+                        <CreateProfileScreen />
                     </Route>
                 </Switch>
             </Router>
@@ -41,6 +45,9 @@ function Nav() {
                     </li>
                     <li>
                         <Link to="/sign-up">Sign-Up</Link>
+                    </li>
+                    <li>
+                        <Link to="/create-profile">Create Profile</Link>
                     </li>
                 </ul>
             </nav>
