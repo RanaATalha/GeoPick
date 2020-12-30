@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import WelcomeScreen from './pages/welcome screen';
 import SignInScreen from './pages/sign-in screen';
 import SignUpScreen from './pages/sign-up screen';
+import BottomNavigation from './components/NavBar/navbar';
 import BackwardBtn from './components/Buttons/BackwardBtn';
 import TextField from './components/Inputs/TextField';
 import Card from './components/Layouts/Card';
@@ -17,6 +18,9 @@ function App(): JSX.Element {
                 <Nav />
                 <div style={{ background: 'black' }}>
                     <RegularBtn colorType="auto">Hello</RegularBtn>
+                </div>
+                <div>
+                    <BottomNavigation />
                 </div>
                 <Switch>
                     <Route exact path="/welcome">
