@@ -6,28 +6,26 @@ export interface IRegularBtnProps extends ButtonProps {
 }
 
 const Button = ({
-    style = { borderRadius: '16px', textTransform: 'none', minWidth: '100px' },
+    style = { borderRadius: '16px', textTransform: 'none', minWidth: '100px', fontWeight: 'bold' },
     ...props
 }: ButtonProps) => <MatButton style={style} {...props} />;
+
 const WhiteButton = withStyles({
     root: {
         background: 'white',
         color: '#F56920',
-        fontWeight: 'bold',
     },
 })(Button);
 
 const DarkButton = withStyles({
     root: {
         background: '#1B1B1E',
-        fontWeight: 'bold',
     },
 })(Button);
 
 const AutoButton = withStyles((theme: Theme) => ({
     root: {
         background: theme.palette.type === 'dark' ? '#F56920' : 'white',
-        fontWeight: 'bold',
     },
 }))(Button);
 

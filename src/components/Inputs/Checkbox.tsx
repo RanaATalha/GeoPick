@@ -23,9 +23,16 @@ const box = (theme: Theme) => ({
     checked: {},
 });
 
-const Custombox = withStyles(box)((props: CheckboxProps) => <MatCheckbox color="default" {...props} />);
+const Custombox = withStyles(box)((props: CheckboxProps) => (
+    <MatCheckbox
+        icon={<RadioButtonUncheckedOutlined />}
+        checkedIcon={<RadioButtonCheckedRounded />}
+        color="default"
+        {...props}
+    />
+));
 
-const GreenCheckbox = withStyles({
+const WhiteCheckbox = withStyles({
     root: {
         color: 'white',
         '&$checked': {
@@ -36,13 +43,8 @@ const GreenCheckbox = withStyles({
 })((props: CheckboxProps) => <MatCheckbox color="default" {...props} />);
 
 function Checkbox(props: CheckboxProps) {
-    return (
-        <GreenCheckbox
-            icon={<RadioButtonUncheckedOutlined />}
-            checkedIcon={<RadioButtonCheckedRounded />}
-            color="default"
-        />
-    );
+    const [checked, setChecked] = React.useState(false);
+    return <WhiteCheckbox />;
 }
 
 export default Checkbox;
