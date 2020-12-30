@@ -1,5 +1,7 @@
 import * as React from 'react';
 import './styles.scss';
+import SignUpScreen from '../sign-up screen/index';
+import { BrowserRouter as Router, Route, Switch, Link, BrowserRouter, } from 'react-router-dom';
 import WhiteLogo from './WhiteLogo.svg';
 import googleButton from './googleButton.svg';
 import background from './welcome-pg.png';
@@ -26,6 +28,7 @@ interface WelcomeProps {}
 // );
 const WelcomeScreen: React.FunctionComponent<WelcomeProps> = (props) => {
     // const classes = useStyles();
+
     return (
         <html>
             <body
@@ -47,15 +50,22 @@ const WelcomeScreen: React.FunctionComponent<WelcomeProps> = (props) => {
                         </Grid>
                         <Grid container spacing={3} direction="column" alignItems="center" justify="center">
                             <Grid item>
-                                <button className="g-btn">
+                                <button  className="g-btn">
                                     <img src={googleButton} width="22px" alt="Google" />
                                     <p className="text">Sign in</p>
                                 </button>
                                 <br></br>
                                 <hr />
+                                <div>
+                                <a href="/sign-up">    
                                 <button className="sign-btn">Sign up now!</button>
-                                {/* <br></br> */}
+                                </a>
+                                </div>{/* <br></br> */}
+                                <div>
+                                <a href="/sign-in">
                                 <button className="sign-btn1">Sign in</button>
+                                 </a>
+                                 </div>
                             </Grid>
                         </Grid>
                     </Grid>
