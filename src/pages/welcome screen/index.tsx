@@ -3,7 +3,7 @@ import './styles.scss';
 import WhiteLogo from './WhiteLogo.svg';
 import googleButton from './googleButton.svg';
 import background from './welcome-pg.png';
-import { Grid, Typography } from '@material-ui/core';
+import { createStyles, Grid, makeStyles, Theme, Typography } from '@material-ui/core';
 import Checkbox from '../../components/Inputs/Checkbox';
 import TextField from '../../components/Inputs/TextField';
 import PasswordField from '../../components/Inputs/PasswordField';
@@ -12,7 +12,20 @@ import { RegularBtn } from '../../components/Buttons/RegularBtn';
 import { Widgets } from '@material-ui/icons';
 interface WelcomeProps {}
 
+// const useStyles = makeStyles((theme: Theme) =>
+//     createStyles({
+//         root: {
+//             flexGrow: 1,
+//         },
+//         paper: {
+//             padding: theme.spacing(2),
+//             textAlign: 'center',
+//             color: theme.palette.text.secondary,
+//         },
+//     }),
+// );
 const WelcomeScreen: React.FunctionComponent<WelcomeProps> = (props) => {
+    // const classes = useStyles();
     return (
         <html>
             <body
@@ -22,39 +35,30 @@ const WelcomeScreen: React.FunctionComponent<WelcomeProps> = (props) => {
             >
                 {/* <img src ={background} width='auto'> */}
                 <div className="welcomepg">
-                    <Grid container spacing={4} direction="column" alignItems="center" justify="center">
+                    <Grid container spacing={10} direction="column" alignItems="center" justify="center">
                         <Grid item>
                             <img src={WhiteLogo} alt="GeoPicK Logo" />
                         </Grid>
                         <Grid item>
-                            <Typography variant="h5" align="center">
+                            <Typography variant="h3" align="center">
                                 <span>A tool for</span>
                                 <br></br>shutterbugs!
                             </Typography>
                         </Grid>
-                        <Grid item>
-                            <button className="g-btn">
-                                <img src={googleButton} width="22px" alt="Google" />
-                                <p className="text">Sign in</p>
-                            </button>
-                        </Grid>
-                        <Grid item>
-                            {/* <p className="or">or</p> */}
-                            <hr />
-                        </Grid>
-                        <Grid item>
-                            <button className="sign-btn">Sign up now!</button>
-                            {/* <br></br> */}
-                            <button className="sign-btn1">Sign in</button>
+                        <Grid container spacing={3} direction="column" alignItems="center" justify="center">
+                            <Grid item>
+                                <button className="g-btn">
+                                    <img src={googleButton} width="22px" alt="Google" />
+                                    <p className="text">Sign in</p>
+                                </button>
+                                <br></br>
+                                <hr />
+                                <button className="sign-btn">Sign up now!</button>
+                                {/* <br></br> */}
+                                <button className="sign-btn1">Sign in</button>
+                            </Grid>
                         </Grid>
                     </Grid>
-
-                    {/* <p className="caption"> */}
-
-                    {/* </p> */}
-                    {/* <div className=""></div> */}
-
-                    {/* <br></br> */}
                 </div>
             </body>
         </html>
