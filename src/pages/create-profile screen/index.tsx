@@ -2,6 +2,7 @@ import * as React from 'react';
 import './styles.scss';
 import UsernameField from '../../components/Inputs/UsernameField';
 import TextField from '../../components/Inputs/TextField';
+import Card from '../../components/Layouts/Card';
 
 
 export interface CreateProfileProps {}
