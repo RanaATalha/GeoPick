@@ -1,0 +1,399 @@
+/* sign up */
+
+position: relative;
+width: 414px;
+height: 896px;
+
+background: #FFFFFF;
+
+
+/* thomas-griesbeck--aVoUW1TbF4-unsplash 2 */
+
+position: absolute;
+width: 414px;
+height: 896px;
+left: 0px;
+top: 0px;
+
+/* black */
+background: #1B1B1E;
+
+
+/* thomas-griesbeck--aVoUW1TbF4-unsplash 1 */
+
+position: absolute;
+width: 465px;
+height: 896px;
+left: -51px;
+top: 0px;
+
+background: url(thomas-griesbeck--aVoUW1TbF4-unsplash.jpg);
+opacity: 0.25;
+filter: blur(4px);
+
+
+/* Sign Up */
+
+position: absolute;
+width: 245px;
+height: 66px;
+left: 24px;
+top: 75px;
+
+font-family: Poppins;
+font-style: normal;
+font-weight: 500;
+font-size: 64px;
+line-height: 102.5%;
+/* identical to box height, or 66px */
+
+/* orange */
+color: #F56920;
+
+
+/* Sign Up form */
+
+position: absolute;
+width: 365px;
+height: 562px;
+left: 24px;
+top: 223px;
+
+
+
+/* Rectangle 1 */
+
+position: absolute;
+width: 365px;
+height: 562px;
+left: 24px;
+top: 223px;
+
+/* orange */
+background: #F56920;
+border-radius: 18px;
+
+
+/* Sign up button */
+
+position: absolute;
+width: 200px;
+height: 49px;
+left: 107px;
+top: 702px;
+
+
+
+
+
+/* Rectangle 1 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* White */
+background: #FAFAFA;
+border-radius: 18px;
+
+
+/* Sign up! */
+
+position: absolute;
+width: 83px;
+height: 23px;
+left: 166px;
+top: 715px;
+
+font-family: Poppins;
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 112.5%;
+/* identical to box height, or 22px */
+
+/* orange */
+color: #F56920;
+
+
+/* Email */
+
+position: absolute;
+width: 320px;
+height: 53px;
+left: 48px;
+top: 354px;
+
+filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.25));
+
+
+
+
+
+/* Rectangle 4 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* White */
+background: #FAFAFA;
+/* orange */
+border: 1px solid #F56920;
+box-sizing: border-box;
+border-radius: 20px;
+
+
+/* email */
+
+position: absolute;
+width: 61.21px;
+height: 23px;
+left: 61.96px;
+top: 369px;
+
+font-family: Montserrat;
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 112.5%;
+/* identical to box height, or 22px */
+
+/* charcoal */
+color: #2F4858;
+opacity: 0.6;
+
+
+/* Password */
+
+position: absolute;
+width: 320px;
+height: 53px;
+left: 48px;
+top: 436px;
+
+filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.25));
+
+
+
+
+
+/* Rectangle 4 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* White */
+background: #FAFAFA;
+/* orange */
+border: 1px solid #F56920;
+box-sizing: border-box;
+border-radius: 20px;
+
+
+/* Password */
+
+position: absolute;
+width: 105.23px;
+height: 23px;
+left: 61.96px;
+top: 451px;
+
+font-family: Montserrat;
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 112.5%;
+/* identical to box height, or 22px */
+
+/* charcoal */
+color: #2F4858;
+opacity: 0.6;
+
+
+/* confirm */
+
+position: absolute;
+width: 320px;
+height: 53px;
+left: 48px;
+top: 518px;
+
+filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.25));
+
+
+
+/* Rectangle 4 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* White */
+background: #FAFAFA;
+/* orange */
+border: 1px solid #F56920;
+box-sizing: border-box;
+border-radius: 20px;
+
+
+/* Confirm Password */
+
+position: absolute;
+width: 201.88px;
+height: 23px;
+left: 61.96px;
+top: 533px;
+
+font-family: Montserrat;
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 112.5%;
+/* identical to box height, or 22px */
+
+/* charcoal */
+color: #2F4858;
+opacity: 0.6;
+
+
+/* Rectangle 5 */
+
+position: absolute;
+width: 20px;
+height: 20px;
+left: 47px;
+top: 608px;
+
+/* White */
+background: #FAFAFA;
+border-radius: 18px;
+
+
+/* By signing up, i confirm that i have read and acceepted the terms and conditions of using the application. */
+
+position: absolute;
+width: 270px;
+height: 48px;
+left: 82px;
+top: 608px;
+
+font-family: Montserrat;
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 117%;
+/* or 16px */
+
+/* White */
+color: #FAFAFA;
+
+
+/* Enter some of your personal details... */
+
+position: absolute;
+width: 294px;
+height: 70px;
+left: 47px;
+top: 252px;
+
+font-family: Poppins;
+font-style: normal;
+font-weight: normal;
+font-size: 30px;
+line-height: 117%;
+/* or 35px */
+
+/* White */
+color: #FAFAFA;
+
+
+/* show password */
+
+position: absolute;
+width: 24px;
+height: 16px;
+left: 328px;
+top: 454px;
+
+
+
+/* show password */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* charcoal */
+background: #2F4858;
+opacity: 0.9;
+
+
+/* hide password */
+
+position: absolute;
+width: 24px;
+height: 20px;
+left: 328px;
+top: 534px;
+
+
+
+/* hide password */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* charcoal */
+background: #2F4858;
+opacity: 0.9;
+
+
+/* Tick mark off */
+
+position: absolute;
+width: 75px;
+height: 28px;
+left: 19px;
+top: 604px;
+
+
+
+/* Ellipse 10 */
+
+position: absolute;
+left: 34.67%;
+right: 33.33%;
+top: 7.14%;
+bottom: 7.14%;
+
+/* White */
+border: 1px solid #FAFAFA;
+box-sizing: border-box;
+
+
+/* Ellipse 9 */
+
+position: absolute;
+visibility: hidden;
+left: 40%;
+right: 38.67%;
+top: 21.43%;
+bottom: 21.43%;
+
+/* White */
+background: #FAFAFA;
