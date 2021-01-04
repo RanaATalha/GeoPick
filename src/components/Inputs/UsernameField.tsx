@@ -4,17 +4,20 @@ import clsx from 'clsx';
 import {
     InputAdornment
 } from '@material-ui/core';
+import Tick from "./Tick.svg";
+import cross from "./cross.svg";
 
-const styles = {
-    root: {
-        background: 'red',
-        borderRadius: 20,
-        borderColor: 'red',
-    },
-    notched: {
-        borderColor: 'red',
-    },
-};
+
+// const styles = {
+//     root: {
+//         background: 'red',
+//         borderRadius: 20,
+//         borderColor: 'red',
+//     },
+//     notched: {
+//         borderColor: 'red',
+//     },
+// };
 
 const CssTextField = withStyles({
     root: {
@@ -64,7 +67,7 @@ export default function UsernameField({ InputProps, variant = 'filled', ...props
     };
     return (
         <Box display="flex">
-            <Box boxShadow={5} maxWidth={400} minWidth={320} m="auto" borderRadius={20}>
+            <Box boxShadow={5} maxWidth={380} minWidth={200} width="100%" m="auto" borderRadius={20}>
                 <CssTextField
                     variant="filled"
                     fullWidth
@@ -73,14 +76,10 @@ export default function UsernameField({ InputProps, variant = 'filled', ...props
                         ...InputProps,
                         endAdornment: (
                             <InputAdornment position="end">
-                            {values.acceptableUsername? <img src="Tick.svg"/>: <img src="cross.svg"/> }
+                            {values.acceptableUsername? <img src={Tick}/>: <img src={cross}/> }
                             </InputAdornment>
                         ),
                         disableUnderline: true,
-                        classes: {
-                            root: clsx(styles.root),
-                        },
-                        
                     }}
                     {...props}
                     

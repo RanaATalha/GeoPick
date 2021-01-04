@@ -1,7 +1,11 @@
+import { Grid, Typography } from '@material-ui/core';
 import * as React from 'react';
-import PasswordField from '../../components/Inputs/PasswordField';
+import Checkbox from '../../components/Inputs/Checkbox';
+// import './styles.scss';
 import TextField from '../../components/Inputs/TextField';
-import './styles.scss';
+import PasswordField from '../../components/Inputs/PasswordField';
+import Card from '../../components/Layouts/Card';
+import { RegularBtn } from '../../components/Buttons/RegularBtn';
 export interface SignUpProps {}
 
 export default class SignUpScreen extends React.Component<SignUpProps> {
@@ -10,31 +14,65 @@ export default class SignUpScreen extends React.Component<SignUpProps> {
             <html>
                 <body>
                     <div className="PageSignUp">
-                        <h1>
-                            {' '}
-                            <span>Sign</span> Up
-                        </h1>
-                        <div className="Sign-Up">
-                            <p>
-                                Enter some of your <br></br> <span>personal details</span>...
-                            </p>
-                            <form>
-                                <TextField label="email" />
-                                <br></br>
-                                <PasswordField />
-                                <br></br>
-                                <PasswordField label="Confirm Password" />
-                                <br></br>
-                                <input type="radio" className="radio-btn" />
-                                <span>
-                                    {' '}
-                                    By signing up i conform that i have read and accepted the terms and conditions of
-                                    using the application.
-                                </span>
-                                <br></br>
-                                <button className="signin-btn">Sign Up!</button>
-                            </form>
-                        </div>
+                        <Card>
+                            <Grid container spacing={4} direction="row" alignItems="center" justify="center">
+                                <Grid item>
+                                    <Typography variant="h3" style={{ color: 'white', fontWeight: 'unset' }}>
+                                        Setup your account!
+                                    </Typography>
+                                </Grid>
+                                <form>
+                                    <Grid
+                                        item
+                                        container
+                                        spacing={3}
+                                        direction="row"
+                                        alignItems="center"
+                                        justify="center"
+                                    >
+                                        <Grid item style={{ width: '100%' }}>
+                                            <TextField label="Email" />
+                                        </Grid>
+                                        <Grid item style={{ width: '100%' }}>
+                                            <PasswordField />
+                                        </Grid>
+                                        <Grid item style={{ width: '100%' }}>
+                                            <PasswordField label="Confirm Password" />
+                                        </Grid>
+                                    </Grid>
+                                    <Grid item container spacing={3}>
+                                        <Grid
+                                            item
+                                            xs={2}
+                                            alignContent="center"
+                                            alignItems="center"
+                                            style={{ verticalAlign: 'true' }}
+                                        >
+                                            <Checkbox required />
+                                        </Grid>
+                                        <Grid
+                                            item
+                                            xs={10}
+                                            alignContent="center"
+                                            alignItems="center"
+                                            style={{ paddingTop: '20px', verticalAlign: 'true' }}
+                                        >
+                                            <Typography align="left" style={{ fontSize: '12px', color: '1B1B1E' }}>
+                                                By signing up I conform that I have read and accepted the terms and
+                                                conditions of using the application.
+                                            </Typography>
+                                        </Grid>
+                                    </Grid>
+
+                                    <br></br>
+                                </form>
+                                <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
+                                    <RegularBtn colorType="white" style={{ width: '50%', borderRadius: '15px' }}>
+                                        Sign Up!
+                                    </RegularBtn>
+                                </Grid>
+                            </Grid>
+                        </Card>
                     </div>
                 </body>
             </html>
