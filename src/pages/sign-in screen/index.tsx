@@ -15,7 +15,7 @@ export default class SignInScreen extends React.Component<SignInProps> {
         return (
             <div>
                 <h1 style={{ fontSize: '64px', color: '#f56920' }}> Sign In </h1>
-                <Card background="white">
+                <Card background="orange">
                     <Grid container spacing={4} direction="row">
                         <Grid item>
                             <Typography align="left" variant="h3">

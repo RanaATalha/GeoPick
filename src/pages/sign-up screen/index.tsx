@@ -14,6 +14,11 @@ export default class SignUpScreen extends React.Component<SignUpProps> {
             <html>
                 <body>
                     <div className="PageSignUp">
+                        <Grid container direction="column" xs={12} alignItems="center" style={{ padding: '18px' }}>
+                            <Typography variant="h3" align="left" style={{ fontWeight: 'bolder' }}>
+                                Sign <span style={{ color: 'orange' }}>Up</span>
+                            </Typography>
+                        </Grid>
                         <Card>
                             <Grid container spacing={4} direction="row" alignItems="center" justify="center">
                                 <Grid item>
