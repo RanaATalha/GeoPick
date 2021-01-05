@@ -1,5 +1,4 @@
 import * as React from 'react';
-import './styles.scss';
 import PasswordField from '../../components/Inputs/PasswordField';
 import TextField from '../../components/Inputs/TextField';
 import Card from '../../components/Layouts/Card';
@@ -9,45 +8,43 @@ import { RegularBtn } from '../../components/Buttons/RegularBtn';
 import GoogleSignInBtn from '../../components/Buttons/GoogleSignInBtn';
 import { Link } from 'react-router-dom';
 import './styles.scss';
-;
-
-
-
 export interface SignInProps {}
 
 export default class SignInScreen extends React.Component<SignInProps> {
     public render(): JSX.Element {
         return (
+            <div>
+                <h1 style={{ fontSize: '64px', color: '#f56920' }}> Sign In </h1>
+                <Card background="white">
+                    <Grid container spacing={4} direction="row">
+                        <Grid item>
+                            <Typography align="left" variant="h3">
+                                You know what to do...
+                            </Typography>
+                        </Grid>
 
-            <html>
-                <body>
-                    <div className="main_div">
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <TextField label="Email"> </TextField>
+                            </Grid>
 
-                        <div className="Sign-In">
-                            <h1>Sign in</h1>
-                        </div>
+                            <Grid item xs={12}>
+                                <PasswordField> </PasswordField>
+                            </Grid>
 
-                        <div className="Rectangle">
+                            <Grid item xs={12}>
+                                <RegularBtn colorType="orange"> Sign In </RegularBtn>
+                            </Grid>
 
-                            <h1> You know what to do... </h1>
-                        
-                        <form>
-                                      
-                            <input type="Username" className="form" placeholder="Username" />
-                            <br></br>
-                            <input type="Password" className="form" placeholder="Password" required />
-                            <br></br>
-                
-                        </form>
-
-                            <button className="signin-btn">Sign in</button>
-
-                            <a href="/about/contact_us.htm">Contact</a>
-                            
-                        </div>
-                    </div>
-                </body>
-            </html>
+                            <Grid item xs={12}>
+                                <RegularBtn colorType="white">
+                                    <Link to=""> Forgot Password ?</Link>
+                                </RegularBtn>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Card>
+            </div>
         );
     }
 }

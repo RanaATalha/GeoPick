@@ -10,6 +10,7 @@ import TextField from './components/Inputs/TextField';
 import Card from './components/Layouts/Card';
 import Checkbox from './components/Inputs/Checkbox';
 import { RegularBtn } from './components/Buttons/RegularBtn';
+import CreateProfileScreen from './pages/create-profile-screen';
 
 function App(): JSX.Element {
     return (
@@ -32,6 +33,9 @@ function App(): JSX.Element {
                     <Route exact path="/sign-up">
                         <SignUpScreen />
                     </Route>
+                    <Route exact path="/create-profile">
+                        <CreateProfileScreen />
+                    </Route>
                 </Switch>
             </Router>
         </div>
@@ -51,6 +55,9 @@ function Nav() {
                     </li>
                     <li>
                         <Link to="/sign-up">Sign-Up</Link>
+                    </li>
+                    <li>
+                        <Link to="/create-profile">Create Profile</Link>
                     </li>
                 </ul>
             </nav>

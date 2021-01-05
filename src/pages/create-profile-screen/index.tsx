@@ -1,25 +1,23 @@
-import { Grid, Typography } from '@material-ui/core';
 import * as React from 'react';
-import Checkbox from '../../components/Inputs/Checkbox';
-// import './styles.scss';
+import './styles.scss';
+import UsernameField from '../../components/Inputs/UsernameField';
 import TextField from '../../components/Inputs/TextField';
-import PasswordField from '../../components/Inputs/PasswordField';
-import Card from '../../components/Layouts/Card';
+import Card from '../../components/Layouts/CreateProfileCard';
+import { Grid, Typography } from '@material-ui/core';
+import BadgeAvatar from '../../components/Display/AddAvatarBadge';
 import { RegularBtn } from '../../components/Buttons/RegularBtn';
-export interface SignUpProps {}
 
-export default class SignUpScreen extends React.Component<SignUpProps> {
+export interface CreateProfileProps {}
+export default class CreateProfileScreen extends React.Component<CreateProfileProps> {
     public render(): JSX.Element {
         return (
             <html>
                 <body>
-                    <div className="PageSignUp">
+                    <div className="Create-Profile-Page">
                         <Card>
                             <Grid container spacing={4} direction="row" alignItems="center" justify="center">
                                 <Grid item>
-                                    <Typography variant="h3" style={{ color: 'white', fontWeight: 'unset' }}>
-                                        Setup your account!
-                                    </Typography>
+                                    <BadgeAvatar />
                                 </Grid>
                                 <form>
                                     <Grid
@@ -31,24 +29,21 @@ export default class SignUpScreen extends React.Component<SignUpProps> {
                                         justify="center"
                                     >
                                         <Grid item style={{ width: '100%' }}>
-                                            <TextField label="Email" />
+                                            <UsernameField
+                                                required
+                                                className="textField"
+                                                placeholder="Enter username"
+                                                type="text"
+                                                id="username-input-required"
+                                            />
                                         </Grid>
                                         <Grid item style={{ width: '100%' }}>
-                                            <PasswordField />
-                                        </Grid>
-                                        <Grid item style={{ width: '100%' }}>
-                                            <PasswordField label="Confirm Password" />
-                                        </Grid>
-                                    </Grid>
-                                    <Grid item container spacing={3}>
-                                        <Grid
-                                            item
-                                            xs={2}
-                                            alignContent="center"
-                                            alignItems="center"
-                                            style={{ verticalAlign: 'true' }}
-                                        >
-                                            <Checkbox required />
+                                            <TextField
+                                                className="textField"
+                                                placeholder="Enter occupation (optional)"
+                                                type="text"
+                                                id="occupation-input-optional"
+                                            />
                                         </Grid>
                                         <Grid
                                             item
@@ -57,18 +52,17 @@ export default class SignUpScreen extends React.Component<SignUpProps> {
                                             alignItems="center"
                                             style={{ paddingTop: '20px', verticalAlign: 'true' }}
                                         >
-                                            <Typography align="left" style={{ fontSize: '12px', color: '1B1B1E' }}>
-                                                By signing up I confirm that I have read and accepted the terms and
-                                                conditions of using the application.
+                                            <Typography align="left" style={{ fontSize: '14px', color: 'black' }}>
+                                                *Other users will be able to view your username and display picture as
+                                                set above
                                             </Typography>
                                         </Grid>
                                     </Grid>
-
                                     <br></br>
                                 </form>
                                 <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
-                                    <RegularBtn colorType="white" style={{ width: '50%', borderRadius: '15px' }}>
-                                        Sign Up!
+                                    <RegularBtn colorType="white" style={{ width: '80%', borderRadius: '15px' }}>
+                                        Complete Registration
                                     </RegularBtn>
                                 </Grid>
                             </Grid>
