@@ -53,7 +53,6 @@ const WelcomeScreen: React.FunctionComponent<WelcomeProps> = (props) => {
                             </Typography>
                         </Grid>
                         <Grid container spacing={3} direction="column" alignItems="center" justify="center">
-<<<<<<< Updated upstream
                             <Grid
                                 item
                                 xs={2}
@@ -62,50 +61,25 @@ const WelcomeScreen: React.FunctionComponent<WelcomeProps> = (props) => {
                                 style={{ verticalAlign: 'true' }}
                             ></Grid>
                             <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
-                                <RegularBtn
-                                    colorType="dark"
-                                    style={{ border: 'orange', width: '150px', borderRadius: '15px', height: '50px' }}
-                                >
-                                    <img src={googleButton} width="22px" alt="Google" />
-                                    <h1 style={{ color: 'white', fontSize: '15px' }}>Sign in </h1>
-                                </RegularBtn>
-                            </Grid>
-                            <Divider variant="middle" orientation="horizontal" />
-                            <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
-                                <RegularBtn
-                                    colorType="orange"
-                                    style={{ color: 'white', width: '150px', height: '50px', borderRadius: '15px' }}
-                                >
-                                    <h1 style={{ color: 'white', fontSize: '15px' }}>Sign Up Now! </h1>
-                                </RegularBtn>
-                            </Grid>
-                            <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
-                                <RegularBtn
-                                    colorType="dark"
-                                    style={{ width: '150px', height: '50px', borderRadius: '15px' }}
-                                >
-                                    <h1 style={{ color: 'white', fontSize: '15px' }}>Sign in </h1>
-                                </RegularBtn>
-=======
-                            <Grid item>
-                                <button className="g-btn">
-                                    <img src={googleButton} width="22px" alt="Google" />
-                                    <p className="text">Sign in</p>
-                                </button>
-                                <br></br>
-                                <hr style={{ width: '500px' }} />
-                                <div style={{ paddingBottom: '5%' }}>
-                                    <a href="/sign-up">
-                                        <button className="sign-btn">Sign up now!</button>
-                                    </a>
-                                </div>
-                                {/* <br></br> */}
-                                <div style={{ paddingBottom: '20%' }}>
-                                    <a href="/sign-in">
-                                        <button className="sign-btn1">Sign in</button>
-                                    </a>
-                                </div>
->>>>>>> Stashed changes
+                                <Grid item>
+                                    <button className="g-btn">
+                                        <img src={googleButton} width="22px" alt="Google" />
+                                        <p className="text">Sign in</p>
+                                    </button>
+                                    <br></br>
+                                    <hr style={{ width: '500px' }} />
+                                    <div style={{ paddingBottom: '5%' }}>
+                                        <a href="/sign-up">
+                                            <button className="sign-btn">Sign up now!</button>
+                                        </a>
+                                    </div>
+                                    {/* <br></br> */}
+                                    <div style={{ paddingBottom: '20%' }}>
+                                        <a href="/sign-in">
+                                            <button className="sign-btn1">Sign in</button>
+                                        </a>
+                                    </div>
+                                </Grid>
                             </Grid>
                         </Grid>
                     </Grid>
