@@ -1,7 +1,7 @@
 .textPlaceholder {
-    width: 318px;
-    height: 51px;
-    background-color: $white-g-p;
+    min-width: 318px;
+    min-height: 51px;
+    background-color: #fafafa;
     border-radius: 20px;
     border: 1px solid rgba(245, 105, 32, 1);
 }

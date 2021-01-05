@@ -11,11 +11,12 @@ const theme = createMuiTheme({
             main: '#2F4858',
         },
     },
+
     typography: {
         fontFamily: [
+            'Poppins',
             'Quicksand',
             'Montserrat',
-            'Poppins',
             '-apple-system',
             'BlinkMacSystemFont',
             '"Segoe UI"',

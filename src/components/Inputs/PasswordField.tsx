@@ -1,21 +1,14 @@
 import * as React from 'react';
-import {
-    FilledInput,
-    IconButton,
-    Input,
-    InputAdornment,
-    InputBaseProps,
-    InputLabel,
-    OutlinedInput,
-} from '@material-ui/core';
+import { IconButton, InputAdornment, TextFieldProps } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
+import TextField from './TextField';
 
 interface State {
     password: string;
     showPassword: boolean;
 }
 
-export default function PasswordField(props: InputBaseProps) {
+export default function PasswordField({ label = 'Password', ...props }: TextFieldProps) {
     const [values, setValues] = React.useState<State>({
         password: '',
         showPassword: false,
@@ -34,14 +27,15 @@ export default function PasswordField(props: InputBaseProps) {
     };
 
     return (
-        <>
-            <OutlinedInput
-                name="Password"
-                id="outlined-adornment-password"
-                type={values.showPassword ? 'text' : 'password'}
-                value={values.password}
-                onChange={handleChange('password')}
-                endAdornment={
+        <TextField
+            {...props}
+            label={label}
+            id="outlined-adornment-password"
+            type={values.showPassword ? 'text' : 'password'}
+            value={values.password}
+            onChange={handleChange('password')}
+            InputProps={{
+                endAdornment: (
                     <InputAdornment position="end">
                         <IconButton
                             aria-label="toggle password visibility"
@@ -52,9 +46,8 @@ export default function PasswordField(props: InputBaseProps) {
                             {values.showPassword ? <Visibility /> : <VisibilityOff />}
                         </IconButton>
                     </InputAdornment>
-                }
-                labelWidth={70}
-            />
-        </>
+                ),
+            }}
+        />
     );
 }

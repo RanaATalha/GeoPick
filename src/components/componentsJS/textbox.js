@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "./textbox.scss";
+import { OutlinedInput } from "@material-ui/core";
 
 const TextPlaceholder = () => {
-  return <div className={styles.textPlaceholder} />;
+  return <OutlinedInput className={styles.textPlaceholder}/>;
 };
 
 export default TextPlaceholder;

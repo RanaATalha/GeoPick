@@ -4,14 +4,24 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import WelcomeScreen from './pages/welcome screen';
 import SignInScreen from './pages/sign-in screen';
 import SignUpScreen from './pages/sign-up screen';
-import PasswordField from './components/Inputs/PasswordField';
+import BottomNavigation from './components/NavBar/navbar';
+import BackwardBtn from './components/Buttons/BackwardBtn';
+import TextField from './components/Inputs/TextField';
+import Card from './components/Layouts/Card';
+import Checkbox from './components/Inputs/Checkbox';
+import { RegularBtn } from './components/Buttons/RegularBtn';
 
 function App(): JSX.Element {
     return (
         <div className="App">
             <Router>
                 <Nav />
-                <PasswordField />
+                <div style={{ background: 'black' }}>
+                    <RegularBtn colorType="auto">Hello</RegularBtn>
+                </div>
+                <div>
+                    <BottomNavigation />
+                </div>
                 <Switch>
                     <Route exact path="/welcome">
                         <WelcomeScreen />
