@@ -11,6 +11,7 @@ import Card from './components/Layouts/Card';
 import Checkbox from './components/Inputs/Checkbox';
 import { RegularBtn } from './components/Buttons/RegularBtn';
 import CreateProfileScreen from './pages/create-profile-screen';
+import SetNewPasswordScreen from './pages/set-new-password';
 
 function App(): JSX.Element {
     return (
@@ -36,6 +37,9 @@ function App(): JSX.Element {
                     <Route exact path="/create-profile">
                         <CreateProfileScreen />
                     </Route>
+                    <Route exact path="/Set-password">
+                        <SetNewPasswordScreen/>
+                    </Route>                    
                 </Switch>
             </Router>
         </div>
@@ -59,7 +63,9 @@ function Nav() {
                     <li>
                         <Link to="/create-profile">Create Profile</Link>
                     </li>
-                </ul>
+                    <li>
+                        <Link to="/Set-password">Set new password</Link>
+                    </li>                </ul>
             </nav>
         </div>
     );
