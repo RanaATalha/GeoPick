@@ -11,7 +11,7 @@ export interface SignUpProps {}
 export default class SignUpScreen extends React.Component<SignUpProps> {
     public render(): JSX.Element {
         return (
-            <Card>
+            <Card title="Sign Up!" split={1}>
                 <Grid container spacing={4} direction="row" alignItems="center" justify="center">
                     <SignUpHeader title="Setup your account" />
                     <SignUpForm />
