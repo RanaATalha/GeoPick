@@ -5,7 +5,7 @@ export interface ICardProps {
     background?: string;
 }
 
-export default function Card({ background = '#F56920', ...props }: React.PropsWithChildren<ICardProps>) {
+export default function Card({ background = 'white', ...props }: React.PropsWithChildren<ICardProps>) {
     return (
         <Box display="flex" m={'10px'} alignItems="center" justifyContent="center">
             <Grid

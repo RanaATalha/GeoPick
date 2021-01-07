@@ -15,6 +15,11 @@ export default function Card({ background = '#F56920', ...props }: React.PropsWi
                 spacing={4}
                 style={{ maxWidth: '400px', minWidth: '200px' }}
             >
+                <Grid item xs={12} justify="center" style={{ paddingLeft: '18px' }}>
+                    <Typography variant="h3" align="left" style={{ fontWeight: 'bolder' }}>
+                        Create <span style={{ color: 'orange' }}>Profile</span>
+                    </Typography>
+                </Grid>
                 <Grid item xs={12}>
                     <Box
                         boxShadow={100}

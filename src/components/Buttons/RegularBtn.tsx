@@ -23,6 +23,12 @@ const DarkButton = withStyles({
     },
 })(Button);
 
+const OrangeButton = withStyles({
+    root: {
+        background: '#F56920',
+    },
+})(Button);
+
 const AutoButton = withStyles((theme: Theme) => ({
     root: {
         background: theme.palette.type === 'dark' ? '#F56920' : 'white',
@@ -35,6 +41,8 @@ export function RegularBtn({ colorType = 'auto', ...props }: IRegularBtnProps) {
             return <WhiteButton variant="contained" {...props} />;
         case 'dark':
             return <DarkButton variant="contained" {...props} />;
+        case 'orange':
+            return <OrangeButton variant="contained" {...props} />;
         case 'auto':
             return <AutoButton variant="contained" {...props} />;
         default:
