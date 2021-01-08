@@ -29,7 +29,25 @@ interface WelcomeProps {}
 // );
 const WelcomeScreen: React.FunctionComponent<WelcomeProps> = (props) => {
     // const classes = useStyles();
-
+/* var config={
+   apiKey:"",
+   authDomain:"",
+   databaseURL:"",
+   project:"",
+   storeageBucket:"",
+   messageingSenderid:""
+};
+GoogleSignin=()=>{
+    provider=new firebase.auth.GoogleAuthProvider()
+    firebase.auth().signinWithPopup(provider).then(function(result){
+        console.log(result)
+        console.log("Google account is linked")
+    }).catch(function(err){
+     console.log(err)
+     console.log("failed to login")
+    })
+}
+*/
     return (
         <html>
             <body>

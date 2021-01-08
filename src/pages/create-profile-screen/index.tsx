@@ -2,7 +2,7 @@ import * as React from 'react';
 import './styles.scss';
 import UsernameField from '../../components/Inputs/UsernameField';
 import TextField from '../../components/Inputs/TextField';
-import Card from '../../components/Layouts/CreateProfileCard';
+import Card from '../../components/Layouts/Card';
 import { Grid, Typography } from '@material-ui/core';
 import BadgeAvatar from '../../components/Display/AddAvatarBadge';
 import { RegularBtn } from '../../components/Buttons/RegularBtn';
