@@ -43,7 +43,7 @@ export default class SignInScreen extends React.Component<SignInProps> {
 
                             <Grid item xs={12}>
                                 <RegularBtn colorType="white">
-                                    <Link to=""> Forgot Password ?</Link>
+                                    <Link to="/ReSet-password"> Forgot Password ?</Link>
                                 </RegularBtn>
                             </Grid>
                         </Grid>

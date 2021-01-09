@@ -20,10 +20,11 @@ export default class SetNewPasswordScreen extends React.Component<SetNewPassProp
                 <body>
                     <div className="set-password">
                         <Grid container direction="column" xs={12} alignItems="center" style={{ padding: '16px' }}>
-                        <SetpasswordHeader/>                       </Grid>
+                        <SetpasswordHeader/>
+                       </Grid>
                         <Card background="#FFFFFF">
                            <Grid container spacing={4} direction="row" alignItems="center" justify="center">
-                               <SetpasswordCardHeader/>
+                           <br/><br/><br/><br/><br/><br/>
                                  <form>
                                     <Setpasswordtextbox/>
                                     <Setpassworditem/>
@@ -32,6 +33,7 @@ export default class SetNewPasswordScreen extends React.Component<SetNewPassProp
                                     <Setpasswordbutton/>
                             </Grid>                            
                         </Card>
+                        <br/>
                     </div>
                 </body>
             </html>
@@ -49,15 +51,7 @@ const SetpasswordHeader = () => {
     </Typography>
 
     );};
-    const SetpasswordCardHeader = () => {
-        return (
-            <Grid item>
-            <Typography variant="h3" style={{ color: 'white', fontWeight: 'unset' }}>
-                Setup your account!
-            </Typography>
-        </Grid>
-
-        );};    
+  
 
     const Setpasswordbutton=()=>{
         return(
