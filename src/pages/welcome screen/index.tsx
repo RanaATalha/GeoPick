@@ -1,5 +1,7 @@
 import * as React from 'react';
 import './styles.scss';
+import Firebase from '../../firebase';
+import app from 'firebase/app';
 import SignUpScreen from '../sign-up screen/index';
 import { BrowserRouter as Router, Route, Switch, Link, BrowserRouter } from 'react-router-dom';
 import WhiteLogo from './WhiteLogo.svg';
@@ -48,6 +50,20 @@ GoogleSignin=()=>{
     })
 }
 */
+const Submit =()=>{
+   alert('error')
+}
+var firebaseConfig = {
+    apiKey: "AIzaSyDIvlHZc4WMB_6IibnMOQc-_D9M2noB57w",
+    authDomain: "geopick-db.firebaseapp.com",
+    projectId: "geopick-db",
+    storageBucket: "geopick-db.appspot.com",
+    messagingSenderId: "165396932142",
+    appId: "1:165396932142:web:e39c9dcd9e80c5d4cfa1bf",
+    measurementId: "G-XS2DD50LZW"
+  };
+
+
     return (
         <html>
             <body>
@@ -80,7 +96,7 @@ GoogleSignin=()=>{
                             ></Grid>
                             <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
                                 <Grid item>
-                                    <button className="g-btn">
+                                    <button onClick={Submit} className="g-btn">
                                         <img src={googleButton} width="22px" alt="Google" />
                                         <p className="text">Sign in</p>
                                     </button>
