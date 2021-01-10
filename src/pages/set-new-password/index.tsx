@@ -20,68 +20,87 @@ export default class SetNewPasswordScreen extends React.Component<SetNewPassProp
                 <body>
                     <div className="set-password">
                         <Grid container direction="column" xs={12} alignItems="center" style={{ padding: '16px' }}>
-                            <Typography variant="h3" align="left" style={{ fontWeight: 'bolder' }}>
-                                set a{' '}
-                                <span style={{ color: 'orange' }}>
-                                    new <br></br>password!
-                                </span>
-                            </Typography>
-                        </Grid>
+                        <SetpasswordHeader/>
+                       </Grid>
                         <Card background="#FFFFFF">
-                            <Grid container spacing={4} direction="row" alignItems="center" justify="center">
-                                <Grid item>
-                                    <Typography variant="h3" style={{ color: 'white', fontWeight: 'unset' }}>
-                                        Setup your account!
-                                    </Typography>
-                                </Grid>
-                                <form>
-                                    <Grid
-                                        item
-                                        container
-                                        spacing={3}
-                                        direction="row"
-                                        alignItems="center"
-                                        justify="center"
-                                    >
-                                        <Grid item xs={12}>
-                                            <PasswordField> </PasswordField>
-                                        </Grid>
-                                        <Grid item style={{ width: '100%' }}>
-                                            <PasswordField label="Confirm Password" />
-                                        </Grid>
-                                    </Grid>
-                                    <Grid item container spacing={3}>
-                                        <Grid
-                                            item
-                                            xs={2}
-                                            alignContent="center"
-                                            alignItems="center"
-                                            style={{ verticalAlign: 'true' }}
-                                        >
-                                            <Checkbox required />
-                                        </Grid>
-                                        <Grid
-                                            item
-                                            xs={10}
-                                            alignContent="center"
-                                            alignItems="center"
-                                            style={{ paddingTop: '20px', verticalAlign: 'true' }}
-                                        ></Grid>
-                                    </Grid>
-
-                                    <br></br>
-                                </form>
-
-                                <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
-                                    <RegularBtn colorType="orange" style={{ width: '50%', borderRadius: '15px' }}>
-                                        Set password
-                                    </RegularBtn>
-                                </Grid>
-                            </Grid>
+                           <Grid container spacing={4} direction="row" alignItems="center" justify="center">
+                           <br/><br/><br/><br/><br/><br/>
+                                 <form>
+                                    <Setpasswordtextbox/>
+                                    <Setpassworditem/>
+                                    <br/>
+                                 </form>
+                                    <Setpasswordbutton/>
+                            </Grid>                            
                         </Card>
+                        <br/>
                     </div>
                 </body>
             </html>
         );
     }
 }
+
+const SetpasswordHeader = () => {
+    return (
+        <Typography variant="h3" align="left" style={{ fontWeight: 'bolder' }}>
+        set a{' '}
+        <span style={{ color: 'orange' }}>
+            new <br></br>password!
+        </span>
+    </Typography>
+
+    );};
+  
+
+    const Setpasswordbutton=()=>{
+        return(
+            <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
+            <RegularBtn colorType="orange" style={{ width: '50%', borderRadius: '15px' }}>
+                Set password
+            </RegularBtn>
+          </Grid>
+        );
+    };
+
+    const Setpasswordtextbox=()=>{
+        return(
+        <Grid
+            item
+            container
+            spacing={3}
+            direction="row"
+            alignItems="center"
+            justify="center"
+        >
+            <Grid item xs={12}>
+                <PasswordField> </PasswordField>
+            </Grid>
+            <Grid item style={{ width: '100%' }}>
+                <PasswordField label="Confirm Password" />
+            </Grid>
+        </Grid>
+);
+    };
+
+    const Setpassworditem=()=>{
+       return(<Grid item container spacing={3}>
+        <Grid
+            item
+            xs={2}
+            alignContent="center"
+            alignItems="center"
+            style={{ verticalAlign: 'true' }}
+        >
+            
+        </Grid>
+        <Grid
+            item
+            xs={10}
+            alignContent="center"
+            alignItems="center"
+            style={{ paddingTop: '20px', verticalAlign: 'true' }}
+        ></Grid>
+    </Grid>
+);
+};

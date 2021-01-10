@@ -26,7 +26,7 @@ const DarkButton = withStyles({
 const OrangeButton = withStyles({
     root: {
         background: '#F56920',
-        color: '#ffffff',
+        color: '#FFFFFF',
     },
 })(Button);
 
