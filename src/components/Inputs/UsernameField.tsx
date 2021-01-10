@@ -1,12 +1,9 @@
 import React from 'react';
 import { Box, TextField as MatTextField, TextFieldProps, withStyles } from '@material-ui/core';
 import clsx from 'clsx';
-import {
-    InputAdornment
-} from '@material-ui/core';
-import Tick from "./Tick.svg";
-import cross from "./cross.svg";
-
+import { InputAdornment } from '@material-ui/core';
+import Tick from './Tick.svg';
+import cross from './cross.svg';
 
 // const styles = {
 //     root: {
@@ -53,7 +50,7 @@ interface State {
 }
 
 export default function UsernameField({ InputProps, variant = 'filled', ...props }: TextFieldProps) {
-     const [values, setValues] = React.useState<State>({
+    const [values, setValues] = React.useState<State>({
         username: '',
         acceptableUsername: false,
     });
@@ -76,16 +73,14 @@ export default function UsernameField({ InputProps, variant = 'filled', ...props
                         ...InputProps,
                         endAdornment: (
                             <InputAdornment position="end">
-                            {values.acceptableUsername? <img src={Tick}/>: <img src={cross}/> }
+                                {values.acceptableUsername ? <img src={Tick} /> : <img src={cross} />}
                             </InputAdornment>
                         ),
                         disableUnderline: true,
                     }}
                     {...props}
-                    
                 />
             </Box>
         </Box>
     );
 }
-

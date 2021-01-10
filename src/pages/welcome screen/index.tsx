@@ -1,11 +1,12 @@
 import * as React from 'react';
 import './styles.scss';
 import SignUpScreen from '../sign-up screen/index';
-import { BrowserRouter as Router, Route, Switch, Link, BrowserRouter, } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link, BrowserRouter } from 'react-router-dom';
 import WhiteLogo from './WhiteLogo.svg';
 import googleButton from './googleButton.svg';
-import background from './welcome-pg.png';
+// import background from './welcome-pg.png';
 import { createStyles, Grid, makeStyles, Theme, Typography } from '@material-ui/core';
+import Divider from '@material-ui/core/Divider';
 import Checkbox from '../../components/Inputs/Checkbox';
 import TextField from '../../components/Inputs/TextField';
 import PasswordField from '../../components/Inputs/PasswordField';
@@ -28,19 +29,40 @@ interface WelcomeProps {}
 // );
 const WelcomeScreen: React.FunctionComponent<WelcomeProps> = (props) => {
     // const classes = useStyles();
-
+/* var config={
+   apiKey:"",
+   authDomain:"",
+   databaseURL:"",
+   project:"",
+   storeageBucket:"",
+   messageingSenderid:""
+};
+GoogleSignin=()=>{
+    provider=new firebase.auth.GoogleAuthProvider()
+    firebase.auth().signinWithPopup(provider).then(function(result){
+        console.log(result)
+        console.log("Google account is linked")
+    }).catch(function(err){
+     console.log(err)
+     console.log("failed to login")
+    })
+}
+*/
     return (
         <html>
-            <body
-                style={{
-                    backgroundImage: `url(${background})`,
-                }}
-            >
+            <body>
                 {/* <img src ={background} width='auto'> */}
                 <div className="welcomepg">
                     <Grid container spacing={10} direction="column" alignItems="center" justify="center">
                         <Grid item>
                             <img src={WhiteLogo} alt="GeoPicK Logo" />
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
                         </Grid>
                         <Grid item>
                             <Typography variant="h3" align="center">
@@ -49,23 +71,33 @@ const WelcomeScreen: React.FunctionComponent<WelcomeProps> = (props) => {
                             </Typography>
                         </Grid>
                         <Grid container spacing={3} direction="column" alignItems="center" justify="center">
-                            <Grid item>
-                                <button  className="g-btn">
-                                    <img src={googleButton} width="22px" alt="Google" />
-                                    <p className="text">Sign in</p>
-                                </button>
-                                <br></br>
-                                <hr />
-                                <div>
-                                <a href="/sign-up">    
-                                <button className="sign-btn">Sign up now!</button>
-                                </a>
-                                </div>{/* <br></br> */}
-                                <div>
-                                <a href="/sign-in">
-                                <button className="sign-btn1">Sign in</button>
-                                 </a>
-                                 </div>
+                            <Grid
+                                item
+                                xs={2}
+                                alignContent="center"
+                                alignItems="center"
+                                style={{ verticalAlign: 'true' }}
+                            ></Grid>
+                            <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
+                                <Grid item>
+                                    <button className="g-btn">
+                                        <img src={googleButton} width="22px" alt="Google" />
+                                        <p className="text">Sign in</p>
+                                    </button>
+                                    <br></br>
+                                    <hr style={{ width: '500px' }} />
+                                    <div style={{ paddingBottom: '5%' }}>
+                                        <a href="/sign-up">
+                                            <button className="sign-btn">Sign up now!</button>
+                                        </a>
+                                    </div>
+                                    {/* <br></br> */}
+                                    <div style={{ paddingBottom: '20%' }}>
+                                        <a href="/sign-in">
+                                            <button className="sign-btn1">Sign in</button>
+                                        </a>
+                                    </div>
+                                </Grid>
                             </Grid>
                         </Grid>
                     </Grid>

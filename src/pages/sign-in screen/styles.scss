@@ -1,59 +1,62 @@
-.PageSignIn {
+.main_div {
     margin-top: 3%;
     text-align: center;
-    color: white;
     background-color: black;
 }
-.PageSignUp h1 {
-    margin-right: 150px;
-    font-size: 50px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-.PageSignUp span {
-    color: rgb(255, 81, 0);
-}
 
-.Sign-Up {
-    background-color: rgb(255, 81, 0);
-    width: 365px;
-    height: 500px;
-    margin-left: 37%;
-    padding-top: 1px;
-    border-radius: 18px;
-}
-
-.Sign-Up span {
-    color: rgb(63, 58, 58);
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-.Sign-Up p {
+.Sign-In h1{
+    width: 216px;
+    height: 66px;
+    margin: 0 149px 86px 0;
+    font-family: Poppins;
+    font-size: 64px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.02;
+    letter-spacing: normal;
     text-align: left;
-    font-size: x-large;
-    margin-left: 20px;
-    font-family: Arial, Helvetica, sans-serif;
+    color: white;
 }
 
-.form {
-    margin-bottom: 20px;
-    border-radius: 16px;
-    border: none;
-    padding: 10px;
+.Rectangle {
+    width: 365px;
+    height: 562px;
+    margin: 86px 0 0;
+    padding: 37px 22px 101px 23px;
+    border-radius: 18px;
+    background-color:white;
+}
+
+.Rectangle h1 {
+    width: 269px;
+    height: 84px;
+    margin: 0 51px 55px 0;
+    font-family: Poppins;
+    font-size: 36px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.17;
+    letter-spacing: normal;
+    text-align: left;
+}
+
+.form{
     width: 320px;
-    height: 20px;
-    text-decoration: none;
+    height: 53px;
+    padding: 15px 195px 15px 14px;
+    border-radius: 200px;
+    border: solid 10px #f56920;
+    background-color: white;
 }
 
 .signin-btn {
-    width: 195px;
-    height: 45px;
+    width: 200px;
+    height: 49px;
+    margin: 67px 60px 24px;
+    padding: 13px 66px;
     border-radius: 18px;
-    margin-top: 8%;
-    font-family: sans-serif;
-    font-size: 17px;
-    border: none;
-    color: orange;
-    font-weight: bolder;
-}
-.radio-btn {
-    margin-top: 20px;
+    color: white;
+    background-color: #f56920;
 }

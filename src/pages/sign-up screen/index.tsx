@@ -14,6 +14,11 @@ export default class SignUpScreen extends React.Component<SignUpProps> {
             <html>
                 <body>
                     <div className="PageSignUp">
+                        <Grid container direction="column" xs={12} alignItems="center" style={{ padding: '18px' }}>
+                            <Typography variant="h3" align="left" style={{ fontWeight: 'bolder' }}>
+                                Sign <span style={{ color: 'orange' }}>Up</span>
+                            </Typography>
+                        </Grid>
                         <Card>
                             <Grid container spacing={4} direction="row" alignItems="center" justify="center">
                                 <Grid item>
@@ -58,7 +63,7 @@ export default class SignUpScreen extends React.Component<SignUpProps> {
                                             style={{ paddingTop: '20px', verticalAlign: 'true' }}
                                         >
                                             <Typography align="left" style={{ fontSize: '12px', color: '1B1B1E' }}>
-                                                By signing up I conform that I have read and accepted the terms and
+                                                By signing up I confirm that I have read and accepted the terms and
                                                 conditions of using the application.
                                             </Typography>
                                         </Grid>

@@ -10,7 +10,7 @@ import TextField from './components/Inputs/TextField';
 import Card from './components/Layouts/Card';
 import Checkbox from './components/Inputs/Checkbox';
 import { RegularBtn } from './components/Buttons/RegularBtn';
-import CreateProfileScreen from './pages/create-profile screen';
+import CreateProfileScreen from './pages/create-profile-screen';
 
 function App(): JSX.Element {
     return (
