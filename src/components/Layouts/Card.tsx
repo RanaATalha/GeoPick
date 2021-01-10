@@ -45,7 +45,7 @@ const CardTitle = (props: { title: string; split: number }) => {
     return (
         <Grid item xs={12} justify="center" style={{ paddingLeft: '18px' }}>
             <Typography variant="h3" align="left" style={{ fontWeight: 'bolder' }}>
-                {whiteTitle} <span style={{ color: 'orange' }}>{orangeTitle}</span>
+                {whiteTitle} <span style={{ color: '#F56920' }}>{orangeTitle}</span>
             </Typography>
         </Grid>
     );
