@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './styles.scss';
-import Firebase from '../../firebase';
+import firebase from '../../firebase';
 import app from 'firebase/app';
 import SignUpScreen from '../sign-up screen/index';
 import { BrowserRouter as Router, Route, Switch, Link, BrowserRouter } from 'react-router-dom';
@@ -38,10 +38,12 @@ const WelcomeScreen: React.FunctionComponent<WelcomeProps> = (props) => {
    project:"",
    storeageBucket:"",
    messageingSenderid:""
-};
-GoogleSignin=()=>{
-    provider=new firebase.auth.GoogleAuthProvider()
-    firebase.auth().signinWithPopup(provider).then(function(result){
+};*/
+const GoogleSignin=()=>{
+    const fb = new firebase()
+
+        const provider = fb.getGoogleProvider()
+    fb.auth.signInWithPopup(provider).then(function(result){
         console.log(result)
         console.log("Google account is linked")
     }).catch(function(err){
@@ -49,7 +51,7 @@ GoogleSignin=()=>{
      console.log("failed to login")
     })
 }
-*/
+
 const Submit =()=>{
    alert('error')
 }
@@ -96,7 +98,7 @@ var firebaseConfig = {
                             ></Grid>
                             <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
                                 <Grid item>
-                                    <button onClick={Submit} className="g-btn">
+                                    <button onClick={GoogleSignin} className="g-btn">
                                         <img src={googleButton} width="22px" alt="Google" />
                                         <p className="text">Sign in</p>
                                     </button>
