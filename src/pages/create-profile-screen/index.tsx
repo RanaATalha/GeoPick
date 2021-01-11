@@ -14,7 +14,7 @@ export default class CreateProfileScreen extends React.Component<CreateProfilePr
             <html>
                 <body>
                     <div className="Create-Profile-Page">
-                        <Card>
+                        <Card title="Create Profile" split={1}>
                             <Grid container spacing={4} direction="row" alignItems="center" justify="center">
                                 <Grid item>
                                     <BadgeAvatar />
@@ -64,7 +64,6 @@ export default class CreateProfileScreen extends React.Component<CreateProfilePr
                                     </RegularBtn>
                                     </Grid>
                                 </form>
-                                
                             </Grid>
                         </Card>
                     </div>

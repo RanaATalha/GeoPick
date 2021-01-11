@@ -13,43 +13,38 @@ export default class SignInScreen extends React.Component<SignInProps> {
     public render(): JSX.Element {
         return (
             <div>
-                
                 <div className="bg">
-
-                        <Typography align="center" variant="h3">
-                             Sign <span> In</span>
-                        </Typography>
-                    
-                <Card background="black">
-                    <Grid container spacing={4} direction="row">
-                        <Grid item>
-                            <Typography align="left" variant="h3">
-                                <span>You know</span> <div> what </div> <span> to do... </span>
-                            </Typography>
-                        </Grid>
-
-                        <Grid container spacing={2}>
-                            <Grid item xs={12}>
-                                <TextField label="Email"> </TextField>
+                    <Card background="white" title="Sign In" split={1}>
+                        <Grid container spacing={4} direction="row">
+                            <Grid item>
+                                <Typography align="left" variant="h3">
+                                    <span>You know</span> <div> what </div> <span> to do... </span>
+                                </Typography>
                             </Grid>
 
-                            <Grid item xs={12}>
-                                <PasswordField> </PasswordField>
-                            </Grid>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12}>
+                                    <TextField label="Email"> </TextField>
+                                </Grid>
 
-                            <Grid item xs={12}>
-                                <RegularBtn colorType="auto"> Sign In </RegularBtn>
-                            </Grid>
+                                <Grid item xs={12}>
+                                    <PasswordField> </PasswordField>
+                                </Grid>
 
-                            <Grid item xs={12}>
-                                <RegularBtn colorType="white">
+                                <Grid item xs={12}>
+                                    <RegularBtn colorType="orange" style={{ width: '50%', borderRadius: '18px' }}>
+                                        {' '}
+                                        Sign In{' '}
+                                    </RegularBtn>
+                                </Grid>
+
+                                <Grid item xs={12}>
                                     <Link to="/ReSet-password"> Forgot Password ?</Link>
-                                </RegularBtn>
+                                </Grid>
                             </Grid>
                         </Grid>
-                    </Grid>
                     </Card>
-                    </div>
+                </div>
             </div>
         );
     }

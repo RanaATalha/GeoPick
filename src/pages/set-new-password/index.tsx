@@ -5,7 +5,6 @@ import './styles.scss';
 import TextField from '../../components/Inputs/TextField';
 import PasswordField from '../../components/Inputs/PasswordField';
 import Card from '../../components/Layouts/Card';
-//import Card1 from '../../components/Layouts/Card';
 import { RegularBtn } from '../../components/Buttons/RegularBtn';
 
 export interface SetNewPassProps {}
@@ -19,19 +18,13 @@ export default class SetNewPasswordScreen extends React.Component<SetNewPassProp
             <html>
                 <body>
                     <div className="set-password">
-                        <Grid container direction="column" xs={12} alignItems="center" style={{ padding: '16px' }}>
-                        <SetpasswordHeader/>
-                       </Grid>
-                        <Card background="#FFFFFF">
-                           <Grid container spacing={4} direction="row" alignItems="center" justify="center">
-                           <br/><br/><br/><br/><br/><br/>
-                                 <form>
-                                    <Setpasswordtextbox/>
-                                    <Setpassworditem/>
-                                    <br/>
-                                 </form>
+                        <Card title="Set a new Password" split={2} background="#FFFFFF">
+                            <Grid container spacing={4} direction="row" alignItems="center" justify="center">
+                                <form>
+                                    <PasswordFields/>
                                     <Setpasswordbutton/>
-                            </Grid>                            
+                                </form>
+                            </Grid>
                         </Card>
                         <br/>
                     </div>
@@ -41,66 +34,25 @@ export default class SetNewPasswordScreen extends React.Component<SetNewPassProp
     }
 }
 
-const SetpasswordHeader = () => {
+const PasswordFields = () => {
     return (
-        <Typography variant="h3" align="left" style={{ fontWeight: 'bolder' }}>
-        set a{' '}
-        <span style={{ color: 'orange' }}>
-            new <br></br>password!
-        </span>
-    </Typography>
-
-    );};
-  
-
-    const Setpasswordbutton=()=>{
-        return(
-            <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
-            <RegularBtn colorType="orange" style={{ width: '50%', borderRadius: '15px' }}>
-                Set password
-            </RegularBtn>
-          </Grid>
-        );
-    };
-
-    const Setpasswordtextbox=()=>{
-        return(
-        <Grid
-            item
-            container
-            spacing={3}
-            direction="row"
-            alignItems="center"
-            justify="center"
-        >
-            <Grid item xs={12}>
-                <PasswordField> </PasswordField>
+        <Grid item container spacing={3} direction="row" alignItems="center" justify="center">
+            <Grid item style={{ width: '100%', paddingTop: '30%' }}>
+                <PasswordField />
             </Grid>
-            <Grid item style={{ width: '100%' }}>
+            <Grid item style={{ width: '100%', paddingBottom: '20%' }}>
                 <PasswordField label="Confirm Password" />
             </Grid>
         </Grid>
-);
-    };
-
-    const Setpassworditem=()=>{
-       return(<Grid item container spacing={3}>
-        <Grid
-            item
-            xs={2}
-            alignContent="center"
-            alignItems="center"
-            style={{ verticalAlign: 'true' }}
-        >
-            
+    );
+};
+  
+const Setpasswordbutton=()=>{
+    return(
+        <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center', paddingTop: '10%', paddingBottom: '40%' }}>
+        <RegularBtn type="submit" colorType="orange" style={{ width: '50%', borderRadius: '15px' }}>
+            Set password
+        </RegularBtn>
         </Grid>
-        <Grid
-            item
-            xs={10}
-            alignContent="center"
-            alignItems="center"
-            style={{ paddingTop: '20px', verticalAlign: 'true' }}
-        ></Grid>
-    </Grid>
-);
+    );
 };

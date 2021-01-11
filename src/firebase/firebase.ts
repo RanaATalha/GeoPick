@@ -28,6 +28,8 @@ const config = process.env.NODE_ENV === 'production' ? prodConfig : devConfig;
 class firebase {
     auth: app.auth.Auth; // variable assigned for auth
     static auth: app.auth.Auth;
+    providerGoogle: app.auth.GoogleAuthProvider | undefined;
+
     constructor() {
         app.initializeApp(config);
         this.auth = app.auth(); // auth api, use this.auth to use it
@@ -45,6 +47,11 @@ class firebase {
         this.auth.signInWithEmailAndPassword(email, password);
 
     doSignOut = () => this.auth.signOut();
+
+    getGoogleProvider = () => {
+        this.providerGoogle = new app.auth.GoogleAuthProvider();
+        return this.providerGoogle;
+    };
 }
 
 export type User = fb.User;

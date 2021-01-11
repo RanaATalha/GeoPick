@@ -9,26 +9,35 @@ import Card from '../../components/Layouts/Card';
 import { RegularBtn } from '../../components/Buttons/RegularBtn';
 export interface ReSetNewPassProps {}
 
+
 export default class ReSetNewPasswordScreen extends React.Component<ReSetNewPassProps> {
     public render(): JSX.Element {
         return (
             <html>
                 <body>
                     <div className="set-password">
-                        <Grid container direction="column" xs={12} alignItems="center" style={{ padding: '16px' }}>
-                        <ReSetpasswordHeader/>                       </Grid>
-                        <Card background="#FFFFFF">
-                           <Grid container spacing={8} direction="row" alignItems="center" justify="center">
-                               <ReSetpasswordCardHeader/>
-                                 <form>
-                                    <ReSetpasswordtextbox/>
-                                 
+                        <Card title="Reset your Password" split={2} background="#FFFFFF">
+                            <br/>
+                            <Grid container spacing={4} direction="row" alignItems="center" justify="center">
+                                <ReSetpasswordHeader title="We just want to confirm your identity..." split={6}/>
+                                <form>
+                                    <Grid
+                                        item
+                                        container
+                                        spacing={4}
+                                        direction="row"
+                                        alignItems="center"
+                                        justify="center"
+                                    >
+                                    <EmailTextbox/>
                                     <br/>
-                                 </form>
                                     <ReSetpasswordbutton/>
-                            </Grid>                            
+                                    </Grid>         
+                                    <br/>
+                                    <br/>                      
+                                </form>
+                            </Grid>
                         </Card>
-                        <br/>
                     </div>
                 </body>
             </html>
@@ -36,38 +45,33 @@ export default class ReSetNewPasswordScreen extends React.Component<ReSetNewPass
     }
 }
 
-const ReSetpasswordHeader = () => {
+const ReSetpasswordHeader = (props: { title: string; split: number }) => {
+    const { title, split } = props;
+    const titleArray = title.split(' ');
+    const tile1 = titleArray.slice(0, split).join(' ');
+    const tile2 = titleArray.slice(split, title.length - 1).join(' ');
     return (
-        <Typography variant="h3" align="left" style={{ fontWeight: 'bolder' }}>
-        Reset your{' '}
-        <span style={{ color: 'orange' }}>
-             <br></br>password
-        </span>
-    </Typography>
-
-    );};
-    const ReSetpasswordCardHeader = () => {
-        return (
-            <Grid item>
-            <Typography variant="h5" style={{ color: 'black', fontWeight: 'unset' }}>
-                We just want to Confirm your identity...
+        <Grid item xs={12} justify="center" style={{ paddingLeft: '5%' }}>
+            <Typography variant="h4" align="left">
+                <span style={{ color: '#F56920' }}>{tile1}</span> <span style={{ color: 'black' }}>{tile2}</span>
             </Typography>
         </Grid>
+    );
+};
+  
 
-        );};    
-
-    const ReSetpasswordbutton=()=>{
-        return(
-            <Grid item xs={12} alignItems="center" justify="center" style={{textAlign: 'center' }}>
-            <RegularBtn colorType="orange" style={{ width: '50%', borderRadius: '15px' }}>
+const ReSetpasswordbutton=()=>{
+    return(
+        <Grid item xs={12} alignItems="center" justify="center" style={{textAlign: 'center', paddingTop: '20%', paddingBottom: '25%'}}>
+            <RegularBtn type="submit" colorType="orange" style={{ width: '50%', borderRadius: '15px', padding: '2%'}}>
                 Send me a link!
             </RegularBtn>
-          </Grid>
-        );
-    };
+        </Grid>
+    );
+};
 
-    const ReSetpasswordtextbox=()=>{
-        return(
+const EmailTextbox=()=>{
+    return(
         <Grid
             item
             container
@@ -76,11 +80,11 @@ const ReSetpasswordHeader = () => {
             alignItems="center"
             justify="center"
         >
-            <Grid item xs={12}>
-                 <TextField label="Email"> </TextField>
+            <Grid item style={{ width: '90%', paddingTop: '20%'}}>
+                    <TextField label="Email"> </TextField>
             </Grid>
         </Grid>
-);
-    };
+    );
+};
 
   
