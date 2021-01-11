@@ -68,6 +68,7 @@ export default function UsernameField({ InputProps, variant = 'filled', ...props
                 <CssTextField
                     variant="filled"
                     fullWidth
+                    
                     InputProps={{
                         ...InputProps,
                         endAdornment: (

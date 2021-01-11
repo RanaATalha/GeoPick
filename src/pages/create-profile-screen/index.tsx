@@ -14,7 +14,7 @@ export default class CreateProfileScreen extends React.Component<CreateProfilePr
             <html>
                 <body>
                     <div className="Create-Profile-Page">
-                        <Card>
+                        <Card title="Create Profile" split={1}>
                             <Grid container spacing={4} direction="row" alignItems="center" justify="center">
                                 <Grid item>
                                     <BadgeAvatar />
@@ -29,8 +29,7 @@ export default class CreateProfileScreen extends React.Component<CreateProfilePr
                                         justify="center"
                                     >
                                         <Grid item style={{ width: '100%' }}>
-                                            <UsernameField
-                                                required
+                                            <UsernameField required
                                                 className="textField"
                                                 placeholder="Enter username"
                                                 type="text"
@@ -59,12 +58,12 @@ export default class CreateProfileScreen extends React.Component<CreateProfilePr
                                         </Grid>
                                     </Grid>
                                     <br></br>
-                                </form>
-                                <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
-                                    <RegularBtn colorType="white" style={{ width: '80%', borderRadius: '15px' }}>
+                                    <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
+                                    <RegularBtn type="submit" colorType="white" style={{ width: '80%', borderRadius: '15px' }}>
                                         Complete Registration
                                     </RegularBtn>
-                                </Grid>
+                                    </Grid>
+                                </form>
                             </Grid>
                         </Card>
                     </div>
