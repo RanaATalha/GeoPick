@@ -1,32 +1,31 @@
 import { Grid, Typography } from '@material-ui/core';
 import * as React from 'react';
 import { RegularBtn } from '../../components/Buttons/RegularBtn';
+import PasswordField from '../../components/Inputs/PasswordField';
 import TextField from '../../components/Inputs/TextField';
 import Card from '../../components/Layouts/Card';
 import './styles.scss';
-export interface ResetPassProps {}
+export interface SetNewPassProps {}
 
-export default class ResetPass extends React.Component<ResetPassProps> {
+export default class SetNewPass extends React.Component<SetNewPassProps> {
     public render(): JSX.Element {
         return (
             <div>
-                <div className="bgreset">
-                    <Card background="white" title="Reset your Password" split={2}>
-                        <Grid container spacing={4} direction="row">
-                            <Grid item>
-                                <Typography align="left" variant="h3">
-                                    <h6>We just want to confirm your identity...</h6>
-                                </Typography>
-                            </Grid>
-
-                            <Grid container spacing={2}>
+                <div className="bgnewpass">
+                    <Card background="white" title="Set a new Password" split={2}>
+                        <Grid container spacing={5} direction="row">
+                            <Grid container spacing={4}>
                                 <Grid item xs={12}>
-                                    <TextField label="Email"> </TextField>
+                                    <PasswordField> </PasswordField>
                                 </Grid>
 
                                 <Grid item xs={12}>
+                                    <PasswordField> Confirm Password </PasswordField>{' '}
+                                    {/* ask to add the cofirm text in the components */}
+                                </Grid>
+                                <Grid item xs={12}>
                                     <RegularBtn colorType="orange" style={{ width: '50%', borderRadius: '18px' }}>
-                                        Send me a link!
+                                        Set Password
                                     </RegularBtn>
                                 </Grid>
                             </Grid>

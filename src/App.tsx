@@ -11,8 +11,8 @@ import Card from './components/Layouts/Card';
 import Checkbox from './components/Inputs/Checkbox';
 import { RegularBtn } from './components/Buttons/RegularBtn';
 import CreateProfileScreen from './pages/create-profile-screen';
-import SetNewPasswordScreen from './pages/set-new-password';
-import ReSetNewPasswordScreen from './pages/reset-password';
+import SetNewPasswordScreen from './pages/sign-in screen/setnewpass';
+import ReSetNewPasswordScreen from './pages/sign-in screen/resetpass';
 
 function App(): JSX.Element {
     return (
@@ -39,11 +39,11 @@ function App(): JSX.Element {
                         <CreateProfileScreen />
                     </Route>
                     <Route exact path="/Set-password">
-                        <SetNewPasswordScreen/>
-                    </Route> 
+                        <SetNewPasswordScreen />
+                    </Route>
                     <Route exact path="/ReSet-password">
-                        <ReSetNewPasswordScreen/>
-                    </Route>                                        
+                        <ReSetNewPasswordScreen />
+                    </Route>
                 </Switch>
             </Router>
         </div>
@@ -71,8 +71,9 @@ function Nav() {
                         <Link to="/Set-password">Set new password</Link>
                     </li>
                     <li>
-                        <Link to="/ReSet-password">reset password </Link></li>  
-                                  </ul>
+                        <Link to="/ReSet-password">reset password </Link>
+                    </li>
+                </ul>
             </nav>
         </div>
     );

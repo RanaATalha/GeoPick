@@ -1,3 +1,4 @@
+// SignIn Index css
 .bg {
     color: white;
     font-family: Poppins;
@@ -12,4 +13,35 @@
     margin: -3% 0 30px 0;
 }
 
+//---------------------------------------------------------------//
 
+// ResetPass css
+
+.bgreset {
+    color: white;
+    font-family: Poppins;
+    background-image: url('./welcome-pg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.bgreset h6 {
+    color: #f56920;
+    margin: 1% 0 30px 0;
+}
+
+//---------------------------------------------------------------//
+
+// NewPass css
+
+.bgnewpass {
+    color: white;
+    font-family: Poppins;
+    background-image: url('./welcome-pg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+//---------------------------------------------------------------//
