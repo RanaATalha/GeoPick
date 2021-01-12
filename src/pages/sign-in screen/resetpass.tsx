@@ -1,15 +1,8 @@
 import * as React from 'react';
-import PasswordField from '../../components/Inputs/PasswordField';
-import TextField from '../../components/Inputs/TextField';
 import Card from '../../components/Layouts/Card';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { RegularBtn } from '../../components/Buttons/RegularBtn';
-import { Link } from 'react-router-dom';
-import './styles.scss';
-export interface SignInProps {}
+export interface ResetPassProps {}
 
-export default class SignInScreen extends React.Component<SignInProps> {
+export default class ResetPass extends React.Component<ResetPassProps> {
     public render(): JSX.Element {
         return (
             <div>
