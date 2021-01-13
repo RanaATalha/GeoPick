@@ -31,7 +31,7 @@ interface WelcomeProps {}
 // );
 const WelcomeScreen: React.FunctionComponent<WelcomeProps> = (props) => {
     // const classes = useStyles();
-/* var config={
+    /* var config={
    apiKey:"",
    authDomain:"",
    databaseURL:"",
@@ -39,32 +39,34 @@ const WelcomeScreen: React.FunctionComponent<WelcomeProps> = (props) => {
    storeageBucket:"",
    messageingSenderid:""
 };*/
-const GoogleSignin=()=>{
-    const fb = new firebase()
+    const GoogleSignin = () => {
+        const fb = new firebase();
 
-        const provider = fb.getGoogleProvider()
-    fb.auth.signInWithPopup(provider).then(function(result){
-        console.log(result)
-        console.log("Google account is linked")
-    }).catch(function(err){
-     console.log(err)
-     console.log("failed to login")
-    })
-}
+        const provider = fb.getGoogleProvider();
+        fb.auth
+            .signInWithPopup(provider)
+            .then(function (result) {
+                console.log(result);
+                console.log('Google account is linked');
+            })
+            .catch(function (err) {
+                console.log(err);
+                console.log('failed to login');
+            });
+    };
 
-const Submit =()=>{
-   alert('error')
-}
-var firebaseConfig = {
-    apiKey: "AIzaSyDIvlHZc4WMB_6IibnMOQc-_D9M2noB57w",
-    authDomain: "geopick-db.firebaseapp.com",
-    projectId: "geopick-db",
-    storageBucket: "geopick-db.appspot.com",
-    messagingSenderId: "165396932142",
-    appId: "1:165396932142:web:e39c9dcd9e80c5d4cfa1bf",
-    measurementId: "G-XS2DD50LZW"
-  };
-
+    const Submit = () => {
+        alert('error');
+    };
+    var firebaseConfig = {
+        apiKey: 'AIzaSyDIvlHZc4WMB_6IibnMOQc-_D9M2noB57w',
+        authDomain: 'geopick-db.firebaseapp.com',
+        projectId: 'geopick-db',
+        storageBucket: 'geopick-db.appspot.com',
+        messagingSenderId: '165396932142',
+        appId: '1:165396932142:web:e39c9dcd9e80c5d4cfa1bf',
+        measurementId: 'G-XS2DD50LZW',
+    };
 
     return (
         <html>

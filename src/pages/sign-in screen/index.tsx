@@ -18,7 +18,7 @@ export default class SignInScreen extends React.Component<SignInProps> {
                         <Grid container spacing={4} direction="row">
                             <Grid item>
                                 <Typography align="left" variant="h3">
-                                    <span>You know</span> <div> what </div> <span> to do... </span>
+                                    <h5>You know what to do... </h5>
                                 </Typography>
                             </Grid>
 
@@ -33,8 +33,7 @@ export default class SignInScreen extends React.Component<SignInProps> {
 
                                 <Grid item xs={12}>
                                     <RegularBtn colorType="orange" style={{ width: '50%', borderRadius: '18px' }}>
-                                        {' '}
-                                        Sign In{' '}
+                                        Sign In
                                     </RegularBtn>
                                 </Grid>
 

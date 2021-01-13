@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
-import sampleavatar from './sampleavatar.png';
+
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -15,12 +15,16 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Avatars() {
-    const classes = useStyles();
+interface Image {
+    imgsrc: string
+}
 
+export default function Avatars(props: Image) {
+    const classes = useStyles();
+    console.log(props);
     return (
         <div className={classes.root}>
-            <Avatar alt="Avatar Image" src={sampleavatar} className={classes.large} />
+            <Avatar alt="Avatar Image" src={props.imgsrc} className={classes.large} />
         </div>
     );
 }

@@ -6,8 +6,13 @@ import Card from '../../components/Layouts/Card';
 import { Grid, Typography } from '@material-ui/core';
 import BadgeAvatar from '../../components/Display/AddAvatarBadge';
 import { RegularBtn } from '../../components/Buttons/RegularBtn';
+import sampleavatar from './sampleavatar.png';
 
-export interface CreateProfileProps {}
+export interface CreateProfileProps {
+    // imgsrc : string
+}
+
+
 export default class CreateProfileScreen extends React.Component<CreateProfileProps> {
     public render(): JSX.Element {
         return (
@@ -17,7 +22,7 @@ export default class CreateProfileScreen extends React.Component<CreateProfilePr
                         <Card title="Create Profile" split={1}>
                             <Grid container spacing={4} direction="row" alignItems="center" justify="center">
                                 <Grid item>
-                                    <BadgeAvatar />
+                                    <BadgeAvatar src={sampleavatar} />
                                 </Grid>
                                 <form>
                                     <Grid

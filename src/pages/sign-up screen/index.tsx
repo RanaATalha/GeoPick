@@ -11,6 +11,7 @@ import CreateProfileScreen from '../create-profile-screen/index';
 export interface SignUpProps {}
 
 export default class SignUpScreen extends React.Component<SignUpProps> {
+    
     public render(): JSX.Element {
         return (
             <Card title="Sign Up!" split={1}>

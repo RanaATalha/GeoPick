@@ -1,21 +1,47 @@
-// .bg {
-//     color: white;
-//     font-family: montserrat;
-//     background-image: url("./welcome-pg.png");
-//     background-repeat: no-repeat;
-//     background-size: cover;
-//     background-position: center;
-// }
+// SignIn Index css
+.bg {
+    color: white;
+    font-family: Poppins;
+    background-image: url('./welcome-pg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
 
-// // .bg span {
-// //     color: rgb(255, 81, 0);
-// // }
+.bg h5 {
+    color: #f56920;
+    margin: -3% 0 30px 0;
+}
 
-// // .bg div {
-// //     color: #2f4858;
-// // }
+//---------------------------------------------------------------//
 
+// ResetPass css
 
+.bgreset {
+    color: white;
+    font-family: Poppins;
+    background-image: url('./welcome-pg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
 
+.bgreset h6 {
+    color: #f56920;
+    margin: 1% 0 30px 0;
+}
 
+//---------------------------------------------------------------//
 
+// NewPass css
+
+.bgnewpass {
+    color: white;
+    font-family: Poppins;
+    background-image: url('./welcome-pg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+//---------------------------------------------------------------//

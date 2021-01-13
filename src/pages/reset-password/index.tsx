@@ -9,7 +9,6 @@ import Card from '../../components/Layouts/Card';
 import { RegularBtn } from '../../components/Buttons/RegularBtn';
 export interface ReSetNewPassProps {}
 
-
 export default class ReSetNewPasswordScreen extends React.Component<ReSetNewPassProps> {
     public render(): JSX.Element {
         return (
@@ -17,9 +16,9 @@ export default class ReSetNewPasswordScreen extends React.Component<ReSetNewPass
                 <body>
                     <div className="set-password">
                         <Card title="Reset your Password" split={2} background="#FFFFFF">
-                            <br/>
+                            <br />
                             <Grid container spacing={4} direction="row" alignItems="center" justify="center">
-                                <ReSetpasswordHeader title="We just want to confirm your identity..." split={6}/>
+                                <ReSetpasswordHeader title="We just want to confirm your identity..." split={6} />
                                 <form>
                                     <Grid
                                         item
@@ -29,12 +28,12 @@ export default class ReSetNewPasswordScreen extends React.Component<ReSetNewPass
                                         alignItems="center"
                                         justify="center"
                                     >
-                                    <EmailTextbox/>
-                                    <br/>
-                                    <ReSetpasswordbutton/>
-                                    </Grid>         
-                                    <br/>
-                                    <br/>                      
+                                        <EmailTextbox />
+                                        <br />
+                                        <ReSetpasswordbutton />
+                                    </Grid>
+                                    <br />
+                                    <br />
                                 </form>
                             </Grid>
                         </Card>
@@ -58,33 +57,29 @@ const ReSetpasswordHeader = (props: { title: string; split: number }) => {
         </Grid>
     );
 };
-  
 
-const ReSetpasswordbutton=()=>{
-    return(
-        <Grid item xs={12} alignItems="center" justify="center" style={{textAlign: 'center', paddingTop: '20%', paddingBottom: '25%'}}>
-            <RegularBtn type="submit" colorType="orange" style={{ width: '50%', borderRadius: '15px', padding: '2%'}}>
+const ReSetpasswordbutton = () => {
+    return (
+        <Grid
+            item
+            xs={12}
+            alignItems="center"
+            justify="center"
+            style={{ textAlign: 'center', paddingTop: '20%', paddingBottom: '25%' }}
+        >
+            <RegularBtn type="submit" colorType="orange" style={{ width: '50%', borderRadius: '15px', padding: '2%' }}>
                 Send me a link!
             </RegularBtn>
         </Grid>
     );
 };
 
-const EmailTextbox=()=>{
-    return(
-        <Grid
-            item
-            container
-            spacing={3}
-            direction="row"
-            alignItems="center"
-            justify="center"
-        >
-            <Grid item style={{ width: '90%', paddingTop: '20%'}}>
-                    <TextField label="Email"> </TextField>
+const EmailTextbox = () => {
+    return (
+        <Grid item container spacing={3} direction="row" alignItems="center" justify="center">
+            <Grid item style={{ width: '90%', paddingTop: '20%' }}>
+                <TextField label="Email"> </TextField>
             </Grid>
         </Grid>
     );
 };
-
-  

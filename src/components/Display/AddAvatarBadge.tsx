@@ -5,6 +5,7 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import UploadButton from './AddAvatarIcon';
 import Avatars from './Avatar';
 
+
 const StyledBadge = withStyles((theme) => ({
     badge: {
         backgroundColor: '#44b700',
@@ -51,8 +52,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function BadgeAvatar() {
+interface Image {
+    src: string
+}
+
+export default function BadgeAvatar(props: Image) {
     const classes = useStyles();
+
 
     return (
         <div className={classes.root}>
@@ -64,8 +70,9 @@ export default function BadgeAvatar() {
                 }}
                 badgeContent={<UploadButton />}
             >
-                <Avatars />
+                <Avatars imgsrc={props.src}/>
             </Badge>
         </div>
     );
 }
+
