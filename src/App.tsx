@@ -13,6 +13,7 @@ import { RegularBtn } from './components/Buttons/RegularBtn';
 import CreateProfileScreen from './pages/create-profile-screen';
 import SetNewPasswordScreen from './pages/sign-in screen/setnewpass';
 import ReSetNewPasswordScreen from './pages/sign-in screen/resetpass';
+import { HomeScreen } from './pages/home-screen/home';
 
 function App(): JSX.Element {
     return (
@@ -44,6 +45,9 @@ function App(): JSX.Element {
                     <Route exact path="/ReSet-password">
                         <ReSetNewPasswordScreen />
                     </Route>
+                    <Route exact path="/home">
+                        <HomeScreen />
+                    </Route>
                 </Switch>
             </Router>
         </div>
@@ -72,6 +76,9 @@ function Nav() {
                     </li>
                     <li>
                         <Link to="/ReSet-password">reset password </Link>
+                    </li>
+                    <li>
+                        <Link to="/home">Home Screen</Link>
                     </li>
                 </ul>
             </nav>
