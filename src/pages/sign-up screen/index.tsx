@@ -6,6 +6,8 @@ import TextField from '../../components/Inputs/TextField';
 import PasswordField from '../../components/Inputs/PasswordField';
 import Card from '../../components/Layouts/Card';
 import { RegularBtn } from '../../components/Buttons/RegularBtn';
+import CreateProfileScreen from '../create-profile-screen/index';
+
 export interface SignUpProps {}
 
 export default class SignUpScreen extends React.Component<SignUpProps> {
@@ -71,9 +73,11 @@ const SignUpForm = () => {
                 </Grid>
             </form>
             <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
+                <a href="/create-profile">
                 <RegularBtn colorType="white" style={{ width: '50%', borderRadius: '15px' }}>
                     Sign Up!
                 </RegularBtn>
+                </a>
             </Grid>
         </>
     );

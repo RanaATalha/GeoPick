@@ -4,6 +4,7 @@ import 'firebase/auth';
 import fb from 'firebase';
 import cred from '../constants/firebase-creds.json';
 import 'dot-env';
+import 'firebase/storage';
 
 const prodConfig = {
     apiKey: cred.REACT_APP_API_KEY,
@@ -52,7 +53,16 @@ class firebase {
         this.providerGoogle = new app.auth.GoogleAuthProvider();
         return this.providerGoogle;
     };
+
+    getApp = () => {
+        return app;
+    }
+
+    getStorage = () => {
+        return app.storage();
+    }
 }
+// app.initializeApp(config);
 
 export type User = fb.User;
 export default firebase;
