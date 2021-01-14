@@ -6,7 +6,7 @@ import Card from '../../components/Layouts/Card';
 import { Grid, Typography } from '@material-ui/core';
 import BadgeAvatar from '../../components/Display/AddAvatarBadge';
 import { RegularBtn } from '../../components/Buttons/RegularBtn';
-import sampleavatar from './sampleavatar.png';
+import sampleavatar from './sample-avatar.png';
 
 export interface CreateProfileProps {
     // imgsrc : string
@@ -14,6 +14,18 @@ export interface CreateProfileProps {
 
 
 export default class CreateProfileScreen extends React.Component<CreateProfileProps> {
+
+    state = {
+        imgurl: "",
+        email: "",
+        username: "",
+    }
+
+    // changeState = () => {   
+    //     this.setState({data:`state/props of parent component  
+    //     is send by onClick event to another component`});  
+    //        }; 
+
     public render(): JSX.Element {
         return (
             <html>
