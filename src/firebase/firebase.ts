@@ -4,6 +4,7 @@ import 'firebase/database';
 import firebase from 'firebase';
 import cred from '../constants/firebase-creds.json';
 import 'dot-env';
+import 'firebase/storage';
 
 const prodConfig = {
     apiKey: cred.REACT_APP_API_KEY,
@@ -33,3 +34,4 @@ export const auth = firebase.auth();
 export const GoogleProvider = new firebase.auth.GoogleAuthProvider();
 export const db = firebase.database();
 export default auth;
+export const storage = firebase.storage();
