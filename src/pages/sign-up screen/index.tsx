@@ -11,17 +11,23 @@ export interface SignUpProps {}
 
 export default class SignUpScreen extends React.Component<SignUpProps> {
     public render(): JSX.Element {
-       /*  const Signup = ()=> {
+ /*        const Signup = ()=> {
             const email=document.querySelector("#Email")?.nodeValue;
             const password=document.querySelector("#Password")?.nodeValue;
+            const conformpassword=document.querySelector("#conformPassword")?.nodeValue;
+            if(conformpassword==password){
             auth.doCreateUserWithEmailAndPassword(email,password).then((u)=>{
                 console.log("sucessfully signed in");
                 
             }).catch((err)=>{
                 console.log("Error "+ err.toString);
-            })
-        };*/
-        
+            });
+               }
+              else{
+                  alert("write your password correctly");
+              } 
+        };
+   */     
         return (
             <Card title="Sign Up!" split={1}>
                 <Grid container spacing={4} direction="row" alignItems="center" justify="center">
@@ -47,13 +53,13 @@ const SignUpFields = () => {
     return (
         <Grid item container spacing={3} direction="row" alignItems="center" justify="center">
             <Grid item style={{ width: '100%' }}>
-                <TextField label="Email" />
+                <TextField id="Email" label="Email" />
             </Grid>
             <Grid item style={{ width: '100%' }}>
-                <PasswordField />
+                <PasswordField id="Password" />
             </Grid>
             <Grid item style={{ width: '100%' }}>
-                <PasswordField label="Confirm Password" />
+                <PasswordField id="ConformPassword"label="Confirm Password" />
             </Grid>
         </Grid>
     );
