@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './styles.scss';
-import firebase from '../../firebase';
+import { auth } from '../../firebase';
 import app from 'firebase/app';
 import SignUpScreen from '../sign-up screen/index';
 import { BrowserRouter as Router, Route, Switch, Link, BrowserRouter } from 'react-router-dom';
@@ -14,7 +14,7 @@ import TextField from '../../components/Inputs/TextField';
 import PasswordField from '../../components/Inputs/PasswordField';
 import Card from '../../components/Layouts/Card';
 import { RegularBtn } from '../../components/Buttons/RegularBtn';
-import { Widgets } from '@material-ui/icons';
+import { AlternateEmailTwoTone, Widgets } from '@material-ui/icons';
 interface WelcomeProps {}
 
 // const useStyles = makeStyles((theme: Theme) =>
@@ -40,34 +40,11 @@ const WelcomeScreen: React.FunctionComponent<WelcomeProps> = (props) => {
    messageingSenderid:""
 };*/
     const GoogleSignin = () => {
-        const fb = new firebase();
-
-        const provider = fb.getGoogleProvider();
-        fb.auth
-            .signInWithPopup(provider)
-            .then(function (result) {
-                console.log(result);
-                console.log('Google account is linked');
-            })
-            .catch(function (err) {
-                console.log(err);
-                console.log('failed to login');
-            });
+        auth.doGoogleSignUp().catch((error) => {
+            console.log(error);
+            window.alert('Failed to login');
+        });
     };
-
-    const Submit = () => {
-        alert('error');
-    };
-    var firebaseConfig = {
-        apiKey: 'AIzaSyDIvlHZc4WMB_6IibnMOQc-_D9M2noB57w',
-        authDomain: 'geopick-db.firebaseapp.com',
-        projectId: 'geopick-db',
-        storageBucket: 'geopick-db.appspot.com',
-        messagingSenderId: '165396932142',
-        appId: '1:165396932142:web:e39c9dcd9e80c5d4cfa1bf',
-        measurementId: 'G-XS2DD50LZW',
-    };
-
     return (
         <html>
             <body>

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import app from 'firebase/app';
 import 'firebase/auth';
-import fb from 'firebase';
+import 'firebase/database';
+import firebase from 'firebase';
 import cred from '../constants/firebase-creds.json';
 import 'dot-env';
 
@@ -25,34 +25,11 @@ const devConfig = {
 
 const config = process.env.NODE_ENV === 'production' ? prodConfig : devConfig;
 
-class firebase {
-    auth: app.auth.Auth; // variable assigned for auth
-    static auth: app.auth.Auth;
-    providerGoogle: app.auth.GoogleAuthProvider | undefined;
-
-    constructor() {
-        app.initializeApp(config);
-        this.auth = app.auth(); // auth api, use this.auth to use it
-    }
-
-    /**============================================
-     **               AUTH API
-     *=============================================**/
-
-    // signup with email and pass
-    doCreateUserWithEmailAndPassword = (email: string, password: string) =>
-        this.auth.createUserWithEmailAndPassword(email, password);
-
-    doSignInWithEmailAndPassword = (email: string, password: string) =>
-        this.auth.signInWithEmailAndPassword(email, password);
-
-    doSignOut = () => this.auth.signOut();
-
-    getGoogleProvider = () => {
-        this.providerGoogle = new app.auth.GoogleAuthProvider();
-        return this.providerGoogle;
-    };
+if (!firebase.apps.length) {
+    firebase.initializeApp(config);
 }
 
-export type User = fb.User;
-export default firebase;
+export const auth = firebase.auth();
+export const GoogleProvider = new firebase.auth.GoogleAuthProvider();
+export const db = firebase.database();
+export default auth;
