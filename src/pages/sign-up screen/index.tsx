@@ -13,7 +13,7 @@ export default class SignUpScreen extends React.Component<SignUpProps> {
         return (
             <Card title="Sign Up!" split={1}>
                 <Grid container spacing={4} direction="row" alignItems="center" justify="center">
-                    <SignUpHeader title="Enter some of your personal Details"/>
+                    <SignUpHeader title="Enter some of your personal details" />
                     <SignUpForm />
                 </Grid>
             </Card>
@@ -24,7 +24,7 @@ export default class SignUpScreen extends React.Component<SignUpProps> {
 const SignUpHeader = (props: { title: string }) => {
     return (
         <Grid item>
-            <Typography variant="h5" style={{ color: 'white', fontWeight: 'unset', textAlign: 'left'}}>
+            <Typography variant="h5" style={{ color: 'white', fontWeight: 'unset', textAlign: 'left' }}>
                 {props.title}
             </Typography>
         </Grid>
