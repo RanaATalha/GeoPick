@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState}from 'react';
 import Badge from '@material-ui/core/Badge';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
@@ -56,8 +56,17 @@ interface Image {
     src: string
 }
 
-export default function BadgeAvatar(props: Image) {
+export default function BadgeAvatar(props: any) {
     const classes = useStyles();
+
+    // const [avat, setAvat] = useState({})
+    // const [changeDetected, setChangeDetected] = useState(false);
+    // const changeAvatar = (newAvat: File) => {
+    //     setAvat(newAvat);
+    //     console.log(avat);
+    //     setChangeDetected(true);
+    //     // props.newAvatar(avat);
+    // }
 
 
     return (
@@ -68,7 +77,7 @@ export default function BadgeAvatar(props: Image) {
                     vertical: 'bottom',
                     horizontal: 'right',
                 }}
-                badgeContent={<UploadButton />}
+                badgeContent={<UploadButton onChange = {props.onChange} />}
             >
                 <Avatars imgsrc={props.src}/>
             </Badge>

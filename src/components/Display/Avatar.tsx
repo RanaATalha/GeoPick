@@ -19,9 +19,9 @@ interface Image {
     imgsrc: string
 }
 
-export default function Avatars(props: Image) {
+export default function Avatars(props: any) {
     const classes = useStyles();
-    console.log(props);
+    console.log(props.imgsrc);
     return (
         <div className={classes.root}>
             <Avatar alt="Avatar Image" src={props.imgsrc} className={classes.large} />
