@@ -6,10 +6,22 @@ import TextField from '../../components/Inputs/TextField';
 import PasswordField from '../../components/Inputs/PasswordField';
 import Card from '../../components/Layouts/Card';
 import { RegularBtn } from '../../components/Buttons/RegularBtn';
+import { auth } from '../../firebase';
 export interface SignUpProps {}
 
 export default class SignUpScreen extends React.Component<SignUpProps> {
     public render(): JSX.Element {
+       /*  const Signup = ()=> {
+            const email=document.querySelector("#Email")?.nodeValue;
+            const password=document.querySelector("#Password")?.nodeValue;
+            auth.doCreateUserWithEmailAndPassword(email,password).then((u)=>{
+                console.log("sucessfully signed in");
+                
+            }).catch((err)=>{
+                console.log("Error "+ err.toString);
+            })
+        };*/
+        
         return (
             <Card title="Sign Up!" split={1}>
                 <Grid container spacing={4} direction="row" alignItems="center" justify="center">

@@ -19,7 +19,7 @@ export default class SignInScreen extends React.Component<SignInProps> {
                 console.log("sucessfully logged");
                 
             }).catch((err)=>{
-                console.log("Error "+ err.toString)
+                console.log("Error "+ err.toString);
             })
         };*/
         
