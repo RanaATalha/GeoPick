@@ -1,3 +1,5 @@
+/*
+
 import React, {useState} from 'react';
 import {storage} from "./firebase";
 
@@ -12,3 +14,4 @@ const handleImageAsFile = (e) => {
 const handleFireBaseUpload = (e) => {
     e.preventDefault()
 }
+*/
