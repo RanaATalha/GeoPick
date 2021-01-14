@@ -1,13 +1,13 @@
 import * as React from 'react';
-import firebase, { User } from './firebase';
-import { AuthUserContext } from '.';
+import { firebase } from '../firebase';
+import { AuthUserContext } from './AuthUserContext';
 
 interface InterfaceProps {
     authUser?: any;
 }
 
 interface InterfaceState {
-    authUser?: User | null;
+    authUser?: any;
 }
 
 export const withAuthentication = (Component: any) => {
