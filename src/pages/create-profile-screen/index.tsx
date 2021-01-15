@@ -8,71 +8,53 @@ import BadgeAvatar from '../../components/Display/AddAvatarBadge';
 import { RegularBtn } from '../../components/Buttons/RegularBtn';
 import sampleavatar from './sample-avatar.png';
 import {storage} from '../../firebase/firebase';
+import firebase from 'firebase';
+import OccupationSelect from '../../components/Inputs/occupation';
 
-export interface CreateProfileProps {
-    // imgsrc : string
-}
+export interface CreateProfileProps {}
 
 const DEFAULT_IMAGE = sampleavatar;
 export default class CreateProfileScreen extends React.Component<CreateProfileProps> {
 
-    
     state = {
         img: {},
         email: "",
         username: "",
+        occupation: "",
         imgurl : sampleavatar,
     }
-    // constructor(props: any) {
-    //     super(props)
-    //     this.state = { 
-    //         imgurl : {sampleavatar},
-    //     }
-    // }
 
-    // changeState = () => {   
-    //     this.setState({data:`state/props of parent component  
-    //     is send by onClick event to another component`});  
-    //        }; 
     changeAvatar = async (event:React.ChangeEvent<HTMLInputElement>) => {
         if(event.target.files && event.target.files[0]){
             const file = await event.target.files[0];
             this.setState({img: file})
             console.log(this.state.img);
 
-            // setImageAsFile(e.target.files[0])
             const uploadRef = storage.ref(`/Images/User1/${file.name}`).put(file).then(data => {
                 data.ref.getDownloadURL().then(url => {
                     this.setState({imgurl: url});
+                    firebase
+                    .firestore()
+                    .collection('users/').doc('User1/')
+                    .update({
+                        Avatar: url,
+                    })
                 });
             });;
-            // uploadRef.on("state_changed", console.log, console.error, () => {
-            //     storage
-            //     .ref("User1")
-            //     .getDownloadURL()
-            //     .then((url) => {
-            //         // setImageAsFile(null);
-                    
-            //     });
-            // });
         }
-      //         if(e.target.files)
-//         {
-//         
-//         }
-        
-//         console.log(e.target.files)
-//         if(imageAsFile === null ) {
-//         return console.error(`not an image, the image file is a ${typeof(imageAsFile)}`)
-//         }
     }
-//     handleImageAsFile = (e:React.ChangeEvent<HTMLInputElement>) =>{
 
-    
+    submitInfo = () => {
 
-
-      
-//   }
+        firebase.firestore()
+        .collection('users/').doc('User1/')
+        .update({
+            Avatar: this.state.imgurl,
+            Email: this.state.email,
+            User_name: this.state.username,
+            Occupation: this.state.occupation
+        })
+    }
 
     public render(): JSX.Element {
         return (
@@ -86,7 +68,7 @@ export default class CreateProfileScreen extends React.Component<CreateProfilePr
                                     {/* <p> {this.state.url} </p>
                                     </BadgeAvatar> */}
                                 </Grid>
-                                <form>
+                                <form onSubmit = {this.submitInfo}>
                                     <Grid
                                         item
                                         container
@@ -104,12 +86,13 @@ export default class CreateProfileScreen extends React.Component<CreateProfilePr
                                             />
                                         </Grid>
                                         <Grid item style={{ width: '100%' }}>
-                                            <TextField
+                                            {/* <TextField
                                                 className="textField"
                                                 placeholder="Enter occupation (optional)"
                                                 type="text"
                                                 id="occupation-input-optional"
-                                            />
+                                            /> */}
+                                            <OccupationSelect />
                                         </Grid>
                                         <Grid
                                             item
