@@ -1,4 +1,4 @@
-import { Avatar, Grid, Card, Container } from '@material-ui/core';
+import { Avatar, Grid, Card, Container, Typography } from '@material-ui/core';
 import * as React from 'react';
 import { Component } from 'react';
 import './headerStyles.scss';
@@ -21,25 +21,36 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
     // state = { :  }
     render() {
         return (
-            <Container fixed>
+            <Container fixed style={{ background: '#FAFAFA' }}>
                 <Grid container direction="row" spacing={1} justify="center">
-                    <Grid item>
-                        <Avatar alt={this.props.username} src={this.props.avatar}></Avatar>
+                    <Grid item justify="flex-start">
+                        <Avatar
+                            alt={this.props.username}
+                            src={this.props.avatar}
+                            style={{ marginRight: '80%' }}
+                        ></Avatar>
                     </Grid>
-                    <Grid item>
+                    <Grid item justify="flex-start">
                         <Card style={{ color: '#F56920', borderRadius: '22px' }} className="boxField">
-                            {this.props.username}
+                            <Typography variant="body1" style={{ justifyContent: 'space-evenly' }}>
+                                {this.props.username}
+                            </Typography>
                         </Card>
                     </Grid>
                     <Grid item justify="flex-end">
-                        <Card style={{ color: '#F56920', borderRadius: '22px' }} className="boxField">
-                            {this.props.date}
+                        <Card
+                            style={{ color: '#F56920', borderRadius: '22px', marginLeft: '50%' }}
+                            className="boxField"
+                        >
+                            <Typography variant="body1" style={{ justifyContent: 'space-evenly' }}>
+                                {this.props.date}
+                            </Typography>
                         </Card>
                     </Grid>
                 </Grid>
                 <br></br>
                 <Grid container direction="row" spacing={1} justify="center">
-                    <div className="postImage">
+                    <div className="postImage" style={{ justifyItems: 'center' }}>
                         <img
                             src={this.props.postPic}
                             alt="not loading..."

@@ -14,7 +14,7 @@ export class HomeScreen extends React.Component<HomeScreenProps, HomeScreenState
             <div style={{ background: '#1b1b1b' }}>
                 <img src={WhiteLogo} alt="GeoPicK" className="WhiteLogo"></img>
                 <br></br>
-                <SinglePost username="mo.kvs_" date="13-01-2021" postPic={Picture} />
+                <SinglePost username="mohit" date="13-01-2021" postPic={Picture} />
             </div>
         );
     }
