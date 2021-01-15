@@ -1,4 +1,4 @@
-import { Avatar, Grid, Card, Container, Typography } from '@material-ui/core';
+import { Avatar, Grid, Card, Typography } from '@material-ui/core';
 import * as React from 'react';
 import { Component } from 'react';
 import './headerStyles.scss';
@@ -12,34 +12,30 @@ export interface SinglePostProps {
 
 export interface SinglePostState {}
 
-// const username = 'Mohit';
-// const postPic = 'retrieve/avatar/from/firebase';
-// const date = '11 Jan 21';
-// const postImage = 'retrieve/image/from/firebase';
-
 class SinglePost extends Component<SinglePostProps, SinglePostState> {
     // state = { :  }
     render() {
         return (
-            <Container fixed style={{ background: '#FAFAFA' }}>
+            // <Container fixed style={{ background: '#FAFAFA', padding: '2%' }}>
+            <>
                 <Grid container direction="row" spacing={1} justify="center">
-                    <Grid item justify="flex-start">
-                        <Avatar
-                            alt={this.props.username}
-                            src={this.props.avatar}
-                            style={{ marginRight: '80%' }}
-                        ></Avatar>
+                    <Grid item justify="flex-start" direction="column" style={{ marginLeft: '0%' }}>
+                        <Avatar alt={this.props.username} src={this.props.avatar}></Avatar>
                     </Grid>
                     <Grid item justify="flex-start">
                         <Card style={{ color: '#F56920', borderRadius: '22px' }} className="boxField">
-                            <Typography variant="body1" style={{ justifyContent: 'space-evenly' }}>
+                            <Typography variant="h6" style={{ justifyContent: 'space-evenly' }}>
                                 {this.props.username}
                             </Typography>
                         </Card>
                     </Grid>
-                    <Grid item justify="flex-end">
+                    <Grid item justify="flex-end" style={{ marginLeft: '20%' }}>
                         <Card
-                            style={{ color: '#F56920', borderRadius: '22px', marginLeft: '50%' }}
+                            style={{
+                                color: '#F56920',
+                                borderRadius: '22px',
+                                justifyContent: 'center',
+                            }}
                             className="boxField"
                         >
                             <Typography variant="body1" style={{ justifyContent: 'space-evenly' }}>
@@ -49,19 +45,20 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                     </Grid>
                 </Grid>
                 <br></br>
-                <Grid container direction="row" spacing={1} justify="center">
+                <Grid container direction="row" spacing={1} xs={12} justify={'center'}>
                     <div className="postImage" style={{ justifyItems: 'center' }}>
                         <img
                             src={this.props.postPic}
                             alt="not loading..."
-                            width="500px"
-                            height="400px"
+                            width="40%"
+                            height="90%"
                             className="postImage"
                         ></img>
                         {/* add GuessTheLocation button here.. */}
                     </div>
                 </Grid>
-            </Container>
+                <div style={{ padding: '25px' }}></div>
+            </>
         );
     }
 }
