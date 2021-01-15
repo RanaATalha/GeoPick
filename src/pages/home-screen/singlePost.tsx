@@ -1,7 +1,7 @@
 import { Avatar, Grid, Card, Typography } from '@material-ui/core';
 import * as React from 'react';
 import { Component } from 'react';
-import './headerStyles.scss';
+import './singlePostStyles.scss';
 export interface SinglePostProps {
     username?: string;
     postPic?: string;
@@ -19,7 +19,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
             // <Container fixed style={{ background: '#FAFAFA', padding: '2%' }}>
             <>
                 <Grid container direction="row" spacing={1} justify="center">
-                    <Grid item justify="flex-start" direction="column" style={{ marginLeft: '0%' }}>
+                    <Grid item justify="flex-start" style={{ marginLeft: '0%' }}>
                         <Avatar alt={this.props.username} src={this.props.avatar}></Avatar>
                     </Grid>
                     <Grid item justify="flex-start">
@@ -45,7 +45,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                     </Grid>
                 </Grid>
                 <br></br>
-                <Grid container direction="row" spacing={1} xs={12} justify={'center'}>
+                <Grid container direction="row" spacing={1} justify={'center'}>
                     <div className="postImage" style={{ justifyItems: 'center' }}>
                         <img
                             src={this.props.postPic}
@@ -53,6 +53,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                             width="40%"
                             height="90%"
                             className="postImage"
+                            style={{ borderRadius: '20px 20px 0px 0px' }}
                         ></img>
                         {/* add GuessTheLocation button here.. */}
                     </div>
