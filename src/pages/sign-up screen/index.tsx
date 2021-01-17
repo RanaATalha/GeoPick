@@ -7,10 +7,16 @@ import PasswordField from '../../components/Inputs/PasswordField';
 import Card from '../../components/Layouts/Card';
 import { RegularBtn } from '../../components/Buttons/RegularBtn';
 import CreateProfileScreen from '../create-profile-screen/index';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 export interface SignUpProps {}
 
 export default class SignUpScreen extends React.Component<SignUpProps> {
+    state = {
+        email: "",
+        password: "",
+    }
+
     
     public render(): JSX.Element {
         return (
@@ -34,17 +40,17 @@ const SignUpHeader = (props: { title: string }) => {
     );
 };
 
-const SignUpFields = () => {
+const SignUpFields = (props: any) => {
     return (
         <Grid item container spacing={3} direction="row" alignItems="center" justify="center">
             <Grid item style={{ width: '100%' }}>
-                <TextField label="Email" />
+                <TextField required label="Email" />
             </Grid>
             <Grid item style={{ width: '100%' }}>
-                <PasswordField />
+                <PasswordField required />
             </Grid>
             <Grid item style={{ width: '100%' }}>
-                <PasswordField label="Confirm Password" />
+                <PasswordField required label="Confirm Password" />
             </Grid>
         </Grid>
     );
@@ -74,11 +80,11 @@ const SignUpForm = () => {
                 </Grid>
             </form>
             <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
-                <a href="/create-profile">
+                <Link to="/create-profile">
                 <RegularBtn colorType="white" style={{ width: '50%', borderRadius: '15px' }}>
                     Sign Up!
                 </RegularBtn>
-                </a>
+                </Link>
             </Grid>
         </>
     );
