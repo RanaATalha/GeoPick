@@ -40,7 +40,14 @@ const SignUpFields = ({ register, errors }: { register: any; errors: any }) => {
                     name="email"
                     id="Email"
                     label="Email"
-                    inputRef={register({ required: true })}
+                    type="email"
+                    inputRef={register({
+                        required: true,
+                        pattern: {
+                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                            message: 'invalid email address',
+                        },
+                    })}
                     error={errors.email ? true : false}
                 />
             </Grid>
