@@ -23,3 +23,8 @@ export const doPasswordUpdate = async (password: string) => {
     }
     throw Error("User isn't logged in");
 };
+
+export const checkUserLoggedIn = () => {
+    if (auth.currentUser) return true;
+    else return false;
+};
