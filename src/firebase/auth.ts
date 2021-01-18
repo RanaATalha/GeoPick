@@ -25,6 +25,5 @@ export const doPasswordUpdate = async (password: string) => {
 };
 
 export const checkUserLoggedIn = () => {
-    if (auth.currentUser) return true;
-    else return false;
+    if (auth.currentUser) return auth.currentUser;
 };

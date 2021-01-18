@@ -12,6 +12,7 @@ import firebase from 'firebase';
 import OccupationSelect from '../../components/Inputs/occupation';
 import { useForm, Controller } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
+import { auth } from '../../firebase';
 export interface CreateProfileProps {}
 
 export default class CreateProfileScreen extends React.Component<CreateProfileProps> {
@@ -94,22 +95,23 @@ const CreateProfileForm = ({img }: {img: string;}) => {
     const { handleSubmit, errors, register, control } = useForm();
     const { push } = useHistory();
     const onSubmit = (data: any) => {
-        console.log(data.occupation);
-        const us = data.username;
-        firebase.firestore()
-        .collection('users/').doc(data.username)
-        .set({
-            Avatar: img,
-            Bio: "",
-            Email: "",
-            GamePoint: 0,
-            Occupation: data.Occupation,
-            // Email: this.state.email,
-            User_name: data.username,
-            
-            
-        })
-        push('/home');
+        const user = auth.checkUserLoggedIn()
+        if(user != undefined){
+            firebase.firestore()
+            .collection('users/').doc(user.uid)
+            .set({
+                Avatar: img,
+                Bio: "",
+                GamePoint: 0,
+                Occupation: data.Occupation,
+                User_name: data.username,
+            }).catch((err)=>{
+                console.log("Error "+ err);
+                alert(err)
+            });
+            push('/home');
+        }
+        
     };
 
     return (
