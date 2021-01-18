@@ -23,65 +23,14 @@ export default class SignInScreen extends React.Component<SignInProps> {
                 console.log("Error "+ err.toString);
             })
         };*/
-const Samm=()=>{
-return (   <Card background="white" title="Sign In" split={1}>
-                <form>       
-                    <Grid container spacing={4} direction="row">
-                            <Grid item>
-                                <Typography align="left" variant="h3">
-                                    <h5>You know what to do... </h5>
-                                </Typography>
-                            </Grid>
-
-                            <Grid container spacing={2}>
-                                <Grid item xs={12}>
-                                    <TextField id="Email" label="Email"> </TextField>
-                                </Grid>
-
-                                <Grid container spacing={2}>
-                                    <Grid item xs={12}>
-                                        <TextField
-                                            name="email"
-                                            id="Email"
-                                            label="Email"
-                                            type="email"
-                                            inputRef={register({
-                                                required: true,
-                                                pattern: {
-                                                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                                    message: 'invalid email address',
-                                                },
-                                            })}
-                                            error={errors.email ? true : false}
-                                        />
-                                    </Grid>
-
-                                    <Grid item xs={12}>
-                                        <PasswordField id="Password"> </PasswordField>
-                                    </Grid>
-
-                                    <Grid item xs={12}>
-                                        <RegularBtn colorType="orange" style={{ width: '50%', borderRadius: '18px' }}>
-                                            Sign In
-                                        </RegularBtn>
-                                    </Grid>
-
-                                    <Grid item xs={12}>
-                                        <Link to="/ReSet-password"> Forgot Password ?</Link>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                            </Grid>
-                        </form>
-                    </Card>
-);}        
+        
         return (
             <div>
                 <div className="bg">
-                    <Samm/>
+                    Hello
                 </div>
             </div>
         );
             };
     }
-}
+
