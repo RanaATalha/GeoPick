@@ -26,9 +26,46 @@ const devConfig = {
 
 const config = process.env.NODE_ENV === 'production' ? prodConfig : devConfig;
 
+// class firebase {
+//     auth: app.auth.Auth; // variable assigned for auth
+//     static auth: app.auth.Auth;
+//     providerGoogle: app.auth.GoogleAuthProvider | undefined;
+
+//     constructor() {
+//         app.initializeApp(config);
+//         this.auth = app.auth(); // auth api, use this.auth to use it
+//     }
+
+//     /**============================================
+//      **               AUTH API
+//      *=============================================**/
+
+//     // signup with email and pass
+//     doCreateUserWithEmailAndPassword = (email: string, password: string) =>
+//         this.auth.createUserWithEmailAndPassword(email, password);
+
+//     doSignInWithEmailAndPassword = (email: string, password: string) =>
+//         this.auth.signInWithEmailAndPassword(email, password);
+
+//     doSignOut = () => this.auth.signOut();
+
+//     getGoogleProvider = () => {
+//         this.providerGoogle = new app.auth.GoogleAuthProvider();
+//         return this.providerGoogle;
+//     };
+
+//     getApp = () => {
+//         return app;
+//     }
+
+//     getStorage = () => {
+//         return app.storage();
+//     }
+
 if (!firebase.apps.length) {
     firebase.initializeApp(config);
 }
+// app.initializeApp(config);
 
 const signIn=(email:string,password:string)=>{
     auth.signInWithEmailAndPassword(email,password).then((u)=>{

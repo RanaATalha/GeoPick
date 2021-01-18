@@ -44,7 +44,12 @@ const WhiteCheckbox = withStyles({
 
 function Checkbox(props: CheckboxProps) {
     const [checked, setChecked] = React.useState(false);
-    return <WhiteCheckbox />;
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setChecked(event.target.checked);
+    };
+
+    return <WhiteCheckbox checked={checked} onChange={handleChange}/>;
 }
 
 export default Checkbox;

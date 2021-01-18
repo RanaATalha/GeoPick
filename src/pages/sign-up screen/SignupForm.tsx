@@ -6,8 +6,9 @@ import PasswordField from '../../components/Inputs/PasswordField';
 import Card from '../../components/Layouts/Card';
 import { RegularBtn } from '../../components/Buttons/RegularBtn';
 import { auth } from '../../firebase';
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
+
 export interface SignUpProps {}
 
 export default function SignUpScreen() {
@@ -79,8 +80,7 @@ const SignUpForm = () => {
         if(data.password==data.confirmpassword){
         auth.doCreateUserWithEmailAndPassword(data.email,data.password).then((u)=>{
             console.log("sucessfully signed up");
-            alert("sucessfully signed up ")
-            push('/sign-in');    
+            push('/create-profile');    
         }).catch((err)=>{
             console.log("Error "+ err);
             alert(err)
@@ -97,7 +97,7 @@ const SignUpForm = () => {
                 <SignUpFields register={register} errors={errors} />
                 <Grid item container spacing={3}>
                     <Grid item xs={2} alignContent="center" alignItems="center" style={{ verticalAlign: 'true' }}>
-                        <Checkbox required />
+                        <Checkbox required/>
                     </Grid>
                     <Grid
                         item
