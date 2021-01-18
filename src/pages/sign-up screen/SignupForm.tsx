@@ -78,8 +78,9 @@ const SignUpForm = () => {
         console.log("trying ");
         if(data.password==data.confirmpassword){
         auth.doCreateUserWithEmailAndPassword(data.email,data.password).then((u)=>{
-            console.log("sucessfully signed in");
-            push('/create-profile');    
+            console.log("sucessfully signed up");
+            alert("sucessfully signed up ")
+            push('/sign-in');    
         }).catch((err)=>{
             console.log("Error "+ err);
             alert(err)
