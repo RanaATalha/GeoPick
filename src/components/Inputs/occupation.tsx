@@ -4,8 +4,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import InputBase from '@material-ui/core/InputBase';
+import { useForm, Controller } from "react-hook-form";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,7 +36,7 @@ borderRadius: 20,
     },
 }));
 
-export default function OccupationSelect({ register }: { register: any}) {
+export default function OccupationSelect({control} : {control: any}) {
   const classes = useStyles();
   const [occ, setOcc] = React.useState('');
   const handleChange = (event: any) => {
@@ -47,31 +46,28 @@ export default function OccupationSelect({ register }: { register: any}) {
     <div>
       <FormControl variant="outlined" className={classes.root}>
         <InputLabel id="occupation-select">Occupation (Optional)</InputLabel>
-        <Select
-          labelId="occupation-outlines"
-          id="occupation-select"
-          value={occ}
-          onChange={handleChange}
-          label="Occupation"
-          inputProps={{
-            inputRef: (ref: any) => {
-              if (!ref) return;
-              register({
-                name: "occupation",
-                value: ref.value,
-              });
-            },}}
-        >
-          <MenuItem value="">
-          </MenuItem>
-          <MenuItem value={"Historian"}>Historian</MenuItem>
-          <MenuItem value={"Student"}>Student</MenuItem>
-          <MenuItem value={"Teacher"}>Teacher</MenuItem>
-          <MenuItem value={"Photographer"}>Photographer</MenuItem>
-          <MenuItem value={"Collector"}>Collector</MenuItem>
-          <MenuItem value={"Academcian"}>Academcian</MenuItem>
-          <MenuItem value={"Gamer"}>Gamer</MenuItem>
-        </Select>
+        <Controller
+          name="Occupation"
+          control={control}
+          as={
+            <Select
+              labelId="occupation-outlines"
+              id="occupation-select"
+              value={occ}
+              onChange={handleChange}
+              label="Occupation"
+            >
+              <MenuItem value=""></MenuItem>
+              <MenuItem value={"Historian"}>Historian</MenuItem>
+              <MenuItem value={"Student"}>Student</MenuItem>
+              <MenuItem value={"Teacher"}>Teacher</MenuItem>
+              <MenuItem value={"Photographer"}>Photographer</MenuItem>
+              <MenuItem value={"Collector"}>Collector</MenuItem>
+              <MenuItem value={"Academcian"}>Academcian</MenuItem>
+              <MenuItem value={"Gamer"}>Gamer</MenuItem>
+            </Select>
+          }
+        />
       </FormControl>
     </div>
   );

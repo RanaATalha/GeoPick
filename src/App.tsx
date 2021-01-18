@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import WelcomeScreen from './pages/welcome screen';
 import SignInScreen from './pages/sign-in screen';
-import SignUpScreen from './pages/sign-up screen';
+import SignUpScreen from './pages/sign-up screen/SignupForm';
 import BottomNavigation from './components/NavBar/navbar';
 import BackwardBtn from './components/Buttons/BackwardBtn';
 import TextField from './components/Inputs/TextField';

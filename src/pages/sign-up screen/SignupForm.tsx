@@ -62,7 +62,7 @@ const SignUpFields = ({ register, errors }: { register: any; errors: any }) => {
             </Grid>
             <Grid item style={{ width: '100%' }}>
                 <PasswordField
-                    name="confirm-password"
+                    name="confirmpassword"
                     id="ConformPassword"
                     label="Confirm Password"
                     inputRef={register({ required: true, minLength: 8 })}
@@ -76,9 +76,19 @@ const SignUpForm = () => {
     const { handleSubmit, errors, register } = useForm();
     const { push } = useHistory();
     const onSubmit = (data: any) => {
-        console.log(data);
-        push('/create-profile');
-
+        console.log("trying ");
+        if(data.password==data.confirmpassword){
+        auth.doCreateUserWithEmailAndPassword(data.email,data.password).then((u)=>{
+            console.log("sucessfully signed in");
+            push('/create-profile');    
+        }).catch((err)=>{
+            console.log("Error "+ err);
+            alert(err)
+        });
+    }
+     else{
+         alert("type the same password in conformation password")
+     }   
     };
 
     return (
@@ -87,7 +97,7 @@ const SignUpForm = () => {
                 <SignUpFields register={register} errors={errors} />
                 <Grid item container spacing={3}>
                     <Grid item xs={2} alignContent="center" alignItems="center" style={{ verticalAlign: 'true' }}>
-                        <Checkbox checked={register(checked)} />
+                        <Checkbox required/>
                     </Grid>
                     <Grid
                         item

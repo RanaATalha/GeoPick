@@ -10,18 +10,14 @@ import sampleavatar from './sample-avatar.png';
 import {storage} from '../../firebase/firebase';
 import firebase from 'firebase';
 import OccupationSelect from '../../components/Inputs/occupation';
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
-
 export interface CreateProfileProps {}
 
 export default class CreateProfileScreen extends React.Component<CreateProfileProps> {
 
     state = {
         img: {},
-        email: "",
-        username: "",
-        occupation: "",
         imgurl : sampleavatar,
     }
 
@@ -44,22 +40,7 @@ export default class CreateProfileScreen extends React.Component<CreateProfilePr
             });;
         }
     }
-
-    submitInfo = () => {
-
-        firebase.firestore()
-        .collection('users/').doc('User1/')
-        .update({
-            Avatar: this.state.imgurl,
-            Email: this.state.email,
-            User_name: this.state.username,
-            Occupation: this.state.occupation
-        })
-    }
     
-    handleUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({username: event.target.value});
-    }
     public render(): JSX.Element {
         return (
             <html>
@@ -70,7 +51,7 @@ export default class CreateProfileScreen extends React.Component<CreateProfilePr
                                 <Grid item>
                                     <BadgeAvatar src={this.state.imgurl} onChange = {this.changeAvatar} />
                                 </Grid>
-                                <CreateProfileForm />
+                                <CreateProfileForm img={this.state.imgurl}/>
                             </Grid>
                         </Card>
                     </div>
@@ -81,7 +62,8 @@ export default class CreateProfileScreen extends React.Component<CreateProfilePr
 }
 
 
-const CreateProfileFields = ({ register, errors }: { register: any; errors: any }) => {
+const CreateProfileFields = ({ register, errors, control}: { register: any; errors: any; control: any }) => {
+    
     console.log(errors);
     return (
         <Grid item container spacing={3} direction="row" alignItems="center" justify="center">
@@ -102,24 +84,38 @@ const CreateProfileFields = ({ register, errors }: { register: any; errors: any 
                 />
             </Grid>
             <Grid item style={{ width: '100%' }}>
-                <OccupationSelect register={register(register)}/>
+                <OccupationSelect control={control}/>
             </Grid>
         </Grid>
     );
 };
 
-const CreateProfileForm = () => {
-    const { handleSubmit, errors, register } = useForm();
+const CreateProfileForm = ({img }: {img: string;}) => {
+    const { handleSubmit, errors, register, control } = useForm();
     const { push } = useHistory();
     const onSubmit = (data: any) => {
-        console.log(data);
+        console.log(data.occupation);
+        const us = data.username;
+        firebase.firestore()
+        .collection('users/').doc(data.username)
+        .set({
+            Avatar: img,
+            Bio: "",
+            Email: "",
+            GamePoint: 0,
+            Occupation: data.Occupation,
+            // Email: this.state.email,
+            User_name: data.username,
+            
+            
+        })
         push('/home');
     };
 
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <CreateProfileFields register={register} errors={errors} />
+                <CreateProfileFields register={register} errors={errors} control={control} />
                 <Grid item container spacing={3}>
                     <Grid item xs={10} alignContent="center" alignItems="center" style={{ paddingTop: '20px', verticalAlign: 'true' }}>
                         <Typography align="left" style={{ fontSize: '12px', color: '1B1B1E' }}>
