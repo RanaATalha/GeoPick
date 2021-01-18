@@ -22,12 +22,9 @@ export default class SignInScreen extends React.Component<SignInProps> {
                 console.log("Error "+ err.toString);
             })
         };*/
-        
-        return (
-            <div>
-                <div className="bg">
-                    <Card background="white" title="Sign In" split={1}>
-                        <Grid container spacing={4} direction="row">
+const Samm=()=>{
+return (   <Card background="white" title="Sign In" split={1}>
+                       <Grid container spacing={4} direction="row">
                             <Grid item>
                                 <Typography align="left" variant="h3">
                                     <h5>You know what to do... </h5>
@@ -55,6 +52,11 @@ export default class SignInScreen extends React.Component<SignInProps> {
                             </Grid>
                         </Grid>
                     </Card>
+);}        
+        return (
+            <div>
+                <div className="bg">
+                    <Samm/>
                 </div>
             </div>
         );
