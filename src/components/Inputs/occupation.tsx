@@ -8,13 +8,6 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 import InputBase from '@material-ui/core/InputBase';
 
 const useStyles = makeStyles((theme) => ({
-//   formControl: {
-//     margin: theme.spacing(1),
-//     minWidth: 120,
-//   },
-//   selectEmpty: {
-//     marginTop: theme.spacing(2),
-//   },
   root: {
 borderRadius: 20,
     position: 'relative',
@@ -44,7 +37,7 @@ borderRadius: 20,
     },
 }));
 
-export default function OccupationSelect() {
+export default function OccupationSelect({ register }: { register: any}) {
   const classes = useStyles();
   const [occ, setOcc] = React.useState('');
   const handleChange = (event: any) => {
@@ -53,19 +46,31 @@ export default function OccupationSelect() {
   return (
     <div>
       <FormControl variant="outlined" className={classes.root}>
-        <InputLabel id="demo-simple-select-outlined-label">Occupation (Optional)</InputLabel>
+        <InputLabel id="occupation-select">Occupation (Optional)</InputLabel>
         <Select
-          labelId="demo-simple-select-outlined-label"
-          id="demo-simple-select-outlined"
+          labelId="occupation-outlines"
+          id="occupation-select"
           value={occ}
           onChange={handleChange}
-          label="Age"
+          label="Occupation"
+          inputProps={{
+            inputRef: (ref: any) => {
+              if (!ref) return;
+              register({
+                name: "occupation",
+                value: ref.value,
+              });
+            },}}
         >
           <MenuItem value="">
           </MenuItem>
           <MenuItem value={"Historian"}>Historian</MenuItem>
           <MenuItem value={"Student"}>Student</MenuItem>
           <MenuItem value={"Teacher"}>Teacher</MenuItem>
+          <MenuItem value={"Photographer"}>Photographer</MenuItem>
+          <MenuItem value={"Collector"}>Collector</MenuItem>
+          <MenuItem value={"Academcian"}>Academcian</MenuItem>
+          <MenuItem value={"Gamer"}>Gamer</MenuItem>
         </Select>
       </FormControl>
     </div>

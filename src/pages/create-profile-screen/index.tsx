@@ -10,10 +10,11 @@ import sampleavatar from './sample-avatar.png';
 import {storage} from '../../firebase/firebase';
 import firebase from 'firebase';
 import OccupationSelect from '../../components/Inputs/occupation';
+import { useForm } from "react-hook-form";
+import { useHistory } from 'react-router-dom';
 
 export interface CreateProfileProps {}
 
-const DEFAULT_IMAGE = sampleavatar;
 export default class CreateProfileScreen extends React.Component<CreateProfileProps> {
 
     state = {
@@ -55,7 +56,10 @@ export default class CreateProfileScreen extends React.Component<CreateProfilePr
             Occupation: this.state.occupation
         })
     }
-
+    
+    handleUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
+        this.setState({username: event.target.value});
+    }
     public render(): JSX.Element {
         return (
             <html>
@@ -65,55 +69,8 @@ export default class CreateProfileScreen extends React.Component<CreateProfilePr
                             <Grid container spacing={4} direction="row" alignItems="center" justify="center">
                                 <Grid item>
                                     <BadgeAvatar src={this.state.imgurl} onChange = {this.changeAvatar} />
-                                    {/* <p> {this.state.url} </p>
-                                    </BadgeAvatar> */}
                                 </Grid>
-                                <form onSubmit = {this.submitInfo}>
-                                    <Grid
-                                        item
-                                        container
-                                        spacing={3}
-                                        direction="row"
-                                        alignItems="center"
-                                        justify="center"
-                                    >
-                                        <Grid item style={{ width: '100%' }}>
-                                            <UsernameField required
-                                                className="textField"
-                                                placeholder="Enter username"
-                                                type="text"
-                                                id="username-input-required"
-                                            />
-                                        </Grid>
-                                        <Grid item style={{ width: '100%' }}>
-                                            {/* <TextField
-                                                className="textField"
-                                                placeholder="Enter occupation (optional)"
-                                                type="text"
-                                                id="occupation-input-optional"
-                                            /> */}
-                                            <OccupationSelect />
-                                        </Grid>
-                                        <Grid
-                                            item
-                                            xs={10}
-                                            alignContent="center"
-                                            alignItems="center"
-                                            style={{ paddingTop: '20px', verticalAlign: 'true' }}
-                                        >
-                                            <Typography align="left" style={{ fontSize: '14px', color: 'black' }}>
-                                                *Other users will be able to view your username and display picture as
-                                                set above
-                                            </Typography>
-                                        </Grid>
-                                    </Grid>
-                                    <br></br>
-                                    <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
-                                    <RegularBtn type="submit" colorType="white" style={{ width: '80%', borderRadius: '15px' }}>
-                                        Complete Registration
-                                    </RegularBtn>
-                                    </Grid>
-                                </form>
+                                <CreateProfileForm />
                             </Grid>
                         </Card>
                     </div>
@@ -122,3 +79,61 @@ export default class CreateProfileScreen extends React.Component<CreateProfilePr
         );
     }
 }
+
+
+const CreateProfileFields = ({ register, errors }: { register: any; errors: any }) => {
+    console.log(errors);
+    return (
+        <Grid item container spacing={3} direction="row" alignItems="center" justify="center">
+            <Grid item style={{ width: '100%' }}>
+                <TextField
+                    name="username"
+                    id="username"
+                    label="username"
+                    type="username"
+                    inputRef={register({
+                        required: true,
+                        pattern: {
+                            value: /^[A-Z0-9_]{3,8}$/i,
+                            message: 'invalid username',
+                        },
+                    })}
+                    error={errors.username ? true : false}
+                />
+            </Grid>
+            <Grid item style={{ width: '100%' }}>
+                <OccupationSelect register={register(register)}/>
+            </Grid>
+        </Grid>
+    );
+};
+
+const CreateProfileForm = () => {
+    const { handleSubmit, errors, register } = useForm();
+    const { push } = useHistory();
+    const onSubmit = (data: any) => {
+        console.log(data);
+        push('/home');
+    };
+
+    return (
+        <>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <CreateProfileFields register={register} errors={errors} />
+                <Grid item container spacing={3}>
+                    <Grid item xs={10} alignContent="center" alignItems="center" style={{ paddingTop: '20px', verticalAlign: 'true' }}>
+                        <Typography align="left" style={{ fontSize: '12px', color: '1B1B1E' }}>
+                            *Other users will be able to view your username and display picture as
+                            set above
+                        </Typography>
+                    </Grid>
+                </Grid>
+                <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
+                    <RegularBtn type="submit" colorType="white" style={{ width: '50%', borderRadius: '15px' }}>
+                        Complete Registration
+                    </RegularBtn>
+                </Grid>
+            </form>
+        </>
+    );
+};

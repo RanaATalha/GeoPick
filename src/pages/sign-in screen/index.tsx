@@ -7,10 +7,22 @@ import Typography from '@material-ui/core/Typography';
 import { RegularBtn } from '../../components/Buttons/RegularBtn';
 import { Link } from 'react-router-dom';
 import './styles.scss';
+import { auth } from '../../firebase';
 export interface SignInProps {}
 
 export default class SignInScreen extends React.Component<SignInProps> {
     public render(): JSX.Element {
+        /* const Signin = ()=> {
+            const email=document.querySelector("#Email")?.nodeValue;
+            const password=document.querySelector("#Password")?.nodeValue;
+            auth.doSignInWithEmailAndPassword(email,password).then((u)=>{
+                console.log("sucessfully logged");
+                
+            }).catch((err)=>{
+                console.log("Error "+ err.toString);
+            })
+        };*/
+        
         return (
             <div>
                 <div className="bg">
@@ -24,11 +36,11 @@ export default class SignInScreen extends React.Component<SignInProps> {
 
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
-                                    <TextField label="Email"> </TextField>
+                                    <TextField id="Email" label="Email"> </TextField>
                                 </Grid>
 
                                 <Grid item xs={12}>
-                                    <PasswordField> </PasswordField>
+                                    <PasswordField id="Password"> </PasswordField>
                                 </Grid>
 
                                 <Grid item xs={12}>
