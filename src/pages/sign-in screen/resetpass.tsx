@@ -8,15 +8,15 @@ import { RegularBtn } from '../../components/Buttons/RegularBtn';
 import { auth } from '../../firebase';
 import { useForm } from 'react-hook-form';
 import { Link, useHistory } from 'react-router-dom';
-export interface SignInProps {}
+export interface ResetProps {}
 
-export default function SignInScreens() {
+export default function ResetScreens() {
     return (
         <div className="bg">
             <Card background="white" title="Reset password" split={1}>
                 <Grid container spacing={4} direction="row" alignItems="center" justify="center">
-                    <SignInHeader title="We just want to combine your identity..." />
-                    <SignInForm />
+                    <ResetHeader title="We just want to combine your identity..." />
+                    <ResetForm />
                 </Grid>
             </Card>
             <br />
@@ -24,7 +24,7 @@ export default function SignInScreens() {
     );
 }
 
-const SignInHeader = (props: { title: string }) => {
+const ResetHeader = (props: { title: string }) => {
     return (
         <Grid item>
             <Typography variant="h3" style={{ color: '#f56920', fontWeight: 'unset', textAlign: 'left' }}>
@@ -35,7 +35,7 @@ const SignInHeader = (props: { title: string }) => {
     );
 };
 
-const SignInFields = ({ register, errors }: { register: any; errors: any }) => {
+const ResetFields = ({ register, errors }: { register: any; errors: any }) => {
     console.log(errors);
     return (
         <Grid item container spacing={3} direction="row" alignItems="center" justify="center">
@@ -59,7 +59,7 @@ const SignInFields = ({ register, errors }: { register: any; errors: any }) => {
     );
 };
 
-const SignInForm = () => {
+const ResetForm = () => {
     const { handleSubmit, errors, register } = useForm();
     const { push } = useHistory();
     const onSubmit = (data: any) => {
@@ -79,7 +79,7 @@ const SignInForm = () => {
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <SignInFields register={register} errors={errors} />
+                <ResetFields register={register} errors={errors} />
                 <Grid item container spacing={3}>
                     <Grid
                         item
