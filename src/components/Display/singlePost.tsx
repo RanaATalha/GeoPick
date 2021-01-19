@@ -7,36 +7,91 @@ import './singlePostStyles.scss';
 import GuessTheLocationButton from './guess-the-location.svg';
 import InputBase from '@material-ui/core/InputBase';
 import PublishRoundedIcon from '@material-ui/icons/PublishRounded';
+import { checkUserLoggedIn } from "../../firebase/auth";
+// import SinglePostBanner from './singlePostBanner';
+import firebase from 'firebase';
+
 export interface SinglePostProps {
     username?: string;
     postPic?: string;
     date?: string;
     postImage?: string;
     avatar?: string;
+    uid?: string;
+    likes_count?: string;
+    key?: string;
 }
 
-export interface SinglePostState {}
+export interface SinglePostState {
+    favourited: boolean,
+    user: any,
+    post_user: any
+}
 class SinglePost extends Component<SinglePostProps, SinglePostState> {
-    // handleColorChange: { color: string };
-    // constructor(props: SinglePostProps | Readonly<SinglePostProps>) {
-    //     super(props);
-    //     this.handleColorChange = {
-    //         color: 'primary',
-    //     };
+
+    constructor(SinglePostProps: any){
+        super(SinglePostProps)
+        this.state ={
+            favourited: false,
+            user: checkUserLoggedIn(),
+            // post_user: this.getPostUser(SinglePostProps.uid)
+            post_user: {}
+        }
+        this.handleColorChange = this.handleColorChange.bind(this);
+        // this.getPostUser = this.getPostUser.bind(this);
+    }
+    handleColorChange = () => {
+        this.setState({
+            favourited:!this.state.favourited
+        })
+
+        if(this.state.favourited == true){
+            firebase.firestore().collection('users').doc(this.props.key).update({
+                likes_count: 12
+            });
+        }
+    }
+
+    // getPostUser = async ({uid} : {uid: string}) => {
+    //     await firebase.firestore().collection("Users").doc(uid)
+    //     .get()
+    //     .then(function(doc) {
+    //         // querySnapshot.forEach(function(doc) {
+    //         //     // doc.data() is never undefined for query doc snapshots
+    //         //     console.log(doc.id, " => ", doc.data());
+    //             return doc.data();
+    //             console.log(doc.data());
+    //             // setHaveUser(true);
+    //         });
     // }
-    // state = { :  }
+
+    componentDidMount() {
+        firebase.firestore().collection("users").doc(this.props.uid)
+        .get()
+        .then(querySnapshot => {
+            const data = querySnapshot.data();
+            // console.log(data);
+            this.setState({ 
+                post_user: data 
+            });
+            // console.log(this.state.post_user);
+        }
+        );
+    }
+
+    
     render() {
         return (
             // <Container fixed style={{ background: '#FAFAFA', padding: '2%' }}>
             <Card style={{ background: '#1b1b1b', justifyContent: 'center', alignContent: 'center', margin: '50px' }}>
                 <Grid container direction="row" spacing={1} justify="center">
                     <Grid item justify="flex-start" style={{ marginLeft: '0%' }}>
-                        <Avatar alt={this.props.username} src={this.props.avatar}></Avatar>
+                        <Avatar alt={this.state.post_user.User_name} src={this.state.post_user.Avatar}></Avatar>
                     </Grid>
                     <Grid item justify="flex-start">
                         <Card style={{ color: '#F56920', borderRadius: '22px' }} className="boxField">
                             <Typography variant="h6" style={{ justifyContent: 'space-evenly' }}>
-                                {this.props.username}
+                                {this.state.post_user.User_name}
                             </Typography>
                         </Card>
                     </Grid>
@@ -78,14 +133,23 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                 </Grid> */}
                 <Grid container direction="column" spacing={2} justify={'center'}>
                     <Grid item justify="flex-start" direction="column" style={{ marginLeft: '-15%' }}>
-                        <div style={{ alignContent: 'flex-start', justifyContent: 'left' }}>
-                            <IconButton
-                                aria-label="add to favorites"
-                                style={{ color: '#FAFAFA' }}
-                                // onClick={this.handleColorChange.color}
-                            >
-                                <FavoriteIcon />
-                            </IconButton>
+                        {/* <div style={{ alignContent: 'flex-start', justifyContent: 'left' }}> */}
+                            {/* <Grid item justify="flex-start"> */}
+                                {/* <Card style={{ background: '#FAFAFA', borderRadius: '22px' }} className="boxField"> */}
+                                    <Typography variant="h6" style={{ justifyContent: 'space-evenly', background: '#FAFAFA' }}>
+                                        {this.props.likes_count}
+                                    </Typography>
+                                {/* </Card> */}
+                                    <IconButton
+                                        aria-label="add to favorites"
+                                        style={this.state.favourited ? { color: '#dc143c' } : { color: '#FAFAFA' }}
+                                        onClick={this.handleColorChange}
+                                    >
+                                        <FavoriteIcon />
+                                    </IconButton>
+                                
+                            {/* </Grid> */}
+                            
                             <IconButton aria-label="share" style={{ color: '#FAFAFA' }}>
                                 <ShareIcon />
                             </IconButton>
@@ -110,7 +174,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                                 }
                             />
                             {/* </Grid> */}
-                        </div>
+                        {/* </div> */}
                     </Grid>
                 </Grid>
                 <div style={{ padding: '25px' }}></div>
