@@ -27,18 +27,21 @@ export default class CreateProfileScreen extends React.Component<CreateProfilePr
             const file = await event.target.files[0];
             this.setState({img: file})
             console.log(this.state.img);
-
-            const uploadRef = storage.ref(`/Images/User1/${file.name}`).put(file).then(data => {
+            const user = auth.checkUserLoggedIn();
+            if(user != undefined){
+            console.log(user.uid);
+            const uploadRef = storage.ref(`/Images/${user.uid}/Avatar/${file.name}`).put(file).then(data => {
                 data.ref.getDownloadURL().then(url => {
                     this.setState({imgurl: url});
                     firebase
                     .firestore()
-                    .collection('users/').doc('User1/')
+                    .collection('users/').doc(`${user.uid}/`)
                     .update({
                         Avatar: url,
                     })
                 });
             });;
+            }
         }
     }
     

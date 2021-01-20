@@ -12,6 +12,7 @@ import { checkUserLoggedIn } from "../../firebase/auth";
 import firebase from 'firebase';
 import fb from 'firebase/app';
 
+
 export interface SinglePostProps {
     username?: string;
     postPic?: string;
@@ -72,12 +73,6 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
     //             // setHaveUser(true);
     //         });
 
-    // handleColorChange: { color: string };
-    // constructor(props: SinglePostProps | Readonly<SinglePostProps>) {
-    //     super(props);
-    //     this.handleColorChange = {
-    //         color: 'primary',
-    //     };
     // }
 
     componentDidMount() {
@@ -148,6 +143,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                 </Grid> */}
                 <Grid container direction="column" spacing={2} justify={'center'}>
                     <Grid item justify="flex-start" direction="column" style={{ marginLeft: '-15%' }}>
+
                         {/* <div style={{ alignContent: 'flex-start', justifyContent: 'left' }}> */}
                             {/* <Grid item justify="flex-start"> */}
                                 {/* <Card style={{ background: '#FAFAFA', borderRadius: '22px' }} className="boxField"> */}
