@@ -18,7 +18,7 @@ export default function Feed() {
         return (
           <SinglePost
             key={id}
-            // id={id}
+            id={id}
             // profileUrl={post.profileUrl}
             username={post.user_name}
             postPic={post.Image}

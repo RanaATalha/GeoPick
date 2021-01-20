@@ -10,6 +10,8 @@ import PublishRoundedIcon from '@material-ui/icons/PublishRounded';
 import { checkUserLoggedIn } from "../../firebase/auth";
 // import SinglePostBanner from './singlePostBanner';
 import firebase from 'firebase';
+import fb from 'firebase/app';
+
 
 export interface SinglePostProps {
     username?: string;
@@ -17,11 +19,9 @@ export interface SinglePostProps {
     date?: string;
     postImage?: string;
     avatar?: string;
-
-
     uid?: string;
     likes_count?: string;
-    key?: string;
+    id?: string;
 }
 
 export interface SinglePostState {
@@ -47,9 +47,16 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
             favourited:!this.state.favourited
         })
 
-        if(this.state.favourited == true){
-            firebase.firestore().collection('users').doc(this.props.key).update({
-                likes_count: 12
+        const increment = fb.firestore.FieldValue.increment(1);
+        const decrement = fb.firestore.FieldValue.increment(-1);
+
+        if(this.state.favourited == false){
+            fb.firestore().collection('Posts').doc(this.props.id).update({
+                likes_count: increment
+            });
+        }else{
+            fb.firestore().collection('Posts').doc(this.props.id).update({
+                likes_count: decrement
             });
         }
     }
@@ -154,7 +161,6 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                                 
                             {/* </Grid> */}
                             
-
                             <IconButton aria-label="share" style={{ color: '#FAFAFA' }}>
                                 <ShareIcon />
                             </IconButton>
