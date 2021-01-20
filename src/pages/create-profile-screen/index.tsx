@@ -9,6 +9,7 @@ import { RegularBtn } from '../../components/Buttons/RegularBtn';
 import sampleavatar from './sample-avatar.png';
 import {storage} from '../../firebase/firebase';
 import firebase from 'firebase';
+import Compress from "react-image-file-resizer";
 import OccupationSelect from '../../components/Inputs/occupation';
 import { useForm, Controller } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
@@ -26,7 +27,8 @@ export default class CreateProfileScreen extends React.Component<CreateProfilePr
 
     
     changeAvatar = async (event:React.ChangeEvent<HTMLInputElement>) => {
-        if(event.target.files && event.target.files[0]){
+        if(event.target.files && event.target.files[0])
+        {
             const file = await event.target.files[0];
             this.setState({img: file})
             console.log(this.state.img);
@@ -58,8 +60,12 @@ export default class CreateProfileScreen extends React.Component<CreateProfilePr
                     },
                     "base64"
                     ); 
+<<<<<<< HEAD
+=======
+            
+            }
+>>>>>>> a4cd2d643099f6e9fe4ca1a7599d5401ae73008f
         }
-    }
     
     public render(): JSX.Element {
         return (
