@@ -29,7 +29,6 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
         });
         console.log(this.state);
 
-        
     }
 
     getData = () => {
