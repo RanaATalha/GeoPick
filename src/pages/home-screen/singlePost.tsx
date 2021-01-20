@@ -1,4 +1,4 @@
-import { Avatar, Grid, Card, Typography, IconButton, Container, Button, colors } from '@material-ui/core';
+import { Avatar, Grid, Card, Typography, IconButton, Container } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import * as React from 'react';
@@ -13,10 +13,31 @@ export interface SinglePostProps {
     date?: string;
     postImage?: string;
     avatar?: string;
+    color?: string;
 }
-
-export interface SinglePostState {}
+export interface SinglePostState {
+    color?: string;
+}
 class SinglePost extends Component<SinglePostProps, SinglePostState> {
+    constructor(props: SinglePostProps | SinglePostState) {
+        super(props);
+        this.state = {
+            color: '#FAFAFA',
+        };
+    }
+
+    handleClickLikeOn = () => {
+        // const newColor = this.state.color === '#fafafa' ? '#F56920' : '#fafafa';
+        if (this.state.color === '#fafafa') {
+            this.setState({
+                color: '#F56920',
+            });
+        } else {
+            this.setState({
+                color: '#fafafa',
+            });
+        }
+    };
     // handleColorChange: { color: string };
     // constructor(props: SinglePostProps | Readonly<SinglePostProps>) {
     //     super(props);
@@ -81,7 +102,8 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                         <div style={{ alignContent: 'flex-start', justifyContent: 'left' }}>
                             <IconButton
                                 aria-label="add to favorites"
-                                style={{ color: '#FAFAFA' }}
+                                style={{ color: this.state.color }}
+                                onClick={this.handleClickLikeOn}
                                 // onClick={this.handleColorChange.color}
                             >
                                 <FavoriteIcon />
