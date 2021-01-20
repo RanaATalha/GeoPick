@@ -1,39 +1,102 @@
 import { Grid, Typography } from '@material-ui/core';
 import * as React from 'react';
-import { RegularBtn } from '../../components/Buttons/RegularBtn';
+import Checkbox from '../../components/Inputs/Checkbox';
 import TextField from '../../components/Inputs/TextField';
+import PasswordField from '../../components/Inputs/PasswordField';
 import Card from '../../components/Layouts/Card';
-import './styles.scss';
-export interface ResetPassProps {}
+import { RegularBtn } from '../../components/Buttons/RegularBtn';
+import { auth } from '../../firebase';
+import { useForm } from 'react-hook-form';
+import { Link, useHistory } from 'react-router-dom';
+export interface ResetProps {}
 
-export default class ResetPass extends React.Component<ResetPassProps> {
-    public render(): JSX.Element {
-        return (
-            <div>
-                <div className="bgreset">
-                    <Card background="white" title="Reset your Password" split={2}>
-                        <Grid container spacing={4} direction="row">
-                            <Grid item>
-                                <Typography align="left" variant="h3">
-                                    <h6>We just want to confirm your identity...</h6>
-                                </Typography>
-                            </Grid>
-
-                            <Grid container spacing={2}>
-                                <Grid item xs={12}>
-                                    <TextField label="Email"> </TextField>
-                                </Grid>
-
-                                <Grid item xs={12}>
-                                    <RegularBtn colorType="orange" style={{ width: '50%', borderRadius: '18px' }}>
-                                        Send me a link!
-                                    </RegularBtn>
-                                </Grid>
-                            </Grid>
-                        </Grid>
-                    </Card>
-                </div>
-            </div>
-        );
-    }
+export default function ResetScreens() {
+    return (
+        <div className="bg">
+            <Card background="white" title="Reset password" split={1}>
+                <Grid container spacing={4} direction="row" alignItems="center" justify="center">
+                    <ResetHeader title="We just want to combine your identity..." />
+                    <ResetForm />
+                </Grid>
+            </Card>
+            <br />
+        </div>
+    );
 }
+
+const ResetHeader = (props: { title: string }) => {
+    return (
+        <Grid item>
+            <Typography variant="h3" style={{ color: '#f56920', fontWeight: 'unset', textAlign: 'left' }}>
+                {props.title}
+            </Typography>
+            
+        </Grid>
+    );
+};
+
+const ResetFields = ({ register, errors }: { register: any; errors: any }) => {
+    console.log(errors);
+    return (
+        <Grid item container spacing={3} direction="row" alignItems="center" justify="center">
+            <Grid item style={{ width: '100%' }}>
+                <TextField
+                    name="email"
+                    id="Email"
+                    label="Email"
+                    type="email"
+                    inputRef={register({
+                        required: true,
+                        pattern: {
+                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                            message: 'invalid email address',
+                        },
+                    })}
+                    error={errors.email ? true : false}
+                />
+            </Grid>
+        </Grid>
+    );
+};
+
+const ResetForm = () => {
+    const { handleSubmit, errors, register } = useForm();
+    const { push } = useHistory();
+    const onSubmit = (data: any) => {
+        console.log('trying ');
+        auth.doPasswordReset(data.email)
+            .then((u) => {
+                console.log('reset password link send to your mail');
+                alert('reset password link sent to your mail');
+                
+            })
+            .catch((err) => {
+                console.log('Error ' + err);
+                alert(err);
+            });
+    };
+
+    return (
+        <>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <ResetFields register={register} errors={errors} />
+                <Grid item container spacing={3}>
+                    <Grid
+                        item
+                        xs={10}
+                        alignContent="center"
+                        alignItems="center"
+                        style={{ paddingTop: '20px', verticalAlign: 'true' }}
+                    ></Grid>
+                </Grid>
+                <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
+                    <RegularBtn type="submit" colorType="orange" style={{ width: '100%', borderRadius: '15px' }}>
+                        Send me a Link
+                    </RegularBtn>
+                </Grid>
+                <br />
+                
+            </form>
+        </>
+    );
+};

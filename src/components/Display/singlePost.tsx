@@ -1,4 +1,4 @@
-import { Avatar, Grid, Card, Typography, IconButton, Container, Button, colors } from '@material-ui/core';
+import { Avatar, Grid, Card, Typography, IconButton, Container } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import * as React from 'react';
@@ -10,6 +10,7 @@ import PublishRoundedIcon from '@material-ui/icons/PublishRounded';
 import { checkUserLoggedIn } from "../../firebase/auth";
 // import SinglePostBanner from './singlePostBanner';
 import firebase from 'firebase';
+import fb from 'firebase/app';
 
 export interface SinglePostProps {
     username?: string;
@@ -19,7 +20,7 @@ export interface SinglePostProps {
     avatar?: string;
     uid?: string;
     likes_count?: string;
-    key?: string;
+    id?: string;
 }
 
 export interface SinglePostState {
@@ -45,9 +46,16 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
             favourited:!this.state.favourited
         })
 
-        if(this.state.favourited == true){
-            firebase.firestore().collection('users').doc(this.props.key).update({
-                likes_count: 12
+        const increment = fb.firestore.FieldValue.increment(1);
+        const decrement = fb.firestore.FieldValue.increment(-1);
+
+        if(this.state.favourited == false){
+            fb.firestore().collection('Posts').doc(this.props.id).update({
+                likes_count: increment
+            });
+        }else{
+            fb.firestore().collection('Posts').doc(this.props.id).update({
+                likes_count: decrement
             });
         }
     }
@@ -63,6 +71,13 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
     //             console.log(doc.data());
     //             // setHaveUser(true);
     //         });
+
+    // handleColorChange: { color: string };
+    // constructor(props: SinglePostProps | Readonly<SinglePostProps>) {
+    //     super(props);
+    //     this.handleColorChange = {
+    //         color: 'primary',
+    //     };
     // }
 
     componentDidMount() {

@@ -57,7 +57,7 @@ export default function OccupationSelect({control} : {control: any}) {
               onChange={handleChange}
               label="Occupation"
             >
-              <MenuItem value=""></MenuItem>
+              <MenuItem value={""}> </MenuItem>
               <MenuItem value={"Historian"}>Historian</MenuItem>
               <MenuItem value={"Student"}>Student</MenuItem>
               <MenuItem value={"Teacher"}>Teacher</MenuItem>
