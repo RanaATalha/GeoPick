@@ -9,6 +9,7 @@ import { RegularBtn } from '../../components/Buttons/RegularBtn';
 import sampleavatar from './sample-avatar.png';
 import {storage} from '../../firebase/firebase';
 import firebase from 'firebase';
+import Compress from "react-image-file-resizer";
 import OccupationSelect from '../../components/Inputs/occupation';
 import { useForm, Controller } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
@@ -23,27 +24,42 @@ export default class CreateProfileScreen extends React.Component<CreateProfilePr
     }
 
     changeAvatar = async (event:React.ChangeEvent<HTMLInputElement>) => {
-        if(event.target.files && event.target.files[0]){
+        if(event.target.files && event.target.files[0])
+        {
             const file = await event.target.files[0];
             this.setState({img: file})
             console.log(this.state.img);
             const user = auth.checkUserLoggedIn();
-            if(user != undefined){
-            console.log(user.uid);
-            const uploadRef = storage.ref(`/Images/${user.uid}/Avatar/${file.name}`).put(file).then(data => {
-                data.ref.getDownloadURL().then(url => {
-                    this.setState({imgurl: url});
-                    firebase
-                    .firestore()
-                    .collection('users/').doc(`${user.uid}/`)
-                    .update({
-                        Avatar: url,
-                    })
-                });
-            });;
+            if (!user) return;
+                Compress.imageFileResizer(
+                    file,
+                    20,
+                    20,
+                    "PNG",
+                    100,
+                    0,
+                    async (uri) => {
+                        if (typeof uri === 'string')
+                        {
+                        const urinew = uri.split('base64,')[1]
+                        storage.ref(`/Images/${user.uid}/Avatar/${file.name}`).putString(urinew, 'base64').then(data => {
+                            data.ref.getDownloadURL().then(url => {
+                                this.setState({imgurl: url});
+                                firebase
+                                .firestore()
+                                .collection('users/').doc(`${user.uid}/`)
+                                .update({
+                                    Avatar: url,
+                                })
+                            });
+                        });;
+                        }   
+                    },
+                    "base64"
+                    ); 
+            
             }
         }
-    }
     
     public render(): JSX.Element {
         return (
