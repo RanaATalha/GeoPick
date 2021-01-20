@@ -28,6 +28,7 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
             this.setState(snapshot.docs.map((doc: any) => ({ id: doc.id, post: doc.data() })));
         });
         console.log(this.state);
+
     }
 
     getData = () => {
