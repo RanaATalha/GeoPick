@@ -7,11 +7,10 @@ import './singlePostStyles.scss';
 import GuessTheLocationButton from './guess-the-location.svg';
 import InputBase from '@material-ui/core/InputBase';
 import PublishRoundedIcon from '@material-ui/icons/PublishRounded';
-import { checkUserLoggedIn } from "../../firebase/auth";
+import { checkUserLoggedIn } from '../../firebase/auth';
 // import SinglePostBanner from './singlePostBanner';
 import firebase from 'firebase';
 import fb from 'firebase/app';
-
 
 export interface SinglePostProps {
     username?: string;
@@ -19,47 +18,49 @@ export interface SinglePostProps {
     date?: string;
     postImage?: string;
     avatar?: string;
+
+
+
     uid?: string;
     likes_count?: string;
     id?: string;
 }
 
 export interface SinglePostState {
-    favourited: boolean,
-    user: any,
-    post_user: any
+    favourited: boolean;
+    user: any;
+    post_user: any;
 }
 class SinglePost extends Component<SinglePostProps, SinglePostState> {
-
-    constructor(SinglePostProps: any){
-        super(SinglePostProps)
-        this.state ={
+    constructor(SinglePostProps: any) {
+        super(SinglePostProps);
+        this.state = {
             favourited: false,
             user: checkUserLoggedIn(),
             // post_user: this.getPostUser(SinglePostProps.uid)
-            post_user: {}
-        }
+            post_user: {},
+        };
         this.handleColorChange = this.handleColorChange.bind(this);
         // this.getPostUser = this.getPostUser.bind(this);
     }
     handleColorChange = () => {
         this.setState({
-            favourited:!this.state.favourited
-        })
+            favourited: !this.state.favourited,
+        });
 
         const increment = fb.firestore.FieldValue.increment(1);
         const decrement = fb.firestore.FieldValue.increment(-1);
 
-        if(this.state.favourited == false){
+        if (this.state.favourited == false) {
             fb.firestore().collection('Posts').doc(this.props.id).update({
-                likes_count: increment
+                likes_count: increment,
             });
-        }else{
+        } else {
             fb.firestore().collection('Posts').doc(this.props.id).update({
-                likes_count: decrement
+                likes_count: decrement,
             });
         }
-    }
+    };
 
     // getPostUser = async ({uid} : {uid: string}) => {
     //     await firebase.firestore().collection("Users").doc(uid)
@@ -76,20 +77,21 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
     // }
 
     componentDidMount() {
-        firebase.firestore().collection("users").doc(this.props.uid)
-        .get()
-        .then(querySnapshot => {
-            const data = querySnapshot.data();
-            // console.log(data);
-            this.setState({ 
-                post_user: data 
+        firebase
+            .firestore()
+            .collection('users')
+            .doc(this.props.uid)
+            .get()
+            .then((querySnapshot) => {
+                const data = querySnapshot.data();
+                // console.log(data);
+                this.setState({
+                    post_user: data,
+                });
+                // console.log(this.state.post_user);
             });
-            // console.log(this.state.post_user);
-        }
-        );
     }
 
-    
     render() {
         return (
             // <Container fixed style={{ background: '#FAFAFA', padding: '2%' }}>
@@ -127,8 +129,8 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                         <img
                             src={this.props.postPic}
                             alt="not loading..."
-                            width="50%"
-                            height="90%"
+                            width="600px"
+                            height="500px"
                             className="postImage"
                             style={{ borderRadius: '20px 20px 0px 0px' }}
                         ></img>
@@ -143,8 +145,8 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                 </Grid> */}
                 <Grid container direction="column" spacing={2} justify={'center'}>
                     <Grid item justify="flex-start" direction="column" style={{ marginLeft: '-15%' }}>
-
                         {/* <div style={{ alignContent: 'flex-start', justifyContent: 'left' }}> */}
+<<<<<<< HEAD
                             {/* <Grid item justify="flex-start"> */}
                                 {/* <Card style={{ background: '#FAFAFA', borderRadius: '22px' }} className="boxField"> */}
                                     <Typography variant="h6" style={{ justifyContent: 'space-evenly', background: '#FAFAFA' }}>
@@ -161,30 +163,51 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                                 
                             {/* </Grid> */}
                             
+
                             <IconButton aria-label="share" style={{ color: '#FAFAFA' }}>
                                 <ShareIcon />
                             </IconButton>
                             {/* <Grid item> */}
+=======
+                        {/* <Grid item justify="flex-start"> */}
+                        {/* <Card style={{ background: '#FAFAFA', borderRadius: '22px' }} className="boxField"> */}
+                        {/* </Card> */}
+                        <IconButton
+                            aria-label="add to favorites"
+                            style={this.state.favourited ? { color: '#dc143c' } : { color: '#FAFAFA' }}
+                            onClick={this.handleColorChange}
+                        >
+                            <FavoriteIcon />
+                            {this.props.likes_count}
+                        </IconButton>
+>>>>>>> 4e5420d042addf5e6c4500dee2b650d4d1a2353a
 
-                            <InputBase
-                                placeholder="Start typing..."
-                                style={{
-                                    width: '32.5%',
-                                    marginRight: '-12%',
-                                    textDecorationColor: '#FAFAFA',
-                                    border: '1px solid #FAFAFA',
-                                    borderRadius: '10px',
-                                    height: '50px',
-                                    padding: '10px',
-                                    color: '#FAFAFA',
-                                }}
-                                endAdornment={
-                                    <IconButton aria-label="upload" style={{ color: '#FAFAFA', alignContent: 'end' }}>
-                                        <PublishRoundedIcon />
-                                    </IconButton>
-                                }
-                            />
-                            {/* </Grid> */}
+                        {/* </Grid> */}
+
+                        <IconButton aria-label="share" style={{ color: '#FAFAFA' }}>
+                            <ShareIcon />
+                        </IconButton>
+                        {/* <Grid item> */}
+
+                        <InputBase
+                            placeholder="Start typing..."
+                            style={{
+                                width: '32.5%',
+                                marginRight: '-12%',
+                                textDecorationColor: '#FAFAFA',
+                                border: '1px solid #FAFAFA',
+                                borderRadius: '10px',
+                                height: '50px',
+                                padding: '10px',
+                                color: '#FAFAFA',
+                            }}
+                            endAdornment={
+                                <IconButton aria-label="upload" style={{ color: '#FAFAFA', alignContent: 'end' }}>
+                                    <PublishRoundedIcon />
+                                </IconButton>
+                            }
+                        />
+                        {/* </Grid> */}
                         {/* </div> */}
                     </Grid>
                 </Grid>
