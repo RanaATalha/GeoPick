@@ -57,10 +57,6 @@ export default class CreateProfileScreen extends React.Component<CreateProfilePr
             width = image.width;
         }
 
-    
-        
-        
-
         setTimeout(() => {
             Compress.imageFileResizer(
                 file,
