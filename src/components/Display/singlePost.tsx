@@ -1,4 +1,14 @@
-import { Avatar, Grid, Card, Typography, IconButton, Container } from '@material-ui/core';
+import {
+    Avatar,
+    Grid,
+    Card,
+    Typography,
+    IconButton,
+    Container,
+    CardHeader,
+    CardActions,
+    Button,
+} from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import * as React from 'react';
@@ -28,6 +38,7 @@ export interface SinglePostState {
     user: any;
     post_user: any;
 }
+
 class SinglePost extends Component<SinglePostProps, SinglePostState> {
     constructor(SinglePostProps: any) {
         super(SinglePostProps);
@@ -71,6 +82,72 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                 });
             });
     }
+    handleGuessTheLocationOnClick() {
+        return (
+            <Card style={{ borderRadius: '20px', width: '20%', height: '30%', background: '#1b1b1b' }}>
+                {/* <CardHeader style={{ textAlign: 'left', marginLeft: '10px' }}> */}
+                <Typography
+                    variant="h6"
+                    style={{
+                        fontWeight: 'bolder',
+                        color: '#f56920',
+                        textAlign: 'left',
+                        margin: 'auto',
+                        padding: '10px',
+                    }}
+                >
+                    Guess The Location
+                </Typography>
+                {/* </CardHeader> */}
+                <CardActions>
+                    <Grid container direction="column" spacing={2}>
+                        <Grid item>
+                            <Button
+                                style={{
+                                    borderRadius: '20px',
+                                    marginLeft: '10px',
+                                    marginRight: '10px',
+                                    background: '#fafafa',
+                                    color: '#1b1b1b',
+                                    width: '80%',
+                                }}
+                            >
+                                Angola
+                            </Button>
+                        </Grid>
+                        <Grid item>
+                            <Button
+                                style={{
+                                    borderRadius: '20px',
+                                    marginLeft: '10px',
+                                    marginRight: '10px',
+                                    background: '#fafafa',
+                                    color: '#1b1b1b',
+                                    width: '80%',
+                                }}
+                            >
+                                Dubai
+                            </Button>
+                        </Grid>
+                        <Grid item>
+                            <Button
+                                style={{
+                                    borderRadius: '20px',
+                                    marginLeft: '10px',
+                                    marginRight: '10px',
+                                    background: '#fafafa',
+                                    color: '#1b1b1b',
+                                    width: '80%',
+                                }}
+                            >
+                                Abu Dhabi
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </CardActions>
+            </Card>
+        );
+    }
 
     render() {
         return (
@@ -112,10 +189,14 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                             width="600px"
                             height="500px"
                             className="postImage"
-                            style={{ borderRadius: '20px 20px 0px 0px' }}
+                            style={{ borderRadius: '20px 20px 0px 0px', position: 'sticky' }}
                         ></img>
-                        <IconButton style={{ transform: 'translate(-110%, -45%)' }}>
-                            <img src={GuessTheLocationButton} alt="Guess The Location"></img>
+                        <IconButton style={{ transform: 'translate(-145px, -35px)', position: 'sticky' }}>
+                            <img
+                                src={GuessTheLocationButton}
+                                alt="Guess The Location"
+                                onClick={this.handleGuessTheLocationOnClick}
+                            ></img>
                         </IconButton>
                     </div>
                 </Container>
