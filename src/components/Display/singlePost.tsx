@@ -146,29 +146,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                 <Grid container direction="column" spacing={2} justify={'center'}>
                     <Grid item justify="flex-start" direction="column" style={{ marginLeft: '-15%' }}>
                         {/* <div style={{ alignContent: 'flex-start', justifyContent: 'left' }}> */}
-<<<<<<< HEAD
-                            {/* <Grid item justify="flex-start"> */}
-                                {/* <Card style={{ background: '#FAFAFA', borderRadius: '22px' }} className="boxField"> */}
-                                    <Typography variant="h6" style={{ justifyContent: 'space-evenly', background: '#FAFAFA' }}>
-                                        {this.props.likes_count}
-                                    </Typography>
-                                {/* </Card> */}
-                                    <IconButton
-                                        aria-label="add to favorites"
-                                        style={this.state.favourited ? { color: '#dc143c' } : { color: '#FAFAFA' }}
-                                        onClick={this.handleColorChange}
-                                    >
-                                        <FavoriteIcon />
-                                    </IconButton>
-                                
-                            {/* </Grid> */}
-                            
 
-                            <IconButton aria-label="share" style={{ color: '#FAFAFA' }}>
-                                <ShareIcon />
-                            </IconButton>
-                            {/* <Grid item> */}
-=======
                         {/* <Grid item justify="flex-start"> */}
                         {/* <Card style={{ background: '#FAFAFA', borderRadius: '22px' }} className="boxField"> */}
                         {/* </Card> */}
@@ -180,7 +158,6 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                             <FavoriteIcon />
                             {this.props.likes_count}
                         </IconButton>
->>>>>>> 4e5420d042addf5e6c4500dee2b650d4d1a2353a
 
                         {/* </Grid> */}
 
