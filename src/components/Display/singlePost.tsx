@@ -17,11 +17,9 @@ import {
   TwitterShareButton,
   TelegramShareButton,
   WhatsappShareButton,
-  PinterestShareButton,
   EmailShareButton,
   FacebookIcon,
   TwitterIcon,
-  PinterestIcon,
   TelegramIcon,
   WhatsappIcon,
   EmailIcon,
@@ -65,7 +63,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
         const increment = fb.firestore.FieldValue.increment(1);
         const decrement = fb.firestore.FieldValue.increment(-1);
 
-        if (this.state.favourited == false) {
+        if (this.state.favourited === false) {
             fb.firestore().collection('Posts').doc(this.props.id).update({
                 likes_count: increment,
             });
@@ -146,8 +144,8 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                             width="600px"
                             height="500px"
                             className="postImage"
-                            style={{ borderRadius: '20px 20px 0px 0px' }}
-                        >{this.props.caption}</img>
+                            style={{ borderRadius: '20px 20px 0px 0px' }} 
+                        />
                         {/* <Button style={{ transform: 'translate(-130%, -50%)' }}>GeoPick</Button> */}
                         <IconButton style={{ transform: 'translate(-110%, -45%)' }}>
                             <img src={GuessTheLocationButton} alt="Guess The Location"></img>

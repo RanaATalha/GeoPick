@@ -67,14 +67,14 @@ if (!firebase.apps.length) {
 }
 // app.initializeApp(config);
 
-const signIn=(email:string,password:string)=>{
-    auth.signInWithEmailAndPassword(email,password).then((u)=>{
-        console.log("sucessfully logged");
+// const signIn=(email:string,password:string)=>{
+//     auth.signInWithEmailAndPassword(email,password).then((u)=>{
+//         console.log("sucessfully logged");
         
-    }).catch((err)=>{
-        console.log("Error "+ err.toString);
-    })
-}
+//     }).catch((err)=>{
+//         console.log("Error "+ err.toString);
+//     })
+// }
 export const auth = firebase.auth();
 export const GoogleProvider = new firebase.auth.GoogleAuthProvider();
 export const db = firebase.database();

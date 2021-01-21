@@ -1,10 +1,10 @@
 import React from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import { useForm, Controller } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 
 const useStyles = makeStyles((theme) => ({
   root: {

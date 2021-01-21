@@ -1,6 +1,5 @@
 import * as React from 'react';
 import './styles.scss';
-import UsernameField from '../../components/Inputs/UsernameField';
 import TextField from '../../components/Inputs/TextField';
 import Card from '../../components/Layouts/Card';
 import { Grid, Typography } from '@material-ui/core';
@@ -11,7 +10,7 @@ import {storage} from '../../firebase/firebase';
 import firebase from 'firebase';
 import Compress from "react-image-file-resizer";
 import OccupationSelect from '../../components/Inputs/occupation';
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
 import { auth } from '../../firebase';
 export interface CreateProfileProps {}
@@ -115,7 +114,7 @@ const CreateProfileForm = ({img }: {img: string;}) => {
     const { push } = useHistory();
     const onSubmit = (data: any) => {
         const user = auth.checkUserLoggedIn()
-        if(user != undefined){
+        if(user !== undefined){
             firebase.firestore()
             .collection('users/').doc(user.uid)
             .set({
