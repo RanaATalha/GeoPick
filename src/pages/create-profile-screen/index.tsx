@@ -14,58 +14,82 @@ import OccupationSelect from '../../components/Inputs/occupation';
 import { useForm, Controller } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
 import { auth } from '../../firebase';
-import Compress from "react-image-file-resizer";
 import { resolve } from 'url';
 export interface CreateProfileProps {}
 
 export default class CreateProfileScreen extends React.Component<CreateProfileProps> {
 
-    state = {
+    state: {img: {}, height: number|null, width: number|null, imgurl: string} = {
         img: {},
+        height: 0,
+        width: 0,
         imgurl : sampleavatar,
     }
 
     
     changeAvatar = async (event:React.ChangeEvent<HTMLInputElement>) => {
-        if(event.target.files && event.target.files[0])
-        {
-            const file = await event.target.files[0];
-            this.setState({img: file})
-            console.log(this.state.img);
-            const user = auth.checkUserLoggedIn();
-            if (!user) return;
-                Compress.imageFileResizer(
-                    file,
-                    20,
-                    20,
-                    "PNG",
-                    100,
-                    0,
-                    async (uri) => {
-                        if (typeof uri === 'string')
-                        {
-                        const urinew = uri.split('base64,')[1]
-                        storage.ref(`/Images/${user.uid}/Avatar/${file.name}`).putString(urinew, 'base64').then(data => {
-                            data.ref.getDownloadURL().then(url => {
-                                this.setState({imgurl: url});
-                                firebase
-                                .firestore()
-                                .collection('users/').doc(`${user.uid}/`)
-                                .update({
-                                    Avatar: url,
-                                })
-                            });
-                        });;
-                        }   
-                    },
-                    "base64"
-                    ); 
-<<<<<<< HEAD
-=======
-            
-            }
->>>>>>> a4cd2d643099f6e9fe4ca1a7599d5401ae73008f
+        if(!event.target.files || !event.target.files[0])
+            return
+        const file = await event.target.files[0];
+        this.setState({img: file})
+        console.log(this.state.img);
+        const user = auth.checkUserLoggedIn();
+
+        if (!user) return;
+        const image = new Image();
+        let fr = new FileReader();
+
+        fr.onload = async function() {
+        if (fr !== null && typeof fr.result == "string") {
+            image.src = fr.result;
+            console.log("in frload")
+            console.log("frwidg",image.width);
+        console.log("frhigg",image.height);
         }
+        }
+        fr.readAsDataURL(file);
+        
+        var width = 0;
+        var height = 0;
+        
+        image.onload = function() {
+            height = image.height;
+            width = image.width;
+        }
+
+    
+        
+        
+
+        setTimeout(() => {
+            Compress.imageFileResizer(
+                file,
+                width,
+                height,
+                "JPEG",
+                50,
+                0,
+                async (uri) => {
+                    if (typeof uri === 'string')
+                    {
+                    const urinew = uri.split('base64,')[1]
+                    storage.ref(`/Images/${user.uid}/Avatar/${file.name}`).putString(urinew, 'base64').then(data => {
+                        data.ref.getDownloadURL().then(url => {
+                            this.setState({imgurl: url});
+                            firebase
+                            .firestore()
+                            .collection('users/').doc(`${user.uid}/`)
+                            .update({
+                                Avatar: url,
+                            })
+                        });
+                    });;
+                    }   
+                },
+                "base64"
+                );
+        },2500)
+    }
     
     public render(): JSX.Element {
         return (

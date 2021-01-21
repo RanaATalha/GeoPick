@@ -146,10 +146,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                 <Grid container direction="column" spacing={2} justify={'center'}>
                     <Grid item justify="flex-start" direction="column" style={{ marginLeft: '-15%' }}>
                         {/* <div style={{ alignContent: 'flex-start', justifyContent: 'left' }}> */}
-<<<<<<< HEAD
 
-=======
->>>>>>> 81d472376e4cc1ea98d24b862d5f4c8c71c1da99
                         {/* <Grid item justify="flex-start"> */}
                         {/* <Card style={{ background: '#FAFAFA', borderRadius: '22px' }} className="boxField"> */}
                         {/* </Card> */}
