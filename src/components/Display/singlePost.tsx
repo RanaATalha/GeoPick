@@ -1,4 +1,15 @@
-import { Avatar, Grid, Card, Typography, IconButton, Container } from '@material-ui/core';
+import {
+    Avatar,
+    Grid,
+    Card,
+    Typography,
+    IconButton,
+    Container,
+    CardHeader,
+    CardActions,
+    Button,
+    Zoom,
+} from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import * as React from 'react';
@@ -8,7 +19,6 @@ import GuessTheLocationButton from './guess-the-location.svg';
 import InputBase from '@material-ui/core/InputBase';
 import PublishRoundedIcon from '@material-ui/icons/PublishRounded';
 import { checkUserLoggedIn } from '../../firebase/auth';
-// import SinglePostBanner from './singlePostBanner';
 import firebase from 'firebase';
 import fb from 'firebase/app';
 
@@ -19,8 +29,6 @@ export interface SinglePostProps {
     postImage?: string;
     avatar?: string;
 
-
-
     uid?: string;
     likes_count?: string;
     id?: string;
@@ -30,19 +38,22 @@ export interface SinglePostState {
     favourited: boolean;
     user: any;
     post_user: any;
+    GTLButton: any;
 }
+
 class SinglePost extends Component<SinglePostProps, SinglePostState> {
     constructor(SinglePostProps: any) {
         super(SinglePostProps);
         this.state = {
             favourited: false,
             user: checkUserLoggedIn(),
-            // post_user: this.getPostUser(SinglePostProps.uid)
             post_user: {},
+            GTLButton: this.handleGuessTheLocationOnClick,
         };
         this.handleColorChange = this.handleColorChange.bind(this);
-        // this.getPostUser = this.getPostUser.bind(this);
+        this.handleGuessTheLocationOnClick = this.handleGuessTheLocationOnClick.bind(this);
     }
+
     handleColorChange = () => {
         this.setState({
             favourited: !this.state.favourited,
@@ -62,20 +73,6 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
         }
     };
 
-    // getPostUser = async ({uid} : {uid: string}) => {
-    //     await firebase.firestore().collection("Users").doc(uid)
-    //     .get()
-    //     .then(function(doc) {
-    //         // querySnapshot.forEach(function(doc) {
-    //         //     // doc.data() is never undefined for query doc snapshots
-    //         //     console.log(doc.id, " => ", doc.data());
-    //             return doc.data();
-    //             console.log(doc.data());
-    //             // setHaveUser(true);
-    //         });
-
-    // }
-
     componentDidMount() {
         firebase
             .firestore()
@@ -88,8 +85,76 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                 this.setState({
                     post_user: data,
                 });
-                // console.log(this.state.post_user);
             });
+    }
+
+    handleGuessTheLocationOnClick() {
+        return (
+            // <Zoom in={checked} style={{ transitionDelay: checked ? '500ms' : '0ms' }}>
+            <Card style={{ borderRadius: '20px', width: '20%', height: '30%', background: '#1b1b1b' }}>
+                {/* <CardHeader style={{ textAlign: 'left', marginLeft: '10px' }}> */}
+                <Typography
+                    variant="h6"
+                    style={{
+                        fontWeight: 'bolder',
+                        color: '#f56920',
+                        textAlign: 'left',
+                        margin: 'auto',
+                        padding: '10px',
+                    }}
+                >
+                    Guess The Location
+                </Typography>
+                {/* </CardHeader> */}
+                <CardActions>
+                    <Grid container direction="column" spacing={2}>
+                        <Grid item>
+                            <Button
+                                style={{
+                                    borderRadius: '20px',
+                                    marginLeft: '10px',
+                                    marginRight: '10px',
+                                    background: '#fafafa',
+                                    color: '#1b1b1b',
+                                    width: '80%',
+                                }}
+                            >
+                                Angola
+                            </Button>
+                        </Grid>
+                        <Grid item>
+                            <Button
+                                style={{
+                                    borderRadius: '20px',
+                                    marginLeft: '10px',
+                                    marginRight: '10px',
+                                    background: '#fafafa',
+                                    color: '#1b1b1b',
+                                    width: '80%',
+                                }}
+                            >
+                                Dubai
+                            </Button>
+                        </Grid>
+                        <Grid item>
+                            <Button
+                                style={{
+                                    borderRadius: '20px',
+                                    marginLeft: '10px',
+                                    marginRight: '10px',
+                                    background: '#fafafa',
+                                    color: '#1b1b1b',
+                                    width: '80%',
+                                }}
+                            >
+                                Abu Dhabi
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </CardActions>
+            </Card>
+            // </Zoom>
+        );
     }
 
     render() {
@@ -132,24 +197,27 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                             width="600px"
                             height="500px"
                             className="postImage"
-                            style={{ borderRadius: '20px 20px 0px 0px' }}
+                            style={{ borderRadius: '20px 20px 0px 0px', position: 'sticky' }}
                         ></img>
-                        {/* <Button style={{ transform: 'translate(-130%, -50%)' }}>GeoPick</Button> */}
-                        <IconButton style={{ transform: 'translate(-110%, -45%)' }}>
-                            <img src={GuessTheLocationButton} alt="Guess The Location"></img>
+                        <IconButton style={{ transform: 'translate(-145px, -35px)', position: 'sticky' }}>
+                            <img
+                                src={GuessTheLocationButton}
+                                alt="Guess The Location"
+                                onClick={this.state.GTLButton}
+                            ></img>
                         </IconButton>
                     </div>
                 </Container>
-                {/* <br></br> */}
-                {/* </Grid>
-                </Grid> */}
                 <Grid container direction="column" spacing={2} justify={'center'}>
                     <Grid item justify="flex-start" direction="column" style={{ marginLeft: '-15%' }}>
+<<<<<<< HEAD
                         {/* <div style={{ alignContent: 'flex-start', justifyContent: 'left' }}> */}
 
                         {/* <Grid item justify="flex-start"> */}
                         {/* <Card style={{ background: '#FAFAFA', borderRadius: '22px' }} className="boxField"> */}
                         {/* </Card> */}
+=======
+>>>>>>> 80ce926ce286251d8829780c78a02f530dbd7ece
                         <IconButton
                             aria-label="add to favorites"
                             style={this.state.favourited ? { color: '#dc143c' } : { color: '#FAFAFA' }}
@@ -159,13 +227,9 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                             {this.props.likes_count}
                         </IconButton>
 
-                        {/* </Grid> */}
-
                         <IconButton aria-label="share" style={{ color: '#FAFAFA' }}>
                             <ShareIcon />
                         </IconButton>
-                        {/* <Grid item> */}
-
                         <InputBase
                             placeholder="Start typing..."
                             style={{
@@ -184,8 +248,6 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                                 </IconButton>
                             }
                         />
-                        {/* </Grid> */}
-                        {/* </div> */}
                     </Grid>
                 </Grid>
                 <div style={{ padding: '25px' }}></div>
@@ -195,5 +257,3 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
 }
 
 export default SinglePost;
-
-// {/* <IconButton type="submit" aria-label="submit" style={{ color: '#FAFAFA' }}></IconButton> */}
