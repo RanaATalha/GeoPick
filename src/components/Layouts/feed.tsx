@@ -27,6 +27,7 @@ export default function Feed() {
             // comments={post.comments}
             date={new Date(post.post_time.seconds * 1000).toLocaleDateString("en-US")}
             likes_count={post.likes_count}
+            caption={post.caption}
           />
         );
       })}

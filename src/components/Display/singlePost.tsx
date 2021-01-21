@@ -12,17 +12,29 @@ import { checkUserLoggedIn } from '../../firebase/auth';
 import firebase from 'firebase';
 import fb from 'firebase/app';
 
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  TelegramShareButton,
+  WhatsappShareButton,
+  PinterestShareButton,
+  EmailShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  PinterestIcon,
+  TelegramIcon,
+  WhatsappIcon,
+  EmailIcon,
+} from 'react-share';
+
 export interface SinglePostProps {
     username?: string;
     postPic?: string;
     date?: string;
-    postImage?: string;
     avatar?: string;
-
-
-
     uid?: string;
     likes_count?: string;
+    caption?: string;
     id?: string;
 }
 
@@ -30,6 +42,7 @@ export interface SinglePostState {
     favourited: boolean;
     user: any;
     post_user: any;
+    sharedURL: string;
 }
 class SinglePost extends Component<SinglePostProps, SinglePostState> {
     constructor(SinglePostProps: any) {
@@ -39,6 +52,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
             user: checkUserLoggedIn(),
             // post_user: this.getPostUser(SinglePostProps.uid)
             post_user: {},
+            sharedURL: 'google.com',
         };
         this.handleColorChange = this.handleColorChange.bind(this);
         // this.getPostUser = this.getPostUser.bind(this);
@@ -133,7 +147,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                             height="500px"
                             className="postImage"
                             style={{ borderRadius: '20px 20px 0px 0px' }}
-                        ></img>
+                        >{this.props.caption}</img>
                         {/* <Button style={{ transform: 'translate(-130%, -50%)' }}>GeoPick</Button> */}
                         <IconButton style={{ transform: 'translate(-110%, -45%)' }}>
                             <img src={GuessTheLocationButton} alt="Guess The Location"></img>
@@ -146,29 +160,6 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                 <Grid container direction="column" spacing={2} justify={'center'}>
                     <Grid item justify="flex-start" direction="column" style={{ marginLeft: '-15%' }}>
                         {/* <div style={{ alignContent: 'flex-start', justifyContent: 'left' }}> */}
-<<<<<<< HEAD
-                            {/* <Grid item justify="flex-start"> */}
-                                {/* <Card style={{ background: '#FAFAFA', borderRadius: '22px' }} className="boxField"> */}
-                                    <Typography variant="h6" style={{ justifyContent: 'space-evenly', background: '#FAFAFA' }}>
-                                        {this.props.likes_count}
-                                    </Typography>
-                                {/* </Card> */}
-                                    <IconButton
-                                        aria-label="add to favorites"
-                                        style={this.state.favourited ? { color: '#dc143c' } : { color: '#FAFAFA' }}
-                                        onClick={this.handleColorChange}
-                                    >
-                                        <FavoriteIcon />
-                                    </IconButton>
-                                
-                            {/* </Grid> */}
-                            
-
-                            <IconButton aria-label="share" style={{ color: '#FAFAFA' }}>
-                                <ShareIcon />
-                            </IconButton>
-                            {/* <Grid item> */}
-=======
                         {/* <Grid item justify="flex-start"> */}
                         {/* <Card style={{ background: '#FAFAFA', borderRadius: '22px' }} className="boxField"> */}
                         {/* </Card> */}
@@ -180,12 +171,32 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                             <FavoriteIcon />
                             {this.props.likes_count}
                         </IconButton>
->>>>>>> 4e5420d042addf5e6c4500dee2b650d4d1a2353a
-
                         {/* </Grid> */}
 
                         <IconButton aria-label="share" style={{ color: '#FAFAFA' }}>
                             <ShareIcon />
+                            <ul>
+                                <li><FacebookShareButton url={this.state.sharedURL}>
+                                        <FacebookIcon size={16} round />
+                                    </FacebookShareButton>
+                                </li>
+                                <li><TwitterShareButton url={this.state.sharedURL}>
+                                        <TwitterIcon size={16} round />
+                                    </TwitterShareButton>
+                                </li>
+                                <li><TelegramShareButton url={this.state.sharedURL}>
+                                        <TelegramIcon size={16} round />
+                                    </TelegramShareButton>
+                                </li>
+                                <li><WhatsappShareButton url={this.state.sharedURL}>
+                                        <WhatsappIcon size={16} round />
+                                    </WhatsappShareButton>
+                                </li>
+                                <li><EmailShareButton url={this.state.sharedURL}>
+                                        <EmailIcon size={16} round />
+                                    </EmailShareButton>
+                                </li>
+                            </ul>
                         </IconButton>
                         {/* <Grid item> */}
 

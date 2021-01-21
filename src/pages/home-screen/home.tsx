@@ -44,7 +44,7 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
     render() {
         return (
             <div style={{ background: '#1b1b1b' }} onLoad = {this.getData}>
-                <img src={WhiteLogo} alt="GeoPicK" className="WhiteLogo"></img>
+                <img src={WhiteLogo} alt="GeoPicK" className="WhiteLogo"/>
                 <br></br>
                 {/* <SinglePost username="GeoPicker" date="13-01-2021" postPic={Picture} />
                 <SinglePost username="GeoPicker" date="13-01-2021" postPic={Picture} /> */}
