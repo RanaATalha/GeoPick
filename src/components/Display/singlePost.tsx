@@ -8,6 +8,7 @@ import {
     CardHeader,
     CardActions,
     Button,
+    Zoom,
 } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
@@ -37,6 +38,7 @@ export interface SinglePostState {
     favourited: boolean;
     user: any;
     post_user: any;
+    GTLButton: any;
 }
 
 class SinglePost extends Component<SinglePostProps, SinglePostState> {
@@ -46,9 +48,12 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
             favourited: false,
             user: checkUserLoggedIn(),
             post_user: {},
+            GTLButton: this.handleGuessTheLocationOnClick,
         };
         this.handleColorChange = this.handleColorChange.bind(this);
+        this.handleGuessTheLocationOnClick = this.handleGuessTheLocationOnClick.bind(this);
     }
+
     handleColorChange = () => {
         this.setState({
             favourited: !this.state.favourited,
@@ -82,8 +87,10 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                 });
             });
     }
+
     handleGuessTheLocationOnClick() {
         return (
+            // <Zoom in={checked} style={{ transitionDelay: checked ? '500ms' : '0ms' }}>
             <Card style={{ borderRadius: '20px', width: '20%', height: '30%', background: '#1b1b1b' }}>
                 {/* <CardHeader style={{ textAlign: 'left', marginLeft: '10px' }}> */}
                 <Typography
@@ -146,6 +153,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                     </Grid>
                 </CardActions>
             </Card>
+            // </Zoom>
         );
     }
 
@@ -195,7 +203,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                             <img
                                 src={GuessTheLocationButton}
                                 alt="Guess The Location"
-                                onClick={this.handleGuessTheLocationOnClick}
+                                onClick={this.state.GTLButton}
                             ></img>
                         </IconButton>
                     </div>
