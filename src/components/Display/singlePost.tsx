@@ -62,7 +62,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
         const increment = fb.firestore.FieldValue.increment(1);
         const decrement = fb.firestore.FieldValue.increment(-1);
 
-        if (this.state.favourited == false) {
+        if (this.state.favourited === false) {
             fb.firestore().collection('Posts').doc(this.props.id).update({
                 likes_count: increment,
             });
@@ -91,7 +91,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
     handleGuessTheLocationOnClick() {
         return (
             // <Zoom in={checked} style={{ transitionDelay: checked ? '500ms' : '0ms' }}>
-            <Card style={{ borderRadius: '20px', width: '20%', height: '30%', background: '#1b1b1b' }}>
+            <Card style={{ borderRadius: '20px', width: '20%', height: '30%', color: '#1b1b1b' }}>
                 {/* <CardHeader style={{ textAlign: 'left', marginLeft: '10px' }}> */}
                 <Typography
                     variant="h6"
@@ -159,10 +159,19 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
 
     render() {
         return (
-            // <Container fixed style={{ background: '#FAFAFA', padding: '2%' }}>
-            <Card style={{ background: '#1b1b1b', justifyContent: 'center', alignContent: 'center', margin: '50px' }}>
+            // <Container fixed style={{ background: '#FAFAFA', padding: '20%', margin: 'auto' }}>
+
+            <div
+                style={{
+                    background: '#1b1b1b',
+                    justifyContent: 'center',
+                    alignContent: 'center',
+                    margin: 'auto',
+                    width: '700px',
+                }}
+            >
                 <Grid container direction="row" spacing={1} justify="center">
-                    <Grid item justify="flex-start" style={{ marginLeft: '0%' }}>
+                    <Grid item justify="flex-start" style={{ marginLeft: '10%', position: 'relative' }}>
                         <Avatar alt={this.state.post_user.User_name} src={this.state.post_user.Avatar}></Avatar>
                     </Grid>
                     <Grid item justify="flex-start">
@@ -172,7 +181,11 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                             </Typography>
                         </Card>
                     </Grid>
-                    <Grid item justify="flex-end" style={{ marginLeft: '22.5%' }}>
+                    <Grid
+                        item
+                        justify="flex-end"
+                        style={{ marginRight: '5%', marginLeft: '32%', position: 'relative' }}
+                    >
                         <Card
                             style={{
                                 color: '#F56920',
@@ -189,35 +202,23 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                 </Grid>
                 <br></br>
 
-                <Container>
-                    <div className="postImage" style={{ justifyItems: 'normal', marginRight: '-10%' }}>
-                        <img
-                            src={this.props.postPic}
-                            alt="not loading..."
-                            width="600px"
-                            height="500px"
-                            className="postImage"
-                            style={{ borderRadius: '20px 20px 0px 0px', position: 'sticky' }}
-                        ></img>
-                        <IconButton style={{ transform: 'translate(-145px, -35px)', position: 'sticky' }}>
-                            <img
-                                src={GuessTheLocationButton}
-                                alt="Guess The Location"
-                                onClick={this.state.GTLButton}
-                            ></img>
-                        </IconButton>
-                    </div>
-                </Container>
+                {/* <Container> */}
+                <div className="postImage" style={{ justifyItems: 'center', marginRight: '-20%' }}>
+                    <img
+                        src={this.props.postPic}
+                        alt="not loading..."
+                        width="500px"
+                        height="500px"
+                        className="postImage"
+                        style={{ borderRadius: '20px 20px 0px 0px', position: 'sticky' }}
+                    ></img>
+                    <IconButton style={{ transform: 'translate(-100px, -25px)', position: 'sticky' }}>
+                        <img src={GuessTheLocationButton} alt="Guess The Location" onClick={this.state.GTLButton}></img>
+                    </IconButton>
+                </div>
+                {/* </Container> */}
                 <Grid container direction="column" spacing={2} justify={'center'}>
                     <Grid item justify="flex-start" direction="column" style={{ marginLeft: '-15%' }}>
-<<<<<<< HEAD
-                        {/* <div style={{ alignContent: 'flex-start', justifyContent: 'left' }}> */}
-
-                        {/* <Grid item justify="flex-start"> */}
-                        {/* <Card style={{ background: '#FAFAFA', borderRadius: '22px' }} className="boxField"> */}
-                        {/* </Card> */}
-=======
->>>>>>> 80ce926ce286251d8829780c78a02f530dbd7ece
                         <IconButton
                             aria-label="add to favorites"
                             style={this.state.favourited ? { color: '#dc143c' } : { color: '#FAFAFA' }}
@@ -233,7 +234,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                         <InputBase
                             placeholder="Start typing..."
                             style={{
-                                width: '32.5%',
+                                width: '50%',
                                 marginRight: '-12%',
                                 textDecorationColor: '#FAFAFA',
                                 border: '1px solid #FAFAFA',
@@ -251,7 +252,8 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                     </Grid>
                 </Grid>
                 <div style={{ padding: '25px' }}></div>
-            </Card>
+            </div>
+            // </Container>
         );
     }
 }
