@@ -15,7 +15,7 @@ export default function ResetScreens() {
         <div className="bg">
             <Card background="white" title="Reset password" split={1}>
                 <Grid container spacing={4} direction="row" alignItems="center" justify="center">
-                    <ResetHeader title="We just want to combine your identity..." />
+                    <ResetHeader title="We just want to confirm your identity..." />
                     <ResetForm />
                 </Grid>
             </Card>
@@ -27,10 +27,9 @@ export default function ResetScreens() {
 const ResetHeader = (props: { title: string }) => {
     return (
         <Grid item>
-            <Typography variant="h3" style={{ color: '#f56920', fontWeight: 'unset', textAlign: 'left' }}>
+            <Typography variant="h4" style={{ color: '#f56920', fontWeight: 'unset', textAlign: 'left' }}>
                 {props.title}
             </Typography>
-            
         </Grid>
     );
 };
@@ -68,7 +67,6 @@ const ResetForm = () => {
             .then((u) => {
                 console.log('reset password link send to your mail');
                 alert('reset password link sent to your mail');
-                
             })
             .catch((err) => {
                 console.log('Error ' + err);
@@ -95,7 +93,6 @@ const ResetForm = () => {
                     </RegularBtn>
                 </Grid>
                 <br />
-                
             </form>
         </>
     );
