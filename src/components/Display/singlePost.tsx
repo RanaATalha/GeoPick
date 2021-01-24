@@ -1,5 +1,6 @@
 import { Avatar, Grid, Card, Typography, IconButton, CardActions, Button, Box, Container } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import AddCommentRoundedIcon from '@material-ui/icons/AddCommentRounded';
 import ShareIcon from '@material-ui/icons/Share';
 import * as React from 'react';
 import { Component } from 'react';
@@ -24,7 +25,7 @@ import {
     WhatsappIcon,
     EmailIcon,
 } from 'react-share';
-
+import SharePost from './sharePost';
 // import { Container, Link } from 'react-floating-action-button'
 
 export interface SinglePostProps {
@@ -33,11 +34,12 @@ export interface SinglePostProps {
     date?: string;
     avatar?: string;
     uid?: string;
-    likes_count?: string;
+    likes_count?: number;
     caption?: string;
     id?: string;
     sharedURL: string;
     hidden: boolean;
+    comments_count: number;
 }
 
 export interface SinglePostState {
@@ -271,8 +273,13 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                         <Box m={-30} />
                     </div>
                 </Container>
+<<<<<<< HEAD
+                <Grid container spacing={2} justify="center" alignItems="center">
+                    <Grid item>
+=======
                 <Grid container direction="column" spacing={2} justify={'center'}>
                     <Grid item justify="flex-start" direction="column" style={{ marginLeft: '-15%' }}>
+>>>>>>> ecdf86904020735dba8fd3cb60ff43a0d7b387c8
                         <IconButton
                             aria-label="add to favorites"
                             style={this.state.favourited ? { color: '#dc143c' } : { color: '#FAFAFA' }}
@@ -280,7 +287,23 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                         >
                             <FavoriteIcon />
                             {this.props.likes_count}
+                        </IconButton>   
+                    </Grid>
+                    <Grid item xs={4}>
+                        <SharePost sharedURL= {this.props.sharedURL}/>
+                    </Grid>
+                    <Grid item>
+                     <Link to = "/post">
+                         <IconButton
+                            aria-label="add a comment"
+                            style={{ color: '#FAFAFA' }}
+                        >
+                            <AddCommentRoundedIcon/>
+                            <span>{this.props.comments_count}</span>
                         </IconButton>
+<<<<<<< HEAD
+                    </Link>
+=======
                         <IconButton aria-label="share" style={{ color: '#FAFAFA' }}>
                             <ShareIcon onClick={this.handleButtonClick} />
                             {this.state.open_share && (
@@ -332,6 +355,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                                 </IconButton>
                             }
                         />
+>>>>>>> ecdf86904020735dba8fd3cb60ff43a0d7b387c8
                     </Grid>
                 </Grid>
                 <div style={{ padding: '25px' }}></div>
