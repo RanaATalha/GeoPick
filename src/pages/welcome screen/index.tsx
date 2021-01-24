@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Switch, Link, BrowserRouter } from 'rea
 import WhiteLogo from './WhiteLogo.svg';
 import googleButton from './googleButton.svg';
 // import background from './welcome-pg.png';
-import { createStyles, Grid, makeStyles, Theme, Typography } from '@material-ui/core';
+import { createStyles, Grid, makeStyles, Theme, Typography, Button } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import Checkbox from '../../components/Inputs/Checkbox';
 import TextField from '../../components/Inputs/TextField';
@@ -77,21 +77,40 @@ const WelcomeScreen: React.FunctionComponent<WelcomeProps> = (props) => {
                             ></Grid>
                             <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
                                 <Grid item>
-                                    <button onClick={GoogleSignin} className="g-btn">
-                                        <img src={googleButton} width="22px" alt="Google" />
+                                    <RegularBtn colorType="dark" onClick={GoogleSignin} className="g-btn">
+                                        <img
+                                            src={googleButton}
+                                            width="22px"
+                                            alt="Google"
+                                            style={{ marginLeft: '10px' }}
+                                        />
                                         <p className="text">Sign in</p>
-                                    </button>
+                                    </RegularBtn>
                                     <br></br>
                                     <hr style={{ width: '500px' }} />
                                     <div style={{ paddingBottom: '5%' }}>
                                         <a href="/sign-up">
-                                            <button className="sign-btn">Sign up now!</button>
+                                            <RegularBtn
+                                                // className="sign-btn"
+                                                colorType="orange"
+                                                style={{
+                                                    // color: '#fafafa',
+                                                    borderRadius: '20px',
+                                                    width: '195px',
+                                                    height: '45px',
+                                                    // background: '#f56920',
+                                                }}
+                                            >
+                                                <div style={{ color: '#fafafa' }}>Sign up now!</div>
+                                            </RegularBtn>
                                         </a>
                                     </div>
                                     {/* <br></br> */}
                                     <div style={{ paddingBottom: '20%' }}>
                                         <a href="/sign-in">
-                                            <button className="sign-btn1">Sign in</button>
+                                            <RegularBtn colorType="dark" className="sign-btn1">
+                                                Sign in
+                                            </RegularBtn>
                                         </a>
                                     </div>
                                 </Grid>

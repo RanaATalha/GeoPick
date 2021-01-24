@@ -30,6 +30,7 @@ export default function Feed() {
             caption={post.caption}
             sharedURL = {window.location.href}
             hidden = {false}
+            comments_count = {post.comments_count}
           />
         );
       })}

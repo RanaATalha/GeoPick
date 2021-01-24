@@ -11,7 +11,9 @@ import {
     Icon,
     Container,
 } from '@material-ui/core';
+import {Link } from "react-router-dom";
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import AddCommentRoundedIcon from '@material-ui/icons/AddCommentRounded';
 import ShareIcon from '@material-ui/icons/Share';
 import * as React from 'react';
 import { Component } from 'react';
@@ -36,7 +38,7 @@ import {
   WhatsappIcon,
   EmailIcon,
 } from 'react-share';
-
+import SharePost from './sharePost';
 // import { Container, Link } from 'react-floating-action-button'
 
 export interface SinglePostProps {
@@ -45,11 +47,12 @@ export interface SinglePostProps {
     date?: string;
     avatar?: string;
     uid?: string;
-    likes_count?: string;
+    likes_count?: number;
     caption?: string;
     id?: string;
     sharedURL: string;
     hidden: boolean;
+    comments_count: number;
 }
 
 export interface SinglePostState {
@@ -124,7 +127,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
     handleGuessTheLocationOnClick() {
         return (
             // <Zoom in={checked} style={{ transitionDelay: checked ? '500ms' : '0ms' }}>
-            <Card style={{ borderRadius: '20px', width: '20%', height: '30%', background: '#1b1b1b' }}>
+            <Card style={{ borderRadius: '20px', width: '20%', height: '30%', color: '#1b1b1b' }}>
                 {/* <CardHeader style={{ textAlign: 'left', marginLeft: '10px' }}> */}
                 <Typography
                     variant="h6"
@@ -195,10 +198,19 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
 
     render() {
         return (
-            // <Container fixed style={{ background: '#FAFAFA', padding: '2%' }}>
-            <Card style={{ background: '#1b1b1b', justifyContent: 'center', alignContent: 'center', margin: '50px' }}>
+            // <Container fixed style={{ background: '#FAFAFA', padding: '20%', margin: 'auto' }}>
+
+            <div
+                style={{
+                    background: '#1b1b1b',
+                    justifyContent: 'center',
+                    alignContent: 'center',
+                    margin: 'auto',
+                    width: '700px',
+                }}
+            >
                 <Grid container direction="row" spacing={1} justify="center">
-                    <Grid item justify="flex-start" style={{ marginLeft: '0%' }}>
+                    <Grid item justify="flex-start" style={{ marginLeft: '10%', position: 'relative' }}>
                         <Avatar alt={this.state.post_user.User_name} src={this.state.post_user.Avatar}></Avatar>
                     </Grid>
                     <Grid item justify="flex-start">
@@ -208,7 +220,11 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                             </Typography>
                         </Card>
                     </Grid>
-                    <Grid item justify="flex-end" style={{ marginLeft: '22.5%' }}>
+                    <Grid
+                        item
+                        justify="flex-end"
+                        style={{ marginRight: '5%', marginLeft: '32%', position: 'relative' }}
+                    >
                         <Card
                             style={{
                                 color: '#F56920',
@@ -276,8 +292,8 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                         <GuessTheLocationPlay city1="Dubai" city2="Paris" city3="Tokyo"/>
                         </div>
                 </Container>
-                <Grid container direction="column" spacing={2} justify={'center'}>
-                    <Grid item justify="flex-start" direction="column" style={{ marginLeft: '-15%' }}>
+                <Grid container spacing={2} justify="center" alignItems="center">
+                    <Grid item>
                         <IconButton
                             aria-label="add to favorites"
                             style={this.state.favourited ? { color: '#dc143c' } : { color: '#FAFAFA' }}
@@ -285,58 +301,26 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                         >
                             <FavoriteIcon />
                             {this.props.likes_count}
+                        </IconButton>   
+                    </Grid>
+                    <Grid item xs={4}>
+                        <SharePost sharedURL= {this.props.sharedURL}/>
+                    </Grid>
+                    <Grid item>
+                     <Link to = "/post">
+                         <IconButton
+                            aria-label="add a comment"
+                            style={{ color: '#FAFAFA' }}
+                        >
+                            <AddCommentRoundedIcon/>
+                            <span>{this.props.comments_count}</span>
                         </IconButton>
-                        <IconButton aria-label="share" style={{ color: '#FAFAFA' }}>
-                            <ShareIcon onClick={this.handleButtonClick}/>
-                            {this.state.open_share && (
-                                <ul>
-                                    <li><FacebookShareButton url={this.props.sharedURL}>
-                                            <FacebookIcon size={16} round />
-                                        </FacebookShareButton>
-                                    </li>
-                                    <li><TwitterShareButton url={this.props.sharedURL}>
-                                            <TwitterIcon size={16} round />
-                                        </TwitterShareButton>
-                                    </li>
-                                    <li><TelegramShareButton url={this.props.sharedURL}>
-                                            <TelegramIcon size={16} round />
-                                        </TelegramShareButton>
-                                    </li>
-                                    <li><WhatsappShareButton url={this.props.sharedURL}>
-                                            <WhatsappIcon size={16} round />
-                                        </WhatsappShareButton>
-                                    </li>
-                                    <li><EmailShareButton url={this.props.sharedURL}>
-                                            <EmailIcon size={16} round />
-                                        </EmailShareButton>
-                                    </li>
-                                </ul>
-                            )}
-                        </IconButton>
-
-
-                        <InputBase
-                            placeholder="Start typing..."
-                            style={{
-                                width: '32.5%',
-                                marginRight: '-12%',
-                                textDecorationColor: '#FAFAFA',
-                                border: '1px solid #FAFAFA',
-                                borderRadius: '10px',
-                                height: '50px',
-                                padding: '10px',
-                                color: '#FAFAFA',
-                            }}
-                            endAdornment={
-                                <IconButton aria-label="upload" style={{ color: '#FAFAFA', alignContent: 'end' }}>
-                                    <PublishRoundedIcon />
-                                </IconButton>
-                            }
-                        />
+                    </Link>
                     </Grid>
                 </Grid>
                 <div style={{ padding: '25px' }}></div>
-            </Card>
+            </div>
+            // </Container>
         );
     }
 }

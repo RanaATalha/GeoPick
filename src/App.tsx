@@ -14,6 +14,7 @@ import CreateProfileScreen from './pages/create-profile-screen';
 import SetNewPasswordScreen from './pages/sign-in screen/setnewpass';
 import ReSetNewPasswordScreen from './pages/sign-in screen/resetpass';
 import { HomeScreen } from './pages/home-screen/home';
+import PostView from './pages/post-view';
 
 function App(): JSX.Element {
     return (
@@ -46,6 +47,9 @@ function App(): JSX.Element {
                     <Route exact path="/home">
                         <HomeScreen />
                     </Route>
+                    <Route exact path="/post">
+                        <PostView />
+                    </Route>
                 </Switch>
             </Router>
         </div>
@@ -77,6 +81,9 @@ function Nav() {
                     </li>
                     <li>
                         <Link to="/home">Home Screen</Link>
+                    </li>
+                    <li>
+                        <Link to="/post">Post View Screen</Link>
                     </li>
                 </ul>
             </nav>

@@ -27,7 +27,7 @@ export default function SignInScreens() {
 const SignInHeader = (props: { title: string }) => {
     return (
         <Grid item>
-            <Typography variant="h3" style={{ color: '#f56920', fontWeight: 'unset', textAlign: 'left' }}>
+            <Typography variant="h4" style={{ color: '#f56920', fontWeight: 'unset', textAlign: 'left' }}>
                 {props.title}
             </Typography>
             <br />

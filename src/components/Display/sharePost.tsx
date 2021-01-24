@@ -15,6 +15,18 @@ import ShareIcon from '@material-ui/icons/Share';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import GuessTheLocationButton from '../Display/guess-the-location.svg';
 import { Icon, IconButton } from '@material-ui/core';
+import {
+    FacebookShareButton,
+    TwitterShareButton,
+    TelegramShareButton,
+    WhatsappShareButton,
+    EmailShareButton,
+    FacebookIcon,
+    TwitterIcon,
+    TelegramIcon,
+    WhatsappIcon,
+    EmailIcon,
+} from 'react-share';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -24,33 +36,35 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: 'transparent'
     },
     speedDial: {
-      // bottom: theme.spacing(2),
-      // right: theme.spacing(2),
       '&.MuiFab-primary' : {
         backgroundColor: 'transparent',
       },
+      width: '40px',
+      height: '40px',
     },
     options: {
-      width: '80px',
-      height: '40px',
-      textSizeAdjust: 'auto',
-      fontSize: '0.7em',
+      width: '0px',
+      height: '0px',
+      padding: '10px',
+      backgroundColor: 'transparent',
     },
   }),
 );
 
 
 
-export default function GuessTheLocationPlay({city1, city2, city3}: {city1: string; city2: string; city3: string;}) {
+export default function SharePost({sharedURL}: {sharedURL: string;}) {
   const classes = useStyles();
-  const [direction, setDirection] = React.useState<SpeedDialProps['direction']>('up');
+  const [direction, setDirection] = React.useState<SpeedDialProps['direction']>('right');
   const [open, setOpen] = React.useState(false);
   const [hidden, setHidden] = React.useState(false);
 
   const actions = [
-    { icon: <p>{city1}</p>, name: '' },
-    { icon: <p>{city2}</p>, name: '' },
-    { icon: <p>{city3}</p>, name: '' },  
+    { icon: <FacebookShareButton url={sharedURL}><FacebookIcon size={32} round /></FacebookShareButton>, name: 'Facebook' },
+    { icon: <TwitterShareButton url={sharedURL}><TwitterIcon size={32} round /></TwitterShareButton>, name: 'Twitter' },
+    { icon: <TelegramShareButton url={sharedURL}><TelegramIcon size={32} round /></TelegramShareButton>, name: 'Telegram' },  
+    { icon: <WhatsappShareButton url={sharedURL}><WhatsappIcon size={32} round /></WhatsappShareButton>, name: 'WhatsApp' },
+    { icon: <EmailShareButton url={sharedURL}><EmailIcon size={32} round /></EmailShareButton>, name: 'Email' },
   ];
 
   const handleDirectionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,16 +84,12 @@ export default function GuessTheLocationPlay({city1, city2, city3}: {city1: stri
   };
 
   return (
+    //   <div className={classes.exampleWrapper}>
         <SpeedDial
           ariaLabel="SpeedDial example"
           className={classes.speedDial}
           hidden={hidden}
-          icon={<IconButton style={{ position: 'sticky' }}>
-                        <img
-                            src={GuessTheLocationButton}
-                            alt="Guess The Location"
-                        ></img>
-                </IconButton>}
+          icon={<ShareIcon />}
           onClose={handleClose}
           onOpen={handleOpen}
           open={open}
@@ -95,5 +105,6 @@ export default function GuessTheLocationPlay({city1, city2, city3}: {city1: stri
             />
           ))}
         </SpeedDial>
+    //   </div>
   );
 }
