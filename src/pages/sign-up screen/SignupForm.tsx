@@ -77,7 +77,7 @@ const SignUpForm = () => {
     const { push } = useHistory();
     const onSubmit = (data: any) => {
         console.log("trying ");
-        if(data.password==data.confirmpassword){
+        if(data.password===data.confirmpassword){
         auth.doCreateUserWithEmailAndPassword(data.email,data.password).then((u)=>{
             console.log("sucessfully signed up");
             push('/create-profile');    

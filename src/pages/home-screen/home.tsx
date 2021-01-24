@@ -48,15 +48,9 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
     };
     render() {
         return (
-            <div
-                style={{
-                    background: '#1b1b1b',
-                    position: 'relative',
-                    justifyContent: 'center',
-                }}
-                onLoad={this.getData}
-            >
-                <img src={WhiteLogo} alt="GeoPicK" className="WhiteLogo"></img>1<br></br>
+            <div style={{ background: '#1b1b1b' }} onLoad={this.getData}>
+                <img src={WhiteLogo} alt="GeoPicK" className="WhiteLogo" />
+                <br></br>
                 {/* <SinglePost username="GeoPicker" date="13-01-2021" postPic={Picture} />
                 <SinglePost username="GeoPicker" date="13-01-2021" postPic={Picture} /> */}
                 {/* {this.state.posts.map(({ id, post } : {id: any; post: any}) => {

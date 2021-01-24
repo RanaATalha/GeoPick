@@ -4,41 +4,69 @@ import {
     Card,
     Typography,
     IconButton,
+<<<<<<< Updated upstream
     Container,
+=======
+>>>>>>> Stashed changes
     CardHeader,
     CardActions,
     Button,
     Zoom,
+<<<<<<< Updated upstream
+=======
+    Icon,
+    Container,
+>>>>>>> Stashed changes
 } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import * as React from 'react';
 import { Component } from 'react';
 import './singlePostStyles.scss';
-import GuessTheLocationButton from './guess-the-location.svg';
 import InputBase from '@material-ui/core/InputBase';
 import PublishRoundedIcon from '@material-ui/icons/PublishRounded';
 import { checkUserLoggedIn } from '../../firebase/auth';
 import firebase from 'firebase';
 import fb from 'firebase/app';
+import AddIcon from '@material-ui/icons/Add';
+import SvgIcon from '@material-ui/core/SvgIcon';
+import GuessTheLocationPlay from '../Game/guessPlay';
+import {
+    FacebookShareButton,
+    TwitterShareButton,
+    TelegramShareButton,
+    WhatsappShareButton,
+    EmailShareButton,
+    FacebookIcon,
+    TwitterIcon,
+    TelegramIcon,
+    WhatsappIcon,
+    EmailIcon,
+} from 'react-share';
+
+// import { Container, Link } from 'react-floating-action-button'
 
 export interface SinglePostProps {
     username?: string;
     postPic?: string;
     date?: string;
-    postImage?: string;
     avatar?: string;
 
     uid?: string;
     likes_count?: string;
+    caption?: string;
     id?: string;
+    sharedURL: string;
+    hidden: boolean;
 }
 
 export interface SinglePostState {
     favourited: boolean;
     user: any;
     post_user: any;
+    open_share: boolean;
     GTLButton: any;
+    isOpen: boolean;
 }
 
 class SinglePost extends Component<SinglePostProps, SinglePostState> {
@@ -48,9 +76,12 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
             favourited: false,
             user: checkUserLoggedIn(),
             post_user: {},
+            open_share: false,
             GTLButton: this.handleGuessTheLocationOnClick,
+            isOpen: false,
         };
         this.handleColorChange = this.handleColorChange.bind(this);
+        this.handleButtonClick = this.handleButtonClick.bind(this);
         this.handleGuessTheLocationOnClick = this.handleGuessTheLocationOnClick.bind(this);
     }
 
@@ -72,6 +103,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
             });
         }
     };
+    share_area = React.createRef();
 
     componentDidMount() {
         firebase
@@ -88,10 +120,18 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
             });
     }
 
+    handleButtonClick = () => {
+        this.setState((state) => {
+            return {
+                open_share: !state.open_share,
+            };
+        });
+    };
+
     handleGuessTheLocationOnClick() {
         return (
             // <Zoom in={checked} style={{ transitionDelay: checked ? '500ms' : '0ms' }}>
-            <Card style={{ borderRadius: '20px', width: '20%', height: '30%', color: '#1b1b1b' }}>
+            <Card style={{ borderRadius: '20px', width: '20%', height: '30%', background: '#1b1b1b' }}>
                 {/* <CardHeader style={{ textAlign: 'left', marginLeft: '10px' }}> */}
                 <Typography
                     variant="h6"
@@ -202,21 +242,57 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                 </Grid>
                 <br></br>
 
-                {/* <Container> */}
-                <div className="postImage" style={{ justifyItems: 'center', marginRight: '-20%' }}>
-                    <img
-                        src={this.props.postPic}
-                        alt="not loading..."
-                        width="500px"
-                        height="500px"
-                        className="postImage"
-                        style={{ borderRadius: '20px 20px 0px 0px', position: 'sticky' }}
-                    ></img>
-                    <IconButton style={{ transform: 'translate(-100px, -25px)', position: 'sticky' }}>
-                        <img src={GuessTheLocationButton} alt="Guess The Location" onClick={this.state.GTLButton}></img>
-                    </IconButton>
-                </div>
-                {/* </Container> */}
+                <Container>
+                    <div className="postImage" style={{ justifyItems: 'normal', marginRight: '-10%' }}>
+                        <img
+                            src={this.props.postPic}
+                            alt="not loading..."
+                            width="600px"
+                            height="500px"
+                            className="postImage"
+                            style={{ borderRadius: '20px 20px 0px 0px', position: 'sticky' }}
+                        ></img>
+                        {/* <IconButton style={{ transform: 'translate(-145px, -35px)', position: 'sticky' }}>
+                                <img
+                                    src={GuessTheLocationButton}
+                                    alt="Guess The Location"
+                                    onClick={this.state.GTLButton}
+                                ></img>
+                        </IconButton> */}
+                        {/* <FloatingMenu
+                            slideSpeed={500}
+                            direction={Directions.Up}
+                            spacing={8}
+                            isOpen={this.state.isOpen}
+                        >
+                            <MainButton
+                            iconResting={<Icon> <img src={GuessTheLocationButton} height={25} width={25}/> </Icon>}
+                            iconActive={<Icon> <img src={GuessTheLocationButton} height={25} width={25}/> </Icon>}
+                            background="none"
+                            onClick={() => this.setState({ isOpen: !this.state.isOpen })}
+                            size={40}
+                            />
+                            <ChildButton
+                            icon={<p> Dubai </p>}
+                            background="white"
+                            size={40}
+                            onClick={() => console.log('First button clicked')}
+                            />
+                            <ChildButton
+                            icon={<p> Sharjah </p>}
+                            background="white"
+                            size={40}
+                            />
+                            <ChildButton
+                            icon={<p> Abu Dhabi </p>}
+                            background="white"
+                            size={40}
+                            />
+                        </FloatingMenu> */}
+
+                        <GuessTheLocationPlay city1="Dubai" city2="Paris" city3="Tokyo" />
+                    </div>
+                </Container>
                 <Grid container direction="column" spacing={2} justify={'center'}>
                     <Grid item justify="flex-start" direction="column" style={{ marginLeft: '-15%' }}>
                         <IconButton
@@ -227,9 +303,37 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                             <FavoriteIcon />
                             {this.props.likes_count}
                         </IconButton>
-
                         <IconButton aria-label="share" style={{ color: '#FAFAFA' }}>
-                            <ShareIcon />
+                            <ShareIcon onClick={this.handleButtonClick} />
+                            {this.state.open_share && (
+                                <ul>
+                                    <li>
+                                        <FacebookShareButton url={this.props.sharedURL}>
+                                            <FacebookIcon size={16} round />
+                                        </FacebookShareButton>
+                                    </li>
+                                    <li>
+                                        <TwitterShareButton url={this.props.sharedURL}>
+                                            <TwitterIcon size={16} round />
+                                        </TwitterShareButton>
+                                    </li>
+                                    <li>
+                                        <TelegramShareButton url={this.props.sharedURL}>
+                                            <TelegramIcon size={16} round />
+                                        </TelegramShareButton>
+                                    </li>
+                                    <li>
+                                        <WhatsappShareButton url={this.props.sharedURL}>
+                                            <WhatsappIcon size={16} round />
+                                        </WhatsappShareButton>
+                                    </li>
+                                    <li>
+                                        <EmailShareButton url={this.props.sharedURL}>
+                                            <EmailIcon size={16} round />
+                                        </EmailShareButton>
+                                    </li>
+                                </ul>
+                            )}
                         </IconButton>
                         <InputBase
                             placeholder="Start typing..."
