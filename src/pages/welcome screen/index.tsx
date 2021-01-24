@@ -3,7 +3,7 @@ import './styles.scss';
 import { auth } from '../../firebase';
 import app from 'firebase/app';
 import SignUpScreen from '../sign-up screen/index';
-import { BrowserRouter as Router, Route, Switch, Link, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link, BrowserRouter, useHistory } from 'react-router-dom';
 import WhiteLogo from './WhiteLogo.svg';
 import googleButton from './googleButton.svg';
 // import background from './welcome-pg.png';
@@ -38,9 +38,10 @@ const WelcomeScreen: React.FunctionComponent<WelcomeProps> = (props) => {
    project:"",
    storeageBucket:"",
    messageingSenderid:""
-};*/
+};*/const { push } = useHistory();
     const GoogleSignin = () => {
-        auth.doGoogleSignUp().catch((error) => {
+        
+        auth.doGoogleSignUp().then((u)=>{push('/home');}).catch((error) => {
             console.log(error);
             window.alert('Failed to login');
         });
