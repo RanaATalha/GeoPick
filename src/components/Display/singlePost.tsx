@@ -1,23 +1,4 @@
-import {
-    Avatar,
-    Grid,
-    Card,
-    Typography,
-    IconButton,
-<<<<<<< Updated upstream
-    Container,
-=======
->>>>>>> Stashed changes
-    CardHeader,
-    CardActions,
-    Button,
-    Zoom,
-<<<<<<< Updated upstream
-=======
-    Icon,
-    Container,
->>>>>>> Stashed changes
-} from '@material-ui/core';
+import { Avatar, Grid, Card, Typography, IconButton, CardActions, Button, Icon, Container } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import * as React from 'react';
@@ -51,7 +32,6 @@ export interface SinglePostProps {
     postPic?: string;
     date?: string;
     avatar?: string;
-
     uid?: string;
     likes_count?: string;
     caption?: string;
@@ -146,6 +126,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                     Guess The Location
                 </Typography>
                 {/* </CardHeader> */}
+
                 <CardActions>
                     <Grid container direction="column" spacing={2}>
                         <Grid item>
@@ -335,6 +316,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                                 </ul>
                             )}
                         </IconButton>
+
                         <InputBase
                             placeholder="Start typing..."
                             style={{
