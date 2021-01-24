@@ -1,6 +1,5 @@
 import * as React from 'react';
 import './styles.scss';
-import UsernameField from '../../components/Inputs/UsernameField';
 import TextField from '../../components/Inputs/TextField';
 import Card from '../../components/Layouts/Card';
 import { Grid, Typography } from '@material-ui/core';
@@ -9,37 +8,82 @@ import { RegularBtn } from '../../components/Buttons/RegularBtn';
 import sampleavatar from './sample-avatar.png';
 import {storage} from '../../firebase/firebase';
 import firebase from 'firebase';
+import Compress from "react-image-file-resizer";
 import OccupationSelect from '../../components/Inputs/occupation';
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
 import { auth } from '../../firebase';
+import { resolve } from 'url';
 export interface CreateProfileProps {}
 
 export default class CreateProfileScreen extends React.Component<CreateProfileProps> {
 
-    state = {
+    state: {img: {}, height: number|null, width: number|null, imgurl: string} = {
         img: {},
+        height: 0,
+        width: 0,
         imgurl : sampleavatar,
     }
 
+    
     changeAvatar = async (event:React.ChangeEvent<HTMLInputElement>) => {
-        if(event.target.files && event.target.files[0]){
-            const file = await event.target.files[0];
-            this.setState({img: file})
-            console.log(this.state.img);
+        if(!event.target.files || !event.target.files[0])
+            return
+        const file = await event.target.files[0];
+        this.setState({img: file})
+        console.log(this.state.img);
+        const user = auth.checkUserLoggedIn();
 
-            const uploadRef = storage.ref(`/Images/User1/${file.name}`).put(file).then(data => {
-                data.ref.getDownloadURL().then(url => {
-                    this.setState({imgurl: url});
-                    firebase
-                    .firestore()
-                    .collection('users/').doc('User1/')
-                    .update({
-                        Avatar: url,
-                    })
-                });
-            });;
+        if (!user) return;
+        const image = new Image();
+        let fr = new FileReader();
+
+        fr.onload = async function() {
+        if (fr !== null && typeof fr.result == "string") {
+            image.src = fr.result;
+            console.log("in frload")
+            console.log("frwidg",image.width);
+        console.log("frhigg",image.height);
         }
+        }
+        fr.readAsDataURL(file);
+        
+        var width = 0;
+        var height = 0;
+        
+        image.onload = function() {
+            height = image.height;
+            width = image.width;
+        }
+
+        setTimeout(() => {
+            Compress.imageFileResizer(
+                file,
+                width,
+                height,
+                "JPEG",
+                50,
+                0,
+                async (uri) => {
+                    if (typeof uri === 'string')
+                    {
+                    const urinew = uri.split('base64,')[1]
+                    storage.ref(`/Images/${user.uid}/Avatar/${file.name}`).putString(urinew, 'base64').then(data => {
+                        data.ref.getDownloadURL().then(url => {
+                            this.setState({imgurl: url});
+                            firebase
+                            .firestore()
+                            .collection('users/').doc(`${user.uid}/`)
+                            .update({
+                                Avatar: url,
+                            })
+                        });
+                    });;
+                    }   
+                },
+                "base64"
+                );
+        },2500)
     }
     
     public render(): JSX.Element {
@@ -96,7 +140,7 @@ const CreateProfileForm = ({img }: {img: string;}) => {
     const { push } = useHistory();
     const onSubmit = (data: any) => {
         const user = auth.checkUserLoggedIn()
-        if(user != undefined){
+        if(user !== undefined){
             firebase.firestore()
             .collection('users/').doc(user.uid)
             .set({

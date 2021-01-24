@@ -1,6 +1,6 @@
-import { Checkbox as MatCheckbox, makeStyles, createStyles, Theme, withStyles, CheckboxProps } from '@material-ui/core';
+import { Checkbox as MatCheckbox, withStyles, CheckboxProps } from '@material-ui/core';
 import * as React from 'react';
-import { RadioButtonUncheckedOutlined, RadioButtonCheckedRounded } from '@material-ui/icons';
+// import { RadioButtonUncheckedOutlined, RadioButtonCheckedRounded } from '@material-ui/icons';
 
 // const useStyles = makeStyles((theme: Theme) =>
 //     createStyles({
@@ -13,24 +13,24 @@ import { RadioButtonUncheckedOutlined, RadioButtonCheckedRounded } from '@materi
 //     }),
 // );
 
-const box = (theme: Theme) => ({
-    root: {
-        color: 'red',
-        '&$checked': {
-            color: 'red',
-        },
-    },
-    checked: {},
-});
+// const box = (theme: Theme) => ({
+//     root: {
+//         color: 'red',
+//         '&$checked': {
+//             color: 'red',
+//         },
+//     },
+//     checked: {},
+// });
 
-const Custombox = withStyles(box)((props: CheckboxProps) => (
-    <MatCheckbox
-        icon={<RadioButtonUncheckedOutlined />}
-        checkedIcon={<RadioButtonCheckedRounded />}
-        color="default"
-        {...props}
-    />
-));
+// const Custombox = withStyles(box)((props: CheckboxProps) => (
+//     <MatCheckbox
+//         icon={<RadioButtonUncheckedOutlined />}
+//         checkedIcon={<RadioButtonCheckedRounded />}
+//         color="default"
+//         {...props}
+//     />
+// ));
 
 const WhiteCheckbox = withStyles({
     root: {
