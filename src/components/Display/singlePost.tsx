@@ -1,4 +1,4 @@
-import { Avatar, Grid, Card, Typography, IconButton, CardActions, Button, Icon, Container } from '@material-ui/core';
+import { Avatar, Grid, Card, Typography, IconButton, CardActions, Button, Box, Container } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import * as React from 'react';
@@ -192,7 +192,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                 }}
             >
                 <Grid container direction="row" spacing={1} justify="center">
-                    <Grid item justify="flex-start" style={{ marginLeft: '10%', position: 'relative' }}>
+                    <Grid item justify="flex-start" style={{ marginLeft: '5em', position: 'relative' }}>
                         <Avatar alt={this.state.post_user.User_name} src={this.state.post_user.Avatar}></Avatar>
                     </Grid>
                     <Grid item justify="flex-start">
@@ -202,11 +202,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                             </Typography>
                         </Card>
                     </Grid>
-                    <Grid
-                        item
-                        justify="flex-end"
-                        style={{ marginRight: '5%', marginLeft: '32%', position: 'relative' }}
-                    >
+                    <Grid item justify="flex-end" style={{ marginLeft: '20em', position: 'relative' }}>
                         <Card
                             style={{
                                 color: '#F56920',
@@ -272,6 +268,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                         </FloatingMenu> */}
 
                         <GuessTheLocationPlay city1="Dubai" city2="Paris" city3="Tokyo" />
+                        <Box m={-30} />
                     </div>
                 </Container>
                 <Grid container direction="column" spacing={2} justify={'center'}>
@@ -321,7 +318,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                             placeholder="Start typing..."
                             style={{
                                 width: '50%',
-                                marginRight: '-12%',
+                                marginRight: '-10em',
                                 textDecorationColor: '#FAFAFA',
                                 border: '1px solid #FAFAFA',
                                 borderRadius: '10px',
