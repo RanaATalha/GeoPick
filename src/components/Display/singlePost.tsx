@@ -13,6 +13,7 @@ import fb from 'firebase/app';
 import AddIcon from '@material-ui/icons/Add';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import GuessTheLocationPlay from '../Game/guessPlay';
+import { Link } from 'react-router-dom';
 import {
     FacebookShareButton,
     TwitterShareButton,
@@ -273,13 +274,8 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                         <Box m={-30} />
                     </div>
                 </Container>
-<<<<<<< HEAD
                 <Grid container spacing={2} justify="center" alignItems="center">
                     <Grid item>
-=======
-                <Grid container direction="column" spacing={2} justify={'center'}>
-                    <Grid item justify="flex-start" direction="column" style={{ marginLeft: '-15%' }}>
->>>>>>> ecdf86904020735dba8fd3cb60ff43a0d7b387c8
                         <IconButton
                             aria-label="add to favorites"
                             style={this.state.favourited ? { color: '#dc143c' } : { color: '#FAFAFA' }}
@@ -301,61 +297,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                             <AddCommentRoundedIcon/>
                             <span>{this.props.comments_count}</span>
                         </IconButton>
-<<<<<<< HEAD
                     </Link>
-=======
-                        <IconButton aria-label="share" style={{ color: '#FAFAFA' }}>
-                            <ShareIcon onClick={this.handleButtonClick} />
-                            {this.state.open_share && (
-                                <ul>
-                                    <li>
-                                        <FacebookShareButton url={this.props.sharedURL}>
-                                            <FacebookIcon size={16} round />
-                                        </FacebookShareButton>
-                                    </li>
-                                    <li>
-                                        <TwitterShareButton url={this.props.sharedURL}>
-                                            <TwitterIcon size={16} round />
-                                        </TwitterShareButton>
-                                    </li>
-                                    <li>
-                                        <TelegramShareButton url={this.props.sharedURL}>
-                                            <TelegramIcon size={16} round />
-                                        </TelegramShareButton>
-                                    </li>
-                                    <li>
-                                        <WhatsappShareButton url={this.props.sharedURL}>
-                                            <WhatsappIcon size={16} round />
-                                        </WhatsappShareButton>
-                                    </li>
-                                    <li>
-                                        <EmailShareButton url={this.props.sharedURL}>
-                                            <EmailIcon size={16} round />
-                                        </EmailShareButton>
-                                    </li>
-                                </ul>
-                            )}
-                        </IconButton>
-
-                        <InputBase
-                            placeholder="Start typing..."
-                            style={{
-                                width: '50%',
-                                marginRight: '-10em',
-                                textDecorationColor: '#FAFAFA',
-                                border: '1px solid #FAFAFA',
-                                borderRadius: '10px',
-                                height: '50px',
-                                padding: '10px',
-                                color: '#FAFAFA',
-                            }}
-                            endAdornment={
-                                <IconButton aria-label="upload" style={{ color: '#FAFAFA', alignContent: 'end' }}>
-                                    <PublishRoundedIcon />
-                                </IconButton>
-                            }
-                        />
->>>>>>> ecdf86904020735dba8fd3cb60ff43a0d7b387c8
                     </Grid>
                 </Grid>
                 <div style={{ padding: '25px' }}></div>
