@@ -4,26 +4,26 @@ import {
     Card,
     Typography,
     IconButton,
-    Container,
     CardHeader,
     CardActions,
     Button,
     Zoom,
+    Icon,
+    Container,
 } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import * as React from 'react';
 import { Component } from 'react';
 import './singlePostStyles.scss';
-import GuessTheLocationButton from './guess-the-location.svg';
 import InputBase from '@material-ui/core/InputBase';
 import PublishRoundedIcon from '@material-ui/icons/PublishRounded';
 import { checkUserLoggedIn } from '../../firebase/auth';
 import firebase from 'firebase';
 import fb from 'firebase/app';
-import MdAdd from '@material-ui/icons/add';
-import MdClose from '@material-ui/icons/clear';
-import MdFavorite from '@material-ui/icons/favorite';
+import AddIcon from '@material-ui/icons/Add';
+import SvgIcon from '@material-ui/core/SvgIcon';
+import GuessTheLocationPlay from '../Game/guessPlay';
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -37,12 +37,7 @@ import {
   EmailIcon,
 } from 'react-share';
 
-import {
-    FloatingMenu,
-    MainButton,
-    ChildButton,
-    Directions
-  } from 'react-floating-button-menu';
+// import { Container, Link } from 'react-floating-action-button'
 
 export interface SinglePostProps {
     username?: string;
@@ -54,6 +49,7 @@ export interface SinglePostProps {
     caption?: string;
     id?: string;
     sharedURL: string;
+    hidden: boolean;
 }
 
 export interface SinglePostState {
@@ -246,36 +242,39 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                                     onClick={this.state.GTLButton}
                                 ></img>
                         </IconButton> */}
-                        <FloatingMenu
+                        {/* <FloatingMenu
                             slideSpeed={500}
                             direction={Directions.Up}
                             spacing={8}
                             isOpen={this.state.isOpen}
                         >
                             <MainButton
-                            iconResting={<MdAdd style={{ fontSize: 20 }} nativeColor="white" />}
-                            iconActive={<MdClose style={{ fontSize: 20 }} nativeColor="white" />}
-                            background="black"
+                            iconResting={<Icon> <img src={GuessTheLocationButton} height={25} width={25}/> </Icon>}
+                            iconActive={<Icon> <img src={GuessTheLocationButton} height={25} width={25}/> </Icon>}
+                            background="none"
                             onClick={() => this.setState({ isOpen: !this.state.isOpen })}
-                            size={56}
+                            size={40}
                             />
                             <ChildButton
-                            icon={<MdFavorite style={{ fontSize: 20 }} />}
+                            icon={<p> Dubai </p>}
                             background="white"
                             size={40}
                             onClick={() => console.log('First button clicked')}
                             />
                             <ChildButton
-                            icon={<MdFavorite style={{ fontSize: 20 }} />}
+                            icon={<p> Sharjah </p>}
                             background="white"
                             size={40}
                             />
                             <ChildButton
-                            icon={<MdFavorite style={{ fontSize: 20 }} />}
+                            icon={<p> Abu Dhabi </p>}
                             background="white"
                             size={40}
                             />
-                        </FloatingMenu>
+                        </FloatingMenu> */}
+                        
+                        <GuessTheLocationPlay city1="Dubai" city2="Paris" city3="Tokyo"/>
+                        </div>
                 </Container>
                 <Grid container direction="column" spacing={2} justify={'center'}>
                     <Grid item justify="flex-start" direction="column" style={{ marginLeft: '-15%' }}>

@@ -29,6 +29,7 @@ export default function Feed() {
             likes_count={post.likes_count}
             caption={post.caption}
             sharedURL = {window.location.href}
+            hidden = {false}
           />
         );
       })}
