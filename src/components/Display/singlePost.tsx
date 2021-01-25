@@ -24,6 +24,7 @@ import fb from 'firebase/app';
 import AddIcon from '@material-ui/icons/Add';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import GuessTheLocationPlay from '../Game/guessPlay';
+import { Link } from 'react-router-dom';
 import {
     FacebookShareButton,
     TwitterShareButton,
@@ -284,8 +285,8 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                         <Box m={-30} />
                     </div>
                 </Container>
-                <Grid container direction="row" spacing={2} justify={'center'}>
-                    <Grid item justify="flex-start" direction="column" style={{ marginLeft: '-15%' }}>
+                <Grid container spacing={2} justify="center" alignItems="center">
+                    <Grid item>
                         <IconButton
                             aria-label="add to favorites"
                             style={this.state.favourited ? { color: '#dc143c' } : { color: '#FAFAFA' }}
