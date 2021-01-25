@@ -24,7 +24,9 @@ function App(): JSX.Element {
                 <div style={{ background: 'black' }}>
                     <RegularBtn colorType="auto">Hello</RegularBtn>
                 </div>
-                <div>{/* <BottomNavigation /> */}</div>
+                <div>
+                    <BottomNavigation />
+                </div>
                 <Switch>
                     <Route exact path="/welcome">
                         <WelcomeScreen />

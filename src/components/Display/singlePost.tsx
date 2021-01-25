@@ -1,4 +1,15 @@
-import { Avatar, Grid, Card, Typography, IconButton, CardActions, Button, Box, Container } from '@material-ui/core';
+import {
+    Avatar,
+    Grid,
+    Card,
+    Typography,
+    IconButton,
+    CardActions,
+    Button,
+    Box,
+    Container,
+    // Link,
+} from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import AddCommentRoundedIcon from '@material-ui/icons/AddCommentRounded';
 import ShareIcon from '@material-ui/icons/Share';
@@ -26,6 +37,7 @@ import {
     EmailIcon,
 } from 'react-share';
 import SharePost from './sharePost';
+import { Link } from 'react-router-dom';
 // import { Container, Link } from 'react-floating-action-button'
 
 export interface SinglePostProps {
@@ -182,29 +194,28 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
 
     render() {
         return (
-            // <Container fixed style={{ background: '#FAFAFA', padding: '20%', margin: 'auto' }}>
-
-            <div
+            <Card
                 style={{
                     background: '#1b1b1b',
                     justifyContent: 'center',
                     alignContent: 'center',
                     margin: 'auto',
                     width: '700px',
+                    padding: 'auto',
                 }}
             >
                 <Grid container direction="row" spacing={1} justify="center">
                     <Grid item justify="flex-start" style={{ marginLeft: '5em', position: 'relative' }}>
                         <Avatar alt={this.state.post_user.User_name} src={this.state.post_user.Avatar}></Avatar>
                     </Grid>
-                    <Grid item justify="flex-start">
+                    <Grid item justify="flex-start" xs={7}>
                         <Card style={{ color: '#F56920', borderRadius: '22px' }} className="boxField">
                             <Typography variant="h6" style={{ justifyContent: 'space-evenly' }}>
                                 {this.state.post_user.User_name}
                             </Typography>
                         </Card>
                     </Grid>
-                    <Grid item justify="flex-end" style={{ marginLeft: '20em', position: 'relative' }}>
+                    <Grid item justify="flex-end" style={{ position: 'relative' }}>
                         <Card
                             style={{
                                 color: '#F56920',
@@ -273,13 +284,8 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                         <Box m={-30} />
                     </div>
                 </Container>
-<<<<<<< HEAD
-                <Grid container spacing={2} justify="center" alignItems="center">
-                    <Grid item>
-=======
-                <Grid container direction="column" spacing={2} justify={'center'}>
+                <Grid container direction="row" spacing={2} justify={'center'}>
                     <Grid item justify="flex-start" direction="column" style={{ marginLeft: '-15%' }}>
->>>>>>> ecdf86904020735dba8fd3cb60ff43a0d7b387c8
                         <IconButton
                             aria-label="add to favorites"
                             style={this.state.favourited ? { color: '#dc143c' } : { color: '#FAFAFA' }}
@@ -287,80 +293,23 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                         >
                             <FavoriteIcon />
                             {this.props.likes_count}
-                        </IconButton>   
+                        </IconButton>
                     </Grid>
-                    <Grid item xs={4}>
-                        <SharePost sharedURL= {this.props.sharedURL}/>
+                    <Grid item xs={5}>
+                        <SharePost sharedURL={this.props.sharedURL} />
                     </Grid>
                     <Grid item>
-                     <Link to = "/post">
-                         <IconButton
-                            aria-label="add a comment"
-                            style={{ color: '#FAFAFA' }}
-                        >
-                            <AddCommentRoundedIcon/>
-                            <span>{this.props.comments_count}</span>
-                        </IconButton>
-<<<<<<< HEAD
-                    </Link>
-=======
-                        <IconButton aria-label="share" style={{ color: '#FAFAFA' }}>
-                            <ShareIcon onClick={this.handleButtonClick} />
-                            {this.state.open_share && (
-                                <ul>
-                                    <li>
-                                        <FacebookShareButton url={this.props.sharedURL}>
-                                            <FacebookIcon size={16} round />
-                                        </FacebookShareButton>
-                                    </li>
-                                    <li>
-                                        <TwitterShareButton url={this.props.sharedURL}>
-                                            <TwitterIcon size={16} round />
-                                        </TwitterShareButton>
-                                    </li>
-                                    <li>
-                                        <TelegramShareButton url={this.props.sharedURL}>
-                                            <TelegramIcon size={16} round />
-                                        </TelegramShareButton>
-                                    </li>
-                                    <li>
-                                        <WhatsappShareButton url={this.props.sharedURL}>
-                                            <WhatsappIcon size={16} round />
-                                        </WhatsappShareButton>
-                                    </li>
-                                    <li>
-                                        <EmailShareButton url={this.props.sharedURL}>
-                                            <EmailIcon size={16} round />
-                                        </EmailShareButton>
-                                    </li>
-                                </ul>
-                            )}
-                        </IconButton>
-
-                        <InputBase
-                            placeholder="Start typing..."
-                            style={{
-                                width: '50%',
-                                marginRight: '-10em',
-                                textDecorationColor: '#FAFAFA',
-                                border: '1px solid #FAFAFA',
-                                borderRadius: '10px',
-                                height: '50px',
-                                padding: '10px',
-                                color: '#FAFAFA',
-                            }}
-                            endAdornment={
-                                <IconButton aria-label="upload" style={{ color: '#FAFAFA', alignContent: 'end' }}>
-                                    <PublishRoundedIcon />
-                                </IconButton>
-                            }
-                        />
->>>>>>> ecdf86904020735dba8fd3cb60ff43a0d7b387c8
+                        <Link to="/post">
+                            <IconButton aria-label="add a comment" style={{ color: '#FAFAFA' }}>
+                                <AddCommentRoundedIcon />
+                                <span>{this.props.comments_count}</span>
+                            </IconButton>
+                        </Link>
                     </Grid>
                 </Grid>
                 <div style={{ padding: '25px' }}></div>
-            </div>
-            // </Container>
+            </Card>
+            // {/* // </Container> */}
         );
     }
 }
