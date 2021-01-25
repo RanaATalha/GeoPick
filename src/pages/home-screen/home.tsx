@@ -9,6 +9,7 @@ import firebase from 'firebase';
 import Feed from '../../components/Layouts/feed';
 import { AppBar, Avatar, Button, IconButton, Toolbar, Typography } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
+import BottomNavigation from '../../components/NavBar/navbar';
 
 export interface HomeScreenProps {}
 export interface HomeScreenState {
@@ -76,6 +77,7 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
                     );
                 })} */}
                 <Feed />
+                <BottomNavigation />
             </div>
         );
     }
