@@ -24,7 +24,6 @@ import fb from 'firebase/app';
 import AddIcon from '@material-ui/icons/Add';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import GuessTheLocationPlay from '../Game/guessPlay';
-import { Link } from 'react-router-dom';
 import {
     FacebookShareButton,
     TwitterShareButton,
