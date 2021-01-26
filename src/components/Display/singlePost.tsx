@@ -1,4 +1,15 @@
-import { Avatar, Grid, Card, Typography, IconButton, CardActions, Button, Box, Container } from '@material-ui/core';
+import {
+    Avatar,
+    Grid,
+    Card,
+    Typography,
+    IconButton,
+    CardActions,
+    Button,
+    Box,
+    Container,
+    // Link,
+} from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import AddCommentRoundedIcon from '@material-ui/icons/AddCommentRounded';
 import ShareIcon from '@material-ui/icons/Share';
@@ -35,7 +46,6 @@ export interface SinglePostState {
     user: any;
     post_user: any;
     open_share: boolean;
-    GTLButton: any;
     isOpen: boolean;
 }
 
@@ -47,12 +57,10 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
             user: checkUserLoggedIn(),
             post_user: {},
             open_share: false,
-            GTLButton: this.handleGuessTheLocationOnClick,
             isOpen: false,
         };
         this.handleColorChange = this.handleColorChange.bind(this);
         this.handleButtonClick = this.handleButtonClick.bind(this);
-        this.handleGuessTheLocationOnClick = this.handleGuessTheLocationOnClick.bind(this);
     }
 
     handleColorChange = () => {
@@ -98,101 +106,30 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
         });
     };
 
-    handleGuessTheLocationOnClick() {
-        return (
-            // <Zoom in={checked} style={{ transitionDelay: checked ? '500ms' : '0ms' }}>
-            <Card style={{ borderRadius: '20px', width: '20%', height: '30%', background: '#1b1b1b' }}>
-                {/* <CardHeader style={{ textAlign: 'left', marginLeft: '10px' }}> */}
-                <Typography
-                    variant="h6"
-                    style={{
-                        fontWeight: 'bolder',
-                        color: '#f56920',
-                        textAlign: 'left',
-                        margin: 'auto',
-                        padding: '10px',
-                    }}
-                >
-                    Guess The Location
-                </Typography>
-                {/* </CardHeader> */}
-
-                <CardActions>
-                    <Grid container direction="column" spacing={2}>
-                        <Grid item>
-                            <Button
-                                style={{
-                                    borderRadius: '20px',
-                                    marginLeft: '10px',
-                                    marginRight: '10px',
-                                    background: '#fafafa',
-                                    color: '#1b1b1b',
-                                    width: '80%',
-                                }}
-                            >
-                                Angola
-                            </Button>
-                        </Grid>
-                        <Grid item>
-                            <Button
-                                style={{
-                                    borderRadius: '20px',
-                                    marginLeft: '10px',
-                                    marginRight: '10px',
-                                    background: '#fafafa',
-                                    color: '#1b1b1b',
-                                    width: '80%',
-                                }}
-                            >
-                                Dubai
-                            </Button>
-                        </Grid>
-                        <Grid item>
-                            <Button
-                                style={{
-                                    borderRadius: '20px',
-                                    marginLeft: '10px',
-                                    marginRight: '10px',
-                                    background: '#fafafa',
-                                    color: '#1b1b1b',
-                                    width: '80%',
-                                }}
-                            >
-                                Abu Dhabi
-                            </Button>
-                        </Grid>
-                    </Grid>
-                </CardActions>
-            </Card>
-            // </Zoom>
-        );
-    }
-
     render() {
         return (
-            // <Container fixed style={{ background: '#FAFAFA', padding: '20%', margin: 'auto' }}>
-
-            <div
+            <Card
                 style={{
                     background: '#1b1b1b',
                     justifyContent: 'center',
                     alignContent: 'center',
                     margin: 'auto',
                     width: '700px',
+                    padding: 'auto',
                 }}
             >
                 <Grid container direction="row" spacing={1} justify="center">
                     <Grid item justify="flex-start" style={{ marginLeft: '5em', position: 'relative' }}>
                         <Avatar alt={this.state.post_user.User_name} src={this.state.post_user.Avatar}></Avatar>
                     </Grid>
-                    <Grid item justify="flex-start">
+                    <Grid item justify="flex-start" xs={7}>
                         <Card style={{ color: '#F56920', borderRadius: '22px' }} className="boxField">
                             <Typography variant="h6" style={{ justifyContent: 'space-evenly' }}>
                                 {this.state.post_user.User_name}
                             </Typography>
                         </Card>
                     </Grid>
-                    <Grid item justify="flex-end" style={{ marginLeft: '20em', position: 'relative' }}>
+                    <Grid item justify="flex-end" style={{ position: 'relative' }}>
                         <Card
                             style={{
                                 color: '#F56920',
@@ -237,26 +174,23 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                         >
                             <FavoriteIcon />
                             {this.props.likes_count}
-                        </IconButton>   
+                        </IconButton>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={5}>
                         <SharePost sharedURL= {this.props.postPic}/>
                     </Grid>
                     <Grid item>
-                     <Link to = "/post">
-                         <IconButton
-                            aria-label="add a comment"
-                            style={{ color: '#FAFAFA' }}
-                        >
-                            <AddCommentRoundedIcon/>
-                            <span>{this.props.comments_count}</span>
-                        </IconButton>
-                    </Link>
+                        <Link to="/post">
+                            <IconButton aria-label="add a comment" style={{ color: '#FAFAFA' }}>
+                                <AddCommentRoundedIcon />
+                                <span>{this.props.comments_count}</span>
+                            </IconButton>
+                        </Link>
                     </Grid>
                 </Grid>
                 <div style={{ padding: '25px' }}></div>
-            </div>
-            // </Container>
+            </Card>
+            // {/* // </Container> */}
         );
     }
 }
