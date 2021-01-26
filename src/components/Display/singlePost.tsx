@@ -1,4 +1,15 @@
-import { Avatar, Grid, Card, Typography, IconButton, CardActions, Button, Box, Container } from '@material-ui/core';
+import {
+    Avatar,
+    Grid,
+    Card,
+    Typography,
+    IconButton,
+    CardActions,
+    Button,
+    Box,
+    Container,
+    // Link,
+} from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import AddCommentRoundedIcon from '@material-ui/icons/AddCommentRounded';
 import ShareIcon from '@material-ui/icons/Share';
@@ -13,7 +24,6 @@ import fb from 'firebase/app';
 import AddIcon from '@material-ui/icons/Add';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import GuessTheLocationPlay from '../Game/guessPlay';
-import { Link } from 'react-router-dom';
 import {
     FacebookShareButton,
     TwitterShareButton,
@@ -27,6 +37,7 @@ import {
     EmailIcon,
 } from 'react-share';
 import SharePost from './sharePost';
+import { Link } from 'react-router-dom';
 // import { Container, Link } from 'react-floating-action-button'
 
 export interface SinglePostProps {
@@ -183,29 +194,28 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
 
     render() {
         return (
-            // <Container fixed style={{ background: '#FAFAFA', padding: '20%', margin: 'auto' }}>
-
-            <div
+            <Card
                 style={{
                     background: '#1b1b1b',
                     justifyContent: 'center',
                     alignContent: 'center',
                     margin: 'auto',
                     width: '700px',
+                    padding: 'auto',
                 }}
             >
                 <Grid container direction="row" spacing={1} justify="center">
                     <Grid item justify="flex-start" style={{ marginLeft: '5em', position: 'relative' }}>
                         <Avatar alt={this.state.post_user.User_name} src={this.state.post_user.Avatar}></Avatar>
                     </Grid>
-                    <Grid item justify="flex-start">
+                    <Grid item justify="flex-start" xs={7}>
                         <Card style={{ color: '#F56920', borderRadius: '22px' }} className="boxField">
                             <Typography variant="h6" style={{ justifyContent: 'space-evenly' }}>
                                 {this.state.post_user.User_name}
                             </Typography>
                         </Card>
                     </Grid>
-                    <Grid item justify="flex-end" style={{ marginLeft: '20em', position: 'relative' }}>
+                    <Grid item justify="flex-end" style={{ position: 'relative' }}>
                         <Card
                             style={{
                                 color: '#F56920',
@@ -283,26 +293,23 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                         >
                             <FavoriteIcon />
                             {this.props.likes_count}
-                        </IconButton>   
+                        </IconButton>
                     </Grid>
-                    <Grid item xs={4}>
-                        <SharePost sharedURL= {this.props.sharedURL}/>
+                    <Grid item xs={5}>
+                        <SharePost sharedURL={this.props.sharedURL} />
                     </Grid>
                     <Grid item>
-                     <Link to = "/post">
-                         <IconButton
-                            aria-label="add a comment"
-                            style={{ color: '#FAFAFA' }}
-                        >
-                            <AddCommentRoundedIcon/>
-                            <span>{this.props.comments_count}</span>
-                        </IconButton>
-                    </Link>
+                        <Link to="/post">
+                            <IconButton aria-label="add a comment" style={{ color: '#FAFAFA' }}>
+                                <AddCommentRoundedIcon />
+                                <span>{this.props.comments_count}</span>
+                            </IconButton>
+                        </Link>
                     </Grid>
                 </Grid>
                 <div style={{ padding: '25px' }}></div>
-            </div>
-            // </Container>
+            </Card>
+            // {/* // </Container> */}
         );
     }
 }
