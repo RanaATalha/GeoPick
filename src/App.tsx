@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import WelcomeScreen from './pages/welcome screen';
 import SignInScreen from './pages/sign-in screen/SignInForm';
 import SignUpScreen from './pages/sign-up screen/SignupForm';
-import BottomNavigation from './components/NavBar/navbar';
+
 import BackwardBtn from './components/Buttons/BackwardBtn';
 import TextField from './components/Inputs/TextField';
 import Card from './components/Layouts/Card';
@@ -14,7 +14,7 @@ import CreateProfileScreen from './pages/create-profile-screen';
 import SetNewPasswordScreen from './pages/sign-in screen/setnewpass';
 import ReSetNewPasswordScreen from './pages/sign-in screen/resetpass';
 import { HomeScreen } from './pages/home-screen/home';
-import PostView from './pages/post-view';
+import PostViewScreen from './pages/post-view';
 
 function App(): JSX.Element {
     return (
@@ -24,9 +24,9 @@ function App(): JSX.Element {
                 <div style={{ background: 'black' }}>
                     <RegularBtn colorType="auto">Hello</RegularBtn>
                 </div>
-                <div>
+                {/* <div>
                     <BottomNavigation />
-                </div>
+                </div> */}
                 <Switch>
                     <Route exact path="/welcome">
                         <WelcomeScreen />
@@ -49,8 +49,7 @@ function App(): JSX.Element {
                     <Route exact path="/home">
                         <HomeScreen />
                     </Route>
-                    <Route exact path="/post">
-                        <PostView />
+                    <Route path="/post/:catId" component={PostViewScreen}>
                     </Route>
                 </Switch>
             </Router>

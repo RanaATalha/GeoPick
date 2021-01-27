@@ -18,19 +18,23 @@ export default function Card({ background = '#F56920', title, split, ...props }:
                 style={{ maxWidth: '400px', minWidth: '200px' }}
             >
                 {title && split ? <CardTitle title={title} split={split} /> : null}
-                <Grid item xs={12}>
+                <Grid item xs={12} justify="center">
+                    
                     <Box
                         boxShadow={100}
                         width={'auto'}
                         maxWidth={400}
                         minWidth={200}
+                        minHeight={450}
                         m="auto"
                         borderRadius={18}
                         padding={'30px'}
                         style={{ background }}
                     >
+                        <br/>
                         {props.children}
                     </Box>
+                    <br/>
                 </Grid>
             </Grid>
         </Box>

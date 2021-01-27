@@ -47,7 +47,9 @@ export interface SinglePostState {
     post_user: any;
     open_share: boolean;
     isOpen: boolean;
+    path_name: string;
 }
+
 
 class SinglePost extends Component<SinglePostProps, SinglePostState> {
     constructor(SinglePostProps: any) {
@@ -58,6 +60,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
             post_user: {},
             open_share: false,
             isOpen: false,
+            path_name: "/post/" + `${this.props.uid}`,
         };
         this.handleColorChange = this.handleColorChange.bind(this);
         this.handleButtonClick = this.handleButtonClick.bind(this);
@@ -106,6 +109,8 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
         });
     };
 
+    
+
     render() {
         return (
             <Card
@@ -151,8 +156,9 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                         <img
                             src={this.props.postPic}
                             alt="not loading..."
-                            width="600px"
-                            height="500px"
+                            width= "80%"
+                            max-width= "600px"
+                            height= "500px"
                             className="postImage"
                             style={{ borderRadius: '20px 20px 0px 0px', position: 'sticky' }}
                         ></img>
@@ -177,10 +183,10 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                         </IconButton>
                     </Grid>
                     <Grid item xs={5}>
-                        <SharePost sharedURL= {this.props.postPic}/>
+                        <SharePost sharedURL= {this.state.path_name}/>
                     </Grid>
                     <Grid item>
-                        <Link to="/post">
+                        <Link to={{pathname:`/post/${ this.props.id}`, state:this.props.uid,}}>
                             <IconButton aria-label="add a comment" style={{ color: '#FAFAFA' }}>
                                 <AddCommentRoundedIcon />
                                 <span>{this.props.comments_count}</span>
