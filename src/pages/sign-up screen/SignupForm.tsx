@@ -6,7 +6,7 @@ import PasswordField from '../../components/Inputs/PasswordField';
 import Card from '../../components/Layouts/Card';
 import { RegularBtn } from '../../components/Buttons/RegularBtn';
 import { auth } from '../../firebase';
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 
 export interface SignUpProps {}
@@ -50,7 +50,8 @@ const SignUpFields = ({ register, errors }: { register: any; errors: any }) => {
                         },
                     })}
                     error={errors.email ? true : false}
-                    required />
+                    helperText={errors.email ? 'invalid email' : null}
+                />
             </Grid>
             <Grid item style={{ width: '100%' }}>
                 <PasswordField
@@ -58,7 +59,8 @@ const SignUpFields = ({ register, errors }: { register: any; errors: any }) => {
                     id="Password"
                     inputRef={register({ required: true, minLength: 8 })}
                     error={errors.password ? true : false}
-                    required/>
+                    helperText={errors.password ? 'invalid password' : null}
+                />
             </Grid>
             <Grid item style={{ width: '100%' }}>
                 <PasswordField
@@ -68,6 +70,23 @@ const SignUpFields = ({ register, errors }: { register: any; errors: any }) => {
                     inputRef={register({ required: true, minLength: 8 })}
                     required />
             </Grid>
+            <Grid item container spacing={3}>
+                <Grid item xs={2} alignContent="center" alignItems="center" style={{ verticalAlign: 'true' }}>
+                    <Checkbox required inputRef={register({ register: true })} />
+                </Grid>
+                <Grid
+                    item
+                    xs={10}
+                    alignContent="center"
+                    alignItems="center"
+                    style={{ paddingTop: '20px', verticalAlign: 'true' }}
+                >
+                    <Typography align="left" style={{ fontSize: '12px', color: '1B1B1E' }}>
+                        By signing up I conform that I have read and accepted the terms and conditions of using the
+                        application.
+                    </Typography>
+                </Grid>
+            </Grid>
         </Grid>
     );
 };
@@ -76,42 +95,27 @@ const SignUpForm = () => {
     const { handleSubmit, errors, register } = useForm();
     const { push } = useHistory();
     const onSubmit = (data: any) => {
-        console.log("trying ");
-        if(data.password===data.confirmpassword){
-        auth.doCreateUserWithEmailAndPassword(data.email,data.password).then((u)=>{
-            console.log("sucessfully signed up");
-            push('/create-profile');    
-        }).catch((err)=>{
-            console.log("Error "+ err);
-            alert(err)
-        });
-    }
-     else{
-         alert("type the same password in conformation password")
-     }   
+        console.log('trying ');
+        if (data.password === data.confirmpassword) {
+            auth.doCreateUserWithEmailAndPassword(data.email, data.password)
+                .then((u) => {
+                    console.log('sucessfully signed up');
+                    push('/create-profile');
+                })
+                .catch((err) => {
+                    console.log('Error ' + err);
+                    alert(err);
+                });
+        } else {
+            alert('type the same password in conformation password');
+        }
     };
 
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <SignUpFields register={register} errors={errors} />
-                <Grid item container spacing={3}>
-                    <Grid item xs={2} alignContent="center" alignItems="center" style={{ verticalAlign: 'true' }}>
-                        <Checkbox required/>
-                    </Grid>
-                    <Grid
-                        item
-                        xs={10}
-                        alignContent="center"
-                        alignItems="center"
-                        style={{ paddingTop: '20px', verticalAlign: 'true' }}
-                    >
-                        <Typography align="left" style={{ fontSize: '12px', color: '1B1B1E' }}>
-                            By signing up I conform that I have read and accepted the terms and conditions of using the
-                            application.
-                        </Typography>
-                    </Grid>
-                </Grid>
+
                 <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
                     <RegularBtn type="submit" colorType="white" style={{ width: '50%', borderRadius: '15px' }}>
                         Sign Up!

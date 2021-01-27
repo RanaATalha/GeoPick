@@ -53,7 +53,8 @@ const SignInFields = ({ register, errors }: { register: any; errors: any }) => {
                         },
                     })}
                     error={errors.email ? true : false}
-                required/>
+                    helperText={errors.email ? 'invalid email' : null}
+                />
             </Grid>
             <Grid item style={{ width: '100%' }}>
                 <PasswordField
@@ -61,7 +62,8 @@ const SignInFields = ({ register, errors }: { register: any; errors: any }) => {
                     id="Password"
                     inputRef={register({ required: true, minLength: 8 })}
                     error={errors.password ? true : false}
-                required/>
+                    helperText={errors.password ? 'invalid password' : null}
+                />
                 <br />
             </Grid>
         </Grid>
