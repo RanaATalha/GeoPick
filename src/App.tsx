@@ -14,7 +14,7 @@ import CreateProfileScreen from './pages/create-profile-screen';
 import SetNewPasswordScreen from './pages/sign-in screen/setnewpass';
 import ReSetNewPasswordScreen from './pages/sign-in screen/resetpass';
 import { HomeScreen } from './pages/home-screen/home';
-import PostView from './pages/post-view';
+import PostViewScreen from './pages/post-view';
 
 function App(): JSX.Element {
     return (
@@ -50,7 +50,7 @@ function App(): JSX.Element {
                         <HomeScreen />
                     </Route>
                     <Route exact path="/post">
-                        <PostView />
+                        <PostViewScreen />
                     </Route>
                 </Switch>
             </Router>

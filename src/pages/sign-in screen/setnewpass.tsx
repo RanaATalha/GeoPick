@@ -20,7 +20,7 @@ export default class SetNewPass extends React.Component<SetNewPassProps> {
                                 </Grid>
 
                                 <Grid item xs={12}>
-                                    <PasswordField> Confirm Password </PasswordField>{' '}
+                                    <PasswordField label="Confirm Password" />{' '}
                                     {/* ask to add the cofirm text in the components */}
                                 </Grid>
                                 <Grid item xs={12}>
