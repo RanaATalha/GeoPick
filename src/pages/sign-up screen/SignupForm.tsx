@@ -50,7 +50,7 @@ const SignUpFields = ({ register, errors }: { register: any; errors: any }) => {
                         },
                     })}
                     error={errors.email ? true : false}
-                />
+                    required />
             </Grid>
             <Grid item style={{ width: '100%' }}>
                 <PasswordField
@@ -58,7 +58,7 @@ const SignUpFields = ({ register, errors }: { register: any; errors: any }) => {
                     id="Password"
                     inputRef={register({ required: true, minLength: 8 })}
                     error={errors.password ? true : false}
-                />
+                    required/>
             </Grid>
             <Grid item style={{ width: '100%' }}>
                 <PasswordField
@@ -66,7 +66,7 @@ const SignUpFields = ({ register, errors }: { register: any; errors: any }) => {
                     id="ConformPassword"
                     label="Confirm Password"
                     inputRef={register({ required: true, minLength: 8 })}
-                />
+                    required />
             </Grid>
         </Grid>
     );

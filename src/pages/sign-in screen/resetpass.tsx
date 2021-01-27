@@ -52,7 +52,7 @@ const ResetFields = ({ register, errors }: { register: any; errors: any }) => {
                         },
                     })}
                     error={errors.email ? true : false}
-                />
+                    required/>
             </Grid>
         </Grid>
     );
