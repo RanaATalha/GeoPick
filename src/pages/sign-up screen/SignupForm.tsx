@@ -68,11 +68,12 @@ const SignUpFields = ({ register, errors }: { register: any; errors: any }) => {
                     id="ConformPassword"
                     label="Confirm Password"
                     inputRef={register({ required: true, minLength: 8 })}
-                    required />
+                    error={errors.password ? true : false}
+                    helperText={errors.email ? 'invalid password' : null} />
             </Grid>
             <Grid item container spacing={3}>
                 <Grid item xs={2} alignContent="center" alignItems="center" style={{ verticalAlign: 'true' }}>
-                    <Checkbox required inputRef={register({ register: true })} />
+                    <Checkbox required inputRef={register({ register: true },require)} />
                 </Grid>
                 <Grid
                     item
