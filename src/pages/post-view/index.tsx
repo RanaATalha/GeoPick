@@ -23,8 +23,15 @@ import SharePost from '../../components/Display/sharePost';
 export interface PostViewState {
     newComment: string;
     user: any;
-    post: any;
+    Image: string;
+    caption: string;
+    likes_count: number;
+    post_time: string;
+    user_name: string;
     favourited: boolean;
+    post_uid: string;
+    post_user: any;
+    comments: any;
 }
 
 export interface PostViewProps {
@@ -39,13 +46,20 @@ export default class PostViewScreen extends Component<PostViewProps,PostViewStat
         this.state = {
             favourited: false,
             user: {},
-            post: {},
+            Image: "",
+            caption: "",
+            likes_count: 0,
+            post_time: "",
+            user_name: "",
             newComment: '',
+            post_uid: '',
+            post_user: {},
+            comments: [],
         };
         this.handleColorChange = this.handleColorChange.bind(this);
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         const path = window.location.pathname.split('/')
         const pid = path[path.length - 1]
         const auth = checkUserLoggedIn();
@@ -67,15 +81,38 @@ export default class PostViewScreen extends Component<PostViewProps,PostViewStat
             });
         }
 
-        fb
+        await fb
             .firestore()
             .collection('Posts')
             .doc(pid)
             .get()
             .then((doc) => {
                 console.log(doc.data());
+                const data = doc.data();
+                if(data){
+                    this.setState({
+                        Image: data.Image,
+                        caption: data.caption,
+                        likes_count: data.likes_count,
+                        post_time: new Date(data.post_time.seconds * 1000).toLocaleDateString("en-US"),
+                        user_name: data.user_name,
+                        post_uid: data.uid,
+                        comments: data.comments,
+                    });
+                }
+                
+            });
+
+            fb
+            .firestore()
+            .collection('users')
+            .doc(this.state.post_uid)
+            .get()
+            .then((querySnapshot) => {
+                const data = querySnapshot.data();
+                // console.log(data);
                 this.setState({
-                    post: doc.data()
+                    post_user: data,
                 });
             });
         
@@ -98,10 +135,16 @@ export default class PostViewScreen extends Component<PostViewProps,PostViewStat
             fb.firestore().collection('Posts').doc(pid).update({
                 likes_count: increment,
             });
+            this.setState({
+                likes_count: this.state.likes_count + 1
+            })
         } else {
             fb.firestore().collection('Posts').doc(pid).update({
                 likes_count: decrement,
             });
+            this.setState({
+                likes_count: this.state.likes_count - 1
+            })
         }
     };
     
@@ -115,20 +158,28 @@ export default class PostViewScreen extends Component<PostViewProps,PostViewStat
                 newComment: event.target.value as string,
                 // user: checkUserLoggedIn(),
             });
+            
+
         };
 
         const handleClick = (event: any) => {
             const FieldValue = fb.firestore.FieldValue;
-            const comment = this.state.newComment;
+            const comment = `${this.state.user.User_name} : ${this.state.newComment}`;
             fb.firestore()
                 .collection('Posts')
                 .doc(pid)
                 .update({
-                    comments: FieldValue.arrayUnion(`${this.state.user.User_name}: ${comment}`),
+                    comments: FieldValue.arrayUnion(comment),
                     comments_count: fb.firestore.FieldValue.increment(1),
                 });
-            console.log(`${this.state.user.User_name} : ${comment}`);
-            console.log(this.state.user);
+            // console.log(`${this.state.user.User_name} : ${comment}`);
+            // console.log(this.state.user);
+            this.setState({
+                comments: [
+                    ...this.state.comments,
+                    comment
+                ]
+            })
         };
 
         return (
@@ -144,12 +195,12 @@ export default class PostViewScreen extends Component<PostViewProps,PostViewStat
             >
                 <Grid container direction="row" spacing={1} justify="center">
                     <Grid item justify="flex-start" style={{ marginLeft: '5em', position: 'relative' }}>
-                        <Avatar alt={this.state.user.User_name} src={this.state.user.Avatar}></Avatar>
+                        <Avatar alt={this.state.post_user.User_name} src={this.state.post_user.Avatar}></Avatar>
                     </Grid>
                     <Grid item justify="flex-start" xs={7}>
                         <Card style={{ color: '#F56920', borderRadius: '22px' }} className="boxField">
                             <Typography variant="h6" style={{ justifyContent: 'space-evenly' }}>
-                                {this.state.user.User_name}
+                                {this.state.post_user.User_name}
                             </Typography>
                         </Card>
                     </Grid>
@@ -163,33 +214,34 @@ export default class PostViewScreen extends Component<PostViewProps,PostViewStat
                             className="boxField"
                         >
                             <Typography variant="body1" style={{ justifyContent: 'space-evenly' }}>
-                                {this.state.post.post_time}
+                                {this.state.post_time}
                             </Typography>
                         </Card>
                     </Grid>
                 </Grid>
                 <br></br>
-
+                <Grid container spacing={2} justify="center">
                 <Container>
                     <div className="postImage" style={{ justifyItems: 'normal', marginRight: '-10%' }}>
                         <img
-                            src={this.state.post.Image}
+                            src={this.state.Image}
                             alt="not loading..."
-                            width= "80%"
-                            max-width= "600px"
+                            // width= "80%"
+                            width= "600px"
                             height= "500px"
                             className="postImage"
-                            style={{ borderRadius: '20px 20px 0px 0px', position: 'sticky' }}
+                            style={{ borderRadius: '20px 20px 0px 0px'}}
                         ></img>
-                        <Box m={-30} />
                     </div>
                 </Container>
+                </Grid>
+                <br/>
                 <Grid container spacing={2} justify="center">
                     <Grid item style={{ color: 'white', fontSize: '12' }}>
-                        <span>{this.state.post.caption}</span> 
+                        <span>{this.state.caption}</span> 
                     </Grid>
                 </Grid>
-                <Grid container spacing={2} justify="center" alignItems="center">
+                <Grid container spacing={2} justify="flex-start" alignItems="center" style={{ justifyItems: 'normal', marginLeft: '10%' }}>
                     <Grid item>
                         <IconButton
                             aria-label="add to favorites"
@@ -197,14 +249,29 @@ export default class PostViewScreen extends Component<PostViewProps,PostViewStat
                             onClick={this.handleColorChange}
                         >
                             <FavoriteIcon />
-                            {this.state.post.likes_count}
+                            {this.state.likes_count}
                         </IconButton>
                     </Grid>
                     <Grid item xs={5}>
                         <SharePost sharedURL= {window.location.href}/>
                     </Grid>
                 </Grid>
-                            
+                <Grid container spacing={2} justify="flex-start" style={{ justifyItems: 'normal', marginLeft: '10%' }}>
+                    <Grid item style={{ color: 'white', fontSize: '12' }}>
+                    <ul>
+                        {
+                            this.state.comments.map((val: string, index: any) => {
+                            return (
+                                <li key={index}>
+                                { val }
+                                </li>
+                            );
+                            })
+                        }
+                    </ul>
+                    </Grid>
+                </Grid>
+                <Grid container spacing={2} justify="flex-start" alignItems="center">  
                 <Grid item>
                 <InputBase
                             onChange={handleChange}
@@ -230,6 +297,7 @@ export default class PostViewScreen extends Component<PostViewProps,PostViewStat
                                 </IconButton>
                             }
                         />
+                </Grid>
                 </Grid>
                         
                     {/* </div> */}
