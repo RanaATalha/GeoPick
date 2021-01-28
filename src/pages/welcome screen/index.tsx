@@ -41,7 +41,7 @@ const WelcomeScreen: React.FunctionComponent<WelcomeProps> = (props) => {
 };*/const { push } = useHistory();
     const GoogleSignin = () => {
         
-        auth.doGoogleSignUp().then((u)=>{push('/home');}).catch((error) => {
+        auth.doGoogleSignUp().then((u)=>{push('/create-profile');}).catch((error) => {
             console.log(error);
             window.alert('Failed to login');
         });

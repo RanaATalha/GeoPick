@@ -52,7 +52,7 @@ const ResetFields = ({ register, errors }: { register: any; errors: any }) => {
                         },
                     })}
                     error={errors.email ? true : false}
-                />
+                    helperText={errors.email ? 'invalid Email ID' : null}/>
             </Grid>
         </Grid>
     );

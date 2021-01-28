@@ -126,6 +126,7 @@ const CreateProfileFields = ({ register, errors, control}: { register: any; erro
                         },
                     })}
                     error={errors.username ? true : false}
+                    helperText={errors.username ? 'invalid user name' : null} 
                 />
             </Grid>
             <Grid item style={{ width: '100%' }}>
