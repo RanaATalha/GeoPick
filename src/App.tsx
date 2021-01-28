@@ -21,12 +21,6 @@ function App(): JSX.Element {
         <div className="App">
             <Router>
                 <Nav />
-                <div style={{ background: 'black' }}>
-                    <RegularBtn colorType="auto">Hello</RegularBtn>
-                </div>
-                {/* <div>
-                    <BottomNavigation />
-                </div> */}
                 <Switch>
                     <Route exact path="/welcome">
                         <WelcomeScreen />
