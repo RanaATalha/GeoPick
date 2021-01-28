@@ -93,6 +93,15 @@ const ResetForm = () => {
                     </RegularBtn>
                 </Grid>
                 <br />
+                <br />
+                <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
+                    <Link to="/sign-in">
+                        <RegularBtn colorType="orange" style={{ width: '100%', borderRadius: '15px' }}>
+                            Go Back
+                        </RegularBtn>
+                    </Link>
+                </Grid>
+                <br />
             </form>
         </>
     );

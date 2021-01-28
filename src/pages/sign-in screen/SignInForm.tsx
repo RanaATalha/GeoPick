@@ -108,6 +108,15 @@ const SignInForm = () => {
                 </Grid>
                 <br />
                 <Link to="/ReSet-password"> Forgot Password ?</Link>
+                <br />
+                <br />
+                <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
+                    <Link to="/welcome">
+                        <RegularBtn colorType="orange" style={{ width: '50%', borderRadius: '15px' }}>
+                            Go Back
+                        </RegularBtn>
+                    </Link>
+                </Grid>
             </form>
         </>
     );

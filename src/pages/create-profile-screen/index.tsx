@@ -11,7 +11,7 @@ import firebase from 'firebase';
 import Compress from "react-image-file-resizer";
 import OccupationSelect from '../../components/Inputs/occupation';
 import { useForm } from "react-hook-form";
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { auth } from '../../firebase';
 import { resolve } from 'url';
 export interface CreateProfileProps {}
@@ -175,6 +175,15 @@ const CreateProfileForm = ({img }: {img: string;}) => {
                     <RegularBtn type="submit" colorType="white" style={{ width: '50%', borderRadius: '15px' }}>
                         Complete Registration
                     </RegularBtn>
+                </Grid>
+                <br />
+                <br />
+                <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
+                    <Link to="/sign-up">
+                        <RegularBtn colorType="white" style={{ width: '100%', borderRadius: '15px' }}>
+                            Go Back
+                        </RegularBtn>
+                    </Link>
                 </Grid>
             </form>
         </>
