@@ -9,11 +9,13 @@ import firebase from 'firebase';
 import Feed from '../../components/Layouts/feed';
 import { AppBar, Avatar, Button, IconButton, Toolbar, Typography } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
+import { checkUserLoggedIn } from '../../firebase/auth';
 import BottomNavigation from '../../components/NavBar/navbar';
 
 export interface HomeScreenProps {}
 export interface HomeScreenState {
     posts: any;
+    user: any;
 }
 
 export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
@@ -21,6 +23,7 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
         super(HomeScreenProps);
         this.state = {
             posts: [],
+            user: checkUserLoggedIn(),
         };
     }
 
@@ -56,26 +59,10 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
                 <Toolbar>
                     <img src={WhiteLogo} alt="GeoPicK" className="WhiteLogo" />
                     <IconButton edge="end">
-                        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                        <Avatar alt={this.state.user.User_name}src={this.state.user.Avatar} />
                     </IconButton>
                 </Toolbar>
 
-                {/* <br></br> */}
-                {/* <SinglePost username="GeoPicker" date="13-01-2021" postPic={Picture} />
-                <SinglePost username="GeoPicker" date="13-01-2021" postPic={Picture} /> */}
-                {/* {this.state.posts.map(({ id, post } : {id: any; post: any}) => {
-                    return (
-                    <SinglePost
-                        key={id}
-                        // id={id}
-                        // profileUrl={post.profileUrl}
-                        username={post.username}
-                        postPic={post.photoUrl}
-                        // caption={post.caption}
-                        // comments={post.comments}
-                    />
-                    );
-                })} */}
                 <Feed />
                 <BottomNavigation />
             </div>

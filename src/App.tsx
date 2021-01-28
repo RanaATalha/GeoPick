@@ -49,8 +49,7 @@ function App(): JSX.Element {
                     <Route exact path="/home">
                         <HomeScreen />
                     </Route>
-                    <Route exact path="/post">
-                        <PostViewScreen />
+                    <Route path="/post/:catId" component={PostViewScreen}>
                     </Route>
                 </Switch>
             </Router>

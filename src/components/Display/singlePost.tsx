@@ -24,25 +24,12 @@ import fb from 'firebase/app';
 import AddIcon from '@material-ui/icons/Add';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import GuessTheLocationPlay from '../Game/guessPlay';
-import {
-    FacebookShareButton,
-    TwitterShareButton,
-    TelegramShareButton,
-    WhatsappShareButton,
-    EmailShareButton,
-    FacebookIcon,
-    TwitterIcon,
-    TelegramIcon,
-    WhatsappIcon,
-    EmailIcon,
-} from 'react-share';
-import SharePost from './sharePost';
 import { Link } from 'react-router-dom';
-// import { Container, Link } from 'react-floating-action-button'
+import SharePost from './sharePost';
 
 export interface SinglePostProps {
     username?: string;
-    postPic?: string;
+    postPic: string;
     date?: string;
     avatar?: string;
     uid?: string;
@@ -59,9 +46,10 @@ export interface SinglePostState {
     user: any;
     post_user: any;
     open_share: boolean;
-    GTLButton: any;
     isOpen: boolean;
+    path_name: string;
 }
+
 
 class SinglePost extends Component<SinglePostProps, SinglePostState> {
     constructor(SinglePostProps: any) {
@@ -71,12 +59,11 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
             user: checkUserLoggedIn(),
             post_user: {},
             open_share: false,
-            GTLButton: this.handleGuessTheLocationOnClick,
             isOpen: false,
+            path_name: "/post/" + `${this.props.uid}`,
         };
         this.handleColorChange = this.handleColorChange.bind(this);
         this.handleButtonClick = this.handleButtonClick.bind(this);
-        this.handleGuessTheLocationOnClick = this.handleGuessTheLocationOnClick.bind(this);
     }
 
     handleColorChange = () => {
@@ -122,75 +109,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
         });
     };
 
-    handleGuessTheLocationOnClick() {
-        return (
-            // <Zoom in={checked} style={{ transitionDelay: checked ? '500ms' : '0ms' }}>
-            <Card style={{ borderRadius: '20px', width: '20%', height: '30%', background: '#1b1b1b' }}>
-                {/* <CardHeader style={{ textAlign: 'left', marginLeft: '10px' }}> */}
-                <Typography
-                    variant="h6"
-                    style={{
-                        fontWeight: 'bolder',
-                        color: '#f56920',
-                        textAlign: 'left',
-                        margin: 'auto',
-                        padding: '10px',
-                    }}
-                >
-                    Guess The Location
-                </Typography>
-                {/* </CardHeader> */}
-
-                <CardActions>
-                    <Grid container direction="column" spacing={2}>
-                        <Grid item>
-                            <Button
-                                style={{
-                                    borderRadius: '20px',
-                                    marginLeft: '10px',
-                                    marginRight: '10px',
-                                    background: '#fafafa',
-                                    color: '#1b1b1b',
-                                    width: '80%',
-                                }}
-                            >
-                                Angola
-                            </Button>
-                        </Grid>
-                        <Grid item>
-                            <Button
-                                style={{
-                                    borderRadius: '20px',
-                                    marginLeft: '10px',
-                                    marginRight: '10px',
-                                    background: '#fafafa',
-                                    color: '#1b1b1b',
-                                    width: '80%',
-                                }}
-                            >
-                                Dubai
-                            </Button>
-                        </Grid>
-                        <Grid item>
-                            <Button
-                                style={{
-                                    borderRadius: '20px',
-                                    marginLeft: '10px',
-                                    marginRight: '10px',
-                                    background: '#fafafa',
-                                    color: '#1b1b1b',
-                                    width: '80%',
-                                }}
-                            >
-                                Abu Dhabi
-                            </Button>
-                        </Grid>
-                    </Grid>
-                </CardActions>
-            </Card>
-            // </Zoom>
-        );
-    }
+    
 
     render() {
         return (
@@ -237,53 +156,21 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                         <img
                             src={this.props.postPic}
                             alt="not loading..."
-                            width="600px"
-                            height="500px"
+                            width= "80%"
+                            max-width= "600px"
+                            height= "500px"
                             className="postImage"
                             style={{ borderRadius: '20px 20px 0px 0px', position: 'sticky' }}
                         ></img>
-                        {/* <IconButton style={{ transform: 'translate(-145px, -35px)', position: 'sticky' }}>
-                                <img
-                                    src={GuessTheLocationButton}
-                                    alt="Guess The Location"
-                                    onClick={this.state.GTLButton}
-                                ></img>
-                        </IconButton> */}
-                        {/* <FloatingMenu
-                            slideSpeed={500}
-                            direction={Directions.Up}
-                            spacing={8}
-                            isOpen={this.state.isOpen}
-                        >
-                            <MainButton
-                            iconResting={<Icon> <img src={GuessTheLocationButton} height={25} width={25}/> </Icon>}
-                            iconActive={<Icon> <img src={GuessTheLocationButton} height={25} width={25}/> </Icon>}
-                            background="none"
-                            onClick={() => this.setState({ isOpen: !this.state.isOpen })}
-                            size={40}
-                            />
-                            <ChildButton
-                            icon={<p> Dubai </p>}
-                            background="white"
-                            size={40}
-                            onClick={() => console.log('First button clicked')}
-                            />
-                            <ChildButton
-                            icon={<p> Sharjah </p>}
-                            background="white"
-                            size={40}
-                            />
-                            <ChildButton
-                            icon={<p> Abu Dhabi </p>}
-                            background="white"
-                            size={40}
-                            />
-                        </FloatingMenu> */}
-
                         <GuessTheLocationPlay city1="Dubai" city2="Paris" city3="Tokyo" />
                         <Box m={-30} />
                     </div>
                 </Container>
+                <Grid container spacing={2} justify="center">
+                    <Grid item style={{ color: 'white', fontSize: '12' }}>
+                        <span>{this.props.caption}</span> 
+                    </Grid>
+                </Grid>
                 <Grid container spacing={2} justify="center" alignItems="center">
                     <Grid item>
                         <IconButton
@@ -296,10 +183,10 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                         </IconButton>
                     </Grid>
                     <Grid item xs={5}>
-                        <SharePost sharedURL={this.props.sharedURL} />
+                        <SharePost sharedURL= {this.state.path_name}/>
                     </Grid>
                     <Grid item>
-                        <Link to="/post">
+                        <Link to={{pathname:`/post/${ this.props.id}`, state:this.props.uid,}}>
                             <IconButton aria-label="add a comment" style={{ color: '#FAFAFA' }}>
                                 <AddCommentRoundedIcon />
                                 <span>{this.props.comments_count}</span>
