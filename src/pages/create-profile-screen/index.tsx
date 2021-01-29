@@ -142,6 +142,13 @@ const CreateProfileForm = ({img }: {img: string;}) => {
     const onSubmit = (data: any) => {
         const user = auth.checkUserLoggedIn()
         if(user !== undefined){
+
+            ////////// CHECKING THE USERNAME AND ALL HERE /////////////////////////////////////////////////////////////////
+            firebase.firestore().collection('users/').where("User_name", "==", data.username).get()
+            .then(function(snapShot) {
+                /////// CODE HERE TO NOTIFY USERNAME ALREADY EXISTS //////////////////////////////////////
+                
+            });
             firebase.firestore()
             .collection('users/').doc(user.uid)
             .set({

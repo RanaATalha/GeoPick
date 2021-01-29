@@ -1,20 +1,13 @@
 import * as React from 'react';
 import './styles.scss';
 import { auth } from '../../firebase';
-import app from 'firebase/app';
-import SignUpScreen from '../sign-up screen/index';
-import { BrowserRouter as Router, Route, Switch, Link, BrowserRouter, useHistory } from 'react-router-dom';
+import { BrowserRouter as Link, useHistory } from 'react-router-dom';
 import WhiteLogo from './WhiteLogo.svg';
 import googleButton from './googleButton.svg';
 // import background from './welcome-pg.png';
-import { createStyles, Grid, makeStyles, Theme, Typography, Button } from '@material-ui/core';
-import Divider from '@material-ui/core/Divider';
-import Checkbox from '../../components/Inputs/Checkbox';
-import TextField from '../../components/Inputs/TextField';
-import PasswordField from '../../components/Inputs/PasswordField';
-import Card from '../../components/Layouts/Card';
+import { Grid, Typography } from '@material-ui/core';
+
 import { RegularBtn } from '../../components/Buttons/RegularBtn';
-import { AlternateEmailTwoTone, Widgets } from '@material-ui/icons';
 interface WelcomeProps {}
 
 // const useStyles = makeStyles((theme: Theme) =>
@@ -78,17 +71,20 @@ const WelcomeScreen: React.FunctionComponent<WelcomeProps> = (props) => {
                             ></Grid>
                             <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
                                 <Grid item>
+                                    <span style={{ color: 'white' }}>New to GeoPicK?</span>
+                                    <br />
+                                    <br />
                                     <RegularBtn colorType="dark" onClick={GoogleSignin} className="g-btn">
+                                        <p className="text">Sign up with </p>
                                         <img
                                             src={googleButton}
                                             width="22px"
                                             alt="Google"
                                             style={{ marginLeft: '10px' }}
-                                        />
-                                        <p className="text">Sign in</p>
+                                        />    
                                     </RegularBtn>
                                     <br></br>
-                                    <hr style={{ width: '500px' }} />
+                                    <br />
                                     <div style={{ paddingBottom: '5%' }}>
                                         <a href="/sign-up">
                                             <RegularBtn
@@ -107,6 +103,7 @@ const WelcomeScreen: React.FunctionComponent<WelcomeProps> = (props) => {
                                         </a>
                                     </div>
                                     {/* <br></br> */}
+                                    <hr style={{ width: '500px' }} />
                                     <div style={{ paddingBottom: '20%' }}>
                                         <a href="/sign-in">
                                             <RegularBtn colorType="dark" className="sign-btn1">
