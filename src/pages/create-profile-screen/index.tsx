@@ -13,16 +13,16 @@ import OccupationSelect from '../../components/Inputs/occupation';
 import { useForm } from "react-hook-form";
 import { Link, useHistory } from 'react-router-dom';
 import { auth } from '../../firebase';
-import { resolve } from 'url';
 export interface CreateProfileProps {}
 
 export default class CreateProfileScreen extends React.Component<CreateProfileProps> {
 
-    state: {img: {}, height: number|null, width: number|null, imgurl: string} = {
+    state: {img: {}, height: number|null, width: number|null, imgurl: string, usernameExists: boolean} = {
         img: {},
         height: 0,
         width: 0,
         imgurl : sampleavatar,
+        usernameExists : false,
     }
 
     
@@ -108,7 +108,22 @@ export default class CreateProfileScreen extends React.Component<CreateProfilePr
 
 
 const CreateProfileFields = ({ register, errors, control}: { register: any; errors: any; control: any }) => {
-    
+    let usernameExists = false;
+    const handleChange = (event: any) => {
+            console.log(event.target.value);
+            console.log(usernameExists);
+            ////////// CHECKING THE USERNAME AND ALL HERE /////////////////////////////////////////////////////////////////
+            firebase.firestore().collection('users/').where("User_name", "==", event.target.value).get()
+            .then(function(snapShot) {
+                if(snapShot){
+                    usernameExists = true;
+                    // push('/create-profile');
+                }
+                
+            });
+    };
+
+
     console.log(errors);
     return (
         <Grid item container spacing={3} direction="row" alignItems="center" justify="center">
@@ -125,8 +140,9 @@ const CreateProfileFields = ({ register, errors, control}: { register: any; erro
                             message: 'invalid username',
                         },
                     })}
-                    error={errors.username ? true : false}
-                    helperText={errors.username ? 'invalid user name' : null} 
+                    error={errors.username || usernameExists? true : false}
+                    helperText={errors.username || usernameExists ? 'invalid user name: either exists or uses illegal character' : null} 
+                    onChange = {handleChange}
                 />
             </Grid>
             <Grid item style={{ width: '100%' }}>
@@ -143,25 +159,22 @@ const CreateProfileForm = ({img }: {img: string;}) => {
         const user = auth.checkUserLoggedIn()
         if(user !== undefined){
 
-            ////////// CHECKING THE USERNAME AND ALL HERE /////////////////////////////////////////////////////////////////
-            firebase.firestore().collection('users/').where("User_name", "==", data.username).get()
-            .then(function(snapShot) {
-                /////// CODE HERE TO NOTIFY USERNAME ALREADY EXISTS //////////////////////////////////////
-                
-            });
-            firebase.firestore()
-            .collection('users/').doc(user.uid)
-            .set({
-                Avatar: img,
-                Bio: "",
-                GamePoint: 0,
-                Occupation: data.Occupation,
-                User_name: data.username,
-            }).catch((err)=>{
-                console.log("Error "+ err);
-                alert(err)
-            });
-            push('/home');
+            if(errors !== {}){
+                firebase.firestore()
+                .collection('users/').doc(user.uid)
+                .set({
+                    Avatar: img,
+                    Bio: "",
+                    GamePoint: 0,
+                    Occupation: data.Occupation,
+                    User_name: data.username,
+                }).catch((err)=>{
+                    console.log("Error "+ err);
+                    alert(err)
+                });
+                push('/home');
+            }
+            
         }
         
     };
@@ -170,6 +183,17 @@ const CreateProfileForm = ({img }: {img: string;}) => {
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <CreateProfileFields register={register} errors={errors} control={control} />
+                {/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+                {(errors !== {}) &&
+                    <Grid item container spacing={3}>
+                        <Grid item xs={10} alignContent="center" alignItems="center" style={{ paddingTop: '20px', verticalAlign: 'true' }}>
+                            <Typography align="center" style={{ fontSize: '12px', color: '1B1B1E' }}>
+                                The username already exists!
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                }
+                
                 <Grid item container spacing={3}>
                     <Grid item xs={10} alignContent="center" alignItems="center" style={{ paddingTop: '20px', verticalAlign: 'true' }}>
                         <Typography align="left" style={{ fontSize: '12px', color: '1B1B1E' }}>

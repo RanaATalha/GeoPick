@@ -4,25 +4,18 @@ import {
     Card,
     Typography,
     IconButton,
-    CardActions,
-    Button,
     Box,
     Container,
     // Link,
 } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import AddCommentRoundedIcon from '@material-ui/icons/AddCommentRounded';
-import ShareIcon from '@material-ui/icons/Share';
 import * as React from 'react';
 import { Component } from 'react';
 import './singlePostStyles.scss';
-import InputBase from '@material-ui/core/InputBase';
-import PublishRoundedIcon from '@material-ui/icons/PublishRounded';
 import { checkUserLoggedIn } from '../../firebase/auth';
 import firebase from 'firebase';
 import fb from 'firebase/app';
-import AddIcon from '@material-ui/icons/Add';
-import SvgIcon from '@material-ui/core/SvgIcon';
 import GuessTheLocationPlay from '../Game/guessPlay';
 import { Link } from 'react-router-dom';
 import SharePost from './sharePost';
@@ -60,12 +53,13 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
             post_user: {},
             open_share: false,
             isOpen: false,
-            path_name: "/post/" + `${this.props.uid}`,
+            path_name: `/post/${this.props.uid}`,
         };
         this.handleColorChange = this.handleColorChange.bind(this);
         this.handleButtonClick = this.handleButtonClick.bind(this);
     }
 
+    
     handleColorChange = () => {
         this.setState({
             favourited: !this.state.favourited,
@@ -112,6 +106,8 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
     
 
     render() {
+        const path = window.location.href.split('/');
+        const root = path[path.length - 2];
         return (
             <Card
                 style={{
@@ -183,7 +179,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                         </IconButton>
                     </Grid>
                     <Grid item xs={5}>
-                        <SharePost sharedURL= {this.state.path_name}/>
+                        <SharePost sharedURL= {`${root}${this.state.path_name}`}/>
                     </Grid>
                     <Grid item>
                         <Link to={{pathname:`/post/${ this.props.id}`, state:this.props.uid,}}>

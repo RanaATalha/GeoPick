@@ -45,7 +45,7 @@ export default function OccupationSelect({ control }: { control: any }) {
     return (
         <div>
             <FormControl variant="outlined" className={classes.root}>
-                <InputLabel id="occupation-select">Occupation (Optional)</InputLabel>
+                <InputLabel id="occupation-select">Occupation</InputLabel>
                 <Controller
                     name="Occupation"
                     control={control}

@@ -4,16 +4,11 @@ import {
     Card,
     Typography,
     IconButton,
-    CardActions,
-    Button,
-    Box,
     Container,
     Divider,
-    // Link,
 } from '@material-ui/core';
 import * as React from 'react';
 import InputBase from '@material-ui/core/InputBase';
-import { render } from '@testing-library/react';
 import PublishRoundedIcon from '@material-ui/icons/PublishRounded';
 import fb from 'firebase/app';
 import { Component } from 'react';
@@ -62,7 +57,7 @@ export default class PostViewScreen extends Component<PostViewProps, PostViewSta
         const path = window.location.pathname.split('/');
         const pid = path[path.length - 1];
         const auth = checkUserLoggedIn();
-        console.log(pid);
+        // console.log(pid);
         if (auth === undefined) {
         } else {
             fb.firestore()
@@ -84,7 +79,7 @@ export default class PostViewScreen extends Component<PostViewProps, PostViewSta
             .doc(pid)
             .get()
             .then((doc) => {
-                console.log(doc.data());
+                // console.log(doc.data());
                 const data = doc.data();
                 if (data) {
                     this.setState({
@@ -148,7 +143,7 @@ export default class PostViewScreen extends Component<PostViewProps, PostViewSta
         const pid = path[path.length - 1];
         // console.log(uid);
         const handleChange = (event: any) => {
-            console.log(event.target.value);
+            // console.log(event.target.value);
             this.setState({
                 newComment: event.target.value as string,
                 // user: checkUserLoggedIn(),
