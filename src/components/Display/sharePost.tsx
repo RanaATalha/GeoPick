@@ -99,12 +99,12 @@ export default function SharePost({ sharedURL }: { sharedURL: string }) {
         <SpeedDial
             ariaLabel="SpeedDial example"
             className={classes.speedDial}
-            hidden={hidden}
+            // hidden={hidden}
             icon={<ShareIcon />}
             onClose={handleClose}
             onOpen={handleOpen}
             open={open}
-            direction={direction}
+            // direction={direction}
         >
             {actions.map((action) => (
                 <SpeedDialAction

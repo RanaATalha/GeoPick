@@ -69,11 +69,12 @@ const SignUpFields = ({ register, errors }: { register: any; errors: any }) => {
                     label="Confirm Password"
                     inputRef={register({ required: true, minLength: 6 })}
                     error={errors.password ? true : false}
-                    helperText={errors.password ? 'invalid password' : null} />
+                    helperText={errors.password ? 'invalid password' : null}
+                />
             </Grid>
             <Grid item container spacing={3}>
                 <Grid item xs={2} alignContent="center" alignItems="center" style={{ verticalAlign: 'true' }}>
-                    <Checkbox required inputRef={register({ required: true,  })} />
+                    <Checkbox required inputRef={register({ required: true })} />
                 </Grid>
                 <Grid
                     item
@@ -83,8 +84,8 @@ const SignUpFields = ({ register, errors }: { register: any; errors: any }) => {
                     style={{ paddingTop: '20px', verticalAlign: 'true' }}
                 >
                     <Typography align="left" style={{ fontSize: '12px', color: '1B1B1E' }}>
-                        By signing up I conform that I have read and accepted the terms and conditions of using the
-                        application.
+                        By signing up I conform that I have read and accepted the{' '}
+                        <a href="/terms">terms and conditions</a> of using the application.
                     </Typography>
                 </Grid>
             </Grid>
