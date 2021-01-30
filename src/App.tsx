@@ -13,6 +13,7 @@ import { RegularBtn } from './components/Buttons/RegularBtn';
 import CreateProfileScreen from './pages/create-profile-screen';
 import SetNewPasswordScreen from './pages/sign-in screen/setnewpass';
 import ReSetNewPasswordScreen from './pages/sign-in screen/resetpass';
+import { Terms } from './pages/terms/index';
 import { HomeScreen } from './pages/home-screen/home';
 import PostViewScreen from './pages/post-view';
 
@@ -43,8 +44,10 @@ function App(): JSX.Element {
                     <Route exact path="/home">
                         <HomeScreen />
                     </Route>
-                    <Route path="/post/:catId" component={PostViewScreen}>
+                    <Route exact path="/terms">
+                        <Terms />
                     </Route>
+                    <Route path="/post/:catId" component={PostViewScreen}></Route>
                 </Switch>
             </Router>
         </div>
@@ -79,6 +82,9 @@ function Nav() {
                     </li>
                     <li>
                         <Link to="/post">Post View Screen</Link>
+                    </li>
+                    <li>
+                        <Link to="/terms">Terms and Conditions</Link>
                     </li>
                 </ul>
             </nav>

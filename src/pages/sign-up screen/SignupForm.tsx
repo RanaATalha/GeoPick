@@ -75,7 +75,8 @@ const SignUpFields = ({ register, errors }: { register: any; errors: any }) => {
                     label="Confirm Password"
                     inputRef={register({ required: true, minLength: 6 })}
                     error={errors.password ? true : false}
-                    helperText={errors.password ? 'invalid password' : null} />
+                    helperText={errors.password ? 'invalid password' : null}
+                />
             </Grid>
             
         </Grid>
