@@ -115,16 +115,27 @@ const CreateProfileFields = ({ register, errors, control}: { register: any; erro
             ////////// CHECKING THE USERNAME AND ALL HERE /////////////////////////////////////////////////////////////////
             firebase.firestore().collection('users/').where("User_name", "==", event.target.value).get()
             .then(function(snapShot) {
-                if(snapShot){
-                    usernameExists = true;
-                    // push('/create-profile');
-                }
+                
+                // if(snapShot){
+                //     usernameExists = true;
+                //     // push('/create-profile');
+                //     console.log(snapShot);
+                // }else{
+                //     usernameExists = false;
+                // }
+                snapShot.forEach(function(doc) {
+                    // doc.data() is never undefined for query doc snapshots
+                    // console.log(doc.id, " => ", doc.data());
+                    if(doc.exists){
+                        usernameExists = true;
+                    } else{
+                        usernameExists = false;
+                    }
+                });
                 
             });
     };
 
-
-    console.log(errors);
     return (
         <Grid item container spacing={3} direction="row" alignItems="center" justify="center">
             <Grid item style={{ width: '100%' }}>
@@ -139,6 +150,7 @@ const CreateProfileFields = ({ register, errors, control}: { register: any; erro
                             value: /^[A-Z0-9_]{3,8}$/i,
                             message: 'invalid username',
                         },
+                        validate: () => usernameExists == false,
                     })}
                     error={errors.username || usernameExists? true : false}
                     helperText={errors.username || usernameExists ? 'invalid user name: either exists or uses illegal character' : null} 
@@ -182,18 +194,7 @@ const CreateProfileForm = ({img }: {img: string;}) => {
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <CreateProfileFields register={register} errors={errors} control={control} />
-                {/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
-                {(errors !== {}) &&
-                    <Grid item container spacing={3}>
-                        <Grid item xs={10} alignContent="center" alignItems="center" style={{ paddingTop: '20px', verticalAlign: 'true' }}>
-                            <Typography align="center" style={{ fontSize: '12px', color: '1B1B1E' }}>
-                                The username already exists!
-                            </Typography>
-                        </Grid>
-                    </Grid>
-                }
-                
+                <CreateProfileFields register={register} errors={errors} control={control} />                
                 <Grid item container spacing={3}>
                     <Grid item xs={10} alignContent="center" alignItems="center" style={{ paddingTop: '20px', verticalAlign: 'true' }}>
                         <Typography align="left" style={{ fontSize: '12px', color: '1B1B1E' }}>

@@ -11,6 +11,9 @@ import { AppBar, Avatar, Button, IconButton, Toolbar, Typography } from '@materi
 import MenuIcon from '@material-ui/icons/Menu';
 import { checkUserLoggedIn } from '../../firebase/auth';
 import BottomNavigation from '../../components/NavBar/navbar';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { auth } from '../../firebase';
+import { Link } from 'react-router-dom';
 
 export interface HomeScreenProps {}
 export interface HomeScreenState {
@@ -53,10 +56,19 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
             });
     };
 
+    signOut = () => {
+        auth.doSignOut();
+    }
     render() {
         return (
             <div style={{ background: '#1b1b1b' }} onLoad={this.getData}>
                 <Toolbar>
+                    <Link to="/welcome">
+                        <IconButton edge="end" onClick={this.signOut} >
+                            <ExitToAppIcon style={{ color: 'white' }}/>
+                        </IconButton>
+                    </Link>
+                    
                     <img src={WhiteLogo} alt="GeoPicK" className="WhiteLogo" />
                     <IconButton edge="end">
                         <Avatar alt={this.state.user.User_name}src={this.state.user.Avatar} />

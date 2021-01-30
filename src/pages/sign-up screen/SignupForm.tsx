@@ -9,6 +9,7 @@ import { auth } from '../../firebase';
 import { useForm } from 'react-hook-form';
 import { Link, useHistory } from 'react-router-dom';
 
+
 export interface SignUpProps {}
 
 export default function SignUpScreen() {
@@ -34,6 +35,11 @@ const SignUpHeader = (props: { title: string }) => {
 
 const SignUpFields = ({ register, errors }: { register: any; errors: any }) => {
     console.log(errors);
+    const [checked, setChecked] = React.useState(false);
+
+    const handleChange = (event: React.MouseEvent) => {
+        setChecked(!checked);
+    }
     return (
         <Grid item container spacing={3} direction="row" alignItems="center" justify="center">
             <Grid item style={{ width: '100%' }}>
@@ -71,23 +77,7 @@ const SignUpFields = ({ register, errors }: { register: any; errors: any }) => {
                     error={errors.password ? true : false}
                     helperText={errors.password ? 'invalid password' : null} />
             </Grid>
-            <Grid item container spacing={3}>
-                <Grid item xs={2} alignContent="center" alignItems="center" style={{ verticalAlign: 'true' }}>
-                    <Checkbox required inputRef={register({ required: true,  })} />
-                </Grid>
-                <Grid
-                    item
-                    xs={10}
-                    alignContent="center"
-                    alignItems="center"
-                    style={{ paddingTop: '20px', verticalAlign: 'true' }}
-                >
-                    <Typography align="left" style={{ fontSize: '12px', color: '1B1B1E' }}>
-                        By signing up I conform that I have read and accepted the terms and conditions of using the
-                        application.
-                    </Typography>
-                </Grid>
-            </Grid>
+            
         </Grid>
     );
 };
@@ -116,7 +106,27 @@ const SignUpForm = () => {
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <SignUpFields register={register} errors={errors} />
-
+                <Grid item container spacing={3}>
+                {/* <Grid item xs={2} alignContent="center" alignItems="center" style={{ verticalAlign: 'true' }}>
+                    <Checkbox required inputRef={register({ required: true })} />
+                </Grid> */}
+                {/* <Grid
+                    item
+                    xs={10}
+                    alignContent="center"
+                    alignItems="center"
+                    style={{ paddingTop: '20px', verticalAlign: 'true' }}
+                > */}
+                    <br/>
+                    <br/>
+                    <label style={{ color: 'white' }}>
+                        <input type="checkbox" name="Accept" required />
+                        By signing up I conform that I have read and accepted the terms and conditions of using the
+                        application.
+                    </label>
+                    <br/>
+                {/* </Grid> */}
+            </Grid>
                 <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
                     <RegularBtn type="submit" colorType="white" style={{ width: '50%', borderRadius: '15px' }}>
                         Sign Up!
