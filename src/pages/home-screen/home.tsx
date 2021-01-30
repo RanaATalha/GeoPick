@@ -48,7 +48,7 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
             .get()
             .then((querySnapshot) => {
                 querySnapshot.forEach(function (doc) {
-                    console.log(doc.id, ' => ', doc.data());
+                    // console.log(doc.id, ' => ', doc.data());
                 });
             })
             .catch((err) => {
