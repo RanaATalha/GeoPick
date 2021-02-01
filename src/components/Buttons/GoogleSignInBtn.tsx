@@ -1,11 +1,6 @@
-import React, { useContext } from 'react';
-// import { FirebaseContext } from '../../firebase';
-
-// interface IGoogleSignInBtnProps {}
+import React from 'react';
 
 const GoogleSignInBtn: React.FunctionComponent = () => {
-    // const firebase = useContext(FirebaseContext);
-
     return <div></div>;
 };
 

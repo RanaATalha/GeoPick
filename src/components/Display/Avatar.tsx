@@ -15,10 +15,6 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-// interface Image {
-//     imgsrc: string
-// }
-
 export default function Avatars(props: any) {
     const classes = useStyles();
     console.log(props.imgsrc);

@@ -1,17 +1,5 @@
 import React from 'react';
 import { Box, TextField as MatTextField, TextFieldProps, withStyles } from '@material-ui/core';
-// import clsx from 'clsx';
-
-// const styles = {
-//     root: {
-//         background: 'red',
-//         borderRadius: 20,
-//         borderColor: 'red',
-//     },
-//     notched: {
-//         borderColor: 'red',
-//     },
-// };
 
 const CssTextField = withStyles({
     root: {

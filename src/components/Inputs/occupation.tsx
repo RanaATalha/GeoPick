@@ -14,8 +14,6 @@ const useStyles = makeStyles((theme) => ({
         borderColor: 'white',
         fontSize: 14,
         width: '100%',
-        // transition: theme.transitions.create(['border-color', 'box-shadow']),
-        // Use the system font instead of the default Roboto font.
         fontFamily: [
             '-apple-system',
             'BlinkMacSystemFont',

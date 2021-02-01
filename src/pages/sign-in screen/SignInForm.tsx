@@ -1,6 +1,5 @@
 import { Grid, Typography } from '@material-ui/core';
 import * as React from 'react';
-import Checkbox from '../../components/Inputs/Checkbox';
 import TextField from '../../components/Inputs/TextField';
 import PasswordField from '../../components/Inputs/PasswordField';
 import Card from '../../components/Layouts/Card';
@@ -76,7 +75,7 @@ const SignInForm = () => {
     const onSubmit = (data: any) => {
         console.log('trying ');
         auth.doSignInWithEmailAndPassword(data.email, data.password)
-            .then((u) => {
+            .then(() => {
                 console.log('sucessfully signed up');
                 alert('sucessfully signed up ');
                 push('/home');
@@ -87,7 +86,6 @@ const SignInForm = () => {
             });
     };
 
-    
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}>

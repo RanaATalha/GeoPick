@@ -1,8 +1,7 @@
-import { Grid, Typography } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import * as React from 'react';
 import { RegularBtn } from '../../components/Buttons/RegularBtn';
 import PasswordField from '../../components/Inputs/PasswordField';
-import TextField from '../../components/Inputs/TextField';
 import Card from '../../components/Layouts/Card';
 import './styles.scss';
 export interface SetNewPassProps {}

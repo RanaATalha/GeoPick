@@ -4,12 +4,6 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import WelcomeScreen from './pages/welcome screen';
 import SignInScreen from './pages/sign-in screen/SignInForm';
 import SignUpScreen from './pages/sign-up screen/SignupForm';
-
-import BackwardBtn from './components/Buttons/BackwardBtn';
-import TextField from './components/Inputs/TextField';
-import Card from './components/Layouts/Card';
-import Checkbox from './components/Inputs/Checkbox';
-import { RegularBtn } from './components/Buttons/RegularBtn';
 import CreateProfileScreen from './pages/create-profile-screen';
 import SetNewPasswordScreen from './pages/sign-in screen/setnewpass';
 import ReSetNewPasswordScreen from './pages/sign-in screen/resetpass';

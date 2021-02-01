@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import SpeedDial, { SpeedDialProps } from '@material-ui/lab/SpeedDial';
+import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 import ShareIcon from '@material-ui/icons/Share';
 import {
@@ -103,7 +103,7 @@ export default function SharePost({ sharedURL }: { sharedURL: string }) {
             onClose={handleClose}
             onOpen={handleOpen}
             open={open}
-            direction='right'
+            direction="right"
         >
             {actions.map((action) => (
                 <SpeedDialAction

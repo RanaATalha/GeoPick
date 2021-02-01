@@ -1,6 +1,5 @@
 import { Grid, Typography } from '@material-ui/core';
 import * as React from 'react';
-import Checkbox from '../../components/Inputs/Checkbox';
 import TextField from '../../components/Inputs/TextField';
 import PasswordField from '../../components/Inputs/PasswordField';
 import Card from '../../components/Layouts/Card';
@@ -34,11 +33,8 @@ const SignUpHeader = (props: { title: string }) => {
 
 const SignUpFields = ({ register, errors }: { register: any; errors: any }) => {
     console.log(errors);
-    const [checked, setChecked] = React.useState(false);
+    // const [checked, setChecked] = React.useState(false);
 
-    const handleChange = (event: React.MouseEvent) => {
-        setChecked(!checked);
-    };
     return (
         <Grid item container spacing={3} direction="row" alignItems="center" justify="center">
             <Grid item style={{ width: '100%' }}>
@@ -88,7 +84,7 @@ const SignUpForm = () => {
         console.log('trying ');
         if (data.password === data.confirmpassword) {
             auth.doCreateUserWithEmailAndPassword(data.email, data.password)
-                .then((u) => {
+                .then(() => {
                     console.log('sucessfully signed up');
                     push('/create-profile');
                 })
@@ -106,16 +102,6 @@ const SignUpForm = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <SignUpFields register={register} errors={errors} />
                 <Grid item container spacing={3}>
-                    {/* <Grid item xs={2} alignContent="center" alignItems="center" style={{ verticalAlign: 'true' }}>
-                    <Checkbox required inputRef={register({ required: true })} />
-                </Grid> */}
-                    {/* <Grid
-                    item
-                    xs={10}
-                    alignContent="center"
-                    alignItems="center"
-                    style={{ paddingTop: '20px', verticalAlign: 'true' }}
-                > */}
                     <br />
                     <br />
                     <label style={{ color: 'white' }}>
@@ -124,7 +110,6 @@ const SignUpForm = () => {
                         <a href="/terms">terms and conditions</a> of using the application.
                     </label>
                     <br />
-                    {/* </Grid> */}
                 </Grid>
                 <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
                     <RegularBtn type="submit" colorType="white" style={{ width: '50%', borderRadius: '15px' }}>

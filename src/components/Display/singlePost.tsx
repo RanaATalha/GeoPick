@@ -1,13 +1,4 @@
-import {
-    Avatar,
-    Grid,
-    Card,
-    Typography,
-    IconButton,
-    Box,
-    Container,
-    // Link,
-} from '@material-ui/core';
+import { Avatar, Grid, Card, Typography, IconButton, Box, Container } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import AddCommentRoundedIcon from '@material-ui/icons/AddCommentRounded';
 import * as React from 'react';
@@ -43,7 +34,6 @@ export interface SinglePostState {
     path_name: string;
 }
 
-
 class SinglePost extends Component<SinglePostProps, SinglePostState> {
     constructor(SinglePostProps: any) {
         super(SinglePostProps);
@@ -59,7 +49,6 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
         this.handleButtonClick = this.handleButtonClick.bind(this);
     }
 
-    
     handleColorChange = () => {
         this.setState({
             favourited: !this.state.favourited,
@@ -102,8 +91,6 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
             };
         });
     };
-
-    
 
     render() {
         const path = window.location.href.split('/');
@@ -152,9 +139,9 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                         <img
                             src={this.props.postPic}
                             alt="not loading..."
-                            width= "80%"
-                            max-width= "600px"
-                            height= "500px"
+                            width="80%"
+                            max-width="600px"
+                            height="500px"
                             className="postImage"
                             style={{ borderRadius: '20px 20px 0px 0px', position: 'sticky' }}
                         ></img>
@@ -164,7 +151,7 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                 </Container>
                 <Grid container spacing={2} justify="center">
                     <Grid item style={{ color: 'white', fontSize: '12' }}>
-                        <span>{this.props.caption}</span> 
+                        <span>{this.props.caption}</span>
                     </Grid>
                 </Grid>
                 <Grid container spacing={2} justify="center" alignItems="center">
@@ -179,10 +166,10 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
                         </IconButton>
                     </Grid>
                     <Grid item xs={5}>
-                        <SharePost sharedURL= {`${root}${this.state.path_name}`}/>
+                        <SharePost sharedURL={`${root}${this.state.path_name}`} />
                     </Grid>
                     <Grid item>
-                        <Link to={{pathname:`/post/${ this.props.id}`, state:this.props.uid,}}>
+                        <Link to={{ pathname: `/post/${this.props.id}`, state: this.props.uid }}>
                             <IconButton aria-label="add a comment" style={{ color: '#FAFAFA' }}>
                                 <AddCommentRoundedIcon />
                                 <span>{this.props.comments_count}</span>

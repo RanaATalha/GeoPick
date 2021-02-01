@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './styles.scss';
 import { auth } from '../../firebase';
-import { BrowserRouter as Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import WhiteLogo from './WhiteLogo.svg';
 import googleButton from './googleButton.svg';
 // import background from './welcome-pg.png';
@@ -10,18 +10,6 @@ import { Grid, Typography } from '@material-ui/core';
 import { RegularBtn } from '../../components/Buttons/RegularBtn';
 interface WelcomeProps {}
 
-// const useStyles = makeStyles((theme: Theme) =>
-//     createStyles({
-//         root: {
-//             flexGrow: 1,
-//         },
-//         paper: {
-//             padding: theme.spacing(2),
-//             textAlign: 'center',
-//             color: theme.palette.text.secondary,
-//         },
-//     }),
-// );
 const WelcomeScreen: React.FunctionComponent<WelcomeProps> = (props) => {
     // const classes = useStyles();
     /* var config={
@@ -31,26 +19,26 @@ const WelcomeScreen: React.FunctionComponent<WelcomeProps> = (props) => {
    project:"",
    storeageBucket:"",
    messageingSenderid:""
-};*/const { push } = useHistory();
+};*/ const {
+        push,
+    } = useHistory();
     const GoogleSignin = () => {
-        
-        auth.doGoogleSignUp().then((u)=>{
-            
-            if(u.additionalUserInfo?.isNewUser){
-                push('/create-profile');
-            } else {
-                push('/home')
-            }
-    
-        }).catch((error) => {
-            console.log(error);
-            window.alert('Failed to login');
-        });
+        auth.doGoogleSignUp()
+            .then((u) => {
+                if (u.additionalUserInfo?.isNewUser) {
+                    push('/create-profile');
+                } else {
+                    push('/home');
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+                window.alert('Failed to login');
+            });
     };
     return (
         <html>
             <body>
-                {/* <img src ={background} width='auto'> */}
                 <div className="welcomepg">
                     <Grid container spacing={10} direction="column" alignItems="center" justify="center">
                         <Grid item>
@@ -89,7 +77,7 @@ const WelcomeScreen: React.FunctionComponent<WelcomeProps> = (props) => {
                                             width="22px"
                                             alt="Google"
                                             style={{ marginLeft: '10px' }}
-                                        />    
+                                        />
                                     </RegularBtn>
                                     <br></br>
                                     <br />
@@ -99,18 +87,15 @@ const WelcomeScreen: React.FunctionComponent<WelcomeProps> = (props) => {
                                                 // className="sign-btn"
                                                 colorType="orange"
                                                 style={{
-                                                    // color: '#fafafa',
                                                     borderRadius: '20px',
                                                     width: '195px',
                                                     height: '45px',
-                                                    // background: '#f56920',
                                                 }}
                                             >
                                                 <div style={{ color: '#fafafa' }}>Sign up now!</div>
                                             </RegularBtn>
                                         </a>
                                     </div>
-                                    {/* <br></br> */}
                                     <hr style={{ width: '500px' }} />
                                     <div style={{ paddingBottom: '20%' }}>
                                         <a href="/sign-in">

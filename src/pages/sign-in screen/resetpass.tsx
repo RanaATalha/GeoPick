@@ -1,13 +1,11 @@
 import { Grid, Typography } from '@material-ui/core';
 import * as React from 'react';
-import Checkbox from '../../components/Inputs/Checkbox';
 import TextField from '../../components/Inputs/TextField';
-import PasswordField from '../../components/Inputs/PasswordField';
 import Card from '../../components/Layouts/Card';
 import { RegularBtn } from '../../components/Buttons/RegularBtn';
 import { auth } from '../../firebase';
 import { useForm } from 'react-hook-form';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 export interface ResetProps {}
 
 export default function ResetScreens() {
@@ -52,7 +50,8 @@ const ResetFields = ({ register, errors }: { register: any; errors: any }) => {
                         },
                     })}
                     error={errors.email ? true : false}
-                    helperText={errors.email ? 'invalid Email ID' : null}/>
+                    helperText={errors.email ? 'invalid Email ID' : null}
+                />
             </Grid>
         </Grid>
     );
@@ -60,11 +59,10 @@ const ResetFields = ({ register, errors }: { register: any; errors: any }) => {
 
 const ResetForm = () => {
     const { handleSubmit, errors, register } = useForm();
-    const { push } = useHistory();
     const onSubmit = (data: any) => {
         console.log('trying ');
         auth.doPasswordReset(data.email)
-            .then((u) => {
+            .then(() => {
                 console.log('reset password link send to your mail');
                 alert('reset password link sent to your mail');
             })
