@@ -15,7 +15,7 @@ function App(): JSX.Element {
     return (
         <div className="App">
             <Router>
-                <Nav />
+                {/* <Nav /> */}
                 <Switch>
                     <Route exact path="/welcome">
                         <WelcomeScreen />
