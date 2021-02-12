@@ -10,7 +10,7 @@ import BottomNavigation from '../../components/NavBar/navbar';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { auth } from '../../firebase';
 import { Link } from 'react-router-dom';
-
+import SinglePostNew from '../../components/Display/singlePostNew';
 export interface HomeScreenProps {}
 export interface HomeScreenState {
     posts: any;
@@ -70,7 +70,7 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
                         <Avatar alt={this.state.user.User_name} src={this.state.user.Avatar} />
                     </IconButton>
                 </Toolbar>
-
+                <SinglePostNew />
                 <Feed />
                 <BottomNavigation />
             </div>
