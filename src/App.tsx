@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import WelcomeScreen from './pages/welcome screen';
 import SignInScreen from './pages/sign-in screen/SignInForm';
 import SignUpScreen from './pages/sign-up screen/SignupForm';
@@ -15,7 +15,7 @@ function App(): JSX.Element {
     return (
         <div className="App">
             <Router>
-                <Nav />
+                {/* <Nav /> */}
                 <Switch>
                     <Route exact path="/welcome">
                         <WelcomeScreen />
@@ -48,42 +48,42 @@ function App(): JSX.Element {
     );
 }
 
-function Nav() {
-    return (
-        <div>
-            <nav>
-                <ul>
-                    <li>
-                        <Link to="/welcome">Welcome</Link>
-                    </li>
-                    <li>
-                        <Link to="/sign-in">Sign-In</Link>
-                    </li>
-                    <li>
-                        <Link to="/sign-up">Sign-Up</Link>
-                    </li>
-                    <li>
-                        <Link to="/create-profile">Create Profile</Link>
-                    </li>
-                    <li>
-                        <Link to="/Set-password">Set new password</Link>
-                    </li>
-                    <li>
-                        <Link to="/ReSet-password">reset password </Link>
-                    </li>
-                    <li>
-                        <Link to="/home">Home Screen</Link>
-                    </li>
-                    <li>
-                        <Link to="/post">Post View Screen</Link>
-                    </li>
-                    <li>
-                        <Link to="/terms">Terms and Conditions</Link>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    );
-}
+// function Nav() {
+//     return (
+//         <div>
+//             <nav>
+//                 <ul>
+//                     <li>
+//                         <Link to="/welcome">Welcome</Link>
+//                     </li>
+//                     <li>
+//                         <Link to="/sign-in">Sign-In</Link>
+//                     </li>
+//                     <li>
+//                         <Link to="/sign-up">Sign-Up</Link>
+//                     </li>
+//                     <li>
+//                         <Link to="/create-profile">Create Profile</Link>
+//                     </li>
+//                     <li>
+//                         <Link to="/Set-password">Set new password</Link>
+//                     </li>
+//                     <li>
+//                         <Link to="/ReSet-password">reset password </Link>
+//                     </li>
+//                     <li>
+//                         <Link to="/home">Home Screen</Link>
+//                     </li>
+//                     <li>
+//                         <Link to="/post">Post View Screen</Link>
+//                     </li>
+//                     <li>
+//                         <Link to="/terms">Terms and Conditions</Link>
+//                     </li>
+//                 </ul>
+//             </nav>
+//         </div>
+//     );
+// }
 
 export default App;
