@@ -31,7 +31,55 @@ export default class CreateProfileScreen extends React.Component<CreateProfilePr
         console.log(this.state.img);
         const user = auth.checkUserLoggedIn();
 
-        
+        if (!user) return;
+        const image = new Image();
+        let fr = new FileReader();
+
+        fr.onload = async function () {
+            if (fr !== null && typeof fr.result == 'string') {
+                image.src = fr.result;
+                console.log('in frload');
+                console.log('frwidg', image.width);
+                console.log('frhigg', image.height);
+            }
+        };
+        fr.readAsDataURL(file);
+
+        var width = 0;
+        var height = 0;
+
+        image.onload = function () {
+            height = image.height;
+            width = image.width;
+        };
+
+        setTimeout(() => {
+            Compress.imageFileResizer(
+                file,
+                width,
+                height,
+                'JPEG',
+                50,
+                0,
+                async (uri) => {
+                    if (typeof uri === 'string') {
+                        const urinew = uri.split('base64,')[1];
+                        storage
+                            .ref(`/Images/${user.uid}/Avatar/${file.name}`)
+                            .putString(urinew, 'base64')
+                            .then((data) => {
+                                data.ref.getDownloadURL().then((url) => {
+                                    this.setState({ imgurl: url });
+                                    firebase.firestore().collection('users/').doc(`${user.uid}/`).update({
+                                        Avatar: url,
+                                    });
+                                });
+                            });
+                    }
+                },
+                'base64',
+            );
+        }, 2500);
     };
 
     public render(): JSX.Element {
@@ -59,6 +107,7 @@ const CreateProfileFields = ({ register, errors, control }: { register: any; err
     const handleChange = (event: any) => {
         console.log(event.target.value);
         console.log(usernameExists);
+        ////////// CHECKING THE USERNAME AND ALL HERE /////////////////////////////////////////////////////////////////
         firebase
             .firestore()
             .collection('users/')
@@ -114,54 +163,6 @@ const CreateProfileForm = ({ img }: { img: string }) => {
         const user = auth.checkUserLoggedIn();
         if (user !== undefined) {
             if (errors !== {}) {
-                const image = new Image();
-                let fr = new FileReader();
-
-                fr.onload = async function () {
-                    if (fr !== null && typeof fr.result == 'string') {
-                        image.src = fr.result;
-                        console.log('in frload');
-                        console.log('frwidg', image.width);
-                        console.log('frhigg', image.height);
-                    }
-                };
-                fr.readAsDataURL(this.state.img);
-
-                var width = 0;
-                var height = 0;
-
-                image.onload = function () {
-                    height = image.height;
-                    width = image.width;
-                };
-
-                setTimeout(() => {
-                    Compress.imageFileResizer(
-                        file,
-                        width,
-                        height,
-                        'JPEG',
-                        50,
-                        0,
-                        async (uri) => {
-                            if (typeof uri === 'string') {
-                                const urinew = uri.split('base64,')[1];
-                                storage
-                                    .ref(`/Images/${user.uid}/Avatar/${file.name}`)
-                                    .putString(urinew, 'base64')
-                                    .then((data) => {
-                                        data.ref.getDownloadURL().then((url) => {
-                                            this.setState({ imgurl: url });
-                                            firebase.firestore().collection('users/').doc(`${user.uid}/`).update({
-                                                Avatar: url,
-                                            });
-                                        });
-                                    });
-                            }
-                        },
-                        'base64',
-                    );
-                }, 2500);
                 firebase
                     .firestore()
                     .collection('users/')

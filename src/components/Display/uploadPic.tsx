@@ -5,7 +5,7 @@ import { auth } from '../../firebase';
 import Compress from 'react-image-file-resizer';
 import { storage } from '../../firebase/firebase';
 import firebase from 'firebase';
-import { IconButton } from '@material-ui/core';
+import { Fab, IconButton } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function uploadPic(props: any) {
+export default function UploadPic(props: any) {
     const [img, setImg] = React.useState({});
     const [url, setUrl] = React.useState('');
     const upload = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,8 +83,19 @@ export default function uploadPic(props: any) {
     };
 
     return (
-        <IconButton color="secondary" aria-label="add" className={classes.fabButton} onClick={upload}>
-            <CameraAltRoundedIcon  />
-        </IconButton>
+        <div>
+            <input
+                accept="image/*"
+                // className={classes.input}
+                id="upload-image"
+                type="file"
+                onChange={props.onChange}
+            />
+            <label htmlFor="upload-image">
+                <Fab color="primary" aria-label="upload picture" component="span">
+                    <CameraAltRoundedIcon />
+                </Fab>
+            </label>
+        </div>
     );
 }

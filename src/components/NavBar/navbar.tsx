@@ -5,7 +5,7 @@ import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import ExploreRoundedIcon from '@material-ui/icons/ExploreRounded';
 import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
-import uploadPic from '../Display/uploadPic';
+import UploadPic from '../Display/uploadPic';
 import { AppBar, Fab, IconButton, Toolbar } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -69,7 +69,7 @@ export default function LabelBottomNavigation() {
                 <IconButton color="inherit" aria-label="open drawer">
                     <SearchRoundedIcon />
                 </IconButton>
-                <uploadPic onChange={props.onChange}/>
+                <UploadPic/>
                 <div className={classes.grow} />
                 <IconButton color="inherit">
                     <ExploreRoundedIcon/>

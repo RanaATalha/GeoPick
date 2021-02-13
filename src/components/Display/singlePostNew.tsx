@@ -22,16 +22,16 @@ import fb from 'firebase/app';
 
 export interface SinglePostNewProps {
     username?: string;
-    postPic: string;
+    postPic?: string;
     date?: string;
     avatar?: string;
     uid?: string;
     likes_count?: number;
     caption?: string;
     id?: string;
-    sharedURL: string;
-    hidden: boolean;
-    comments_count: number;
+    sharedURL?: string;
+    hidden?: boolean;
+    comments_count?: number;
 }
 
 export interface SinglePostNewState {
@@ -43,31 +43,6 @@ export interface SinglePostNewState {
     path_name: string;
 }
 
-// const useStyles = makeStyles((theme: Theme) =>
-//     createStyles({
-//         root: {
-//             maxWidth: 345,
-//             margin: 'auto',
-//         },
-//         media: {
-//             height: 0,
-//             paddingTop: '56.25%', // 16:9
-//         },
-//         expand: {
-//             transform: 'rotate(0deg)',
-//             marginLeft: 'auto',
-//             transition: theme.transitions.create('transform', {
-//                 duration: theme.transitions.duration.shortest,
-//             }),
-//         },
-//         expandOpen: {
-//             transform: 'rotate(180deg)',
-//         },
-//         avatar: {
-//             backgroundColor: '#f56920',
-//         },
-//     }),
-// );
 
 class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
     constructor(SinglePostNewProps: any) {
@@ -104,7 +79,7 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
     };
     share_area = React.createRef();
 
-    componentDidMount() {
+    componentDidUpdate() {
         firebase
             .firestore()
             .collection('users')
@@ -112,7 +87,6 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
             .get()
             .then((querySnapshot) => {
                 const data = querySnapshot.data();
-                // console.log(data);
                 this.setState({
                     post_user: data,
                 });
