@@ -11,6 +11,7 @@ import { Terms } from './pages/terms/index';
 import { HomeScreen } from './pages/home-screen/home';
 import PostViewScreen from './pages/post-view';
 import HelpandFeedback from './pages/helpandfeedback';
+import SettingsScreen from './pages/settings-screen/SettingsMenu';
 
 function App(): JSX.Element {
     return (
@@ -44,6 +45,9 @@ function App(): JSX.Element {
                     </Route>
                     <Route exact path="/terms">
                         <Terms />
+                    </Route>
+                    <Route exact path="/settings">
+                        <SettingsScreen />
                     </Route>
                     <Route path="/post/:catId" component={PostViewScreen}></Route>
                 </Switch>

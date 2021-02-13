@@ -2,7 +2,7 @@
 // import FavoriteIcon from '@material-ui/icons/Favorite';
 // import AddCommentRoundedIcon from '@material-ui/icons/AddCommentRounded';
 // import * as React from 'react';
-// import { Component } from 'react';
+import { Component } from 'react';
 // import './singlePostStyles.scss';
 // import { checkUserLoggedIn } from '../../firebase/auth';
 // import firebase from 'firebase';
@@ -11,30 +11,30 @@
 // import { Link } from 'react-router-dom';
 // import SharePost from './sharePost';
 
-// export interface SinglePostProps {
-//     username?: string;
-//     postPic?: string;
-//     date?: string;
-//     avatar?: string;
-//     uid?: string;
-//     likes_count?: number;
-//     caption?: string;
-//     id?: string;
-//     sharedURL?: string;
-//     hidden?: boolean;
-//     comments_count?: number;
-// }
+export interface SinglePostProps {
+    username?: string;
+    postPic?: string;
+    date?: string;
+    avatar?: string;
+    uid?: string;
+    likes_count?: number;
+    caption?: string;
+    id?: string;
+    sharedURL?: string;
+    hidden?: boolean;
+    comments_count?: number;
+}
 
-// export interface SinglePostState {
-//     favourited: boolean;
-//     user: any;
-//     post_user: any;
-//     open_share: boolean;
-//     isOpen: boolean;
-//     path_name: string;
-// }
+export interface SinglePostState {
+    favourited: boolean;
+    user: any;
+    post_user: any;
+    open_share: boolean;
+    isOpen: boolean;
+    path_name: string;
+}
 
-// class SinglePost extends Component<SinglePostProps, SinglePostState> {
+class SinglePost extends Component<SinglePostProps, SinglePostState> {
 //     constructor(SinglePostProps: any) {
 //         super(SinglePostProps);
 //         this.state = {
@@ -182,8 +182,7 @@
 //             // {/* // </Container> */}
 //         );
 //     }
-// }
+}
 
 // export default SinglePost;
-
 export {};

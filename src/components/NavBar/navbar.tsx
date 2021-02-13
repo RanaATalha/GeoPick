@@ -3,9 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
-import CameraAltRoundedIcon from '@material-ui/icons/CameraAltRounded';
 import ExploreRoundedIcon from '@material-ui/icons/ExploreRounded';
 import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
+import UploadIcon from '../Display/uploadIcon';
 import { AppBar, Fab, IconButton, Toolbar } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -57,6 +57,8 @@ export default function LabelBottomNavigation() {
     //         <BottomNavigationAction label="Settings" value="Settings" icon={<SettingsRoundedIcon />} />
     //     </BottomNavigation>
     // );
+
+    
     const classes = useStyles();
     return (
         <AppBar position="fixed" color="primary" className={classes.appBar}>
@@ -67,12 +69,10 @@ export default function LabelBottomNavigation() {
                 <IconButton color="inherit" aria-label="open drawer">
                     <SearchRoundedIcon />
                 </IconButton>
-                <Fab color="secondary" aria-label="add" className={classes.fabButton}>
-                    <CameraAltRoundedIcon />
-                </Fab>
+                <UploadIcon/>
                 <div className={classes.grow} />
                 <IconButton color="inherit">
-                    <ExploreRoundedIcon />
+                    <ExploreRoundedIcon/>
                 </IconButton>
                 <IconButton color="inherit">
                     <SettingsRoundedIcon />
