@@ -10,6 +10,7 @@ import ReSetNewPasswordScreen from './pages/sign-in screen/resetpass';
 import { Terms } from './pages/terms/index';
 import { HomeScreen } from './pages/home-screen/home';
 import PostViewScreen from './pages/post-view';
+import HelpandFeedback from './pages/helpandfeedback';
 
 function App(): JSX.Element {
     return (
@@ -37,6 +38,9 @@ function App(): JSX.Element {
                     </Route>
                     <Route exact path="/home">
                         <HomeScreen />
+                    </Route>
+                    <Route exact path="/helpnfeedback">
+                        <HelpandFeedback />
                     </Route>
                     <Route exact path="/terms">
                         <Terms />
