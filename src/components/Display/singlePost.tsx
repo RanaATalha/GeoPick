@@ -184,4 +184,5 @@ class SinglePost extends Component<SinglePostProps, SinglePostState> {
 //     }
 }
 
-export default SinglePost;
+// export default SinglePost;
+export {};

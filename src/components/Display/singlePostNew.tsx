@@ -43,7 +43,6 @@ export interface SinglePostNewState {
     path_name: string;
 }
 
-
 class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
     constructor(SinglePostNewProps: any) {
         super(SinglePostNewProps);
@@ -105,14 +104,14 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
         const path = window.location.href.split('/');
         const root = path[path.length - 2];
         return (
-            <Card style={{ maxWidth: 345, margin: 'auto' }}>
+            <Card style={{ maxWidth: 400, margin: 'auto', marginBlock: '20px', background: '#1b1b1b' }}>
                 <CardHeader
                     avatar={
                         <Avatar
                             aria-label="recipe"
                             alt={this.state.post_user.User_name}
                             src={this.state.post_user.Avatar}
-                            style={{ backgroundColor: '#f56920' }}
+                            style={{ backgroundColor: 'auto' }}
                         >
                             {this.state.post_user.User_name}
                         </Avatar>
@@ -124,15 +123,21 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
                     }
                     title={this.state.post_user.User_name}
                     subheader={this.props.date}
-                    style={{ textAlign: 'left' }}
+                    style={{ textAlign: 'left', color: '#fafafa' }}
                 />
                 <CardMedia
                     image={this.props.postPic}
                     title="Paella dish"
-                    style={{ borderRadius: '20px 20px 0px 0px', height: 0, paddingTop: '56.25%' }}
+                    style={{
+                        borderRadius: '20px 20px 20px 20px',
+                        height: 0,
+                        paddingTop: '56.25%',
+                        marginLeft: '10px',
+                        marginRight: '10px',
+                    }}
                 />
                 <CardContent>
-                    <Typography variant="body2" color="textSecondary" component="p">
+                    <Typography variant="body2" color="textSecondary" component="p" style={{ color: '#fafafa' }}>
                         {this.props.caption}
                     </Typography>
                 </CardContent>

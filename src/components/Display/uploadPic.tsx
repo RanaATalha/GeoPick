@@ -19,9 +19,22 @@ const useStyles = makeStyles((theme) => ({
         width: theme.spacing(24),
         height: theme.spacing(24),
     },
+    input: {
+        display: 'none',
+    },
+    fabButton: {
+        position: 'absolute',
+        zIndex: 1,
+        top: -30,
+        left: 0,
+        right: 0,
+        margin: '0 auto',
+    },
 }));
 
 export default function UploadPic(props: any) {
+    const classes = useStyles();
+
     const [img, setImg] = React.useState({});
     const [url, setUrl] = React.useState('');
     const upload = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,18 +96,23 @@ export default function UploadPic(props: any) {
     };
 
     return (
-        <div>
-            <input
+        <div className={classes.fabButton}>
+            {/* <input
                 accept="image/*"
-                // className={classes.input}
-                id="upload-image"
+                className = {classes.input}
+                id="icon-button-file"
                 type="file"
                 onChange={props.onChange}
             />
-            <label htmlFor="upload-image">
-                <Fab color="primary" aria-label="upload picture" component="span">
+            <label htmlFor="icon-button-file">
+                <Fab color="primary" aria-label="add" >
                     <CameraAltRoundedIcon />
                 </Fab>
+            </label> */}
+
+            <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
+            <label htmlFor="icon-button-file">
+                Take Photo
             </label>
         </div>
     );
