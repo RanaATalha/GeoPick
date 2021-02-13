@@ -22,16 +22,16 @@ import fb from 'firebase/app';
 
 export interface SinglePostNewProps {
     username?: string;
-    postPic: string;
+    postPic?: string;
     date?: string;
     avatar?: string;
     uid?: string;
     likes_count?: number;
     caption?: string;
     id?: string;
-    sharedURL: string;
-    hidden: boolean;
-    comments_count: number;
+    sharedURL?: string;
+    hidden?: boolean;
+    comments_count?: number;
 }
 
 export interface SinglePostNewState {
