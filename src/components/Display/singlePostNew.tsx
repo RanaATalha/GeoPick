@@ -86,7 +86,6 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
             .get()
             .then((querySnapshot) => {
                 const data = querySnapshot.data();
-                // console.log(data);
                 this.setState({
                     post_user: data,
                 });
