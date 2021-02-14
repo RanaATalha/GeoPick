@@ -1,3 +1,4 @@
+/* eslint-disable no-lone-blocks */
 import { Avatar, Grid, Card, Typography, IconButton, Container, Divider } from '@material-ui/core';
 import * as React from 'react';
 import InputBase from '@material-ui/core/InputBase';
@@ -7,6 +8,11 @@ import { Component } from 'react';
 import { checkUserLoggedIn } from '../../firebase/auth';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import SharePost from '../../components/Display/sharePost';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 export interface PostViewState {
     newComment: string;
@@ -166,11 +172,138 @@ export default class PostViewScreen extends Component<PostViewProps, PostViewSta
                     justifyContent: 'center',
                     alignContent: 'center',
                     margin: 'auto',
-                    width: '700px',
+                    width: 'auto',
                     padding: 'auto',
                 }}
             >
-                <Grid container direction="row" spacing={1} justify="center">
+                <Card
+                    style={{
+                        maxHeight: 800,
+                        maxWidth: 600,
+                        margin: 'auto',
+                        marginBlock: '20px',
+                        background: '#1b1b1b',
+                        borderRadius: '20px',
+                    }}
+                >
+                    <CardHeader
+                        color="#fafafa"
+                        avatar={
+                            <Avatar
+                                aria-label="recipe"
+                                alt={this.state.post_user.User_name}
+                                src={this.state.post_user.Avatar}
+                                style={{ backgroundColor: 'auto' }}
+                            >
+                                {this.state.post_user.User_name}
+                            </Avatar>
+                        }
+                        action={
+                            <IconButton aria-label="settings" style={{ color: '#fafafa' }}>
+                                <MoreVertIcon />
+                            </IconButton>
+                        }
+                        title={<Typography variant="h6">{this.state.post_user.User_name}</Typography>}
+                        subheader={
+                            <Typography style={{ color: '#fafafa', fontSize: '10px' }}>
+                                {this.state.post_time}
+                            </Typography>
+                        }
+                        style={{ textAlign: 'left', color: '#fafafa' }}
+                    />
+                    <CardMedia
+                        image={this.state.Image}
+                        title="Paella dish"
+                        style={{
+                            borderRadius: '20px 20px 20px 20px',
+                            height: 0,
+                            paddingTop: '56.25%',
+                            marginLeft: '10px',
+                            marginRight: '10px',
+                        }}
+                    />
+                    <CardContent>
+                        <Typography variant="body2" color="textSecondary" component="p" style={{ color: '#fafafa' }}>
+                            {this.state.caption}
+                        </Typography>
+                    </CardContent>
+                    <CardActions disableSpacing>
+                        <IconButton
+                            aria-label="add to favorites"
+                            style={this.state.favourited ? { color: '#dc143c' } : { color: '#FAFAFA' }}
+                            onClick={this.handleColorChange}
+                        >
+                            <FavoriteIcon />
+                            {<Typography>{this.state.likes_count}</Typography>}
+                        </IconButton>
+                        <IconButton aria-label="share">
+                            <SharePost sharedURL={window.location.href} />
+                        </IconButton>
+                        {/* <IconButton
+                className={clsx(classes.expand, {
+                    [classes.expandOpen]: expanded,
+                })}
+                onClick={handleExpandClick}
+                aria-expanded={expanded}
+                aria-label="show more"
+            >
+                <ExpandMoreIcon />
+            </IconButton> */}
+                    </CardActions>
+                </Card>
+                <Divider variant="middle" style={{ background: '#fafafa', margin: '10px' }} />
+                <Grid container spacing={2} justify="flex-start" style={{ justifyItems: 'normal', marginLeft: '10%' }}>
+                    <Grid item style={{ color: 'white', fontSize: '12' }}>
+                        <Typography variant="h4" style={{ marginBottom: '20px', color: '#f56920' }}>
+                            Latest comments
+                        </Typography>
+                        <ul>
+                            {this.state.comments.map((val: string, index: any) => {
+                                return (
+                                    <li key={index}>
+                                        <Typography variant="body2" style={{ textAlign: 'left' }}>
+                                            {val}
+                                        </Typography>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </Grid>
+                </Grid>
+                <InputBase
+                    onChange={handleChange}
+                    placeholder="Start typing..."
+                    style={{
+                        width: '80%',
+                        // marginRight: '-12%',
+                        margin: 'auto',
+                        marginTop: '20px',
+                        marginBottom: '20px',
+                        textDecorationColor: '#FAFAFA',
+                        border: '1px solid #FAFAFA',
+                        borderRadius: '10px',
+                        height: '50px',
+                        padding: '10px',
+                        color: '#fafafa',
+                    }}
+                    endAdornment={
+                        <IconButton
+                            onClick={handleClick}
+                            aria-label="upload"
+                            type="submit"
+                            style={{ color: '#FAFAFA', alignContent: 'end' }}
+                        >
+                            <PublishRoundedIcon />
+                        </IconButton>
+                    }
+                />
+            </Card>
+        );
+    }
+}
+
+{
+    /* <Grid container direction="row" spacing={1} justify="center">
                     <Grid
                         item
                         justify="flex-start"
@@ -242,54 +375,5 @@ export default class PostViewScreen extends Component<PostViewProps, PostViewSta
                     <Grid item xs={5}>
                         <SharePost sharedURL={window.location.href} />
                     </Grid>
-                </Grid>
-                <Divider variant="middle" style={{ background: '#fafafa', margin: '10px' }} />
-                <Grid container spacing={2} justify="flex-start" style={{ justifyItems: 'normal', marginLeft: '10%' }}>
-                    <Grid item style={{ color: 'white', fontSize: '12' }}>
-                        <Typography variant="h4" style={{ marginBottom: '20px', color: '#f56920' }}>
-                            Latest comments
-                        </Typography>
-                        <ul>
-                            {this.state.comments.map((val: string, index: any) => {
-                                return (
-                                    <li key={index}>
-                                        <Typography variant="body2" style={{ textAlign: 'left' }}>
-                                            {val}
-                                        </Typography>
-                                    </li>
-                                );
-                            })}
-                        </ul>
-                    </Grid>
-                </Grid>
-                <InputBase
-                    onChange={handleChange}
-                    placeholder="Start typing..."
-                    style={{
-                        width: '80%',
-                        // marginRight: '-12%',
-                        margin: 'auto',
-                        marginTop: '20px',
-                        marginBottom: '20px',
-                        textDecorationColor: '#FAFAFA',
-                        border: '1px solid #FAFAFA',
-                        borderRadius: '10px',
-                        height: '50px',
-                        padding: '10px',
-                        color: '#fafafa',
-                    }}
-                    endAdornment={
-                        <IconButton
-                            onClick={handleClick}
-                            aria-label="upload"
-                            type="submit"
-                            style={{ color: '#FAFAFA', alignContent: 'end' }}
-                        >
-                            <PublishRoundedIcon />
-                        </IconButton>
-                    }
-                />
-            </Card>
-        );
-    }
+                </Grid> */
 }
