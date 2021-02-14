@@ -18,8 +18,8 @@ import './singlePostStyles.scss';
 import { checkUserLoggedIn } from '../../firebase/auth';
 import firebase from 'firebase';
 import fb from 'firebase/app';
-// import GuessTheLocationPlay from '../Game/guessPlay';
-
+import GuessTheLocationPlay from '../Game/guessPlay';
+import { Box } from '@material-ui/core';
 export interface SinglePostNewProps {
     username?: string;
     postPic?: string;
@@ -42,7 +42,6 @@ export interface SinglePostNewState {
     isOpen: boolean;
     path_name: string;
 }
-
 class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
     constructor(SinglePostNewProps: any) {
         super(SinglePostNewProps);
@@ -78,8 +77,8 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
     };
     share_area = React.createRef();
 
-    componentDidUpdate() {
-        firebase
+    async componentDidUpdate() {
+        await firebase
             .firestore()
             .collection('users')
             .doc(this.props.uid)
@@ -104,7 +103,17 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
         const path = window.location.href.split('/');
         const root = path[path.length - 2];
         return (
-            <Card style={{ maxWidth: 400, margin: 'auto', marginBlock: '20px', background: '#1b1b1b' }}>
+            <Card
+                style={{
+                    maxHeight: 800,
+                    maxWidth: 600,
+                    margin: 'auto',
+                    marginBlock: '20px',
+                    background: '#1b1b1b',
+                    // border: '3px solid #fafafa',
+                    borderRadius: '20px',
+                }}
+            >
                 <CardHeader
                     avatar={
                         <Avatar
@@ -117,17 +126,19 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
                         </Avatar>
                     }
                     action={
-                        <IconButton aria-label="settings">
+                        <IconButton aria-label="settings" style={{ color: '#fafafa' }}>
                             <MoreVertIcon />
                         </IconButton>
                     }
-                    title={this.state.post_user.User_name}
-                    subheader={this.props.date}
+                    title={<Typography variant="h6">{this.state.post_user.User_name}</Typography>}
+                    subheader={
+                        <Typography style={{ color: '#fafafa', fontSize: '10px' }}>{this.props.date}</Typography>
+                    }
                     style={{ textAlign: 'left', color: '#fafafa' }}
                 />
                 <CardMedia
                     image={this.props.postPic}
-                    title="Paella dish"
+                    title={`A Photo by ${this.state.post_user.User_name}`}
                     style={{
                         borderRadius: '20px 20px 20px 20px',
                         height: 0,
@@ -141,6 +152,7 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
                         {this.props.caption}
                     </Typography>
                 </CardContent>
+                <Box m={-2} />
                 <CardActions disableSpacing>
                     <IconButton
                         aria-label="add to favorites"
@@ -148,27 +160,32 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
                         onClick={this.handleColorChange}
                     >
                         <FavoriteIcon />
-                        {this.props.likes_count}
+                        {<Typography>{this.props.likes_count}</Typography>}
                     </IconButton>
+                    <Link to={{ pathname: `/post/${this.props.id}`, state: this.props.uid }}>
+                        <IconButton aria-label="add a comment" style={{ color: '#FAFAFA', position: 'relative' }}>
+                            <AddCommentRoundedIcon />
+                            <span>{<Typography>{this.props.comments_count}</Typography>}</span>
+                        </IconButton>
+                    </Link>
+                    <Box m={1} />
                     <IconButton aria-label="share">
                         <SharePost sharedURL={`${root}${this.state.path_name}`} />
                     </IconButton>
-                    <Link to={{ pathname: `/post/${this.props.id}`, state: this.props.uid }}>
-                        <IconButton aria-label="add a comment" style={{ color: '#FAFAFA' }}>
-                            <AddCommentRoundedIcon />
-                            <span>{this.props.comments_count}</span>
-                        </IconButton>
-                    </Link>
+                    {/* <div>
+                        <GuessTheLocationPlay city1="Dubai" city2="Paris" city3="Tokyo" />
+                    </div> */}
+
                     {/* <IconButton
-                    className={clsx(classes.expand, {
-                        [classes.expandOpen]: expanded,
-                    })}
-                    onClick={handleExpandClick}
-                    aria-expanded={expanded}
-                    aria-label="show more"
-                >
-                    <ExpandMoreIcon />
-                </IconButton> */}
+                        className={clsx(classes.expand, {
+                            [classes.expandOpen]: expanded,
+                        })}
+                        onClick={handleExpandClick}
+                        aria-expanded={expanded}
+                        aria-label="show more"
+                    >
+                        <ExpandMoreIcon />
+                    </IconButton> */}
                 </CardActions>
             </Card>
         );

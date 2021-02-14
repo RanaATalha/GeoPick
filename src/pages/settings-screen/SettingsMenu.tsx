@@ -1,62 +1,116 @@
 import * as React from 'react';
 import Card from '../../components/Layouts/Card';
+import { Component } from 'react';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Divider from '@material-ui/core/Divider';
-import {Grid} from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import WhiteLogo from '../welcome screen/WhiteLogo.svg';
-
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-      maxWidth: 360,
-      backgroundColor: theme.palette.background.paper,
-    },
-  }),
-);
-
-
-export default function SettingsScreen() {
-    
-    return (
-        <div style={{ background: '#1b1b1b' }}>
-            <img src={WhiteLogo} alt="GeoPicK" className="WhiteLogo" />
-            <Card background="white" title="Settings" split={1} >
-                <Grid container spacing={4} direction="row" alignItems="center" justify="center">
-                    <SettingsMenu />
-                </Grid>
-            </Card>
-            <br />
-        </div>
-    );
+import './styles.scss';
+import { checkUserLoggedIn } from '../../firebase/auth';
+import { Avatar, IconButton, Toolbar } from '@material-ui/core';
+import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
+import NotificationImportantRoundedIcon from '@material-ui/icons/NotificationImportantRounded';
+import AccessibilityNewRoundedIcon from '@material-ui/icons/AccessibilityNewRounded';
+import HelpRoundedIcon from '@material-ui/icons/HelpRounded';
+import GavelRoundedIcon from '@material-ui/icons/GavelRounded';
+export interface SettingsMenuProps {}
+export interface SettingsMenuState {
+    user: any;
 }
 
-const SettingsMenu = () => {
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            width: '100%',
+            maxWidth: 360,
+            // backgroundColor: theme.palette.background.paper,
+            backgroundColor: '#fafafa',
+        },
+    }),
+);
 
+const SettingsMenu = () => {
     const classes = useStyles();
-    return(
-        <List component="nav" className={classes.root} aria-label="mailbox folders">
-        <ListItem button>
-            <ListItemText primary="Account Settings" />
-        </ListItem>
-        <Divider />
-        <ListItem button divider>
-            <ListItemText primary="Notification Settings" />
-        </ListItem>
-        <ListItem button>
-            <ListItemText primary="Accessibility Settings" />
-        </ListItem>
-        <Divider light />
-        <ListItem button>
-            <ListItemText primary="Help and Feedback" />
-        </ListItem>
-        <ListItem button>
-            <ListItemText primary="Terms and Conditions" />
-        </ListItem>
-        </List>
-    )
+    return (
+        <div style={{ width: '100%', height: '100%' }}>
+            <List component="nav" className={classes.root} aria-label="mailbox folders">
+                <ListItem button>
+                    <ListItemAvatar>
+                        <Avatar style={{ background: '#fafafa' }}>
+                            <AccountCircleRoundedIcon style={{ color: 'black' }} />
+                        </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText primary="Account Settings" />
+                </ListItem>
+                <Divider />
+                <ListItem button divider>
+                    <ListItemAvatar>
+                        <Avatar style={{ background: '#fafafa' }}>
+                            <NotificationImportantRoundedIcon style={{ color: 'black' }} />
+                        </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText primary="Notification Settings" />
+                </ListItem>
+                <ListItem button divider>
+                    <ListItemAvatar>
+                        <Avatar style={{ background: '#fafafa' }}>
+                            <AccessibilityNewRoundedIcon style={{ color: 'black' }} />
+                        </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText primary="Accessibility Settings" />
+                </ListItem>
+                <ListItem button divider>
+                    <ListItemAvatar>
+                        <Avatar style={{ background: '#fafafa' }}>
+                            <HelpRoundedIcon style={{ color: 'black' }} />
+                        </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText primary="Help and Feedback" />
+                </ListItem>
+                <ListItem button divider>
+                    <ListItemAvatar>
+                        <Avatar style={{ background: '#fafafa' }}>
+                            <GavelRoundedIcon style={{ color: 'black' }} />
+                        </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText primary="Terms and Conditions" />
+                </ListItem>
+            </List>
+        </div>
+    );
+};
+
+export default class SettingsMenuScreen extends Component<SettingsMenuProps, SettingsMenuState> {
+    constructor(SettingsMenuProps: any) {
+        super(SettingsMenuProps);
+        this.state = {
+            user: checkUserLoggedIn(),
+        };
+    }
+    render() {
+        return (
+            <div style={{ background: '#1b1b1b' }} className="bgg">
+                <Toolbar>
+                    <img src={WhiteLogo} alt="GeoPicK" className="WhiteLogo" />
+                    <IconButton edge="end">
+                        <Avatar alt={this.state.user.User_name} src={this.state.user.Avatar} />
+                    </IconButton>
+                </Toolbar>
+                <div style={{ color: '#fafafa' }}>
+                    <Card background="#fafafa" title="Settings" split={1}>
+                        <div style={{ color: 'black' }}>
+                            <Grid container spacing={4} direction="row" alignItems="center" justify="center">
+                                <SettingsMenu />
+                            </Grid>
+                        </div>
+                    </Card>
+                </div>
+                <br />
+            </div>
+        );
+    }
 }

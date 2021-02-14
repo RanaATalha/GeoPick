@@ -50,19 +50,21 @@ export default function GuessTheLocationPlay({ city1, city2, city3 }: { city1: s
 
     return (
         //   <div className={classes.exampleWrapper}>
+        // transform: 'translate(10em, -10em)',
         <SpeedDial
-            style={{ transform: 'translate(15em, -16em)', height: 'fit-content' }}
+            style={{ height: 'auto' }}
             ariaLabel="SpeedDial example"
             // className={classes.speedDial}
-            hidden={hidden}
+            hidden={true}
             icon={
-                <IconButton style={{ position: 'sticky' }}>
-                    <img
-                        src={GuessTheLocationButton}
-                        alt="Guess The Location"
-                        style={{ backfaceVisibility: 'hidden' }}
-                    ></img>
-                </IconButton>
+                // <IconButton style={{ position: 'sticky', width: '50px' }}>
+
+                <img
+                    src={GuessTheLocationButton}
+                    alt="Guess The Location"
+                    style={{ backfaceVisibility: 'hidden' }}
+                ></img>
+                // </IconButton>
             }
             onClose={handleClose}
             onOpen={handleOpen}
