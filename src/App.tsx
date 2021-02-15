@@ -12,7 +12,7 @@ import { HomeScreen } from './pages/home-screen/home';
 import PostViewScreen from './pages/post-view';
 import HelpandFeedback from './pages/helpandfeedback';
 import SettingsScreen from './pages/settings-screen/SettingsMenu';
-
+import ProfilePage from './pages/profile-screen/ProfilePage';
 function App(): JSX.Element {
     return (
         <div className="App">
@@ -50,6 +50,9 @@ function App(): JSX.Element {
                         <SettingsScreen />
                     </Route>
                     <Route path="/post/:catId" component={PostViewScreen}></Route>
+                    <Route path="/ProfilePage">
+                        <ProfilePage />
+                    </Route>
                 </Switch>
             </Router>
         </div>
@@ -93,6 +96,9 @@ function Nav() {
                     </li>
                     <li>
                         <Link to="/helpnfeedback">Help and Feedback</Link>
+                    </li>
+                    <li>
+                        <Link to="/ProfilePage">Profile Page</Link>
                     </li>
                 </ul>
             </nav>
