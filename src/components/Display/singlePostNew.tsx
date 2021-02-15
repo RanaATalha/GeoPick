@@ -148,7 +148,12 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
                     }}
                 />
                 <CardContent>
-                    <Typography variant="body2" color="textSecondary" component="p" style={{ color: '#fafafa' }}>
+                    <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        component="p"
+                        style={{ color: '#fafafa', textAlign: 'center' }}
+                    >
                         {this.props.caption}
                     </Typography>
                 </CardContent>

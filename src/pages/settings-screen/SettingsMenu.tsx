@@ -7,7 +7,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Divider from '@material-ui/core/Divider';
-import { Grid } from '@material-ui/core';
+import { Grid, Typography, Box } from '@material-ui/core';
 import WhiteLogo from '../welcome screen/WhiteLogo.svg';
 import './styles.scss';
 import { checkUserLoggedIn } from '../../firebase/auth';
@@ -80,6 +80,13 @@ const SettingsMenu = () => {
                     <ListItemText primary="Terms and Conditions" />
                 </ListItem>
             </List>
+            <Box m={5} />
+            <div>
+                <Typography variant="body1" style={{ color: '#1b1b1b', textAlign: 'center' }}>
+                    Designed <span style={{ color: '#f56920' }}>& </span> Developed by<br></br>The Geo
+                    <span style={{ color: '#f56920' }}>Pic</span>K team.
+                </Typography>
+            </div>
         </div>
     );
 };

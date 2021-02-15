@@ -58,7 +58,7 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
     render() {
         return (
             <div style={{ background: '#1b1b1b' }} onLoad={this.getData}>
-                <Toolbar>
+                <Toolbar style={{ position: 'relative' }}>
                     <Link to="/welcome">
                         <IconButton edge="end" onClick={this.signOut}>
                             <ExitToAppIcon style={{ color: 'white' }} />

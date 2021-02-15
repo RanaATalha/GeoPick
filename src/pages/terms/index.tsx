@@ -1,6 +1,7 @@
 import { Card, Typography } from '@material-ui/core';
 import * as React from 'react';
 import { Component } from 'react';
+import './Styles.scss';
 
 export interface TermsProps {}
 
@@ -11,13 +12,10 @@ export class Terms extends Component<TermsProps, TermsState> {
         return (
             <div style={{ background: '#1b1b1b' }}>
                 <Typography variant="h3" style={{ fontWeight: 'bold', color: '#fafafa', padding: '15px' }}>
-                    Terms and Conditions
+                    Terms <span style={{ color: '#f56920' }}>&</span> Conditions
                 </Typography>
                 <Card style={{ borderRadius: '20px', background: '#fafafa', margin: '20px' }}>
-                    <Typography
-                        variant="body1"
-                        style={{ fontWeight: 'lighter', textAlign: 'left', margin: '20px', color: '#1b1b1b' }}
-                    >
+                    <Typography variant="body1" style={{ fontWeight: 'lighter', textAlign: 'left', margin: '20px' }}>
                         <p>
                             By downloading or using the app, these terms will automatically apply to you – you should
                             make sure therefore that you read them carefully before using the app. You’re not allowed to
