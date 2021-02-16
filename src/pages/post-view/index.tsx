@@ -261,7 +261,7 @@ export default class PostViewScreen extends Component<PostViewProps, PostViewSta
                             {this.state.comments.map((val: string, index: any) => {
                                 return (
                                     <li key={index}>
-                                        <Typography variant="body2" style={{ textAlign: 'left' }}>
+                                        <Typography variant="body2" style={{ textAlign: 'left', color: 'white' }}>
                                             {val}
                                         </Typography>
                                     </li>

@@ -15,6 +15,7 @@ export interface HomeScreenProps {}
 export interface HomeScreenState {
     posts: any;
     user: any;
+    isAuthenticated: boolean;
 }
 
 export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
@@ -22,8 +23,17 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
         super(HomeScreenProps);
         this.state = {
             posts: [],
-            user: checkUserLoggedIn(),
+            user: {},
+            isAuthenticated: false,
         };
+    }
+
+    componentDidMount() {
+        this.getUser().then((user) => {
+            this.setState({ isAuthenticated: true, user: user });
+            }, (error) => {
+            this.setState({ isAuthenticated: true });
+            });
     }
 
     componentDidUpdate() {
@@ -33,7 +43,7 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
             .onSnapshot((snapshot: any) => {
                 this.setState(snapshot.docs.map((doc: any) => ({ id: doc.id, post: doc.data() })));
             });
-        console.log(this.state);
+        // console.log(this.state);
     }
 
     getData = () => {
@@ -52,10 +62,32 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
             });
     };
 
+    getUser = () => {
+        const auth = checkUserLoggedIn();
+        return new Promise(function (resolve, reject) {
+            if (auth === undefined) {
+            } else {
+                firebase.firestore()
+                    .collection('users')
+                    .doc(auth.uid)
+                    .get()
+                    .then((querySnapshot) => {
+                        const data = querySnapshot.data();
+                        if(data){
+                            resolve(data)
+                        } else {
+                            reject('User not authenticated')
+                        }
+                    });
+                }
+            });
+        }
+
     signOut = () => {
         auth.doSignOut();
     };
     render() {
+        // if (!this.state.isAuthenticated) return null;
         return (
             <div style={{ background: '#1b1b1b' }} onLoad={this.getData}>
                 <Toolbar style={{ position: 'relative' }}>

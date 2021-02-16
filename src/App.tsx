@@ -13,6 +13,7 @@ import PostViewScreen from './pages/post-view';
 import HelpandFeedback from './pages/helpandfeedback';
 import SettingsScreen from './pages/settings-screen/SettingsMenu';
 import ProfilePage from './pages/profile-screen/ProfilePage';
+import { UploadImage } from './pages/upload-image/index';
 function App(): JSX.Element {
     return (
         <div className="App">
@@ -52,6 +53,9 @@ function App(): JSX.Element {
                     <Route path="/post/:catId" component={PostViewScreen}></Route>
                     <Route path="/ProfilePage">
                         <ProfilePage />
+                    </Route>
+                    <Route exact path="/upload-image">
+                        <UploadImage />
                     </Route>
                 </Switch>
             </Router>
@@ -99,6 +103,9 @@ function Nav() {
                     </li>
                     <li>
                         <Link to="/ProfilePage">Profile Page</Link>
+                    </li>
+                    <li>
+                        <Link to="/upload-image">Upload Image</Link>
                     </li>
                 </ul>
             </nav>

@@ -41,6 +41,7 @@ export interface SinglePostNewState {
     open_share: boolean;
     isOpen: boolean;
     path_name: string;
+    isAuthenticated: boolean;
 }
 class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
     constructor(SinglePostNewProps: any) {
@@ -52,6 +53,7 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
             open_share: false,
             isOpen: false,
             path_name: `/post/${this.props.uid}`,
+            isAuthenticated: false,
         };
         this.handleColorChange = this.handleColorChange.bind(this);
         this.handleButtonClick = this.handleButtonClick.bind(this);
@@ -77,18 +79,31 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
     };
     share_area = React.createRef();
 
-    async componentDidUpdate() {
-        await firebase
+    componentDidMount() {
+        this.getUser().then((user) => {
+            this.setState({ isAuthenticated: true, post_user: user });
+            }, (error) => {
+            this.setState({ isAuthenticated: true });
+            });
+    }
+
+    getUser = () => {
+        const uid = this.props.uid;
+        return new Promise(function (resolve, reject) {
+            firebase
             .firestore()
             .collection('users')
-            .doc(this.props.uid)
+            .doc(uid)
             .get()
             .then((querySnapshot) => {
                 const data = querySnapshot.data();
-                this.setState({
-                    post_user: data,
-                });
+                if(data){
+                    resolve(data)
+                } else {
+                    reject('User not authenticated')
+                }
             });
+        });
     }
 
     handleButtonClick = () => {
@@ -102,6 +117,7 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
         // const classes = useStyles();
         const path = window.location.href.split('/');
         const root = path[path.length - 2];
+        if (!this.state.isAuthenticated) return null;
         return (
             <Card
                 style={{
