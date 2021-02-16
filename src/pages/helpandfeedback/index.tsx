@@ -15,12 +15,11 @@ export default function HelpandFeedback() {
             <div className="button" style={{ float: 'left' }}>
                 <ArrowBackRoundedIcon />
             </div>
-
             <div className="image">
                 <img src={WhiteLogo} alt="GeoPicK Logo" className="WhiteLogo" />
             </div>
             <div style={{ color: '#fafafa' }}>
-                <Card background="black" title="Help & FeedBack" split={2}>
+                <Card background="#202020" title="Help & FeedBack" split={2}>
                     <Typography variant="body1">
                         <p style={{ fontSize: '20px' }}>Hi there👋,</p>
                         <p> This is our first phone based web application. We would love to hear your Feedback.</p>
@@ -48,7 +47,6 @@ export default function HelpandFeedback() {
                     </RegularBtn>
                 </Card>
             </div>
-
             <br />
         </div>
     );
