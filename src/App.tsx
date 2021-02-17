@@ -13,11 +13,8 @@ import PostViewScreen from './pages/post-view';
 import HelpandFeedback from './pages/helpandfeedback';
 import SettingsScreen from './pages/settings-screen/SettingsMenu';
 import ProfilePage from './pages/profile-screen/ProfilePage';
-<<<<<<< Updated upstream
 import { UploadImage } from './pages/upload-image/index';
-=======
 import Accessibility from './pages/accessSetting';
->>>>>>> Stashed changes
 function App(): JSX.Element {
     return (
         <div className="App">
@@ -111,14 +108,11 @@ function Nav() {
                     <li>
                         <Link to="/ProfilePage">Profile Page</Link>
                     </li>
-<<<<<<< Updated upstream
                     <li>
                         <Link to="/upload-image">Upload Image</Link>
-=======
-
+                    </li>
                     <li>
                         <Link to="/accessibility">Accessibility</Link>
->>>>>>> Stashed changes
                     </li>
                 </ul>
             </nav>
