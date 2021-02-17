@@ -234,7 +234,7 @@ export default class PostViewScreen extends Component<PostViewProps, PostViewSta
                             onClick={this.handleColorChange}
                         >
                             <FavoriteIcon />
-                            {<Typography>{this.state.likes_count}</Typography>}
+                            {<Typography style={{ color: '#fafafa' }}>{this.state.likes_count}</Typography>}
                         </IconButton>
                         <IconButton aria-label="share">
                             <SharePost sharedURL={window.location.href} />

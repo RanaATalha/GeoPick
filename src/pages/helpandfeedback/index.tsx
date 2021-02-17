@@ -18,20 +18,24 @@ export default function HelpandFeedback() {
             <div className="image">
                 <img src={WhiteLogo} alt="GeoPicK Logo" className="WhiteLogo" />
             </div>
-            <div style={{ color: '#fafafa' }}>
+            <div id="titleDiv">
                 <Card background="#202020" title="Help & FeedBack" split={2}>
                     <Typography variant="body1">
-                        <p style={{ fontSize: '20px' }}>Hi there👋,</p>
-                        <p> This is our first phone based web application. We would love to hear your Feedback.</p>
-                        <p>
-                            {' '}
-                            You can either <a href="mailto:geopick2021@gmail.com">mail</a> the developer team or send
-                            any message via the feedback form.
-                        </p>
-                        <p>Thanks❤,</p>
-                        <p>
-                            The Geo<span style={{ color: '#f56920' }}>Pic</span>K Dev Team
-                        </p>
+                        <span className="textColor">
+                            <p style={{ fontSize: '20px', color: '#fafafa' }}>Hi there👋,</p>
+                            <p style={{ color: '#fafafa' }}>
+                                This is our first phone based web application. We would love to hear your Feedback.
+                            </p>
+                            <p style={{ color: '#fafafa' }}>
+                                {' '}
+                                You can either <a href="mailto:geopick2021@gmail.com">mail</a> the developer team or
+                                send any message via the feedback form.
+                            </p>
+                            <p style={{ color: '#fafafa' }}>Thanks❤,</p>
+                            <p style={{ color: '#fafafa' }}>
+                                The Geo<span style={{ color: '#f56920' }}>Pic</span>K Dev Team
+                            </p>
+                        </span>
                     </Typography>
                     <TextField
                         id="standard-multiline-flexible"

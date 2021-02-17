@@ -80,31 +80,34 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
     share_area = React.createRef();
 
     componentDidMount() {
-        this.getUser().then((user) => {
-            this.setState({ isAuthenticated: true, post_user: user });
-            }, (error) => {
-            this.setState({ isAuthenticated: true });
-            });
+        this.getUser().then(
+            (user) => {
+                this.setState({ isAuthenticated: true, post_user: user });
+            },
+            (error) => {
+                this.setState({ isAuthenticated: true });
+            },
+        );
     }
 
     getUser = () => {
         const uid = this.props.uid;
         return new Promise(function (resolve, reject) {
             firebase
-            .firestore()
-            .collection('users')
-            .doc(uid)
-            .get()
-            .then((querySnapshot) => {
-                const data = querySnapshot.data();
-                if(data){
-                    resolve(data)
-                } else {
-                    reject('User not authenticated')
-                }
-            });
+                .firestore()
+                .collection('users')
+                .doc(uid)
+                .get()
+                .then((querySnapshot) => {
+                    const data = querySnapshot.data();
+                    if (data) {
+                        resolve(data);
+                    } else {
+                        reject('User not authenticated');
+                    }
+                });
         });
-    }
+    };
 
     handleButtonClick = () => {
         this.setState((state) => {
@@ -181,12 +184,14 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
                         onClick={this.handleColorChange}
                     >
                         <FavoriteIcon />
-                        {<Typography>{this.props.likes_count}</Typography>}
+                        {<Typography style={{ color: '#fafafa' }}>{this.props.likes_count}</Typography>}
                     </IconButton>
                     <Link to={{ pathname: `/post/${this.props.id}`, state: this.props.uid }}>
                         <IconButton aria-label="add a comment" style={{ color: '#FAFAFA', position: 'relative' }}>
                             <AddCommentRoundedIcon />
-                            <span>{<Typography>{this.props.comments_count}</Typography>}</span>
+                            <span>
+                                {<Typography style={{ color: '#fafafa' }}>{this.props.comments_count}</Typography>}
+                            </span>
                         </IconButton>
                     </Link>
                     <Box m={1} />

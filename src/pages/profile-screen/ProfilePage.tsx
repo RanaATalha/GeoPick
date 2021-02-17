@@ -1,14 +1,20 @@
 import { Avatar, Button, Card, CardContent, CardHeader, Grid, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import * as React from 'react';
 import { Component } from 'react';
 import WhiteLogo from '../welcome screen/WhiteLogo.svg';
 import BadgeAvatar from '../../components/Display/AddAvatarBadge';
 import SinglePostNew from '../../components/Display/singlePostNew';
+import { auth } from '../../firebase';
 export interface ProfilePageProps {}
 
 export interface ProfilePageState {}
 
 class ProfilePage extends Component<ProfilePageProps, ProfilePageState> {
+    signOut = () => {
+        auth.doSignOut();
+    };
+
     render() {
         return (
             <div style={{ background: '#1b1b1b', height: 'auto' }}>
@@ -72,6 +78,7 @@ class ProfilePage extends Component<ProfilePageProps, ProfilePageState> {
                                 Edit Profile
                             </Typography>
                         </Button>
+
                         <Button
                             style={{
                                 paddingLeft: '10%',
@@ -79,11 +86,15 @@ class ProfilePage extends Component<ProfilePageProps, ProfilePageState> {
                                 background: '#2f4858',
                                 marginLeft: '10px',
                             }}
+                            onClick={this.signOut}
                         >
-                            <Typography variant="button" style={{ color: '#fafafa' }}>
-                                Sign Out
-                            </Typography>
+                            <Link to="/welcome">
+                                <Typography variant="button" style={{ color: '#fafafa' }}>
+                                    Sign Out
+                                </Typography>
+                            </Link>
                         </Button>
+
                         {/* </CardContent>
                         </Card> */}
                     </CardContent>

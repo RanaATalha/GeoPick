@@ -67,11 +67,13 @@ const WelcomeScreen: React.FunctionComponent<WelcomeProps> = (props) => {
                             ></Grid>
                             <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
                                 <Grid item>
-                                    <span style={{ color: 'white' }}>New to GeoPicK?</span>
+                                    <span style={{ color: '#fafafa' }}>New to GeoPicK?</span>
                                     <br />
                                     <br />
                                     <RegularBtn colorType="dark" onClick={GoogleSignin} className="g-btn">
-                                        <p className="text">Sign up with </p>
+                                        <p className="text" style={{ color: '#fafafa' }}>
+                                            Sign up with{' '}
+                                        </p>
                                         <img
                                             src={googleButton}
                                             width="22px"
