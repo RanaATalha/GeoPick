@@ -17,6 +17,7 @@ import NotificationImportantRoundedIcon from '@material-ui/icons/NotificationImp
 import AccessibilityNewRoundedIcon from '@material-ui/icons/AccessibilityNewRounded';
 import HelpRoundedIcon from '@material-ui/icons/HelpRounded';
 import GavelRoundedIcon from '@material-ui/icons/GavelRounded';
+import { Link } from 'react-router-dom';
 export interface SettingsMenuProps {}
 export interface SettingsMenuState {
     user: any;
