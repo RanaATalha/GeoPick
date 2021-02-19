@@ -6,8 +6,16 @@ import { RegularBtn } from '../../components/Buttons/RegularBtn';
 import TextField from '../../components/Inputs/TextField';
 import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
 import { Typography } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 
 export interface HelpandFeedbackProps {}
+
+const WhiteTypography = withStyles({
+    root: {
+        color: '#FFFFFF',
+        textAlign: 'left',
+    },
+})(Typography);
 
 export default function HelpandFeedback() {
     return (
@@ -20,23 +28,24 @@ export default function HelpandFeedback() {
             </div>
             <div id="titleDiv">
                 <Card background="#202020" title="Help & FeedBack" split={2}>
-                    <Typography variant="body1">
-                        <span className="textColor">
-                            <p style={{ fontSize: '20px', color: '#fafafa' }}>Hi there👋,</p>
-                            <p style={{ color: '#fafafa' }}>
-                                This is our first phone based web application. We would love to hear your Feedback.
-                            </p>
-                            <p style={{ color: '#fafafa' }}>
-                                {' '}
-                                You can either <a href="mailto:geopick2021@gmail.com">mail</a> the developer team or
-                                send any message via the feedback form.
-                            </p>
-                            <p style={{ color: '#fafafa' }}>Thanks❤,</p>
-                            <p style={{ color: '#fafafa' }}>
-                                The Geo<span style={{ color: '#f56920' }}>Pic</span>K Dev Team
-                            </p>
-                        </span>
-                    </Typography>
+                    <WhiteTypography>Hi there👋,</WhiteTypography>
+                    <br></br>
+                    <WhiteTypography>
+                        This is our first phone based web application. We would love to hear your Feedback.
+                    </WhiteTypography>
+                    <br></br>
+                    <WhiteTypography>
+                        {' '}
+                        You can either <a href="mailto:geopick2021@gmail.com">mail</a> the developer team or send any
+                        message via the feedback form.
+                    </WhiteTypography>
+                    <br></br>
+                    <WhiteTypography>Thanks❤,</WhiteTypography>
+                    <br></br>
+                    <WhiteTypography>
+                        The Geo<span style={{ color: '#f56920' }}>Pic</span>K Dev Team
+                    </WhiteTypography>
+                    <br></br>
                     <TextField
                         id="standard-multiline-flexible"
                         label="Feedback"
