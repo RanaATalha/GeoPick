@@ -37,8 +37,8 @@ const Tags = (props: any) => {
 
     const addTags = (event: any) => {
         if (event.key === "Enter" && event.target.value !== "") {
-            setTags([...tags, event.target.value]);
-            props.selectedTags([...tags, event.target.value]);
+            setTags([...tags, event.target.value.toLowerCase()]);
+            props.selectedTags([...tags, event.target.value.toLowerCase()]);
             event.target.value = "";
         }
     };

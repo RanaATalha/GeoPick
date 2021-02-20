@@ -123,9 +123,7 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
                 'base64',
             );
         }, 2500);
-
-        const timestamp = Date.now();
-
+        
         const postRef = firebase
             .firestore()
             .collection('Posts/')
@@ -137,7 +135,7 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
                 likes_count: 0,
                 uid: user.uid,
                 username: this.state.user.User_name,
-                post_time: timestamp,
+                post_time: new Date(),
                 tags: this.state.tags,
             }).then(function(docRef) {
                 console.log("Document written with ID: ", docRef.id);

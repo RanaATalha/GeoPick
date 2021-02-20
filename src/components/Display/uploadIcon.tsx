@@ -5,10 +5,7 @@ import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 import GuessTheLocationButton from '../Display/guess-the-location.svg';
 import { Fab, IconButton } from '@material-ui/core';
 import CameraAltRoundedIcon from '@material-ui/icons/CameraAltRounded';
-import { auth } from '../../firebase';
-import Compress from 'react-image-file-resizer';
-import { storage } from '../../firebase/firebase';
-import firebase from 'firebase';
+
 import UploadPic from './uploadPic';
 
 const useStyles = makeStyles((theme: Theme) =>

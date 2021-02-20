@@ -13,6 +13,8 @@ import PostViewScreen from './pages/post-view';
 import HelpandFeedback from './pages/helpandfeedback';
 import SettingsScreen from './pages/settings-screen/SettingsMenu';
 import ProfilePage from './pages/profile-screen/ProfilePage';
+import SearchScreen from "./pages/search-page/index";
+
 import { UploadImage } from './pages/upload-image/index';
 import Accessibility from './pages/accessSetting';
 function App(): JSX.Element {
@@ -60,6 +62,9 @@ function App(): JSX.Element {
                     </Route>
                     <Route exact path="/upload-image">
                         <UploadImage />
+                    </Route>
+                    <Route exact path="/search">
+                        <SearchScreen />
                     </Route>
                 </Switch>
             </Router>
@@ -113,6 +118,9 @@ function Nav() {
                     </li>
                     <li>
                         <Link to="/accessibility">Accessibility</Link>
+                    </li>
+                    <li>
+                        <Link to="/search">Search</Link>
                     </li>
                 </ul>
             </nav>

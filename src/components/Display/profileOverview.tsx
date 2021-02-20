@@ -1,0 +1,84 @@
+import React from 'react';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
+import AddAvatar from './AddAvatar.png';
+// import Avatar from '@material-ui/core/Avatar';
+import BadgeAvatar from '../../components/Display/AddAvatarBadge';
+import { Avatar, Button, Card, CardContent, CardHeader, Grid, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        '& > *': {
+            margin: theme.spacing(1),
+        },
+    },
+    input: {
+        display: 'none',
+    },
+}));
+
+const SmallAvatar = withStyles((theme) => ({
+    root: {
+        width: 22,
+        height: 22,
+        border: `2px solid ${theme.palette.background.paper}`,
+    },
+}))(Avatar);
+
+export default function ProfileOverview(props: any) {
+    const classes = useStyles();
+
+    return (
+        <Card
+                    style={{
+                        background: '#1b1b1b',
+                        marginLeft: '15px',
+                        marginRight: '15px',
+                        border: '3px solid #f56920',
+                        borderRadius: '20px',
+                    }}
+                >
+                    <CardContent style={{ textAlign: 'left', padding: '50px 10px 50px 10px' }}>
+                        {/* <Grid container direction="column">
+                            <Grid item> */}
+                        <Avatar
+                            style={{ float: 'right', width: '18vw', height: '18vw', marginRight: '20px' }}
+                        ></Avatar>
+                        <Typography style={{ color: '#fafafa', fontSize: '3vw' }}>
+                            Hi<br></br>
+                            {
+                                <Typography style={{ color: '#f56920', fontSize: '2vw' }}>
+                                    'mo.kvs_'
+                                </Typography>
+                            }
+                            {/* The username comes here */}
+                        </Typography>
+
+                        {/* </Grid>
+                            <Grid item></Grid> */}
+                        {/* </Grid> */}
+                        <br></br>
+                        {/* <Card style={{ width: 'fit-content', height: 'fit-content', padding: '-5px' }}>
+                            <CardContent> */}
+                        <Button style={{ padding: '1px' }}>
+                            <Typography variant="button" style={{ justifyContent: 'center' }}>
+                                <span style={{ color: '#fafafa' }}>2</span>
+                                <br></br>
+                                <span style={{ color: '#f56920' }}>posts</span>
+                            </Typography>
+                            {/* Number of posts by user */}
+                        </Button>
+
+                        <Button style={{ marginLeft: '10px', padding: '1px' }}>
+                            <Typography variant="button" style={{ justifyContent: 'center' }}>
+                                <span style={{ color: '#fafafa' }}>10</span>
+                                <br></br>
+                                <span style={{ color: '#f56920' }}>points</span>
+                            </Typography>
+                            {/* Number of posts by user */}
+                        </Button>
+                    </CardContent>
+                </Card>
+    );
+}
