@@ -12,7 +12,7 @@ export interface HelpandFeedbackProps {}
 
 const WhiteTypography = withStyles({
     root: {
-        color: '#FFFFFF',
+        color: '#FAFAFA',
         textAlign: 'left',
     },
 })(Typography);

@@ -15,6 +15,8 @@ import SettingsScreen from './pages/settings-screen/SettingsMenu';
 import ProfilePage from './pages/profile-screen/ProfilePage';
 import { UploadImage } from './pages/upload-image/index';
 import Accessibility from './pages/accessSetting';
+import ViewPoints from './pages/view-points-screen/points';
+import EditProfile from './pages/edit-profile/editProfile';
 function App(): JSX.Element {
     return (
         <div className="App">
@@ -60,6 +62,12 @@ function App(): JSX.Element {
                     </Route>
                     <Route exact path="/upload-image">
                         <UploadImage />
+                    </Route>
+                    <Route exact path="/ViewPoints">
+                        <ViewPoints />
+                    </Route>
+                    <Route exact path="/EditProfile">
+                        <EditProfile />
                     </Route>
                 </Switch>
             </Router>
@@ -113,6 +121,12 @@ function Nav() {
                     </li>
                     <li>
                         <Link to="/accessibility">Accessibility</Link>
+                    </li>
+                    <li>
+                        <Link to="/ViewPoints">View points</Link>
+                    </li>
+                    <li>
+                        <Link to="/EditProfile">Edit Profile</Link>
                     </li>
                 </ul>
             </nav>

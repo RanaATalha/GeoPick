@@ -30,6 +30,8 @@ class ProfilePage extends Component<ProfilePageProps, ProfilePageState> {
                         marginRight: '15px',
                         border: '3px solid #f56920',
                         borderRadius: '20px',
+                        maxWidth: '600px',
+                        margin: 'auto',
                     }}
                 >
                     <CardContent style={{ textAlign: 'left', padding: '50px 10px 50px 10px' }}>
