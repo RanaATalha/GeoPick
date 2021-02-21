@@ -15,6 +15,7 @@ import SettingsScreen from './pages/settings-screen/SettingsMenu';
 import ProfilePage from './pages/profile-screen/ProfilePage';
 import { UploadImage } from './pages/upload-image/index';
 import Accessibility from './pages/accessSetting';
+import Notification from './pages/notificationset';
 import ViewPoints from './pages/view-points-screen/points';
 import EditProfile from './pages/edit-profile/editProfile';
 function App(): JSX.Element {
@@ -49,6 +50,9 @@ function App(): JSX.Element {
                     </Route>
                     <Route exact path="/accessibility">
                         <Accessibility />
+                    </Route>
+                    <Route exact path="/notification">
+                    <Notification />
                     </Route>
                     <Route exact path="/terms">
                         <Terms />
