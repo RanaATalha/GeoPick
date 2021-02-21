@@ -17,6 +17,8 @@ import SearchScreen from "./pages/search-page/index";
 
 import { UploadImage } from './pages/upload-image/index';
 import Accessibility from './pages/accessSetting';
+import ViewPoints from './pages/view-points-screen/points';
+import EditProfile from './pages/edit-profile/editProfile';
 function App(): JSX.Element {
     return (
         <div className="App">
@@ -63,8 +65,16 @@ function App(): JSX.Element {
                     <Route exact path="/upload-image">
                         <UploadImage />
                     </Route>
+<<<<<<< HEAD
                     <Route exact path="/search">
                         <SearchScreen />
+=======
+                    <Route exact path="/ViewPoints">
+                        <ViewPoints />
+                    </Route>
+                    <Route exact path="/EditProfile">
+                        <EditProfile />
+>>>>>>> 1dde0723a99fefab01f88b7f67d1b5c4c05b0b27
                     </Route>
                 </Switch>
             </Router>
@@ -120,7 +130,14 @@ function Nav() {
                         <Link to="/accessibility">Accessibility</Link>
                     </li>
                     <li>
+<<<<<<< HEAD
                         <Link to="/search">Search</Link>
+=======
+                        <Link to="/ViewPoints">View points</Link>
+                    </li>
+                    <li>
+                        <Link to="/EditProfile">Edit Profile</Link>
+>>>>>>> 1dde0723a99fefab01f88b7f67d1b5c4c05b0b27
                     </li>
                 </ul>
             </nav>

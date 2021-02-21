@@ -36,10 +36,20 @@ class ProfilePage extends Component<ProfilePageProps, ProfilePageState> {
 
                 <Button
                     style={{
+<<<<<<< HEAD
                         paddingLeft: '10%',
                         paddingRight: '10%',
                         background: '#2f4858',
                         marginLeft: '10px',
+=======
+                        background: '#1b1b1b',
+                        marginLeft: '15px',
+                        marginRight: '15px',
+                        border: '3px solid #f56920',
+                        borderRadius: '20px',
+                        maxWidth: '600px',
+                        margin: 'auto',
+>>>>>>> 1dde0723a99fefab01f88b7f67d1b5c4c05b0b27
                     }}
                     onClick={this.signOut}
                 >
