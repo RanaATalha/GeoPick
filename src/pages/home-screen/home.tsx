@@ -11,11 +11,14 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { auth } from '../../firebase';
 import { Link } from 'react-router-dom';
 import SinglePostNew from '../../components/Display/singlePostNew';
+import AvatarSmall from '../../components/Display/avatarSmall';
+
 export interface HomeScreenProps {}
 export interface HomeScreenState {
     posts: any;
     user: any;
     isAuthenticated: boolean;
+    uid: string;
 }
 
 export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
@@ -25,12 +28,14 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
             posts: [],
             user: {},
             isAuthenticated: false,
+            uid: '',
         };
     }
 
     componentDidMount() {
         this.getUser().then((user) => {
             this.setState({ isAuthenticated: true, user: user });
+           
             }, (error) => {
             this.setState({ isAuthenticated: true });
             });
@@ -72,9 +77,11 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
                     .doc(auth.uid)
                     .get()
                     .then((querySnapshot) => {
-                        const data = querySnapshot.data();
-                        if(data){
-                            resolve(data)
+                        // const data = querySnapshot.data();
+                        // this.se
+                        if(querySnapshot.data()){
+                            resolve(querySnapshot.data())
+                            setState({uid: querySnapshot.id})
                         } else {
                             reject('User not authenticated')
                         }
@@ -98,9 +105,7 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
                     </Link>
 
                     <img src={WhiteLogo} alt="GeoPicK" className="WhiteLogo" />
-                    <IconButton edge="end">
-                        <Avatar alt={this.state.user.User_name} src={this.state.user.Avatar} />
-                    </IconButton>
+                    <AvatarSmall uid = {this.state.user.uid} User_name = {this.state.user.User_name} Avatar = {this.state.user.Avatar} Size = "small" />
                 </Toolbar>
                 <SinglePostNew />
                 <Feed />

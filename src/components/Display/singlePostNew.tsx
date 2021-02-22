@@ -19,7 +19,8 @@ import { checkUserLoggedIn } from '../../firebase/auth';
 import firebase from 'firebase';
 import fb from 'firebase/app';
 import GuessTheLocationPlay from '../Game/guessPlay';
-import { Box } from '@material-ui/core';
+import GTLicon from '../Inputs/The pin.svg';
+import { Box, Button } from '@material-ui/core';
 export interface SinglePostNewProps {
     username?: string;
     postPic?: string;
@@ -198,6 +199,26 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
                     <IconButton aria-label="share">
                         <SharePost sharedURL={`${root}${this.state.path_name}`} />
                     </IconButton>
+                    <Button
+                        style={{
+                            padding: '5px 20px 5px 20px',
+                            // position: 'static',
+                            // // float: 'right',
+                            // right: '200px',
+                            marginLeft: 'auto',
+                            marginRight: '3px',
+                            background: '#202020',
+                            color: '#F56920',
+                            borderRadius: '20px',
+                            fontSize: '10px',
+                        }}
+                        variant="contained"
+                        endIcon={<img src={GTLicon} alt="GeoPin"></img>}
+                    >
+                        Guess The
+                        <br></br>
+                        Location
+                    </Button>
                     {/* <div>
                         <GuessTheLocationPlay city1="Dubai" city2="Paris" city3="Tokyo" />
                     </div> */}

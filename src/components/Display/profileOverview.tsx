@@ -6,6 +6,7 @@ import AddAvatar from './AddAvatar.png';
 import BadgeAvatar from '../../components/Display/AddAvatarBadge';
 import { Avatar, Button, Card, CardContent, CardHeader, Grid, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import AvatarSmall from '../../components/Display/avatarSmall';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -42,18 +43,21 @@ export default function ProfileOverview(props: any) {
                     <CardContent style={{ textAlign: 'left', padding: '50px 10px 50px 10px' }}>
                         {/* <Grid container direction="column">
                             <Grid item> */}
-                        <Avatar
+                        {/* <Avatar
                             style={{ float: 'right', width: '18vw', height: '18vw', marginRight: '20px' }}
-                        ></Avatar>
+                        ></Avatar> */}
+                        <Grid style ={{float: 'right'}}>
+                            <AvatarSmall uid = {props.uid} User_name = {props.User_name} Avatar = {props.Avatar} Size = {props.Size} />
+                        </Grid>
                         <Typography style={{ color: '#fafafa', fontSize: '3vw' }}>
                             Hi<br></br>
-                            {
-                                <Typography style={{ color: '#f56920', fontSize: '2vw' }}>
-                                    'mo.kvs_'
-                                </Typography>
-                            }
-                            {/* The username comes here */}
-                        </Typography>
+                            </Typography>
+                        <Typography style={{ color: '#f56920', fontSize: '2vw' }}>
+                                'mo.kvs_'
+                            </Typography>
+                    
+                        
+                        
 
                         {/* </Grid>
                             <Grid item></Grid> */}

@@ -50,11 +50,20 @@ export default function SearchScreen() {
                     <br></br>
                     {users.length>0 && users.map((data) => {
                       return (
-                          <div>{data.User_name}</div>
+                          <div>
+                            <ProfileOverview 
+                                key = {data.uid}
+                                uid = {data.uid} 
+                                User_name = {data.User_name} 
+                                Avatar = {data.Avatar} 
+                                Size = "small"
+                            />
+                            <br/><br/>
+                          </div>
                       );
                       // console.log(data.User_name);
                   })}
-                  <ProfileOverview />
+                  
                 </Card>
             </div>
             <br />

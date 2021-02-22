@@ -6,13 +6,86 @@ import WhiteLogo from '../welcome screen/WhiteLogo.svg';
 import BadgeAvatar from '../../components/Display/AddAvatarBadge';
 import SinglePostNew from '../../components/Display/singlePostNew';
 import ProfileOverview from '../../components/Display/profileOverview';
+import { checkUserLoggedIn } from '../../firebase/auth';
+import firebase from 'firebase';
+
 
 import { auth } from '../../firebase';
 export interface ProfilePageProps {}
 
-export interface ProfilePageState {}
+export interface ProfilePageState {
+    posts: any;
+    user: any;
+    isAuthenticated: boolean;
+}
 
 class ProfilePage extends Component<ProfilePageProps, ProfilePageState> {
+
+    constructor(HomeScreenProps: any) {
+        super(HomeScreenProps);
+        this.state = {
+            posts: [],
+            user: {},
+            isAuthenticated: false,
+        };
+    }
+
+    componentDidMount() {
+        this.getUser().then((user) => {
+            this.setState({ isAuthenticated: true, user: user.data, uid: user.id });
+            }, (error) => {
+            this.setState({ isAuthenticated: true });
+            });
+    }
+
+    // componentDidUpdate() {
+    //     firebase
+    //         .firestore()
+    //         .collection('Posts')
+    //         .onSnapshot((snapshot: any) => {
+    //             this.setState(snapshot.docs.map((doc: any) => ({ id: doc.id, post: doc.data() })));
+    //         });
+    //     // console.log(this.state);
+    // }
+
+    // getData = () => {
+    //     firebase
+    //         .firestore()
+    //         .collection('Posts')
+    //         .orderBy('likes_count')
+    //         .get()
+    //         .then((querySnapshot) => {
+    //             querySnapshot.forEach(function () {
+    //                 // console.log(doc.id, ' => ', doc.data());
+    //             });
+    //         })
+    //         .catch((err) => {
+    //             console.log('Error getting documents: ', err);
+    //         });
+    // };
+
+    getUser = () => {
+        const auth = checkUserLoggedIn();
+        return new Promise(function (resolve, reject) {
+            if (auth === undefined) {
+            } else {
+                firebase.firestore()
+                    .collection('users')
+                    .doc(auth.uid)
+                    .get()
+                    .then((querySnapshot) => {
+                        const data = querySnapshot.data();
+                        if(data){
+                            resolve(querySnapshot.doc.map((doc: any) => ({ id: doc.id, data: doc.data() })))
+                        } else {
+                            reject('User not authenticated')
+                        }
+                        
+                    });
+                }
+            });
+        }
+
     signOut = () => {
         auth.doSignOut();
     };
@@ -25,7 +98,7 @@ class ProfilePage extends Component<ProfilePageProps, ProfilePageState> {
                     alt="GeoPicK"
                     style={{ width: '200px', height: '66px', margin: 'auto', paddingBottom: '1em' }}
                 />
-                <ProfileOverview />
+                <ProfileOverview uid = {this.state.user.uid} User_name = {this.state.user.User_name} Avatar = {this.state.user.Avatar} Size = "large"/>
                 <br></br>
                 <br></br>
                 <Button style={{ paddingLeft: '15%', paddingRight: '15%', background: '#f56920' }}>
@@ -36,12 +109,6 @@ class ProfilePage extends Component<ProfilePageProps, ProfilePageState> {
 
                 <Button
                     style={{
-<<<<<<< HEAD
-                        paddingLeft: '10%',
-                        paddingRight: '10%',
-                        background: '#2f4858',
-                        marginLeft: '10px',
-=======
                         background: '#1b1b1b',
                         marginLeft: '15px',
                         marginRight: '15px',
@@ -49,7 +116,6 @@ class ProfilePage extends Component<ProfilePageProps, ProfilePageState> {
                         borderRadius: '20px',
                         maxWidth: '600px',
                         margin: 'auto',
->>>>>>> 1dde0723a99fefab01f88b7f67d1b5c4c05b0b27
                     }}
                     onClick={this.signOut}
                 >
