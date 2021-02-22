@@ -21,6 +21,7 @@ import fb from 'firebase/app';
 import GuessTheLocationPlay from '../Game/guessPlay';
 import GTLicon from '../Inputs/The pin.svg';
 import { Box, Button } from '@material-ui/core';
+import GTLexpanded from './GTLexpanded';
 export interface SinglePostNewProps {
     username?: string;
     postPic?: string;
@@ -43,6 +44,11 @@ export interface SinglePostNewState {
     isOpen: boolean;
     path_name: string;
     isAuthenticated: boolean;
+    // location1: String;
+    // location2: String;
+    // location3: String;
+    questions: any;
+    displayQuestions: boolean;
 }
 class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
     constructor(SinglePostNewProps: any) {
@@ -55,6 +61,8 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
             isOpen: false,
             path_name: `/post/${this.props.uid}`,
             isAuthenticated: false,
+            questions: [{ location1: 'UAE', location2: 'Russia', location3: 'Algeria' }],
+            displayQuestions: false,
         };
         this.handleColorChange = this.handleColorChange.bind(this);
         this.handleButtonClick = this.handleButtonClick.bind(this);
@@ -117,10 +125,24 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
             };
         });
     };
+
+    GTLexpanded = () => {
+        this.setState({ displayQuestions: !this.state.displayQuestions });
+    };
     render() {
         // const classes = useStyles();
         const path = window.location.href.split('/');
         const root = path[path.length - 2];
+        let questions = null;
+        if (this.state.displayQuestions) {
+            return (questions = (
+                <div>
+                    {this.state.questions.map((location1: String, location2: String, location3: String) => {
+                        return <GTLexpanded location1={location1} location2={location2} location3={location3} />;
+                    })}
+                </div>
+            ));
+        }
         if (!this.state.isAuthenticated) return null;
         return (
             <Card
@@ -212,6 +234,7 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
                             borderRadius: '20px',
                             fontSize: '10px',
                         }}
+                        // onClick={this.GTLexpanded} ////////BUGGY LINE: do not attempt to uncomment until debugged/////////
                         variant="contained"
                         endIcon={<img src={GTLicon} alt="GeoPin"></img>}
                     >

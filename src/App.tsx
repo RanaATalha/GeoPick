@@ -18,6 +18,7 @@ import Accessibility from './pages/accessSetting';
 import Notification from './pages/notificationset';
 import ViewPoints from './pages/view-points-screen/points';
 import EditProfile from './pages/edit-profile/editProfile';
+// import GTLexpanded from './components/Display/GTLexpanded';
 function App(): JSX.Element {
     return (
         <div className="App">
@@ -52,7 +53,7 @@ function App(): JSX.Element {
                         <Accessibility />
                     </Route>
                     <Route exact path="/notification">
-                    <Notification />
+                        <Notification />
                     </Route>
                     <Route exact path="/terms">
                         <Terms />
@@ -73,6 +74,9 @@ function App(): JSX.Element {
                     <Route exact path="/EditProfile">
                         <EditProfile />
                     </Route>
+                    {/* <Route exact path="/GTLexpanded">
+                        <GTLexpanded />
+                    </Route> */}
                 </Switch>
             </Router>
         </div>
@@ -132,6 +136,9 @@ function Nav() {
                     <li>
                         <Link to="/EditProfile">Edit Profile</Link>
                     </li>
+                    {/* <li>
+                        <Link to="/GTLexpanded">GTL Expanded component</Link>
+                    </li> */}
                 </ul>
             </nav>
         </div>
