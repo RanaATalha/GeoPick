@@ -8,6 +8,7 @@ export interface GTLexpandedState {}
 
 const GTLexpanded = (props: { location1: String; location2: String; location3: String }) => {
     return (
+        // <div id={props.id}>
         <Box
             style={{
                 padding: '5px 20px 5px 20px',
@@ -74,6 +75,7 @@ const GTLexpanded = (props: { location1: String; location2: String; location3: S
                 </Button>
             </span>
         </Box>
+        // </div>
     );
 };
 
