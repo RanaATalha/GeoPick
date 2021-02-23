@@ -24,7 +24,7 @@
     "react-floating-action-button": "^1.0.5",
     "react-floating-button-menu": "^2.1.1",
     "react-hook-form": "^6.14.2",
-    "react-image-file-resizer": "^0.4.0",
+    "react-image-file-resizer": "^0.4.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "react-share": "^4.3.1",
