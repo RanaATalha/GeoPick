@@ -10299,10 +10299,10 @@ react-hook-form@^6.14.2:
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-6.14.2.tgz#60ab0b5367b220a3d96aa0b17bd0f13f9d8c326a"
   integrity sha512-GgDUuT3Yfhl1BOcMl862uAFbCixSomtm3CVlQQ1qVu9Tq5BN2uUIRUIXP8l2Gy99eLUrBqU9x4E7N+si9cnvaw==
 
-react-image-file-resizer@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/react-image-file-resizer/-/react-image-file-resizer-0.4.0.tgz#041881bd38f9031f051b49f08fbd36ec226c84b4"
-  integrity sha512-no0m3/YfgT+WxWwDynM4OwruUas3FrokE9QHkANuPL8Ihk8SK/ienHE3l+WW1fFouYoVSNMgvDtQYoQknvVavg==
+react-image-file-resizer@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/react-image-file-resizer/-/react-image-file-resizer-0.4.2.tgz#433d647881b9c9b128a737b7e4e964458a1ba6e0"
+  integrity sha512-WMhT3ROQC2pNj6fIcLLOF63K5babk28YW1zbQhlQhDy4Kfs9rx3lZG41WQgrH+u8LkSdZ2BPx9iq7GiWsVWy/g==
 
 react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"

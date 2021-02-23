@@ -131,6 +131,9 @@ function Nav() {
                         <Link to="/accessibility">Accessibility</Link>
                     </li>
                     <li>
+                        <Link to="/notification">Notifications</Link>
+                    </li>
+                    <li>
                         <Link to="/ViewPoints">View points</Link>
                     </li>
                     <li>
