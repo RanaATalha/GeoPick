@@ -33,12 +33,16 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
     }
 
     componentDidMount() {
-        this.getUser().then((user) => {
-            this.setState({ isAuthenticated: true, user: user });
-           
-            }, (error) => {
-            this.setState({ isAuthenticated: true });
-            });
+        const auth = checkUserLoggedIn()
+        if(auth != undefined){
+            this.getUser().then((user) => {
+                this.setState({ isAuthenticated: true, user: user, uid: auth.uid });
+               
+                }, (error) => {
+                this.setState({ isAuthenticated: true });
+                });
+        }
+        
     }
 
     componentDidUpdate() {
@@ -77,11 +81,10 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
                     .doc(auth.uid)
                     .get()
                     .then((querySnapshot) => {
-                        // const data = querySnapshot.data();
+                        const data = querySnapshot.data();
                         // this.se
                         if(querySnapshot.data()){
-                            resolve(querySnapshot.data())
-                            setState({uid: querySnapshot.id})
+                            resolve(data)
                         } else {
                             reject('User not authenticated')
                         }
@@ -94,7 +97,7 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
         auth.doSignOut();
     };
     render() {
-        // if (!this.state.isAuthenticated) return null;
+        if (!this.state.isAuthenticated) return null;
         return (
             <div style={{ background: '#1b1b1b' }} onLoad={this.getData}>
                 <Toolbar style={{ position: 'relative' }}>
@@ -105,7 +108,7 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
                     </Link>
 
                     <img src={WhiteLogo} alt="GeoPicK" className="WhiteLogo" />
-                    <AvatarSmall uid = {this.state.user.uid} User_name = {this.state.user.User_name} Avatar = {this.state.user.Avatar} Size = "small" />
+                    <AvatarSmall User={this.state.user} uid = {this.state.uid} User_name = {this.state.user.User_name} Avatar = {this.state.user.Avatar} Size = "small" />
                 </Toolbar>
                 <SinglePostNew />
                 <Feed />

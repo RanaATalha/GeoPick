@@ -12,7 +12,7 @@ import { HomeScreen } from './pages/home-screen/home';
 import PostViewScreen from './pages/post-view';
 import HelpandFeedback from './pages/helpandfeedback';
 import SettingsScreen from './pages/settings-screen/SettingsMenu';
-import ProfilePage from './pages/profile-screen/ProfilePage';
+import UserPage from './pages/profile-screen/userPage';
 import SearchScreen from "./pages/search-page/index";
 
 import { UploadImage } from './pages/upload-image/index';
@@ -20,6 +20,7 @@ import Accessibility from './pages/accessSetting';
 import Notification from './pages/notificationset';
 import ViewPoints from './pages/view-points-screen/points';
 import EditProfile from './pages/edit-profile/editProfile';
+// import GTLexpanded from './components/Display/GTLexpanded';
 function App(): JSX.Element {
     return (
         <div className="App">
@@ -54,7 +55,7 @@ function App(): JSX.Element {
                         <Accessibility />
                     </Route>
                     <Route exact path="/notification">
-                    <Notification />
+                        <Notification />
                     </Route>
                     <Route exact path="/terms">
                         <Terms />
@@ -63,9 +64,7 @@ function App(): JSX.Element {
                         <SettingsScreen />
                     </Route>
                     <Route path="/post/:catId" component={PostViewScreen}></Route>
-                    <Route path="/ProfilePage">
-                        <ProfilePage />
-                    </Route>
+                    <Route path="/user/:catId" component={UserPage}></Route>
                     <Route exact path="/upload-image">
                         <UploadImage />
                     </Route>
@@ -78,6 +77,9 @@ function App(): JSX.Element {
                     <Route exact path="/EditProfile">
                         <EditProfile />
                     </Route>
+                    {/* <Route exact path="/GTLexpanded">
+                        <GTLexpanded />
+                    </Route> */}
                 </Switch>
             </Router>
         </div>
@@ -140,6 +142,9 @@ function Nav() {
                     <li>
                         <Link to="/EditProfile">Edit Profile</Link>
                     </li>
+                    {/* <li>
+                        <Link to="/GTLexpanded">GTL Expanded component</Link>
+                    </li> */}
                 </ul>
             </nav>
         </div>

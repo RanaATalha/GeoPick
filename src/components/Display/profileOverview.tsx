@@ -53,7 +53,7 @@ export default function ProfileOverview(props: any) {
                             Hi<br></br>
                             </Typography>
                         <Typography style={{ color: '#f56920', fontSize: '2vw' }}>
-                                'mo.kvs_'
+                                {props.User_name}
                             </Typography>
                     
                         
@@ -76,7 +76,7 @@ export default function ProfileOverview(props: any) {
 
                         <Button style={{ marginLeft: '10px', padding: '1px' }}>
                             <Typography variant="button" style={{ justifyContent: 'center' }}>
-                                <span style={{ color: '#fafafa' }}>10</span>
+                                <span style={{ color: '#fafafa' }}>{props.User.GamePoint}</span>
                                 <br></br>
                                 <span style={{ color: '#f56920' }}>points</span>
                             </Typography>

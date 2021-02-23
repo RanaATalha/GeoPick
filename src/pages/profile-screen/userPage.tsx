@@ -8,44 +8,51 @@ import SinglePostNew from '../../components/Display/singlePostNew';
 import ProfileOverview from '../../components/Display/profileOverview';
 import { checkUserLoggedIn } from '../../firebase/auth';
 import firebase from 'firebase';
+import UserFeed from '../../components/Layouts/userFeed';
+
 
 
 import { auth } from '../../firebase';
-export interface ProfilePageProps {}
+export interface UserPageProps {}
 
-export interface ProfilePageState {
+export interface UserPageState {
     posts: any;
     user: any;
     isAuthenticated: boolean;
+    uid: string;
 }
 
-class ProfilePage extends Component<ProfilePageProps, ProfilePageState> {
+class UserPage extends Component<UserPageProps, UserPageState> {
 
-    constructor(HomeScreenProps: any) {
-        super(HomeScreenProps);
+    constructor(UserPageProps: any) {
+        super(UserPageProps);
         this.state = {
             posts: [],
             user: {},
             isAuthenticated: false,
+            uid: '',
         };
     }
 
     componentDidMount() {
+        const path = window.location.pathname.split('/');
+        const uid = path[path.length - 1];
         this.getUser().then((user) => {
-            this.setState({ isAuthenticated: true, user: user.data, uid: user.id });
+            this.setState({ isAuthenticated: true, user: user, uid: uid});
+            console.log(this.state.user)
+            console.log(this.state.uid)
             }, (error) => {
             this.setState({ isAuthenticated: true });
             });
     }
 
     // componentDidUpdate() {
-    //     firebase
-    //         .firestore()
-    //         .collection('Posts')
-    //         .onSnapshot((snapshot: any) => {
-    //             this.setState(snapshot.docs.map((doc: any) => ({ id: doc.id, post: doc.data() })));
-    //         });
-    //     // console.log(this.state);
+        
+    //     const auth = checkUserLoggedIn();
+    //     if(auth != undefined){
+            
+    //     }
+        
     // }
 
     // getData = () => {
@@ -65,18 +72,20 @@ class ProfilePage extends Component<ProfilePageProps, ProfilePageState> {
     // };
 
     getUser = () => {
-        const auth = checkUserLoggedIn();
+        const path = window.location.pathname.split('/');
+        const uid = path[path.length - 1];
         return new Promise(function (resolve, reject) {
             if (auth === undefined) {
             } else {
                 firebase.firestore()
                     .collection('users')
-                    .doc(auth.uid)
+                    .doc(uid)
                     .get()
                     .then((querySnapshot) => {
                         const data = querySnapshot.data();
+                        const id = querySnapshot.id;
                         if(data){
-                            resolve(querySnapshot.doc.map((doc: any) => ({ id: doc.id, data: doc.data() })))
+                            resolve(data)
                         } else {
                             reject('User not authenticated')
                         }
@@ -98,7 +107,7 @@ class ProfilePage extends Component<ProfilePageProps, ProfilePageState> {
                     alt="GeoPicK"
                     style={{ width: '200px', height: '66px', margin: 'auto', paddingBottom: '1em' }}
                 />
-                <ProfileOverview uid = {this.state.user.uid} User_name = {this.state.user.User_name} Avatar = {this.state.user.Avatar} Size = "large"/>
+                <ProfileOverview User={this.state.user} User_name = {this.state.user.User_name} Avatar = {this.state.user.Avatar} Size = "large"/>
                 <br></br>
                 <br></br>
                 <Button style={{ paddingLeft: '15%', paddingRight: '15%', background: '#f56920' }}>
@@ -129,11 +138,11 @@ class ProfilePage extends Component<ProfilePageProps, ProfilePageState> {
                     <Typography variant="h4" style={{ color: '#fafafa', paddingTop: '25px' }}>
                         My <span style={{ color: '#f56920' }}>Posts</span>
                     </Typography>
-                    <SinglePostNew />
+                    <UserFeed uid = {this.state.uid} />
                 </div>
             </div>
         );
     }
 }
 
-export default ProfilePage;
+export default UserPage;
