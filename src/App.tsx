@@ -18,6 +18,7 @@ import Accessibility from './pages/accessSetting';
 import Notification from './pages/notificationset';
 import ViewPoints from './pages/view-points-screen/points';
 import EditProfile from './pages/edit-profile/editProfile';
+import LocationPicker from './components/Inputs/LocationPicker';
 // import GTLexpanded from './components/Display/GTLexpanded';
 function App(): JSX.Element {
     return (
@@ -79,6 +80,8 @@ function App(): JSX.Element {
                     </Route> */}
                 </Switch>
             </Router>
+            {/* need to populate the places in this */}
+            <LocationPicker />
         </div>
     );
 }
