@@ -49,14 +49,16 @@ export default function SearchScreen() {
                     />
                     <br></br>
                     {users.length>0 && users.map((data) => {
+                        console.log(data);
                       return (
                           <div>
                             <ProfileOverview 
-                                key = {data.uid}
-                                uid = {data.uid} 
+                                key = {data.id}
+                                uid = {data.id} 
                                 User_name = {data.User_name} 
                                 Avatar = {data.Avatar} 
                                 Size = "small"
+                                User = {data}
                             />
                             <br/><br/>
                           </div>

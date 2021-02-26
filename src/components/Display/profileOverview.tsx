@@ -50,7 +50,7 @@ export default function ProfileOverview(props: any) {
                             <AvatarSmall uid = {props.uid} User_name = {props.User_name} Avatar = {props.Avatar} Size = {props.Size} />
                         </Grid>
                         <Typography style={{ color: '#fafafa', fontSize: '3vw' }}>
-                            Hi<br></br>
+                            Hi,<br></br>
                             </Typography>
                         <Typography style={{ color: '#f56920', fontSize: '2vw' }}>
                                 {props.User_name}
