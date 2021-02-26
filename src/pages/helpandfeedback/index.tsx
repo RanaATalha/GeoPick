@@ -7,6 +7,7 @@ import TextField from '../../components/Inputs/TextField';
 import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
 import { Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import emailjs from 'emailjs-com';
 
 export interface HelpandFeedbackProps {}
 
@@ -16,6 +17,20 @@ const WhiteTypography = withStyles({
         textAlign: 'left',
     },
 })(Typography);
+
+function sendEmail(e: any) {
+    e.preventDefault();
+
+    emailjs.sendForm('service_7um7ypw', 'template_my7a0ii', e.target, 'user_pKzNS4ftM2sSAMAFNjGVw').then(
+        (result) => {
+            console.log(result.text);
+        },
+        (error) => {
+            console.log(error.text);
+        },
+    );
+    e.target.reset();
+}
 
 export default function HelpandFeedback() {
     return (
@@ -46,18 +61,20 @@ export default function HelpandFeedback() {
                         The Geo<span style={{ color: '#f56920' }}>Pic</span>K Dev Team
                     </WhiteTypography>
                     <br></br>
-                    <TextField
-                        id="standard-multiline-flexible"
-                        label="Feedback"
-                        variant="outlined"
-                        placeholder="Write something..."
-                        multiline
-                        rowsMax={5}
-                    />
-                    <br></br>
-                    <RegularBtn type="submit" colorType="orange" style={{ width: 'auto', borderRadius: '20px' }}>
-                        Send Feedback
-                    </RegularBtn>
+                    <form onSubmit={sendEmail}>
+                        <TextField
+                            id="standard-multiline-flexible"
+                            label="Feedback"
+                            variant="outlined"
+                            placeholder="Write something..."
+                            multiline
+                            rowsMax={5}
+                        />
+                        <br></br>
+                        <RegularBtn type="submit" colorType="orange" style={{ width: 'auto', borderRadius: '20px' }}>
+                            Send Feedback
+                        </RegularBtn>
+                    </form>
                 </Card>
             </div>
             <br />
