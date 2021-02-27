@@ -235,28 +235,31 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
                             
                         },
                     )}
-                    <Button
-                        style={{
-                            padding: '5px 20px 5px 20px',
-                            // position: 'static',
-                            // // float: 'right',
-                            // right: '200px',
-                            marginLeft: 'auto',
-                            marginRight: '3px',
-                            background: '#202020',
-                            color: '#F56920',
-                            borderRadius: '20px',
-                            fontSize: '10px',
-                        }}
-                        onClick={this.GTLexpanded} ////////BUGGY LINE: do not uncomment until debugged/////////
-                        variant="contained"
-                        endIcon={<img src={GTLicon} alt="GeoPin"></img>}
-                    >
-                        Guess The
-                        <br></br>
-                        Location
-                    </Button>
-                    <div>{questions}</div>
+                    {!this.state.displayQuestions && 
+                        <Button
+                            style={{
+                                padding: '5px 20px 5px 20px',
+                                // position: 'static',
+                                // // float: 'right',
+                                // right: '200px',
+                                marginLeft: 'auto',
+                                marginRight: '3px',
+                                background: '#202020',
+                                color: '#F56920',
+                                borderRadius: '20px',
+                                fontSize: '10px',
+                            }}
+                            onClick={this.GTLexpanded} ////////BUGGY LINE: do not uncomment until debugged/////////
+                            variant="contained"
+                            endIcon={<img src={GTLicon} alt="GeoPin"></img>}
+                        >
+                            Guess The
+                            <br></br>
+                            Location
+                        </Button>
+                    }
+                    
+                    {/* <div>{questions}</div> */}
                     {/* <div>
                         <GuessTheLocationPlay city1="Dubai" city2="Paris" city3="Tokyo" />
                     </div> */}

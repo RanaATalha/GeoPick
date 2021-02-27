@@ -27,18 +27,27 @@ export interface UploadImageState {
     img: any;
     caption: string;
     tags: any;
+    height: number;
+    width: number;
+    rawurl: string;
 }
 
 export class UploadImage extends Component<UploadImageProps, UploadImageState> {
     constructor(UploadImageProps: any) {
         super(UploadImageProps);
+        // firebase.auth().onAuthStateChanged(function(user) {
+        //     this.setState({ user: user });
+        // });
         this.state = {
-            user: checkUserLoggedIn(),
+            user: {},
             isAuthenticated: false,
-            imgurl: 'https://wallpapercave.com/wp/wp3597484.jpg',
+            imgurl: '',
             img: {},
             caption: '',
             tags: [],
+            height: 0,
+            width: 0,
+            rawurl: 'https://wallpapercave.com/wp/wp3597484.jpg',
         };
         
     }
@@ -115,33 +124,38 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
                             .putString(urinew, 'base64')
                             .then((data) => {
                                 data.ref.getDownloadURL().then((url) => {
-                                    this.setState({ imgurl: url });
+                                    // this.setState({ imgurl: url });
+                                    firebase
+                                        .firestore()
+                                        .collection('Posts/')
+                                        .add({
+                                            Image: url,
+                                            caption: this.state.caption,
+                                            comments: [],
+                                            comment_count: 0,
+                                            likes_count: 0,
+                                            uid: user.uid,
+                                            username: this.state.user.User_name,
+                                            post_time: new Date(),
+                                            tags: this.state.tags,
+                                        }).then(function(docRef) {
+                                            console.log("Document written with ID: ", docRef.id);
+                                        }).catch(function(error) {
+                                            console.error("Error adding document: ", error);
+                                        });
                                 });
+                                
+                                // console.log(this.state.imgurl);
                             });
                     }
+                    
                 },
                 'base64',
             );
         }, 2500);
+
         
-        const postRef = firebase
-            .firestore()
-            .collection('Posts/')
-            .add({
-                Image: this.state.imgurl,
-                caption: this.state.caption,
-                comments: [],
-                comment_count: 0,
-                likes_count: 0,
-                uid: user.uid,
-                username: this.state.user.User_name,
-                post_time: new Date(),
-                tags: this.state.tags,
-            }).then(function(docRef) {
-                console.log("Document written with ID: ", docRef.id);
-            }).catch(function(error) {
-                console.error("Error adding document: ", error);
-            });
+        
         // push('/home');
         // console.log(postRef.documentID);
 
@@ -150,9 +164,9 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
     changeImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
         if (!event.target.files || !event.target.files[0]) return;
         const file = await event.target.files[0];
-        this.setState({ img: file, imgurl: URL.createObjectURL(file) });
+        this.setState({ img: file, rawurl: URL.createObjectURL(file)});
 
-        console.log(this.state.img);
+        // console.log(this.state.img);
     }
 
     updateCaption = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -188,7 +202,7 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
                     style={{ textAlign: 'left', color: '#fafafa' }}
                 />
                 <CardMedia
-                    image={this.state.imgurl}
+                    image={this.state.rawurl}
                     title={`A Photo by ${this.state.user.User_name}`}
                     style={{
                         borderRadius: '20px 20px 20px 20px',

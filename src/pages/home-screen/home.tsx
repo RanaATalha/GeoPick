@@ -4,7 +4,7 @@ import WhiteLogo from '../welcome screen/WhiteLogo.svg';
 import './homesStyles.scss';
 import firebase from 'firebase';
 import Feed from '../../components/Layouts/feed';
-import { Avatar, IconButton, Toolbar } from '@material-ui/core';
+import { Avatar, IconButton, Toolbar, Box } from '@material-ui/core';
 import { checkUserLoggedIn } from '../../firebase/auth';
 import BottomNavigation from '../../components/NavBar/navbar';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';

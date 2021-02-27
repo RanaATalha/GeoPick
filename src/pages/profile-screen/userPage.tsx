@@ -138,8 +138,8 @@ class UserPage extends Component<UserPageProps, UserPageState> {
                     <Typography variant="h4" style={{ color: '#fafafa', paddingTop: '25px' }}>
                         My <span style={{ color: '#f56920' }}>Posts</span>
                     </Typography>
-                    <UserFeed uid = {this.state.uid} />
                 </div>
+                <UserFeed uid = {this.state.uid} />
             </div>
         );
     }

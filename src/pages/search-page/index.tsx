@@ -4,7 +4,7 @@ import Card from '../../components/Layouts/Card';
 import { RegularBtn } from '../../components/Buttons/RegularBtn';
 import TextField from '../../components/Inputs/TextField';
 import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
-import { Typography } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import firebase from 'firebase';
 import ProfileOverview from '../../components/Display/profileOverview';
 import Button from '@material-ui/core/Button';
@@ -15,25 +15,18 @@ import SinglePostNew from '../../components/Display/singlePostNew';
 export interface SearchProps {}
 
 export default function SearchScreen() {
-    const [res, setRes] = useState(Array());
+    const [users, setUsers] = useState(Array());
+    const [posts, setPosts] = useState(Array());
     const [userOn, setUserOn] = useState(false);
     const [postOn, setPostOn] = useState(false);
+    const [query, setQuery] = useState("");
 
     const toggleUser = () => {
         setUserOn(true);
         setPostOn(false);
-    }
-
-    const togglePost = () => {
-        setUserOn(false);
-        setPostOn(true);
-    }
-
-    const fetchResults = (search: React.ChangeEvent<HTMLInputElement>) => {
-        if(userOn){
-            firebase.firestore()
+        firebase.firestore()
             .collection('users')
-            .where('User_name', '>=', search.target.value)
+            .where('User_name', '>=', query)
             .limit(5)
             .get()
             .then((snapshot) => {
@@ -42,14 +35,17 @@ export default function SearchScreen() {
                     const id = doc.id;
                     return { id, ...data }
                 });
-                setRes(users);
+                setUsers(users);
+                setPosts([]);
             })
-        }
+    }
 
-        if(postOn){
-            firebase.firestore()
+    const togglePost = () => {
+        setUserOn(false);
+        setPostOn(true);
+        firebase.firestore()
             .collection('Posts')
-            .where('tags', 'array-contains', search.target.value)
+            .where('tags', 'array-contains', query)
             .limit(5)
             .get()
             .then((snapshot) => {
@@ -58,8 +54,18 @@ export default function SearchScreen() {
                     const id = doc.id;
                     return { id, ...data }
                 });
-                setRes(posts);
+                setPosts(posts);
+                setUsers([]);
             })
+    }
+
+    const fetchResults = (search: React.ChangeEvent<HTMLInputElement>) => {
+        setQuery(search.target.value.toLowerCase());
+        if(userOn){
+            toggleUser();
+        }
+        if(postOn){
+            togglePost();
         }
         
     }
@@ -82,11 +88,14 @@ export default function SearchScreen() {
                         onChange = {fetchResults}
                     />
                     <br></br>
-                    <Button variant="contained" style={{float:'left'}} onClick={toggleUser}>Users</Button>
-                    <Button variant="contained" style={{float:'right'}} onClick={togglePost}>Posts</Button>
-                    {res.length>0 && res.map((data) => {
+                    <Box>
+                        <Button variant="contained" style={{float:'left'}} onClick={toggleUser}>Users</Button>
+                        <Button variant="contained" style={{float:'right'}} onClick={togglePost}>Posts</Button>
+                    </Box>
+                    <br/>
+                    <br/>
+                    {users.length>0 && users.map((data) => {
                         // console.log(data);
-                        if(userOn){
                             return (
                                 <div>
                                   <ProfileOverview 
@@ -100,7 +109,11 @@ export default function SearchScreen() {
                                   <br/><br/>
                                 </div>
                             );
-                        } else {
+                        }
+                    )}
+
+                    {posts.length>0 && posts.map((data) => {
+                        // console.log(data);
                             return (
                                 <div>
                                   <SinglePostNew
@@ -123,9 +136,7 @@ export default function SearchScreen() {
                                 </div>
                             );
                         }
-                      
-                      // console.log(data.User_name);
-                  })}
+                    )}
                  
                   
                 </Card>

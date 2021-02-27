@@ -75,6 +75,8 @@ if (!firebase.apps.length) {
 //         console.log("Error "+ err.toString);
 //     })
 // }
+
+
 export const auth = firebase.auth();
 export const GoogleProvider = new firebase.auth.GoogleAuthProvider();
 export const db = firebase.database();
