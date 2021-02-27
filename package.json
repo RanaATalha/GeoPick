@@ -16,6 +16,8 @@
     "algoliasearch": "^4.8.5",
     "clsx": "^1.1.1",
     "dot-env": "^0.0.1",
+    "emailjs": "^3.4.0",
+    "emailjs-com": "^2.6.4",
     "firebase": "^8.2.1",
     "framework7": "^6.0.4",
     "framework7-react": "^6.0.4",

@@ -61,11 +61,13 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
             isOpen: false,
             path_name: `/post/${this.props.uid}`,
             isAuthenticated: false,
-            questions: [{ location1: 'UAE', location2: 'Russia', location3: 'Algeria' }],
+            // questions: [{ location1: 'UAE', location2: 'Russia', location3: 'Algeria' }],
+            questions: [{ location1: 'UAE', Location2: 'Russia', Location3: 'Algeria' }],
             displayQuestions: false,
         };
         this.handleColorChange = this.handleColorChange.bind(this);
         this.handleButtonClick = this.handleButtonClick.bind(this);
+        this.GTLexpanded = this.GTLexpanded.bind(this);
     }
 
     handleColorChange = () => {
@@ -127,22 +129,23 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
     };
 
     GTLexpanded = () => {
-        this.setState({ displayQuestions: !this.state.displayQuestions });
+        this.setState((state) => {
+            return { displayQuestions: !this.state.displayQuestions };
+        });
     };
     render() {
         // const classes = useStyles();
         const path = window.location.href.split('/');
         const root = path[path.length - 2];
         let questions = null;
-        if (this.state.displayQuestions) {
-            return (questions = (
-                <div>
-                    {this.state.questions.map((location1: String, location2: String, location3: String) => {
-                        return <GTLexpanded location1={location1} location2={location2} location3={location3} />;
-                    })}
-                </div>
-            ));
-        }
+        // if (this.state.displayQuestions) {
+        //     console.log("Entered GTL")
+        //     return (questions = (
+        //         <div>
+                    
+        //         </div>
+        //     ));
+        // }
         if (!this.state.isAuthenticated) return null;
         return (
             <Card
@@ -221,6 +224,17 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
                     <IconButton aria-label="share">
                         <SharePost sharedURL={`${root}${this.state.path_name}`} />
                     </IconButton>
+                    {this.state.displayQuestions && this.state.questions.map(
+                        (item: any) => (location1: String, location2: String, location3: String) => {
+                            console.log("Entered GTL");
+                            return (
+                                <div key={item}>
+                                    <GTLexpanded location1={location1} location2={location2} location3={location3} />
+                                </div>
+                            );
+                            
+                        },
+                    )}
                     <Button
                         style={{
                             padding: '5px 20px 5px 20px',
@@ -234,7 +248,7 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
                             borderRadius: '20px',
                             fontSize: '10px',
                         }}
-                        // onClick={this.GTLexpanded} ////////BUGGY LINE: do not attempt to uncomment until debugged/////////
+                        onClick={this.GTLexpanded} ////////BUGGY LINE: do not uncomment until debugged/////////
                         variant="contained"
                         endIcon={<img src={GTLicon} alt="GeoPin"></img>}
                     >
@@ -242,6 +256,7 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
                         <br></br>
                         Location
                     </Button>
+                    <div>{questions}</div>
                     {/* <div>
                         <GuessTheLocationPlay city1="Dubai" city2="Paris" city3="Tokyo" />
                     </div> */}
