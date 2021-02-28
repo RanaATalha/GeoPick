@@ -18,6 +18,7 @@ import SearchScreen from "./pages/search-page/index";
 import { UploadImage } from './pages/upload-image/index';
 import Accessibility from './pages/accessSetting';
 import Notification from './pages/notificationset';
+import Notificationpg from './pages/notification';
 import ViewPoints from './pages/view-points-screen/points';
 import EditProfile from './pages/edit-profile/editProfile';
 import LocationPicker from './components/Inputs/LocationPicker';
@@ -56,8 +57,11 @@ function App(): JSX.Element {
                     <Route exact path="/accessibility">
                         <Accessibility />
                     </Route>
-                    <Route exact path="/notification">
+                    <Route exact path="/notificationset">
                         <Notification />
+                    </Route>
+                    <Route exact path="/notification">
+                        <Notificationpg />
                     </Route>
                     <Route exact path="/terms">
                         <Terms />
@@ -144,7 +148,10 @@ function Nav() {
                         <Link to="/search">Search</Link>
                     </li>
                     <li>
-                        <Link to="/notification">Notifications</Link>
+                        <Link to="/notificationset">Notifications</Link>
+                    </li>
+                    <li>
+                        <Link to="/notification">NotificationsPage</Link>
                     </li>
                     <li>
                         <Link to="/ViewPoints">View points</Link>
