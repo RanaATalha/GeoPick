@@ -7,7 +7,7 @@ export default class WebCamFun extends React.Component<WebCamFunProps> {
         return (
             <div>
                 <div className="bg">
-                    <Webcam/>         
+                             
                 </div>
             </div>
         );
