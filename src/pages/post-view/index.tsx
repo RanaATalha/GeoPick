@@ -92,6 +92,7 @@ export default class PostViewScreen extends Component<PostViewProps, PostViewSta
                 }
             });
 
+        console.log(this.state.post_uid);
         fb.firestore()
             .collection('users')
             .doc(this.state.post_uid)

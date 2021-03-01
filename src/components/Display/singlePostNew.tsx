@@ -43,6 +43,7 @@ export interface SinglePostNewState {
     open_share: boolean;
     isOpen: boolean;
     path_name: string;
+    likes: number|undefined;
     isAuthenticated: boolean;
     // location1: String;
     // location2: String;
@@ -53,13 +54,15 @@ export interface SinglePostNewState {
 class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
     constructor(SinglePostNewProps: any) {
         super(SinglePostNewProps);
+        
         this.state = {
             favourited: false,
             user: checkUserLoggedIn(),
             post_user: {},
+            likes: this.props.likes_count,
             open_share: false,
             isOpen: false,
-            path_name: `/post/${this.props.uid}`,
+            path_name: `/post/${this.props.id}`,
             isAuthenticated: false,
             // questions: [{ location1: 'UAE', location2: 'Russia', location3: 'Algeria' }],
             questions: [{ location1: 'UAE', Location2: 'Russia', Location3: 'Algeria' }],
@@ -78,14 +81,22 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
         const increment = fb.firestore.FieldValue.increment(1);
         const decrement = fb.firestore.FieldValue.increment(-1);
 
+        
+
         if (this.state.favourited === false) {
+            console.log(this.props.id) //undefined
             fb.firestore().collection('Posts').doc(this.props.id).update({
                 likes_count: increment,
+
             });
+            let like = this.state.likes ? this.state.likes + 1 : 0
+            this.setState({likes: like});
         } else {
             fb.firestore().collection('Posts').doc(this.props.id).update({
                 likes_count: decrement,
             });
+            let like = this.state.likes ? this.state.likes - 1 : 0
+            this.setState({likes: like});
         }
     };
     share_area = React.createRef();
@@ -210,7 +221,7 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
                         onClick={this.handleColorChange}
                     >
                         <FavoriteIcon />
-                        {<Typography style={{ color: '#fafafa' }}>{this.props.likes_count}</Typography>}
+                        {<Typography style={{ color: '#fafafa' }}>{this.state.likes}</Typography>}
                     </IconButton>
                     <Link to={{ pathname: `/post/${this.props.id}`, state: this.props.uid }}>
                         <IconButton aria-label="add a comment" style={{ color: '#FAFAFA', position: 'relative' }}>
