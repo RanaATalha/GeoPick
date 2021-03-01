@@ -17,7 +17,8 @@ export default {
       let posts:Array<any> = [];
       let lastKey:firebase.firestore.QueryDocumentSnapshot<firebase.firestore.DocumentData> = "" as unknown as firebase.firestore.QueryDocumentSnapshot<firebase.firestore.DocumentData>;
       data.forEach((doc) => {
-        posts.push(doc.data());
+        posts.push({...doc.data(), id: doc.id});
+        
         lastKey = (doc)
       });
       console.log(lastKey)
@@ -46,7 +47,7 @@ export default {
       let lastKey:firebase.firestore.QueryDocumentSnapshot<firebase.firestore.DocumentData> = "" as unknown as firebase.firestore.QueryDocumentSnapshot<firebase.firestore.DocumentData>;
 
       data.forEach((doc) => {
-        posts.push(doc.data());
+        posts.push({...doc.data(), id: doc.id});
         lastKey = (doc);
       });
       

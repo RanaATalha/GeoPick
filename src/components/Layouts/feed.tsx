@@ -24,6 +24,7 @@ export default function Feed() {
           .then((res) => {
             if (res) {
             setPosts(res.posts);
+            console.log(res.posts[0])
             setLastKey(res.lastKey);
           } else return
         })
@@ -56,6 +57,7 @@ export default function Feed() {
         <div>
             {posts.map((post) => {
                 if (post) {
+                  // console.log("feed id", post)
                   return (
                     <SinglePostNew
                         key={post.id}
@@ -78,7 +80,7 @@ export default function Feed() {
             })}
         </div>
     );
-    console.log(lastKey)
+    // console.log(lastKey)
     return (
         // <div>
         //     {posts.map(({ id, post }) => {

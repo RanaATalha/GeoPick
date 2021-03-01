@@ -55,21 +55,21 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
         // console.log(this.state);
     }
 
-    getData = () => {
-        firebase
-            .firestore()
-            .collection('Posts')
-            .orderBy('likes_count')
-            .get()
-            .then((querySnapshot) => {
-                querySnapshot.forEach(function () {
-                    // console.log(doc.id, ' => ', doc.data());
-                });
-            })
-            .catch((err) => {
-                console.log('Error getting documents: ', err);
-            });
-    };
+    // getData = () => {
+    //     firebase 
+    //         .firestore()
+    //         .collection('Posts')
+    //         .orderBy('likes_count')
+    //         .get()
+    //         .then((querySnapshot) => {
+    //             querySnapshot.forEach(function () {
+    //                 // console.log(doc.id, ' => ', doc.data());
+    //             });
+    //         })
+    //         .catch((err) => {
+    //             console.log('Error getting documents: ', err);
+    //         });
+    // };
 
     getUser = () => {
         const auth = checkUserLoggedIn();
@@ -96,10 +96,13 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
     signOut = () => {
         auth.doSignOut();
     };
+
+    
     render() {
+        // console.log("hello");
         if (!this.state.isAuthenticated) return null;
         return (
-            <div style={{ background: '#1b1b1b' }} onLoad={this.getData}>
+            <div style={{ background: '#1b1b1b' }}>
                 <Toolbar style={{ position: 'relative' }}>
                     <Link to="/welcome">
                         <IconButton edge="end" onClick={this.signOut}>
@@ -112,6 +115,7 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
                 </Toolbar>
                 <SinglePostNew />
                 <Feed />
+                
                 <div style={{ padding: '30px' }}></div>
                 <BottomNavigation />
             </div>
