@@ -22,6 +22,8 @@ import GuessTheLocationPlay from '../Game/guessPlay';
 import GTLicon from '../Inputs/The pin.svg';
 import { Box, Button } from '@material-ui/core';
 import GTLexpanded from './GTLexpanded';
+import ReportButton from './report';
+import GTLmenu from './GTLmenu';
 export interface SinglePostNewProps {
     username?: string;
     postPic?: string;
@@ -43,7 +45,7 @@ export interface SinglePostNewState {
     open_share: boolean;
     isOpen: boolean;
     path_name: string;
-    likes: number|undefined;
+    likes: number | undefined;
     isAuthenticated: boolean;
     // location1: String;
     // location2: String;
@@ -54,7 +56,7 @@ export interface SinglePostNewState {
 class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
     constructor(SinglePostNewProps: any) {
         super(SinglePostNewProps);
-        
+
         this.state = {
             favourited: false,
             user: checkUserLoggedIn(),
@@ -81,22 +83,19 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
         const increment = fb.firestore.FieldValue.increment(1);
         const decrement = fb.firestore.FieldValue.increment(-1);
 
-        
-
         if (this.state.favourited === false) {
-            console.log(this.props.id) //undefined
+            console.log(this.props.id); //undefined
             fb.firestore().collection('Posts').doc(this.props.id).update({
                 likes_count: increment,
-
             });
-            let like = this.state.likes ? this.state.likes + 1 : 0
-            this.setState({likes: like});
+            let like = this.state.likes ? this.state.likes + 1 : 0;
+            this.setState({ likes: like });
         } else {
             fb.firestore().collection('Posts').doc(this.props.id).update({
                 likes_count: decrement,
             });
-            let like = this.state.likes ? this.state.likes - 1 : 0
-            this.setState({likes: like});
+            let like = this.state.likes ? this.state.likes - 1 : 0;
+            this.setState({ likes: like });
         }
     };
     share_area = React.createRef();
@@ -144,6 +143,7 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
             return { displayQuestions: !this.state.displayQuestions };
         });
     };
+
     render() {
         // const classes = useStyles();
         const path = window.location.href.split('/');
@@ -153,7 +153,7 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
         //     console.log("Entered GTL")
         //     return (questions = (
         //         <div>
-                    
+
         //         </div>
         //     ));
         // }
@@ -182,9 +182,12 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
                         </Avatar>
                     }
                     action={
-                        <IconButton aria-label="settings" style={{ color: '#fafafa' }}>
-                            <MoreVertIcon />
-                        </IconButton>
+                        <>
+                            {/* <IconButton aria-label="settings" style={{ color: '#fafafa' }}>
+                                <MoreVertIcon />
+                            </IconButton> */}
+                            <ReportButton />
+                        </>
                     }
                     title={<Typography variant="h6">{this.state.post_user.User_name}</Typography>}
                     subheader={
@@ -235,41 +238,46 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
                     <IconButton aria-label="share">
                         <SharePost sharedURL={`${root}${this.state.path_name}`} />
                     </IconButton>
-                    {this.state.displayQuestions && this.state.questions.map(
-                        (item: any) => (location1: String, location2: String, location3: String) => {
-                            console.log("Entered GTL");
-                            return (
-                                <div key={item}>
-                                    <GTLexpanded location1={location1} location2={location2} location3={location3} />
-                                </div>
-                            );
-                            
-                        },
-                    )}
-                    {!this.state.displayQuestions && 
-                        <Button
-                            style={{
-                                padding: '5px 20px 5px 20px',
-                                // position: 'static',
-                                // // float: 'right',
-                                // right: '200px',
-                                marginLeft: 'auto',
-                                marginRight: '3px',
-                                background: '#202020',
-                                color: '#F56920',
-                                borderRadius: '20px',
-                                fontSize: '10px',
-                            }}
-                            onClick={this.GTLexpanded} ////////BUGGY LINE: do not uncomment until debugged/////////
-                            variant="contained"
-                            endIcon={<img src={GTLicon} alt="GeoPin"></img>}
-                        >
-                            Guess The
-                            <br></br>
-                            Location
-                        </Button>
-                    }
-                    
+                    <GTLmenu />
+                    {/* {this.state.displayQuestions &&
+                        this.state.questions.map(
+                            (item: any) => (location1: String, location2: String, location3: String) => {
+                                console.log('Entered GTL');
+                                return (
+                                    <div key={item}>
+                                        <GTLexpanded
+                                            location1={location1}
+                                            location2={location2}
+                                            location3={location3}
+                                        />
+                                    </div>
+                                );
+                            },
+                        )}
+                    {!this.state.displayQuestions && (
+                    <Button
+                        style={{
+                            padding: '5px 20px 5px 20px',
+                            // position: 'static',
+                            // // float: 'right',
+                            // right: '200px',
+                            marginLeft: 'auto',
+                            marginRight: '3px',
+                            background: '#202020',
+                            color: '#F56920',
+                            borderRadius: '20px',
+                            fontSize: '10px',
+                        }}
+                        onClick={this.GTLexpanded} ////////BUGGY LINE: do not uncomment until debugged/////////
+                        variant="contained"
+                        endIcon={<img src={GTLicon} alt="GeoPin"></img>}
+                    >
+                        Guess The
+                        <br></br>
+                        Location
+                    </Button>
+                    )} */}
+
                     {/* <div>{questions}</div> */}
                     {/* <div>
                         <GuessTheLocationPlay city1="Dubai" city2="Paris" city3="Tokyo" />
