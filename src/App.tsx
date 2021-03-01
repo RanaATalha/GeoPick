@@ -19,6 +19,7 @@ import { UploadImage } from './pages/upload-image/index';
 import Accessibility from './pages/accessSetting';
 import Notification from './pages/notificationset';
 import Notificationpg from './pages/notification';
+import Places from './components/Inputs/Places'
 import ViewPoints from './pages/view-points-screen/points';
 import EditProfile from './pages/edit-profile/editProfile';
 import LocationPicker from './components/Inputs/LocationPicker';
@@ -92,7 +93,7 @@ function App(): JSX.Element {
                 </Switch>
             </Router>
             {/* need to populate the places in this */}
-            <LocationPicker />
+            <Places />
         </div>
     );
 }

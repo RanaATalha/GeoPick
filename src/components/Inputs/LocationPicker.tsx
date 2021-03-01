@@ -10,7 +10,7 @@ function LocationPicker({ InputProps, variant = 'filled', ...props }: TextFieldP
             options={countries}
             getOptionLabel={(option) => option.label}
             style={{ width: 300 }}
-            renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
+            renderInput={(params) => <TextField {...params} label="Choose Location" variant="outlined" />}
         />
     );
 }
