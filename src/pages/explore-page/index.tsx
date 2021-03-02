@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useLayoutEffect, useRef, useEffect } from 'react'
 import WhiteLogo from '../welcome screen/WhiteLogo.svg';
 import Card from '../../components/Layouts/Card';
 import { RegularBtn } from '../../components/Buttons/RegularBtn';
@@ -10,18 +10,44 @@ import ProfileOverview from '../../components/Display/profileOverview';
 import Button from '@material-ui/core/Button';
 import SinglePostNew from '../../components/Display/singlePostNew';
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
+import { Typography } from '@material-ui/core';
+import Avatar from '@material-ui/core/Avatar';
+import { Link } from 'react-router-dom';
+
 
 
 export interface SearchProps {}
 
 export default function ExploreScreen() {
+    const [posts, setPosts] = useState<any[]>([]);
+    const firstUpdate = useRef(true);
     const [viewport, setViewport] = useState({
         latitude: 45.4211,
         longitude: -75.6903,
-        width: "35vw",
+        width: "100%",
         height: "100vh",
-        zoom: 10
+        zoom: 8
       });
+
+    useLayoutEffect(() => {
+        if (firstUpdate.current) {
+          firstUpdate.current = false;
+          return;
+        }
+    
+        // console.log("componentDidUpdateFunction");
+        firebase
+            .firestore()
+            .collection('Posts')
+            .onSnapshot((snapshot: any) => {
+                setPosts(snapshot.docs.map((doc: any) => ({ id: doc.id, post: doc.data() })));
+            });
+        // console.log(posts)
+      });
+
+    // useEffect(() => {
+        
+    // });
     return (
         <div className="background">
             <div className="button" style={{ float: 'left' }}>
@@ -40,6 +66,18 @@ export default function ExploreScreen() {
                     setViewport(viewport);
                     }}
                 >
+                    {posts.map(({id, post}) => (
+                        <Marker
+                            key={id}
+                            latitude={post.location.latitude}
+                            longitude={post.location.longitude}
+                        >
+                            <Link to={{ pathname: `/post/${id}`, state: post.uid}}>
+                                <Avatar alt={post.user_name} src={post.Image} />
+                            </Link>
+                            
+                        </Marker>
+                    ))}
 
                 </ReactMapGL>
                  

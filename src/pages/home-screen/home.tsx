@@ -33,16 +33,17 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
     }
 
     componentDidMount() {
-        const auth = checkUserLoggedIn()
-        if(auth != undefined){
-            this.getUser().then((user) => {
-                this.setState({ isAuthenticated: true, user: user, uid: auth.uid });
-               
-                }, (error) => {
-                this.setState({ isAuthenticated: true });
-                });
+        const auth = checkUserLoggedIn();
+        if (auth != undefined) {
+            this.getUser().then(
+                (user) => {
+                    this.setState({ isAuthenticated: true, user: user, uid: auth.uid });
+                },
+                (error) => {
+                    this.setState({ isAuthenticated: true });
+                },
+            );
         }
-        
     }
 
     componentDidUpdate() {
@@ -56,7 +57,7 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
     }
 
     // getData = () => {
-    //     firebase 
+    //     firebase
     //         .firestore()
     //         .collection('Posts')
     //         .orderBy('likes_count')
@@ -76,28 +77,28 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
         return new Promise(function (resolve, reject) {
             if (auth === undefined) {
             } else {
-                firebase.firestore()
+                firebase
+                    .firestore()
                     .collection('users')
                     .doc(auth.uid)
                     .get()
                     .then((querySnapshot) => {
                         const data = querySnapshot.data();
                         // this.se
-                        if(querySnapshot.data()){
-                            resolve(data)
+                        if (querySnapshot.data()) {
+                            resolve(data);
                         } else {
-                            reject('User not authenticated')
+                            reject('User not authenticated');
                         }
                     });
-                }
-            });
-        }
+            }
+        });
+    };
 
     signOut = () => {
         auth.doSignOut();
     };
 
-    
     render() {
         // console.log("hello");
         if (!this.state.isAuthenticated) return null;
@@ -111,11 +112,17 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
                     </Link>
 
                     <img src={WhiteLogo} alt="GeoPicK" className="WhiteLogo" />
-                    <AvatarSmall User={this.state.user} uid = {this.state.uid} User_name = {this.state.user.User_name} Avatar = {this.state.user.Avatar} Size = "small" />
+                    <AvatarSmall
+                        User={this.state.user}
+                        uid={this.state.uid}
+                        User_name={this.state.user.User_name}
+                        Avatar={this.state.user.Avatar}
+                        Size="small"
+                    />
                 </Toolbar>
                 <SinglePostNew />
                 <Feed />
-                
+
                 <div style={{ padding: '30px' }}></div>
                 <BottomNavigation />
             </div>
