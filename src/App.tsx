@@ -14,6 +14,7 @@ import HelpandFeedback from './pages/helpandfeedback';
 import SettingsScreen from './pages/settings-screen/SettingsMenu';
 import UserPage from './pages/profile-screen/userPage';
 import SearchScreen from "./pages/search-page/index";
+import ExploreScreen from "./pages/explore-page/index";
 
 import { UploadImage } from './pages/upload-image/index';
 import Accessibility from './pages/accessSetting';
@@ -86,6 +87,9 @@ function App(): JSX.Element {
                     </Route>
                     <Route exact path="/webcam">
                         <WebCamFun />
+                    </Route>
+                    <Route exact path="/explore">
+                        <ExploreScreen />
                     </Route>
                     {/* <Route exact path="/GTLexpanded">
                         <GTLexpanded />
@@ -162,6 +166,9 @@ function Nav() {
                     </li>
                     <li>
                         <Link to="/webcam">camera</Link>
+                    </li>
+                    <li>
+                        <Link to="/explore">Explore</Link>
                     </li>
 
                     {/* <li>
