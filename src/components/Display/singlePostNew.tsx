@@ -23,7 +23,7 @@ import GTLicon from '../Inputs/The pin.svg';
 import { Box, Button } from '@material-ui/core';
 import GTLexpanded from './GTLexpanded';
 import ReportButton from './report';
-import GTLmenu from './GTLmenu';
+import GTLmenu from '../Game/GTLmenu';
 export interface SinglePostNewProps {
     username?: string;
     postPic?: string;
