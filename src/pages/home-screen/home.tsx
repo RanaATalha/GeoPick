@@ -121,7 +121,7 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
                     />
                 </Toolbar>
                 <SinglePostNew />
-                <Feed />
+                {/* <Feed /> */}
 
                 <div style={{ padding: '30px' }}></div>
                 <BottomNavigation />

@@ -138,11 +138,15 @@ export default function GTLmenu() {
             </Menu>
             <Snackbar
                 open={openCorrect}
-                autoHideDuration={6000}
+                autoHideDuration={2000}
                 onClose={handleCloseRightAns}
                 style={{ marginBottom: '50px' }}
             >
-                <Alert onClose={handleCloseRightAns} severity="success">
+                <Alert
+                    onClose={handleCloseRightAns}
+                    severity="success"
+                    style={{ borderRadius: '20px', minWidth: '250px' }}
+                >
                     Woohoo! You guessed the right location!👏
                 </Alert>
             </Snackbar>
@@ -150,11 +154,15 @@ export default function GTLmenu() {
 
             <Snackbar
                 open={openWrong}
-                autoHideDuration={6000}
+                autoHideDuration={2000}
                 onClose={handleCloseWrongAns}
                 style={{ marginBottom: '50px' }}
             >
-                <Alert onClose={handleCloseWrongAns} severity="error">
+                <Alert
+                    onClose={handleCloseWrongAns}
+                    severity="error"
+                    style={{ borderRadius: '20px', minWidth: '250px' }}
+                >
                     sorry, you guessed it wrong!😞 Better luck next time👍
                 </Alert>
             </Snackbar>
