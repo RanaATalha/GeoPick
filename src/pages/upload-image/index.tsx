@@ -18,6 +18,7 @@ import Tags from '../../components/Inputs/tags';
 import { auth } from '../../firebase';
 import Compress from 'react-image-file-resizer';
 import { storage } from '../../firebase/firebase';
+import Places from '../../components/Inputs/Places';
 export interface UploadImageProps {}
 
 export interface UploadImageState {
@@ -49,17 +50,21 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
             width: 0,
             rawurl: 'https://wallpapercave.com/wp/wp3597484.jpg',
         };
-        
     }
 
-    selectedTags = (tagses: any) => {this.setState({ tags: tagses})}
+    selectedTags = (tagses: any) => {
+        this.setState({ tags: tagses });
+    };
 
     componentDidMount() {
-        this.getUser().then((user) => {
-            this.setState({ isAuthenticated: true, user: user });
-            }, (error) => {
-            this.setState({ isAuthenticated: true });
-            });
+        this.getUser().then(
+            (user) => {
+                this.setState({ isAuthenticated: true, user: user });
+            },
+            (error) => {
+                this.setState({ isAuthenticated: true });
+            },
+        );
     }
 
     getUser = () => {
@@ -67,28 +72,29 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
         return new Promise(function (resolve, reject) {
             if (auth === undefined) {
             } else {
-                firebase.firestore()
+                firebase
+                    .firestore()
                     .collection('users')
                     .doc(auth.uid)
                     .get()
                     .then((querySnapshot) => {
                         const data = querySnapshot.data();
-                        if(data){
-                            resolve(data)
+                        if (data) {
+                            resolve(data);
                         } else {
-                            reject('User not authenticated')
+                            reject('User not authenticated');
                         }
                     });
-                }
-            });
-    }
+            }
+        });
+    };
 
     onSubmit = () => {
         const file = this.state.img;
         const user = auth.checkUserLoggedIn();
         const image = new Image();
         let fr = new FileReader();
-        
+
         if (!user) return;
         fr.onload = async function () {
             if (fr !== null && typeof fr.result == 'string') {
@@ -138,40 +144,38 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
                                             username: this.state.user.User_name,
                                             post_time: new Date(),
                                             tags: this.state.tags,
-                                        }).then(function(docRef) {
-                                            console.log("Document written with ID: ", docRef.id);
-                                        }).catch(function(error) {
-                                            console.error("Error adding document: ", error);
+                                        })
+                                        .then(function (docRef) {
+                                            console.log('Document written with ID: ', docRef.id);
+                                        })
+                                        .catch(function (error) {
+                                            console.error('Error adding document: ', error);
                                         });
                                 });
-                                
+
                                 // console.log(this.state.imgurl);
                             });
                     }
-                    
                 },
                 'base64',
             );
         }, 2500);
 
-        
-        
         // push('/home');
         // console.log(postRef.documentID);
-
-    }
+    };
 
     changeImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
         if (!event.target.files || !event.target.files[0]) return;
         const file = await event.target.files[0];
-        this.setState({ img: file, rawurl: URL.createObjectURL(file)});
+        this.setState({ img: file, rawurl: URL.createObjectURL(file) });
 
         // console.log(this.state.img);
-    }
+    };
 
     updateCaption = (event: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({caption : event.target.value});
-    }
+        this.setState({ caption: event.target.value });
+    };
 
     render() {
         return (
@@ -198,7 +202,6 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
                         </Avatar>
                     }
                     title={<Typography variant="h6">{this.state.user.User_name}</Typography>}
-                
                     style={{ textAlign: 'left', color: '#fafafa' }}
                 />
                 <CardMedia
@@ -214,38 +217,48 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
                 />
                 <Box m={-2} />
                 <CardActions disableSpacing>
-                    <UploadIcon onChange={this.changeImage}/>
+                    <UploadIcon onChange={this.changeImage} />
                 </CardActions>
                 <CardContent>
-                    <TextField 
+                    <TextField
                         name="caption"
                         id="caption"
                         label="Enter Caption"
                         type="caption"
-                        onChange = {this.updateCaption}
+                        onChange={this.updateCaption}
                     />
                 </CardContent>
                 <CardContent>
-                    <Tags selectedTags={this.selectedTags}/>
+                    <Tags selectedTags={this.selectedTags} />
                 </CardContent>
                 <CardContent>
-                <Typography
+                    {/* <TextField label="Add Location"> */}
+                        <Places />
+                    {/* </TextField> */}
+                </CardContent>
+                <CardContent>
+                    <Typography
                         variant="body2"
                         color="textSecondary"
                         component="p"
                         style={{ color: '#fafafa', textAlign: 'center' }}
                     >
-                        Before submitting, you are aware that the post does not go against the community guidelines and does not feature any human faces
+                        Before submitting, you are aware that the post does not go against the community guidelines and
+                        does not feature any human faces
                     </Typography>
                 </CardContent>
                 <CardActions>
-
-                    
-                    <RegularBtn type="submit" colorType="white" style={{ width: '50%', borderRadius: '15px' }} onClick={this.onSubmit}>
+                    <RegularBtn
+                        type="submit"
+                        colorType="white"
+                        style={{ width: '50%', borderRadius: '15px' }}
+                        onClick={this.onSubmit}
+                    >
                         Upload Post!
                     </RegularBtn>
                 </CardActions>
 
+                <Places />
             </Card>
         );
     }

@@ -1,5 +1,6 @@
 import React from 'react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import TextField from './TextField';
 
 export default function Places() {
     const [address, setAddress] = React.useState('');
@@ -20,7 +21,7 @@ export default function Places() {
             <PlacesAutocomplete value={address} onChange={setAddress} onSelect={handleSelect}>
                 {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                     <div>
-                        <input {...getInputProps({ placeholder: 'Type address' })} />
+                        <TextField {...getInputProps({ placeholder: 'Add Location' })} />
 
                         <div>
                             {loading ? <div>...loading</div> : null}
