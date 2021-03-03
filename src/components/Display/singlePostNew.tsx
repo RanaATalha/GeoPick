@@ -24,6 +24,8 @@ import { Box, Button } from '@material-ui/core';
 import GTLexpanded from './GTLexpanded';
 import ReportButton from './report';
 import GTLmenu from '../Game/GTLmenu';
+// import randomLocation from 'random-location';
+
 export interface SinglePostNewProps {
     username?: string;
     postPic?: string;
@@ -36,6 +38,7 @@ export interface SinglePostNewProps {
     sharedURL?: string;
     hidden?: boolean;
     comments_count?: number;
+    location?: any;
 }
 
 export interface SinglePostNewState {
@@ -238,7 +241,7 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
                     <IconButton aria-label="share">
                         <SharePost sharedURL={`${root}${this.state.path_name}`} />
                     </IconButton>
-                    <GTLmenu />
+                    <GTLmenu location={this.props.location} />
                     {/* {this.state.displayQuestions &&
                         this.state.questions.map(
                             (item: any) => (location1: String, location2: String, location3: String) => {

@@ -74,6 +74,7 @@ export default function Feed() {
                         sharedURL={window.location.href}
                         hidden={false}
                         comments_count={post.comments_count}
+                        location = {post.location}
                     />
                 );
                 } else return;

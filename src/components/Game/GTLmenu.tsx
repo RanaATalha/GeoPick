@@ -12,7 +12,7 @@ function Alert(props: AlertProps) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-export default function GTLmenu() {
+export default function GTLmenu(props: any) {
     const [openCorrect, setOpenCorrect] = React.useState(false);
     const [openWrong, setOpenWrong] = React.useState(false);
 
@@ -40,6 +40,16 @@ export default function GTLmenu() {
         setOpenWrong(false);
     };
 
+    const generateOptions = () => {
+        // const P = props.location;
+
+        // const R = 100; // meters
+
+        // const randomPoint = randomLocation.randomCirclePoint(P, R);
+
+        // console.log(randomPoint);
+
+    }
     return (
         <>
             <Menu
