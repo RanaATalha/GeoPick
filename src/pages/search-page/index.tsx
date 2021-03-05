@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import WhiteLogo from '../welcome screen/WhiteLogo.svg';
 import Card from '../../components/Layouts/Card';
 import { RegularBtn } from '../../components/Buttons/RegularBtn';
@@ -10,8 +10,6 @@ import ProfileOverview from '../../components/Display/profileOverview';
 import Button from '@material-ui/core/Button';
 import SinglePostNew from '../../components/Display/singlePostNew';
 
-
-
 export interface SearchProps {}
 
 export default function SearchScreen() {
@@ -19,56 +17,57 @@ export default function SearchScreen() {
     const [posts, setPosts] = useState(Array());
     const [userOn, setUserOn] = useState(false);
     const [postOn, setPostOn] = useState(false);
-    const [query, setQuery] = useState("");
+    const [query, setQuery] = useState('');
 
     const toggleUser = () => {
         setUserOn(true);
         setPostOn(false);
-        firebase.firestore()
+        firebase
+            .firestore()
             .collection('users')
             .where('User_name', '>=', query)
             .limit(5)
             .get()
             .then((snapshot) => {
-                let users = snapshot.docs.map(doc => {
+                let users = snapshot.docs.map((doc) => {
                     const data = doc.data();
                     const id = doc.id;
-                    return { id, ...data }
+                    return { id, ...data };
                 });
                 setUsers(users);
                 setPosts([]);
-            })
-    }
+            });
+    };
 
     const togglePost = () => {
         setUserOn(false);
         setPostOn(true);
-        firebase.firestore()
+        firebase
+            .firestore()
             .collection('Posts')
             .where('tags', 'array-contains', query)
             .limit(5)
             .get()
             .then((snapshot) => {
-                let posts = snapshot.docs.map(doc => {
+                let posts = snapshot.docs.map((doc) => {
                     const data = doc.data();
                     const id = doc.id;
-                    return { id, ...data }
+                    return { id, ...data };
                 });
                 setPosts(posts);
                 setUsers([]);
-            })
-    }
+            });
+    };
 
     const fetchResults = (search: React.ChangeEvent<HTMLInputElement>) => {
         setQuery(search.target.value.toLowerCase());
-        if(userOn){
+        if (userOn) {
             toggleUser();
         }
-        if(postOn){
+        if (postOn) {
             togglePost();
         }
-        
-    }
+    };
 
     return (
         <div className="background">
@@ -85,60 +84,73 @@ export default function SearchScreen() {
                         label="Search"
                         variant="outlined"
                         placeholder="Search here..."
-                        onChange = {fetchResults}
+                        onChange={fetchResults}
                     />
                     <br></br>
                     <Box>
-                        <Button variant="contained" style={{float:'left'}} onClick={toggleUser}>Users</Button>
-                        <Button variant="contained" style={{float:'right'}} onClick={togglePost}>Posts</Button>
+                        <Button
+                            variant="contained"
+                            style={{ float: 'left', borderRadius: '20px' }}
+                            onClick={toggleUser}
+                        >
+                            Users
+                        </Button>
+                        <Button
+                            variant="contained"
+                            style={{ float: 'right', borderRadius: '20px' }}
+                            onClick={togglePost}
+                        >
+                            Posts
+                        </Button>
                     </Box>
-                    <br/>
-                    <br/>
-                    {users.length>0 && users.map((data) => {
-                        // console.log(data);
+                    <br />
+                    <br />
+                    {users.length > 0 &&
+                        users.map((data) => {
+                            // console.log(data);
                             return (
                                 <div>
-                                  <ProfileOverview 
-                                      key = {data.id}
-                                      uid = {data.id} 
-                                      User_name = {data.User_name} 
-                                      Avatar = {data.Avatar} 
-                                      Size = "small"
-                                      User = {data}
-                                  />
-                                  <br/><br/>
+                                    <ProfileOverview
+                                        key={data.id}
+                                        uid={data.id}
+                                        User_name={data.User_name}
+                                        Avatar={data.Avatar}
+                                        Size="small"
+                                        User={data}
+                                        followers
+                                    />
+                                    <br />
+                                    <br />
                                 </div>
                             );
-                        }
-                    )}
+                        })}
 
-                    {posts.length>0 && posts.map((data) => {
-                        // console.log(data);
+                    {posts.length > 0 &&
+                        posts.map((data) => {
+                            // console.log(data);
                             return (
                                 <div>
-                                  <SinglePostNew
-                                    key={data.id}
-                                    id={data.id}
-                                    // profileUrl={post.profileUrl}
-                                    username={data.user_name}
-                                    postPic={data.Image}
-                                    uid={data.uid}
-                                    // caption={post.caption}
-                                    // comments={post.comments}
-                                    date={new Date(data.post_time.seconds * 1000).toLocaleDateString('en-US')}
-                                    likes_count={data.likes_count}
-                                    caption={data.caption}
-                                    sharedURL={window.location.href}
-                                    hidden={false}
-                                    comments_count={data.comments_count}
-                                />
-                                  <br/><br/>
+                                    <SinglePostNew
+                                        key={data.id}
+                                        id={data.id}
+                                        // profileUrl={post.profileUrl}
+                                        username={data.user_name}
+                                        postPic={data.Image}
+                                        uid={data.uid}
+                                        // caption={post.caption}
+                                        // comments={post.comments}
+                                        date={new Date(data.post_time.seconds * 1000).toLocaleDateString('en-US')}
+                                        likes_count={data.likes_count}
+                                        caption={data.caption}
+                                        sharedURL={window.location.href}
+                                        hidden={false}
+                                        comments_count={data.comments_count}
+                                    />
+                                    <br />
+                                    <br />
                                 </div>
                             );
-                        }
-                    )}
-                 
-                  
+                        })}
                 </Card>
             </div>
             <br />
