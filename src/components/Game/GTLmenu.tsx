@@ -214,7 +214,12 @@ function ButtonOrder(props: { correctLocation: String; location2: String; locati
         </Alert>
     </Snackbar>;
 }
-export default function GTLmenu() {
+export default function GTLmenu(props: {
+    correctLocation: String;
+    location2: String;
+    location3: String;
+    order: Number;
+}) {
     const generateOptions = () => {
         // const P = props.location;
         // const R = 100; // meters
@@ -262,7 +267,12 @@ export default function GTLmenu() {
                         Pick a place
                     </Typography>
                 </MenuHeader>
-                {/* <ButtonOrder correctLocation="dubai" location2="sharjah" location3="Ajman" order={1}></ButtonOrder> */}
+                <ButtonOrder
+                    correctLocation={props.correctLocation}
+                    location2={props.location2}
+                    location3={props.location3}
+                    order={props.order}
+                />
             </Menu>
         </>
     );
