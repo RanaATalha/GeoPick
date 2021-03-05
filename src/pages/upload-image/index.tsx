@@ -31,6 +31,7 @@ export interface UploadImageState {
     height: number;
     width: number;
     rawurl: string;
+    location: any;
 }
 
 export class UploadImage extends Component<UploadImageProps, UploadImageState> {
@@ -49,6 +50,7 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
             height: 0,
             width: 0,
             rawurl: 'https://wallpapercave.com/wp/wp3597484.jpg',
+            location: {},
         };
     }
 
@@ -144,6 +146,7 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
                                             username: this.state.user.User_name,
                                             post_time: new Date(),
                                             tags: this.state.tags,
+                                            location: this.state.location,
                                         })
                                         .then(function (docRef) {
                                             console.log('Document written with ID: ', docRef.id);
@@ -175,6 +178,10 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
 
     updateCaption = (event: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({ caption: event.target.value });
+    };
+
+    updateLocation = (event: React.ChangeEvent<HTMLInputElement>) => {
+        this.setState({ location: event.target.value });
     };
 
     render() {
@@ -233,7 +240,7 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
                 </CardContent>
                 <CardContent>
                     {/* <TextField label="Add Location"> */}
-                        <Places />
+                        <Places address={this.updateLocation}/>
                     {/* </TextField> */}
                 </CardContent>
                 <CardContent>
