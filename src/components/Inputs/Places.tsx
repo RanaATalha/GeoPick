@@ -6,7 +6,7 @@ export default function Places() {
     const [address, setAddress] = React.useState('');
     const [coordinates, setCoordinates] = React.useState({
         lat: null,
-        lng: null,
+        lng: null
     });
 
     const handleSelect = async (value: any) => {
@@ -21,6 +21,9 @@ export default function Places() {
             <PlacesAutocomplete value={address} onChange={setAddress} onSelect={handleSelect}>
                 {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                     <div>
+                        <p>Latitude:{coordinates.lat}</p>
+                        <p>Latitude:{coordinates.lng}</p>
+
                         <TextField {...getInputProps({ placeholder: 'Add Location' })} />
 
                         <div>
