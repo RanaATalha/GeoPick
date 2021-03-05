@@ -10,8 +10,6 @@ import { checkUserLoggedIn } from '../../firebase/auth';
 import firebase from 'firebase';
 import UserFeed from '../../components/Layouts/userFeed';
 
-
-
 import { auth } from '../../firebase';
 export interface UserPageProps {}
 
@@ -23,7 +21,6 @@ export interface UserPageState {
 }
 
 class UserPage extends Component<UserPageProps, UserPageState> {
-
     constructor(UserPageProps: any) {
         super(UserPageProps);
         this.state = {
@@ -37,22 +34,25 @@ class UserPage extends Component<UserPageProps, UserPageState> {
     componentDidMount() {
         const path = window.location.pathname.split('/');
         const uid = path[path.length - 1];
-        this.getUser().then((user) => {
-            this.setState({ isAuthenticated: true, user: user, uid: uid});
-            console.log(this.state.user)
-            console.log(this.state.uid)
-            }, (error) => {
-            this.setState({ isAuthenticated: true });
-            });
+        this.getUser().then(
+            (user) => {
+                this.setState({ isAuthenticated: true, user: user, uid: uid });
+                console.log(this.state.user);
+                console.log(this.state.uid);
+            },
+            (error) => {
+                this.setState({ isAuthenticated: true });
+            },
+        );
     }
 
     // componentDidUpdate() {
-        
+
     //     const auth = checkUserLoggedIn();
     //     if(auth != undefined){
-            
+
     //     }
-        
+
     // }
 
     // getData = () => {
@@ -77,23 +77,23 @@ class UserPage extends Component<UserPageProps, UserPageState> {
         return new Promise(function (resolve, reject) {
             if (auth === undefined) {
             } else {
-                firebase.firestore()
+                firebase
+                    .firestore()
                     .collection('users')
                     .doc(uid)
                     .get()
                     .then((querySnapshot) => {
                         const data = querySnapshot.data();
                         const id = querySnapshot.id;
-                        if(data){
-                            resolve(data)
+                        if (data) {
+                            resolve(data);
                         } else {
-                            reject('User not authenticated')
+                            reject('User not authenticated');
                         }
-                        
                     });
-                }
-            });
-        }
+            }
+        });
+    };
 
     signOut = () => {
         auth.doSignOut();
@@ -107,10 +107,23 @@ class UserPage extends Component<UserPageProps, UserPageState> {
                     alt="GeoPicK"
                     style={{ width: '200px', height: '66px', margin: 'auto', paddingBottom: '1em' }}
                 />
-                <ProfileOverview User={this.state.user} User_name = {this.state.user.User_name} Avatar = {this.state.user.Avatar} Size = "large"/>
+                <ProfileOverview
+                    User={this.state.user}
+                    User_name={<span style={{ fontSize: 'calc(12px + 2vw)' }}>{this.state.user.User_name}</span>}
+                    Avatar={this.state.user.Avatar}
+                    Size="large"
+                />
                 <br></br>
                 <br></br>
-                <Button style={{ paddingLeft: '15%', paddingRight: '15%', background: '#f56920' }}>
+                <Button
+                    style={{
+                        paddingLeft: '15%',
+                        paddingRight: '15%',
+                        background: '#f56920',
+                        borderRadius: '20px',
+                        marginRight: '10%',
+                    }}
+                >
                     <Typography variant="button" style={{ color: '#fafafa' }}>
                         Edit Profile
                     </Typography>
@@ -119,12 +132,12 @@ class UserPage extends Component<UserPageProps, UserPageState> {
                 <Button
                     style={{
                         background: '#1b1b1b',
-                        marginLeft: '15px',
-                        marginRight: '15px',
                         border: '3px solid #f56920',
                         borderRadius: '20px',
                         maxWidth: '600px',
                         margin: 'auto',
+                        paddingLeft: '5%',
+                        paddingRight: '5%',
                     }}
                     onClick={this.signOut}
                 >
@@ -139,7 +152,7 @@ class UserPage extends Component<UserPageProps, UserPageState> {
                         My <span style={{ color: '#f56920' }}>Posts</span>
                     </Typography>
                 </div>
-                <UserFeed uid = {this.state.uid} />
+                <UserFeed uid={this.state.uid} />
             </div>
         );
     }

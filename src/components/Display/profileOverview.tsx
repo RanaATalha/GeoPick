@@ -32,57 +32,52 @@ export default function ProfileOverview(props: any) {
 
     return (
         <Card
-                    style={{
-                        background: '#1b1b1b',
-                        marginLeft: '15px',
-                        marginRight: '15px',
-                        border: '3px solid #f56920',
-                        borderRadius: '20px',
-                    }}
-                >
-                    <CardContent style={{ textAlign: 'left', padding: '50px 10px 50px 10px' }}>
-                        {/* <Grid container direction="column">
+            style={{
+                background: '#1b1b1b',
+                marginLeft: '15px',
+                marginRight: '15px',
+                border: '3px solid #f56920',
+                borderRadius: '20px',
+            }}
+        >
+            <CardContent style={{ textAlign: 'left', padding: '50px 10px 50px 10px' }}>
+                {/* <Grid container direction="column">
                             <Grid item> */}
-                        {/* <Avatar
+                {/* <Avatar
                             style={{ float: 'right', width: '18vw', height: '18vw', marginRight: '20px' }}
                         ></Avatar> */}
-                        <Grid style ={{float: 'right'}}>
-                            <AvatarSmall uid = {props.uid} User_name = {props.User_name} Avatar = {props.Avatar} Size = {props.Size} />
-                        </Grid>
-                        <Typography style={{ color: '#fafafa', fontSize: '3vw' }}>
-                            Hi,<br></br>
-                            </Typography>
-                        <Typography style={{ color: '#f56920', fontSize: '2vw' }}>
-                                {props.User_name}
-                            </Typography>
-                    
-                        
-                        
+                <Grid style={{ float: 'right' }}>
+                    <AvatarSmall uid={props.uid} User_name={props.User_name} Avatar={props.Avatar} Size={props.Size} />
+                </Grid>
+                <Typography style={{ color: '#fafafa', fontSize: 'calc(12px + 2vw)' }}>
+                    Hi,<br></br>
+                </Typography>
+                <Typography style={{ color: '#f56920', fontSize: '2vw' }}>{props.User_name}</Typography>
 
-                        {/* </Grid>
+                {/* </Grid>
                             <Grid item></Grid> */}
-                        {/* </Grid> */}
-                        <br></br>
-                        {/* <Card style={{ width: 'fit-content', height: 'fit-content', padding: '-5px' }}>
+                {/* </Grid> */}
+                <br></br>
+                {/* <Card style={{ width: 'fit-content', height: 'fit-content', padding: '-5px' }}>
                             <CardContent> */}
-                        <Button style={{ padding: '1px' }}>
-                            <Typography variant="button" style={{ justifyContent: 'center' }}>
-                                <span style={{ color: '#fafafa' }}>2</span>
-                                <br></br>
-                                <span style={{ color: '#f56920' }}>posts</span>
-                            </Typography>
-                            {/* Number of posts by user */}
-                        </Button>
+                <Button style={{ padding: '1px' }}>
+                    <Typography variant="button" style={{ justifyContent: 'center' }}>
+                        <span style={{ color: '#fafafa' }}>2</span>
+                        <br></br>
+                        <span style={{ color: '#f56920' }}>posts</span>
+                    </Typography>
+                    {/* Number of posts by user */}
+                </Button>
 
-                        <Button style={{ marginLeft: '10px', padding: '1px' }}>
-                            <Typography variant="button" style={{ justifyContent: 'center' }}>
-                                <span style={{ color: '#fafafa' }}>{props.User.GamePoint}</span>
-                                <br></br>
-                                <span style={{ color: '#f56920' }}>points</span>
-                            </Typography>
-                            {/* Number of posts by user */}
-                        </Button>
-                    </CardContent>
-                </Card>
+                <Button style={{ padding: '1px' }}>
+                    <Typography variant="button" style={{ justifyContent: 'center' }}>
+                        <span style={{ color: '#fafafa' }}>{props.User.GamePoint}</span>
+                        <br></br>
+                        <span style={{ color: '#f56920' }}>points</span>
+                    </Typography>
+                    {/* Number of posts by user */}
+                </Button>
+            </CardContent>
+        </Card>
     );
 }
