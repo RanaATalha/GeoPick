@@ -241,7 +241,7 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
                     <IconButton aria-label="share">
                         <SharePost sharedURL={`${root}${this.state.path_name}`} />
                     </IconButton>
-                    <GTLmenu location={this.props.location} />
+                    <GTLmenu />
                     {/* {this.state.displayQuestions &&
                         this.state.questions.map(
                             (item: any) => (location1: String, location2: String, location3: String) => {

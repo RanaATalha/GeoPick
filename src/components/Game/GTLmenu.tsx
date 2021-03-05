@@ -12,7 +12,7 @@ function Alert(props: AlertProps) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-export default function GTLmenu(props: any) {
+function ButtonOrder(props: { correctLocation: String; location2: String; location3: String; order: Number }) {
     const [openCorrect, setOpenCorrect] = React.useState(false);
     const [openWrong, setOpenWrong] = React.useState(false);
 
@@ -22,7 +22,7 @@ export default function GTLmenu(props: any) {
 
     const handleCloseRightAns = (event?: React.SyntheticEvent, reason?: string) => {
         if (reason === 'clickaway') {
-            return;
+            return console.log('hey');
         }
 
         setOpenCorrect(false);
@@ -34,22 +34,193 @@ export default function GTLmenu(props: any) {
 
     const handleCloseWrongAns = (event?: React.SyntheticEvent, reason?: string) => {
         if (reason === 'clickaway') {
-            return;
+            return console.log('hey');
         }
 
         setOpenWrong(false);
     };
 
+    if (props.order === 1) {
+        return (
+            <MenuItem styles={{ background: '#1b1b1b', color: '#fafafa', borderRadius: '20px' }}>
+                <Button
+                    style={{
+                        // marginLeft: '3px',
+                        // marginRight: '3px',
+                        textAlign: 'center',
+                        fontSize: '10px',
+                        marginBottom: '5px',
+                        background: '#fafafa',
+                        width: '90%',
+                        borderRadius: '20px',
+                        margin: 'auto',
+                    }}
+                    onClick={handleClickRightAns}
+                >
+                    {props.correctLocation}
+                </Button>
+                <Button
+                    style={{
+                        // marginLeft: '3px',
+                        // marginRight: '3px',
+                        textAlign: 'center',
+                        fontSize: '10px',
+                        marginBottom: '5px',
+                        background: '#fafafa',
+                        width: '90%',
+                        borderRadius: '20px',
+                        margin: 'auto',
+                    }}
+                    onClick={handleClickWrongAns}
+                >
+                    {props.location2}
+                </Button>
+                <Button
+                    style={{
+                        // marginLeft: '3px',
+                        // marginRight: '3px',
+                        textAlign: 'center',
+                        fontSize: '10px',
+                        marginBottom: '5px',
+                        background: '#fafafa',
+                        width: '90%',
+                        borderRadius: '20px',
+                        margin: 'auto',
+                    }}
+                    onClick={handleClickWrongAns}
+                >
+                    {props.location3}
+                </Button>
+            </MenuItem>
+        );
+    }
+    if (props.order === 2) {
+        return (
+            <MenuItem styles={{ background: '#1b1b1b', color: '#fafafa', borderRadius: '20px' }}>
+                <Button
+                    style={{
+                        // marginLeft: '3px',
+                        // marginRight: '3px',
+                        textAlign: 'center',
+                        fontSize: '10px',
+                        marginBottom: '5px',
+                        background: '#fafafa',
+                        width: '90%',
+                        borderRadius: '20px',
+                        margin: 'auto',
+                    }}
+                    onClick={handleClickWrongAns}
+                >
+                    {props.location2}
+                </Button>
+                <Button
+                    style={{
+                        // marginLeft: '3px',
+                        // marginRight: '3px',
+                        textAlign: 'center',
+                        fontSize: '10px',
+                        marginBottom: '5px',
+                        background: '#fafafa',
+                        width: '90%',
+                        borderRadius: '20px',
+                        margin: 'auto',
+                    }}
+                    onClick={handleClickRightAns}
+                >
+                    {props.correctLocation}
+                </Button>
+                <Button
+                    style={{
+                        // marginLeft: '3px',
+                        // marginRight: '3px',
+                        textAlign: 'center',
+                        fontSize: '10px',
+                        marginBottom: '5px',
+                        background: '#fafafa',
+                        width: '90%',
+                        borderRadius: '20px',
+                        margin: 'auto',
+                    }}
+                    onClick={handleClickWrongAns}
+                >
+                    {props.location3}
+                </Button>
+            </MenuItem>
+        );
+    }
+    if (props.order === 3) {
+        return (
+            <MenuItem styles={{ background: '#1b1b1b', color: '#fafafa', borderRadius: '20px' }}>
+                <Button
+                    style={{
+                        // marginLeft: '3px',
+                        // marginRight: '3px',
+                        textAlign: 'center',
+                        fontSize: '10px',
+                        marginBottom: '5px',
+                        background: '#fafafa',
+                        width: '90%',
+                        borderRadius: '20px',
+                        margin: 'auto',
+                    }}
+                    onClick={handleClickWrongAns}
+                >
+                    {props.location2}
+                </Button>
+                <Button
+                    style={{
+                        // marginLeft: '3px',
+                        // marginRight: '3px',
+                        textAlign: 'center',
+                        fontSize: '10px',
+                        marginBottom: '5px',
+                        background: '#fafafa',
+                        width: '90%',
+                        borderRadius: '20px',
+                        margin: 'auto',
+                    }}
+                    onClick={handleClickWrongAns}
+                >
+                    {props.location3}
+                </Button>
+                <Button
+                    style={{
+                        // marginLeft: '3px',
+                        // marginRight: '3px',
+                        textAlign: 'center',
+                        fontSize: '10px',
+                        marginBottom: '5px',
+                        background: '#fafafa',
+                        width: '90%',
+                        borderRadius: '20px',
+                        margin: 'auto',
+                    }}
+                    onClick={handleClickRightAns}
+                >
+                    {props.correctLocation}
+                </Button>
+            </MenuItem>
+        );
+    }
+    <Snackbar open={openCorrect} autoHideDuration={2000} onClose={handleCloseRightAns} style={{ marginBottom: '50px' }}>
+        <Alert onClose={handleCloseRightAns} severity="success" style={{ borderRadius: '20px', minWidth: '250px' }}>
+            Woohoo! You guessed the right location!👏
+        </Alert>
+    </Snackbar>;
+
+    <Snackbar open={openWrong} autoHideDuration={2000} onClose={handleCloseWrongAns} style={{ marginBottom: '50px' }}>
+        <Alert onClose={handleCloseWrongAns} severity="error" style={{ borderRadius: '20px', minWidth: '250px' }}>
+            sorry, you guessed it wrong!😞 Better luck next time👍
+        </Alert>
+    </Snackbar>;
+}
+export default function GTLmenu() {
     const generateOptions = () => {
         // const P = props.location;
-
         // const R = 100; // meters
-
         // const randomPoint = randomLocation.randomCirclePoint(P, R);
-
         // console.log(randomPoint);
-
-    }
+    };
     return (
         <>
             <Menu
@@ -75,7 +246,6 @@ export default function GTLmenu(props: any) {
                             fontSize: '10px',
                             width: '160px',
                         }}
-                        // onClick={this.GTLexpanded} ////////BUGGY LINE: do not uncomment until debugged/////////
                         variant="contained"
                         endIcon={<img src={GTLicon} alt="GeoPin"></img>}
                     >
@@ -92,90 +262,8 @@ export default function GTLmenu(props: any) {
                         Pick a place
                     </Typography>
                 </MenuHeader>
-                <MenuItem styles={{ background: '#1b1b1b', color: '#fafafa', borderRadius: '20px' }}>
-                    <Button
-                        style={{
-                            // marginLeft: '3px',
-                            // marginRight: '3px',
-                            textAlign: 'center',
-                            fontSize: '10px',
-                            marginBottom: '5px',
-                            background: '#fafafa',
-                            width: '90%',
-                            borderRadius: '20px',
-                            margin: 'auto',
-                        }}
-                        onClick={handleClickRightAns}
-                    >
-                        Dubai
-                    </Button>
-                </MenuItem>
-                <MenuItem styles={{ background: '#1b1b1b', color: '#fafafa', borderRadius: '20px' }}>
-                    <Button
-                        style={{
-                            // marginLeft: '3px',
-                            // marginRight: '3px',
-                            textAlign: 'center',
-                            fontSize: '10px',
-                            marginBottom: '5px',
-                            background: '#fafafa',
-                            width: '90%',
-                            borderRadius: '20px',
-                            margin: 'auto',
-                        }}
-                        onClick={handleClickWrongAns}
-                    >
-                        Dubai
-                    </Button>
-                </MenuItem>
-                <MenuItem styles={{ background: '#1b1b1b', color: '#fafafa', borderRadius: '20px' }}>
-                    <Button
-                        style={{
-                            // marginLeft: '3px',
-                            // marginRight: '3px',
-                            textAlign: 'center',
-                            fontSize: '10px',
-                            marginBottom: '5px',
-                            background: '#fafafa',
-                            width: '90%',
-                            borderRadius: '20px',
-                            margin: 'auto',
-                        }}
-                    >
-                        Dubai
-                    </Button>
-                </MenuItem>
+                {/* <ButtonOrder correctLocation="dubai" location2="sharjah" location3="Ajman" order={1}></ButtonOrder> */}
             </Menu>
-            <Snackbar
-                open={openCorrect}
-                autoHideDuration={2000}
-                onClose={handleCloseRightAns}
-                style={{ marginBottom: '50px' }}
-            >
-                <Alert
-                    onClose={handleCloseRightAns}
-                    severity="success"
-                    style={{ borderRadius: '20px', minWidth: '250px' }}
-                >
-                    Woohoo! You guessed the right location!👏
-                </Alert>
-            </Snackbar>
-            {/* For the right answer */}
-
-            <Snackbar
-                open={openWrong}
-                autoHideDuration={2000}
-                onClose={handleCloseWrongAns}
-                style={{ marginBottom: '50px' }}
-            >
-                <Alert
-                    onClose={handleCloseWrongAns}
-                    severity="error"
-                    style={{ borderRadius: '20px', minWidth: '250px' }}
-                >
-                    sorry, you guessed it wrong!😞 Better luck next time👍
-                </Alert>
-            </Snackbar>
         </>
     );
 }
