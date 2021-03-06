@@ -32,6 +32,7 @@ export interface UploadImageState {
     width: number;
     rawurl: string;
     location: any;
+    check: boolean;
 }
 
 export class UploadImage extends Component<UploadImageProps, UploadImageState> {
@@ -51,6 +52,7 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
             width: 0,
             rawurl: 'https://wallpapercave.com/wp/wp3597484.jpg',
             location: {},
+            check: false,
         };
     }
 
@@ -98,6 +100,11 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
         let fr = new FileReader();
 
         if (!user) return;
+
+        if(!this.state.check) {
+            alert("You must check the condition");
+            return;
+        }
         fr.onload = async function () {
             if (fr !== null && typeof fr.result == 'string') {
                 image.src = fr.result;
@@ -184,6 +191,10 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
         this.setState({ location: event.target.value });
     };
 
+    toggleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
+        this.setState({ check: !this.state.check });
+    };
+
     render() {
         return (
             <Card
@@ -249,9 +260,13 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
                         color="textSecondary"
                         component="p"
                         style={{ color: '#fafafa', textAlign: 'center' }}
-                    >
-                        Before submitting, you are aware that the post does not go against the community guidelines and
-                        does not feature any human faces
+                        >
+                    <label>
+                        <input type="checkbox" name="Accept" required onChange={this.toggleCheck}/>
+                        
+                            Before submitting, you are aware that the post does not go against the community guidelines and
+                            does not feature any human faces
+                    </label>
                     </Typography>
                 </CardContent>
                 <CardActions>
