@@ -9,7 +9,7 @@ export default function Places(props: any) {
         lng: null,
     });
 
-    console.log(address)
+    console.log(coordinates);
 
     const handleSelect = async (value: any) => {
         const results = await geocodeByAddress(value);
@@ -18,14 +18,14 @@ export default function Places(props: any) {
         setCoordinates((latLng as unknown) as { lat: null; lng: null });
     };
 
-  
-
     return (
         <div>
-            <PlacesAutocomplete value={address} onChange={setAddress} onSelect={handleSelect}
->
+            <PlacesAutocomplete value={address} onChange={setAddress} onSelect={handleSelect}>
                 {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                     <div>
+                        <p>Latitude: {coordinates.lat}</p>
+                        <p>Longitude: {coordinates.lng}</p>
+
                         <TextField {...getInputProps({ placeholder: 'Add Location' })} />
 
                         <div>
