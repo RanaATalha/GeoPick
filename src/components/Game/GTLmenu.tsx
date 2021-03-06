@@ -69,6 +69,7 @@ export default function GTLmenus(props: {
                                 borderRadius: '20px',
                                 fontSize: '10px',
                                 width: '160px',
+                                borderColor: 'solid 3px #F56920',
                             }}
                             variant="contained"
                             endIcon={<img src={GTLicon} alt="GeoPin"></img>}
@@ -196,6 +197,7 @@ export default function GTLmenus(props: {
                                 borderRadius: '20px',
                                 fontSize: '10px',
                                 width: '160px',
+                                borderColor: 'solid 3px #F56920',
                             }}
                             variant="contained"
                             endIcon={<img src={GTLicon} alt="GeoPin"></img>}
@@ -323,6 +325,7 @@ export default function GTLmenus(props: {
                                 borderRadius: '20px',
                                 fontSize: '10px',
                                 width: '160px',
+                                borderColor: 'solid 3px #F56920',
                             }}
                             variant="contained"
                             endIcon={<img src={GTLicon} alt="GeoPin"></img>}

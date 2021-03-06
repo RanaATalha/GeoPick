@@ -53,7 +53,7 @@ export interface SinglePostNewState {
     // location1: String;
     // location2: String;
     // location3: String;
-    // questions: any;
+    questions: any;
     // displayQuestions: boolean;
     random: any;
 }
@@ -71,9 +71,9 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
             path_name: `/post/${this.props.id}`,
             isAuthenticated: false,
             // // questions: [{ location1: 'UAE', location2: 'Russia', location3: 'Algeria' }],
-            // questions: [{ location1: 'UAE', Location2: 'Russia', Location3: 'Algeria' }],
+            questions: { correctLocation: 'Dubai', Location2: 'Sharjah', Location3: 'RAK' },
             // displayQuestions: false,
-            random: 1,
+            random: 2,
         };
         this.handleColorChange = this.handleColorChange.bind(this);
         this.handleButtonClick = this.handleButtonClick.bind(this);
@@ -251,9 +251,9 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
                         <SharePost sharedURL={`${root}${this.state.path_name}`} />
                     </IconButton>
                     <GTLmenu
-                        location2="Sharjah"
-                        correctLocation="Dubai"
-                        location3="Ras al khaimah"
+                        location2={this.state.questions.Location2}
+                        correctLocation={this.state.questions.correctLocation}
+                        location3={this.state.questions.Location3}
                         order={this.state.random}
                     />
                     {/* {this.state.displayQuestions &&
