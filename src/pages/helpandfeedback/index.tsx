@@ -67,6 +67,7 @@ export default function HelpandFeedback() {
                             label="Feedback"
                             variant="outlined"
                             placeholder="Write something..."
+                            name="feedbacks"
                             multiline
                             rowsMax={5}
                         />
