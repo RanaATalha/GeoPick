@@ -39,6 +39,7 @@ export interface SinglePostNewProps {
     hidden?: boolean;
     comments_count?: number;
     location?: any;
+    otherLocs?: any;
 }
 
 export interface SinglePostNewState {
@@ -53,9 +54,13 @@ export interface SinglePostNewState {
     // location1: String;
     // location2: String;
     // location3: String;
-    questions: any;
+    // questions: any;
     // displayQuestions: boolean;
     random: any;
+    locations: any;
+    gotLocs: boolean;
+    loc1: string;
+    loc2: string;
 }
 class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
     constructor(SinglePostNewProps: any) {
@@ -70,14 +75,20 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
             isOpen: false,
             path_name: `/post/${this.props.id}`,
             isAuthenticated: false,
+            gotLocs: false,
             // // questions: [{ location1: 'UAE', location2: 'Russia', location3: 'Algeria' }],
-            questions: { correctLocation: 'Dubai', Location2: 'Sharjah', Location3: 'RAK' },
+            // questions: { correctLocation: 'Dubai', Location2: 'Sharjah', Location3: 'RAK' },
             // displayQuestions: false,
             random: 2,
+            locations: [],
+            loc1: "",
+            loc2: "",
         };
         this.handleColorChange = this.handleColorChange.bind(this);
         this.handleButtonClick = this.handleButtonClick.bind(this);
         this.handleClickRandomizer = this.handleClickRandomizer.bind(this);
+        this.getLocations = this.getLocations.bind(this);
+        this.randomizeLocations = this.randomizeLocations.bind(this);
         // this.GTLexpanded = this.GTLexpanded.bind(this);
     }
     handleClickRandomizer = () => {
@@ -85,6 +96,18 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
         const max = 3;
         const rand = min + Math.random() * (max - min);
         this.setState({ random: this.state.random + rand });
+    };
+
+    randomizeLocations = (locs: any) => {
+        const rand1 = Math.floor( Math.random() * this.state.random);
+        const rand2 = Math.floor(Math.random() * this.state.random);
+        
+        // console.log(locs);
+        // while((this.state.locations.length == 0));
+
+        
+    //   return (this.state.locations[rand1])
+        this.setState({ loc1: this.state.locations[rand1], loc2: this.state.locations[rand2]})
     };
     handleColorChange = () => {
         this.setState({
@@ -120,6 +143,65 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
                 this.setState({ isAuthenticated: true });
             },
         );
+
+        this.getLocations(this.props.location).then(
+            (locs) => {
+                this.setState({ gotLocs: true, locations: locs });
+                this.randomizeLocations(locs);
+            },
+            (error) => {
+                this.setState({ gotLocs: false, });
+            },
+        );
+        
+        // this.getLocations(this.props.location);
+        // const loc = this.props.location
+        
+        // console.log(this.state.locations);
+        // const loc = []
+        
+            // console.log(this.state.locations)
+    }
+
+    getLocations = (loc: string) => {
+        var locs = new Array();
+        
+        return new Promise((resolve, reject) => {
+            let locs = new Array();
+            const snapshot = firebase.firestore().collection('Posts')
+                .get()
+                .then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        if(!(locs.includes(doc.data().location)) && (loc != doc.data().location)){
+                            locs.push(doc.data().location);
+                        }
+                      });
+                    resolve(locs);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        });
+        
+        return new Promise(function (resolve, reject) {
+        firebase
+          .firestore()
+          .collection('Posts')
+          .get()
+          .then((querySnapshot) => {
+              querySnapshot.forEach((doc) => {
+                  if(!(locs.includes(doc.data().location)) && (loc != doc.data().location)){
+                      locs = [...locs, doc.data().location]
+                    }
+                }
+               )
+            });
+          if(locs){
+              resolve(locs);
+          } else{
+              reject("not loading locations")
+          }
+        });
     }
 
     getUser = () => {
@@ -170,6 +252,7 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
         //     ));
         // }
         if (!this.state.isAuthenticated) return null;
+        if (!this.state.gotLocs) return null;
         return (
             <Card
                 style={{
@@ -251,10 +334,11 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
                         <SharePost sharedURL={`${root}${this.state.path_name}`} />
                     </IconButton>
                     <GTLmenu
-                        location2={this.state.questions.Location2}
-                        correctLocation={this.state.questions.correctLocation}
-                        location3={this.state.questions.Location3}
+                        location2={this.state.loc1}
+                        correctLocation={this.props.location}
+                        location3={this.state.loc2}
                         order={this.state.random}
+                        uid={this.props.uid}
                     />
                     {/* {this.state.displayQuestions &&
                         this.state.questions.map( 

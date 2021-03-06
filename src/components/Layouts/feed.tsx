@@ -8,6 +8,7 @@ export default function Feed() {
     const [posts, setPosts] = useState<any[]>([]);
     const [lastKey, setLastKey] = useState("" as unknown  as firebase.firestore.QueryDocumentSnapshot<firebase.firestore.DocumentData>);
     const [nextPosts_loading, setNextPostsLoading] = useState(false);
+    const [locations, setLocations] = useState<any[]>([]);
 
     // useEffect(() => {
     //     firebase
@@ -31,7 +32,13 @@ export default function Feed() {
           .catch((err) => {
             console.log(err);
           });
+
+          
+
       }, []);
+
+
+      
 
       const fetchMorePosts = (key:firebase.firestore.QueryDocumentSnapshot<firebase.firestore.DocumentData>) => {
           console.log("hello thereee")
@@ -58,6 +65,7 @@ export default function Feed() {
             {posts.map((post) => {
                 if (post) {
                   // console.log("feed id", post)
+                  // const loc = getLocations(post.location);
                   return (
                     <SinglePostNew
                         key={post.id}
@@ -75,6 +83,7 @@ export default function Feed() {
                         hidden={false}
                         comments_count={post.comments_count}
                         location = {post.location}
+                        // otherLocs = {getLocations(post.location)}
                     />
                 );
                 } else return;
