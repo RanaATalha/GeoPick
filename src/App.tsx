@@ -13,18 +13,18 @@ import PostViewScreen from './pages/post-view';
 import HelpandFeedback from './pages/helpandfeedback';
 import SettingsScreen from './pages/settings-screen/SettingsMenu';
 import UserPage from './pages/profile-screen/userPage';
-import SearchScreen from "./pages/search-page/index";
-import ExploreScreen from "./pages/explore-page/index";
+import SearchScreen from './pages/search-page/index';
+import ExploreScreen from './pages/explore-page/index';
 
 import { UploadImage } from './pages/upload-image/index';
 import Accessibility from './pages/accessSetting';
 import Notification from './pages/notificationset';
 import Notificationpg from './pages/notification';
-import Places from './components/Inputs/Places'
+import Places from './components/Inputs/Places';
 import ViewPoints from './pages/view-points-screen/points';
 import EditProfile from './pages/edit-profile/editProfile';
 import LocationPicker from './components/Inputs/LocationPicker';
-import WebCamFun from './pages/camera/index'
+import WebCamFun from './pages/camera/index';
 // import GTLexpanded from './components/Display/GTLexpanded';
 function App(): JSX.Element {
     return (
@@ -97,7 +97,6 @@ function App(): JSX.Element {
                 </Switch>
             </Router>
             {/* need to populate the places in this */}
-            <Places />
         </div>
     );
 }

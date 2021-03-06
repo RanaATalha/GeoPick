@@ -33,6 +33,7 @@ export interface UploadImageState {
     rawurl: string;
     location: any;
     check: boolean;
+    coordinates: any;
 }
 
 export class UploadImage extends Component<UploadImageProps, UploadImageState> {
@@ -53,6 +54,7 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
             rawurl: 'https://wallpapercave.com/wp/wp3597484.jpg',
             location: {},
             check: false,
+            coordinates: {},
         };
     }
 
@@ -154,6 +156,7 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
                                             post_time: new Date(),
                                             tags: this.state.tags,
                                             location: this.state.location,
+                                            coordinates: this.state.coordinates,
                                         })
                                         .then(function (docRef) {
                                             console.log('Document written with ID: ', docRef.id);
@@ -187,8 +190,20 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
         this.setState({ caption: event.target.value });
     };
 
-    updateLocation = (event: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({ location: event.target.value });
+    updateLocation = (address: string) => {
+        this.setState({ location: address });
+        // this.setState({ : event.target.value });
+        console.log(this.state.location);
+    };
+
+    updateCoordinates = (coordinates: any) => {
+        const coord = {
+            'latitude': coordinates.lat,
+            'longtitude': coordinates.lng,
+        }
+        this.setState({ coordinates: coordinates });
+        // this.setState({ : event.target.value });
+        console.log(this.state.coordinates);
     };
 
     toggleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -251,7 +266,7 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
                 </CardContent>
                 <CardContent>
                     {/* <TextField label="Add Location"> */}
-                        <Places address={this.updateLocation}/>
+                        <Places updateLocation={this.updateLocation} updateCoordinates={this.updateCoordinates} />
                     {/* </TextField> */}
                 </CardContent>
                 <CardContent>

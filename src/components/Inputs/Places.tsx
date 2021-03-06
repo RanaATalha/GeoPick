@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import TextField from './TextField';
 
@@ -9,12 +9,17 @@ export default function Places(props: any) {
         lng: null,
     });
 
+    // console.log(coordinates);
+    // console.log(address);
+    
+
     const handleSelect = async (value: any) => {
-        const results = await geocodeByAddress(value);
-        const latLng = await getLatLng(results[0]);
+        geocodeByAddress(value)
+        .then(results => getLatLng(results[0]))
+        .then(latLng =>  props.updateCoordinates(latLng))
+        .catch(error => console.error('Error', error));
         setAddress(value);
-        props.address(address);
-        setCoordinates((latLng as unknown) as { lat: null; lng: null });
+        props.updateLocation(address);
     };
 
     return (
@@ -22,7 +27,10 @@ export default function Places(props: any) {
             <PlacesAutocomplete value={address} onChange={setAddress} onSelect={handleSelect}>
                 {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                     <div>
-                        <TextField {...getInputProps({ placeholder: 'Add Location' })}/>
+                        {/* <p>Latitude: {coordinates.lat}</p>
+                        <p>Longitude: {coordinates.lng}</p> */}
+
+                        <TextField {...getInputProps({ placeholder: 'Add Location' })} />
 
                         <div>
                             {loading ? <div>...loading</div> : null}

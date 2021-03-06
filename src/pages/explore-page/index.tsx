@@ -26,7 +26,7 @@ export default function ExploreScreen() {
         longitude: -75.6903,
         width: "100%",
         height: "100vh",
-        zoom: 8
+        zoom: 5
       });
 
     useLayoutEffect(() => {
@@ -69,8 +69,8 @@ export default function ExploreScreen() {
                     {posts.map(({id, post}) => (
                         <Marker
                             key={id}
-                            latitude={post.location.latitude}
-                            longitude={post.location.longitude}
+                            latitude={post.coordinates.lat}
+                            longitude={post.coordinates.lng}
                         >
                             <Link to={{ pathname: `/post/${id}`, state: post.uid}}>
                                 <Avatar alt={post.user_name} src={post.Image} />

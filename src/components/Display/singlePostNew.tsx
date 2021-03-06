@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { Link } from 'react-router-dom';
 // import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -54,7 +54,8 @@ export interface SinglePostNewState {
     // location2: String;
     // location3: String;
     questions: any;
-    displayQuestions: boolean;
+    // displayQuestions: boolean;
+    random: any;
 }
 class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
     constructor(SinglePostNewProps: any) {
@@ -69,15 +70,22 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
             isOpen: false,
             path_name: `/post/${this.props.id}`,
             isAuthenticated: false,
-            // questions: [{ location1: 'UAE', location2: 'Russia', location3: 'Algeria' }],
-            questions: [{ location1: 'UAE', Location2: 'Russia', Location3: 'Algeria' }],
-            displayQuestions: false,
+            // // questions: [{ location1: 'UAE', location2: 'Russia', location3: 'Algeria' }],
+            questions: { correctLocation: 'Dubai', Location2: 'Sharjah', Location3: 'RAK' },
+            // displayQuestions: false,
+            random: 2,
         };
         this.handleColorChange = this.handleColorChange.bind(this);
         this.handleButtonClick = this.handleButtonClick.bind(this);
-        this.GTLexpanded = this.GTLexpanded.bind(this);
+        this.handleClickRandomizer = this.handleClickRandomizer.bind(this);
+        // this.GTLexpanded = this.GTLexpanded.bind(this);
     }
-
+    handleClickRandomizer = () => {
+        const min = 1;
+        const max = 3;
+        const rand = min + Math.random() * (max - min);
+        this.setState({ random: this.state.random + rand });
+    };
     handleColorChange = () => {
         this.setState({
             favourited: !this.state.favourited,
@@ -141,17 +149,18 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
         });
     };
 
-    GTLexpanded = () => {
-        this.setState((state) => {
-            return { displayQuestions: !this.state.displayQuestions };
-        });
-    };
+    // GTLexpanded = () => {
+    //     this.setState((state) => {
+    //         return { displayQuestions: !this.state.displayQuestions };
+    //     });
+    // };
 
     render() {
         // const classes = useStyles();
         const path = window.location.href.split('/');
         const root = path[path.length - 2];
-        let questions = null;
+
+        // let questions = null;
         // if (this.state.displayQuestions) {
         //     console.log("Entered GTL")
         //     return (questions = (
@@ -241,9 +250,14 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
                     <IconButton aria-label="share">
                         <SharePost sharedURL={`${root}${this.state.path_name}`} />
                     </IconButton>
-                    <GTLmenu location={this.props.location} />
+                    <GTLmenu
+                        location2={this.state.questions.Location2}
+                        correctLocation={this.state.questions.correctLocation}
+                        location3={this.state.questions.Location3}
+                        order={this.state.random}
+                    />
                     {/* {this.state.displayQuestions &&
-                        this.state.questions.map(
+                        this.state.questions.map( 
                             (item: any) => (location1: String, location2: String, location3: String) => {
                                 console.log('Entered GTL');
                                 return (
