@@ -9,6 +9,9 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
+function Alert(props: AlertProps) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 export default function GTLmenus(props: {
     correctLocation: String;
     location2: String;
@@ -16,16 +19,12 @@ export default function GTLmenus(props: {
     order: Number;
     uid?: string;
 }) {
-    function Alert(props: AlertProps) {
-        return <MuiAlert elevation={6} variant="filled" {...props} />;
-    }
-
     const [openCorrect, setOpenCorrect] = React.useState(false);
     const [openWrong, setOpenWrong] = React.useState(false);
 
     const handleClickRightAns = () => {
         const increment = fb.firestore.FieldValue.increment(10);
-        if(props.uid != undefined){
+        if (props.uid !== undefined) {
             fb.firestore().collection('users').doc(props.uid).update({
                 GamePoint: increment,
             });
@@ -42,12 +41,12 @@ export default function GTLmenus(props: {
 
     const handleClickWrongAns = () => {
         const decrement = fb.firestore.FieldValue.increment(-5);
-        if(props.uid != undefined){
+        if (props.uid !== undefined) {
             fb.firestore().collection('users').doc(props.uid).update({
                 GamePoint: decrement,
             });
         }
-            
+
         setOpenWrong(true);
     };
 

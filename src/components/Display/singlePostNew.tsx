@@ -79,10 +79,10 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
             // // questions: [{ location1: 'UAE', location2: 'Russia', location3: 'Algeria' }],
             // questions: { correctLocation: 'Dubai', Location2: 'Sharjah', Location3: 'RAK' },
             // displayQuestions: false,
-            random: 2,
+            random: 1,
             locations: [],
-            loc1: "",
-            loc2: "",
+            loc1: '',
+            loc2: '',
         };
         this.handleColorChange = this.handleColorChange.bind(this);
         this.handleButtonClick = this.handleButtonClick.bind(this);
@@ -93,21 +93,20 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
     }
     handleClickRandomizer = () => {
         const min = 1;
-        const max = 3;
-        const rand = min + Math.random() * (max - min);
-        this.setState({ random: this.state.random + rand });
+        const max = 4;
+        const rand = Math.floor(Math.random() * (max - min) + min);
+        this.setState({ random: rand });
     };
 
     randomizeLocations = (locs: any) => {
-        const rand1 = Math.floor( Math.random() * this.state.random);
+        const rand1 = Math.floor(Math.random() * this.state.random);
         const rand2 = Math.floor(Math.random() * this.state.random);
-        
+
         // console.log(locs);
         // while((this.state.locations.length == 0));
 
-        
-    //   return (this.state.locations[rand1])
-        this.setState({ loc1: this.state.locations[rand1], loc2: this.state.locations[rand2]})
+        //   return (this.state.locations[rand1])
+        this.setState({ loc1: this.state.locations[rand1], loc2: this.state.locations[rand2] });
     };
     handleColorChange = () => {
         this.setState({
@@ -150,59 +149,60 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
                 this.randomizeLocations(locs);
             },
             (error) => {
-                this.setState({ gotLocs: false, });
+                this.setState({ gotLocs: false });
             },
         );
-        
+
         // this.getLocations(this.props.location);
         // const loc = this.props.location
-        
+
         // console.log(this.state.locations);
         // const loc = []
-        
-            // console.log(this.state.locations)
+
+        // console.log(this.state.locations)
     }
 
     getLocations = (loc: string) => {
         var locs = new Array();
-        
+
         return new Promise((resolve, reject) => {
             let locs = new Array();
-            const snapshot = firebase.firestore().collection('Posts')
+            const snapshot = firebase
+                .firestore()
+                .collection('Posts')
                 .get()
                 .then((querySnapshot) => {
                     querySnapshot.forEach((doc) => {
-                        if(!(locs.includes(doc.data().location)) && (loc != doc.data().location)){
+                        if (!locs.includes(doc.data().location) && loc != doc.data().location) {
                             locs.push(doc.data().location);
                         }
-                      });
+                    });
                     resolve(locs);
                 })
-                .catch(error => {
+                .catch((error) => {
                     reject(error);
                 });
         });
-        
+
         return new Promise(function (resolve, reject) {
-        firebase
-          .firestore()
-          .collection('Posts')
-          .get()
-          .then((querySnapshot) => {
-              querySnapshot.forEach((doc) => {
-                  if(!(locs.includes(doc.data().location)) && (loc != doc.data().location)){
-                      locs = [...locs, doc.data().location]
-                    }
-                }
-               )
-            });
-          if(locs){
-              resolve(locs);
-          } else{
-              reject("not loading locations")
-          }
+            firebase
+                .firestore()
+                .collection('Posts')
+                .get()
+                .then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        if (!locs.includes(doc.data().location) && loc != doc.data().location) {
+                            locs = [...locs, doc.data().location];
+                        }
+                    });
+                });
+            if (locs) {
+                resolve(locs);
+            } else {
+                reject('not loading locations');
+            }
         });
-    }
+    };
 
     getUser = () => {
         const uid = this.props.uid;
@@ -333,13 +333,19 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
                     <IconButton aria-label="share">
                         <SharePost sharedURL={`${root}${this.state.path_name}`} />
                     </IconButton>
-                    <GTLmenu
-                        location2={this.state.loc1}
-                        correctLocation={this.props.location}
-                        location3={this.state.loc2}
-                        order={this.state.random}
-                        uid={this.props.uid}
-                    />
+                    <div
+                        style={{ float: 'right', marginRight: '10px', marginLeft: 'auto' }}
+                        onClick={this.handleClickRandomizer}
+                    >
+                        <GTLmenu
+                            location2={this.state.loc1}
+                            correctLocation={this.props.location}
+                            location3={this.state.loc2}
+                            order={this.state.random}
+                            uid={this.props.uid}
+                        />
+                    </div>
+
                     {/* {this.state.displayQuestions &&
                         this.state.questions.map( 
                             (item: any) => (location1: String, location2: String, location3: String) => {

@@ -2,7 +2,7 @@ import React from 'react';
 import './tags.scss';
 import Textfield from './TextField';
 
-import { Box, TextField as MatTextField, TextFieldProps, withStyles } from '@material-ui/core';
+import { Box, TextField as MatTextField, TextFieldProps, withStyles, Chip, Typography } from '@material-ui/core';
 
 const CssTextField = withStyles({
     root: {
@@ -46,28 +46,41 @@ const Tags = (props: any) => {
         setTags([...tags.filter((tag) => tags.indexOf(tag) !== index)]);
     };
     return (
-        <div className="tags-input">
-            <ul id="tags">
-                {tags.map((tag, index) => (
-                    <li key={index} className="tag">
-                        <span className="tag-title">{tag}</span>
+        <>
+            {/* <label htmlFor="tags-input"> */}
+            <Textfield
+                // variant="filled"
+                // fullWidth
+                // className="tags-input"
+                label="Add tags"
+                onKeyUp={(event) => addTags(event)}
+            />
+            {/* </label> */}
+            <div className="tags-input">
+                <ul id="tags">
+                    <Typography variant="h6" style={{ color: '#fafafa', marginRight: '5px', fontSize: '20px' }}>
+                        Selected
+                        <span style={{ color: '#f56920' }}> tags:</span>
+                    </Typography>
+                    {tags.map((tag, index) => (
+                        <li key={index} className="tag">
+                            {/* <span className="tag-title">{tag}</span>
                         <span className="tag-close-icon" onClick={() => removeTags(index)}>
                             x
-                        </span>
-                    </li>
-                ))}
-            </ul>
-            <input type="text" id="tags-input" style={{ display: 'none' }} placeholder="Press enter to add tags" />
-            <label htmlFor="tags-input">
-                <Textfield
-                    // variant="filled"
-                    // fullWidth
-                    className="tags-input"
-                    label="Press Enter To Add Tags"
-                    onKeyUp={(event) => addTags(event)}
-                />
-            </label>
-        </div>
+                        </span> */}
+                            <Chip
+                                label={tag}
+                                onDelete={() => removeTags(index)}
+                                variant="outlined"
+                                color="primary"
+                                style={{ color: '#fafafa' }}
+                            />
+                        </li>
+                    ))}
+                </ul>
+            </div>
+            {/* <input type="text" id="tags-input" style={{ display: 'none' }} placeholder="Press enter to add tags" /> */}
+        </>
     );
 };
 export default Tags;

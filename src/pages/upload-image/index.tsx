@@ -103,8 +103,8 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
 
         if (!user) return;
 
-        if(!this.state.check) {
-            alert("You must check the condition");
+        if (!this.state.check) {
+            alert('You must check the condition');
             return;
         }
         fr.onload = async function () {
@@ -198,9 +198,9 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
 
     updateCoordinates = (coordinates: any) => {
         const coord = {
-            'latitude': coordinates.lat,
-            'longtitude': coordinates.lng,
-        }
+            latitude: coordinates.lat,
+            longtitude: coordinates.lng,
+        };
         this.setState({ coordinates: coordinates });
         // this.setState({ : event.target.value });
         console.log(this.state.coordinates);
@@ -212,91 +212,94 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
 
     render() {
         return (
-            <Card
-                style={{
-                    maxHeight: 800,
-                    maxWidth: 600,
-                    margin: 'auto',
-                    marginBlock: '20px',
-                    background: '#1b1b1b',
-                    // border: '3px solid #fafafa',
-                    borderRadius: '20px',
-                }}
-            >
-                <CardHeader
-                    avatar={
-                        <Avatar
-                            aria-label="recipe"
-                            alt={this.state.user.User_name}
-                            src={this.state.user.Avatar}
-                            style={{ backgroundColor: 'auto' }}
-                        >
-                            {this.state.user.User_name}
-                        </Avatar>
-                    }
-                    title={<Typography variant="h6">{this.state.user.User_name}</Typography>}
-                    style={{ textAlign: 'left', color: '#fafafa' }}
-                />
-                <CardMedia
-                    image={this.state.rawurl}
-                    title={`A Photo by ${this.state.user.User_name}`}
+            <Box style={{ background: '#1b1b1b' }}>
+                <Card
                     style={{
-                        borderRadius: '20px 20px 20px 20px',
-                        height: 0,
-                        paddingTop: '56.25%',
-                        marginLeft: '10px',
-                        marginRight: '10px',
+                        maxHeight: 800,
+                        maxWidth: 600,
+                        margin: 'auto',
+                        marginBlock: '20px',
+                        background: '#1b1b1b',
+                        // border: '3px solid #fafafa',
+                        borderRadius: '20px',
+                        boxShadow: 'inherit',
                     }}
-                />
-                <Box m={-2} />
-                <CardActions disableSpacing>
-                    <UploadIcon onChange={this.changeImage} />
-                </CardActions>
-                <CardContent>
-                    <TextField
-                        name="caption"
-                        id="caption"
-                        label="Enter Caption"
-                        type="caption"
-                        onChange={this.updateCaption}
+                >
+                    <CardHeader
+                        avatar={
+                            <Avatar
+                                aria-label="recipe"
+                                alt={this.state.user.User_name}
+                                src={this.state.user.Avatar}
+                                style={{ backgroundColor: 'auto' }}
+                            >
+                                {this.state.user.User_name}
+                            </Avatar>
+                        }
+                        title={<Typography variant="h6">{this.state.user.User_name}</Typography>}
+                        style={{ textAlign: 'left', color: '#fafafa' }}
                     />
-                </CardContent>
-                <CardContent>
-                    <Tags selectedTags={this.selectedTags} />
-                </CardContent>
-                <CardContent>
-                    {/* <TextField label="Add Location"> */}
-                        <Places updateLocation={this.updateLocation} updateCoordinates={this.updateCoordinates} />
-                    {/* </TextField> */}
-                </CardContent>
-                <CardContent>
-                    <Typography
-                        variant="body2"
-                        color="textSecondary"
-                        component="p"
-                        style={{ color: '#fafafa', textAlign: 'center' }}
-                        >
-                    <label>
-                        <input type="checkbox" name="Accept" required onChange={this.toggleCheck}/>
-                        
-                            Before submitting, you are aware that the post does not go against the community guidelines and
-                            does not feature any human faces
-                    </label>
-                    </Typography>
-                </CardContent>
-                <CardActions>
-                    <RegularBtn
-                        type="submit"
-                        colorType="white"
-                        style={{ width: '50%', borderRadius: '15px' }}
-                        onClick={this.onSubmit}
-                    >
-                        Upload Post!
-                    </RegularBtn>
-                </CardActions>
+                    <CardMedia
+                        image={this.state.rawurl}
+                        title={`A Photo by ${this.state.user.User_name}`}
+                        style={{
+                            borderRadius: '20px 20px 20px 20px',
+                            height: 0,
+                            paddingTop: '56.25%',
+                            marginLeft: '10px',
+                            marginRight: '10px',
+                        }}
+                    />
+                    <Box m={-2} />
+                    <CardActions disableSpacing>
+                        <UploadIcon onChange={this.changeImage} />
+                    </CardActions>
 
-                <Places />
-            </Card>
+                    <CardContent>
+                        <TextField
+                            name="caption"
+                            id="caption"
+                            label="Enter Caption"
+                            type="caption"
+                            onChange={this.updateCaption}
+                        />
+                    </CardContent>
+                    <CardContent>
+                        <Tags selectedTags={this.selectedTags} />
+                    </CardContent>
+                    <CardContent>
+                        {/* <TextField label="Add Location"> */}
+                        <Places updateLocation={this.updateLocation} updateCoordinates={this.updateCoordinates} />
+                        {/* </TextField> */}
+                        {/* </CardContent>
+                    <CardContent> */}
+                        <br></br>
+                        <Typography
+                            variant="body2"
+                            color="textSecondary"
+                            component="p"
+                            style={{ color: '#fafafa', textAlign: 'center', fontWeight: 'lighter' }}
+                        >
+                            <label>
+                                <input type="checkbox" name="Accept" required onChange={this.toggleCheck} />
+                                By checking this box, you confirm that you are aware of the community guidelines and
+                                terms of use. Make sure that this post doesn't contain any human face.
+                            </label>
+                        </Typography>
+                    </CardContent>
+                    <CardActions>
+                        <RegularBtn
+                            type="submit"
+                            colorType="white"
+                            style={{ width: '50%', borderRadius: '15px', margin: 'auto' }}
+                            onClick={this.onSubmit}
+                        >
+                            Upload Post!
+                        </RegularBtn>
+                    </CardActions>
+                    <Places />
+                </Card>
+            </Box>
         );
     }
 }
