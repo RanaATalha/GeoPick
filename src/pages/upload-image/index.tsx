@@ -212,10 +212,13 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
 
     render() {
         return (
-            <Box style={{ background: '#1b1b1b' }}>
+            <div style={{ background: '#1b1b1b', padding: '10px' }}>
+                <Typography style={{ color: '#fafafa', fontWeight: 'normal' }} variant="h2">
+                    <span style={{ color: '#f56920' }}>Upload</span> Image
+                </Typography>
                 <Card
                     style={{
-                        maxHeight: 800,
+                        maxHeight: 900,
                         maxWidth: 600,
                         margin: 'auto',
                         marginBlock: '20px',
@@ -254,52 +257,57 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
                     <CardActions disableSpacing>
                         <UploadIcon onChange={this.changeImage} />
                     </CardActions>
-
-                    <CardContent>
-                        <TextField
-                            name="caption"
-                            id="caption"
-                            label="Enter Caption"
-                            type="caption"
-                            onChange={this.updateCaption}
-                        />
-                    </CardContent>
-                    <CardContent>
-                        <Tags selectedTags={this.selectedTags} />
-                    </CardContent>
-                    <CardContent>
-                        {/* <TextField label="Add Location"> */}
-                        <Places updateLocation={this.updateLocation} updateCoordinates={this.updateCoordinates} />
-                        {/* </TextField> */}
-                        {/* </CardContent>
-                    <CardContent> */}
-                        <br></br>
-                        <Typography
-                            variant="body2"
-                            color="textSecondary"
-                            component="p"
-                            style={{ color: '#fafafa', textAlign: 'center', fontWeight: 'lighter' }}
-                        >
-                            <label>
-                                <input type="checkbox" name="Accept" required onChange={this.toggleCheck} />
-                                By checking this box, you confirm that you are aware of the community guidelines and
-                                terms of use. Make sure that this post doesn't contain any human face.
-                            </label>
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <RegularBtn
-                            type="submit"
-                            colorType="white"
-                            style={{ width: '50%', borderRadius: '15px', margin: 'auto' }}
-                            onClick={this.onSubmit}
-                        >
-                            Upload Post!
-                        </RegularBtn>
-                    </CardActions>
-                    <Places />
                 </Card>
-            </Box>
+                <CardContent>
+                    <TextField
+                        name="caption"
+                        id="caption"
+                        label="Enter Caption"
+                        type="caption"
+                        onChange={this.updateCaption}
+                    />
+                </CardContent>
+                <CardContent>
+                    <Tags selectedTags={this.selectedTags} />
+                </CardContent>
+                <CardContent>
+                    {/* <TextField label="Add Location"> */}
+                    <Places updateLocation={this.updateLocation} updateCoordinates={this.updateCoordinates} />
+                    {/* </TextField> */}
+                    {/* </CardContent>
+                    <CardContent> */}
+                    <br></br>
+                    <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        component="p"
+                        style={{
+                            color: '#fafafa',
+                            textAlign: 'center',
+                            fontWeight: 'lighter',
+                            width: '35%',
+                            margin: 'auto',
+                        }}
+                    >
+                        <label>
+                            <input type="checkbox" name="Accept" required onChange={this.toggleCheck} />
+                            By checking this box, you confirm that you are aware of the community guidelines and terms
+                            of use. Make sure that this post doesn't contain any human face.
+                        </label>
+                    </Typography>
+                </CardContent>
+                <CardActions>
+                    <RegularBtn
+                        type="submit"
+                        colorType="white"
+                        style={{ width: '200px', borderRadius: '15px', margin: 'auto' }}
+                        onClick={this.onSubmit}
+                    >
+                        Upload Post!
+                    </RegularBtn>
+                </CardActions>
+                {/* <Places /> */}
+            </div>
         );
     }
 }

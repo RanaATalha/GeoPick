@@ -4,7 +4,9 @@ import WhiteLogo from '../welcome screen/WhiteLogo.svg';
 import './homesStyles.scss';
 import firebase from 'firebase';
 import Feed from '../../components/Layouts/feed';
-import { Avatar, IconButton, Toolbar, Box } from '@material-ui/core';
+import { Avatar, IconButton, Toolbar, Box, AppBar, Slide } from '@material-ui/core';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import { checkUserLoggedIn } from '../../firebase/auth';
 import BottomNavigation from '../../components/NavBar/navbar';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -20,7 +22,6 @@ export interface HomeScreenState {
     isAuthenticated: boolean;
     uid: string;
 }
-
 export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
     constructor(HomeScreenProps: any) {
         super(HomeScreenProps);
@@ -104,22 +105,24 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
         if (!this.state.isAuthenticated) return null;
         return (
             <div style={{ background: '#1b1b1b' }}>
-                <Toolbar style={{ position: 'relative' }}>
-                    <Link to="/welcome">
-                        <IconButton edge="end" onClick={this.signOut}>
-                            <ExitToAppIcon style={{ color: 'white' }} />
-                        </IconButton>
-                    </Link>
+                <AppBar position="fixed" style={{ background: '#1b1b1b' }}>
+                    <Toolbar style={{ position: 'relative' }}>
+                        <Link to="/welcome">
+                            <IconButton edge="end" onClick={this.signOut}>
+                                <ExitToAppIcon style={{ color: 'white' }} />
+                            </IconButton>
+                        </Link>
 
-                    <img src={WhiteLogo} alt="GeoPicK" className="WhiteLogo" />
-                    <AvatarSmall
-                        User={this.state.user}
-                        uid={this.state.uid}
-                        User_name={this.state.user.User_name}
-                        Avatar={this.state.user.Avatar}
-                        Size="small"
-                    />
-                </Toolbar>
+                        <img src={WhiteLogo} alt="GeoPicK" className="WhiteLogo" />
+                        <AvatarSmall
+                            User={this.state.user}
+                            uid={this.state.uid}
+                            User_name={this.state.user.User_name}
+                            Avatar={this.state.user.Avatar}
+                            Size="small"
+                        />
+                    </Toolbar>
+                </AppBar>
                 <SinglePostNew />
                 <Feed />
 

@@ -76,8 +76,8 @@ const SignInForm = () => {
         console.log('trying ');
         auth.doSignInWithEmailAndPassword(data.email, data.password)
             .then(() => {
-                console.log('sucessfully signed up');
-                alert('sucessfully signed up ');
+                console.log('sucessfully signed in');
+                alert('sucessfully signed in ');
                 push('/home');
             })
             .catch((err) => {
