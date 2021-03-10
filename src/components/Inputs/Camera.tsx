@@ -21,20 +21,14 @@ import PhotoCameraRoundedIcon from "@material-ui/icons/PhotoCameraRounded";const
     display: "none"
   }
 }));function Camera() {
-  const classes = useStyles();const [source, setSource] = useState("");const handleCapture = (target: any) => {
-    if (target.files) {
-      if (target.files.length !== 0) {
-        const file = target.files[0];
-        const newUrl = URL.createObjectURL(file); 
-        setSource(newUrl);
-      }
-    }
-  };return (
+  const classes = useStyles();
+  
+  return (
     <div className={classes.root}>
       <Grid container>
         <Grid item xs={12}>
           <h5>Capture your image</h5>
-          {source &&
+          {/* {source &&
             <Box display="flex" justifyContent="center" border={1} className={classes.imgBox}>
               <img src={source} alt={"snap"} className={classes.img}></img>
             </Box>}
@@ -44,7 +38,7 @@ import PhotoCameraRoundedIcon from "@material-ui/icons/PhotoCameraRounded";const
             id="icon-button-file"
             type="file"
             capture="environment"
-            onChange={(e) => handleCapture(e.target)}
+            // onChange={(e) => handleCapture(e.target)}
           />
           <label htmlFor="icon-button-file">
             <IconButton
@@ -54,7 +48,7 @@ import PhotoCameraRoundedIcon from "@material-ui/icons/PhotoCameraRounded";const
             >
               <PhotoCameraRoundedIcon fontSize="large" color="primary" />
             </IconButton>
-          </label>
+          </label> */}
         </Grid>
       </Grid>
     </div>

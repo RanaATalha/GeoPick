@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import SpeedDial, { SpeedDialProps } from '@material-ui/lab/SpeedDial';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 import GuessTheLocationButton from '../Display/guess-the-location.svg';
 import { Fab, IconButton } from '@material-ui/core';
 import CameraAltRoundedIcon from '@material-ui/icons/CameraAltRounded';
+import Camera from '../Inputs/Camera';
 
 import UploadPic from './uploadPic';
 
@@ -55,6 +56,17 @@ export default function UploadIcon(props: any) {
         { icon: <p>Take a photo</p>, name: 'camera' },
     ];
 
+    const [source, setSource] = useState("");
+    const handleCapture = (target: any) => {
+        if (target.files) {
+        if (target.files.length !== 0) {
+            const file = target.files[0];
+            const newUrl = URL.createObjectURL(file); 
+            setSource(newUrl);
+        }
+        }
+    };
+
     const handleClose = () => {
         setOpen(false);
     };
@@ -86,7 +98,7 @@ export default function UploadIcon(props: any) {
                 icon={<div>
                         <input accept="image/*" className={classes.input} id="icon-button-file" type="file" onChange={props.onChange}/>
                         <label htmlFor="icon-button-file">
-                            <IconButton className={classes.options} color="inherit" aria-label="upload picture" component="span" > Select from Gallery </IconButton>
+                            <IconButton className={classes.options} color="inherit" aria-label="upload picture" component="span" > Select From Gallery </IconButton>
                         </label>
                         </div>}
                 tooltipTitle="gallery"
@@ -95,7 +107,20 @@ export default function UploadIcon(props: any) {
             <SpeedDialAction
                 key="camera"
                 className={classes.options}
-                icon={<p> Take Photo </p>}
+                icon={<div>
+                        <input accept="image/*" className={classes.input} id="direct-button-file" type="file" capture="environment" onChange={props.onChange}/>
+                        <label htmlFor="icon-button-file">
+                            <IconButton
+                            color="inherit"
+                            aria-label="upload camera"
+                            component="span"
+                            className={classes.options}
+                            >
+                            Take A Photo
+                            </IconButton>
+                        </label>
+                    </div>
+                  }
                 tooltipTitle="camera"
                 onClick={handleClose}
             />
