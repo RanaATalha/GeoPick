@@ -24,6 +24,8 @@ import Places from './components/Inputs/Places';
 import ViewPoints from './pages/view-points-screen/points';
 import EditProfile from './pages/edit-profile/editProfile';
 import LocationPicker from './components/Inputs/LocationPicker';
+import Camera from './components/Inputs/Camera';
+
 import WebCamFun from './pages/camera/index';
 // import GTLexpanded from './components/Display/GTLexpanded';
 function App(): JSX.Element {
@@ -90,6 +92,9 @@ function App(): JSX.Element {
                     </Route>
                     <Route exact path="/explore">
                         <ExploreScreen />
+                    </Route>
+                    <Route exact path="/Camera">
+                        <Camera />
                     </Route>
                     {/* <Route exact path="/GTLexpanded">
                         <GTLexpanded />
@@ -164,7 +169,7 @@ function Nav() {
                         <Link to="/EditProfile">Edit Profile</Link>
                     </li>
                     <li>
-                        <Link to="/webcam">camera</Link>
+                        <Link to="/Camera">camera</Link>
                     </li>
                     <li>
                         <Link to="/explore">Explore</Link>
