@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const SettingsMenu = () => {
     const classes = useStyles();
+
     return (
         <div style={{ width: '100%', height: '100%' }}>
             <List component="nav" className={classes.root} aria-label="mailbox folders">
@@ -71,6 +72,7 @@ const SettingsMenu = () => {
                         </Avatar>
                     </ListItemAvatar>
                     <ListItemText primary="Help and Feedback" />
+                    <Link to="/helpnfeedback">{'-->'}</Link>
                 </ListItem>
                 <ListItem button divider>
                     <ListItemAvatar>
