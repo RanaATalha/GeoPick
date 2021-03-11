@@ -285,7 +285,7 @@ export class UploadImage extends Component<UploadImageProps, UploadImageState> {
                             color: '#fafafa',
                             textAlign: 'center',
                             fontWeight: 'lighter',
-                            width: '35%',
+                            width: '90%',
                             margin: 'auto',
                         }}
                     >

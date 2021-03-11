@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import AddAvatar from './AddAvatar.png';
@@ -7,6 +7,7 @@ import BadgeAvatar from '../../components/Display/AddAvatarBadge';
 import { Avatar, Button, Card, CardContent, CardHeader, Grid, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import AvatarSmall from '../../components/Display/avatarSmall';
+import { truncate } from 'fs';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -28,25 +29,50 @@ const SmallAvatar = withStyles((theme) => ({
 }))(Avatar);
 
 const Followers = () => {
+    // const [Follow, setFollowed] = useState('Follow');
+    const [Follow, setFollow] = useState(false);
+    const [color, setColor] = useState(false);
+
     return (
         <Button
             variant="contained"
-            style={{
-                padding: '5px 10px 5px 10px',
-                marginRight: '5px',
-                borderRadius: '20px',
-                float: 'right',
-                background: '#f56920',
-                color: '#fafafa',
-            }}
+            // style={{
+            //     padding: '5px 10px 5px 10px',
+            //     marginRight: '5px',
+            //     borderRadius: '20px',
+            //     float: 'right',
+            //     background: '#f56920',
+            //     color: '#fafafa',
+            // }}
+            style={
+                !color
+                    ? {
+                          padding: '5px 10px 5px 10px',
+                          marginRight: '5px',
+                          borderRadius: '20px',
+                          float: 'right',
+                          background: '#f56920',
+                          color: '#fafafa',
+                      }
+                    : {
+                          padding: '5px 10px 5px 10px',
+                          marginRight: '5px',
+                          borderRadius: '20px',
+                          float: 'right',
+                          background: '#fafafa',
+                          color: '#f56920',
+                      }
+            }
+            onClick={() => setFollow(!Follow)}
+            onClickCapture={() => setColor(!color)}
         >
-            Follow
+            {Follow ? <div>Following</div> : <div>Follow</div>}
         </Button>
     );
 };
 
 export default function ProfileOverview(props: any) {
-    const classes = useStyles();
+    // const classes = useStyles();
     if (props.followers === true) {
         return (
             <Card
