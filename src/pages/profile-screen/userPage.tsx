@@ -8,7 +8,7 @@ import SinglePostNew from '../../components/Display/singlePostNew';
 import ProfileOverview from '../../components/Display/profileOverview';
 import { checkUserLoggedIn } from '../../firebase/auth';
 import firebase from 'firebase';
-import UserFeed from '../../components/Layouts/userFeed';
+import UserFeed1 from '../../components/Layouts/userFeed1';
 
 import { auth } from '../../firebase';
 export interface UserPageProps {}
@@ -152,7 +152,7 @@ class UserPage extends Component<UserPageProps, UserPageState> {
                         My <span style={{ color: '#f56920' }}>Posts</span>
                     </Typography>
                 </div>
-                <UserFeed uid={this.state.uid} />
+                <UserFeed1 uid={this.state.uid} />
             </div>
         );
     }
