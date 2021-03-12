@@ -34,7 +34,7 @@ export default function Places(props: any) {
 
                             {suggestions.map((suggestion) => {
                                 const style = {
-                                    backgroundColor: suggestion.active ? '#fff' : '#fff',
+                                    backgroundColor: suggestion.active ? '#67836' : '#fff',
                                 };
 
                                 return (

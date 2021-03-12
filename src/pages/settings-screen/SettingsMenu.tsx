@@ -17,8 +17,8 @@ import NotificationImportantRoundedIcon from '@material-ui/icons/NotificationImp
 import AccessibilityNewRoundedIcon from '@material-ui/icons/AccessibilityNewRounded';
 import HelpRoundedIcon from '@material-ui/icons/HelpRounded';
 import GavelRoundedIcon from '@material-ui/icons/GavelRounded';
-import { Link } from 'react-router-dom';
-export interface SettingsMenuProps {}
+import { useHistory } from "react-router-dom";
+export interface SettingsMenuProps { }
 export interface SettingsMenuState {
     user: any;
 }
@@ -36,6 +36,16 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const SettingsMenu = () => {
     const classes = useStyles();
+
+    // function HomeButton() {
+    //     let history = useHistory();
+
+    function onClick(e: any) {
+         e.preventDefault();
+        
+     }
+
+    const history = useHistory();
 
     return (
         <div style={{ width: '100%', height: '100%' }}>
@@ -71,8 +81,7 @@ const SettingsMenu = () => {
                             <HelpRoundedIcon style={{ color: 'black' }} />
                         </Avatar>
                     </ListItemAvatar>
-                    <ListItemText primary="Help and Feedback" />
-                    <Link to="/helpnfeedback">{'-->'}</Link>
+                    <ListItemText primary="Help and Feedback" onClick={e => { history.push("/helpnfeedback") }} />
                 </ListItem>
                 <ListItem button divider>
                     <ListItemAvatar>
