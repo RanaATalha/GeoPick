@@ -10,6 +10,8 @@ import ReSetNewPasswordScreen from './pages/sign-in screen/resetpass';
 import { Terms } from './pages/terms/index';
 import { HomeScreen } from './pages/home-screen/home';
 import PostViewScreen from './pages/post-view';
+import EditPostViewScreen from './pages/edit-post';
+import DeletePostViewScreen from './pages/delete-post';
 import HelpandFeedback from './pages/helpandfeedback';
 import SettingsScreen from './pages/settings-screen/SettingsMenu';
 import UserPage from './pages/profile-screen/userPage';
@@ -74,6 +76,8 @@ function App(): JSX.Element {
                         <SettingsScreen />
                     </Route>
                     <Route path="/post/:catId" component={PostViewScreen}></Route>
+                    <Route path="/editpost/:catId" component={EditPostViewScreen}></Route>
+                    <Route path="/deletepost/:catId" component={DeletePostViewScreen}></Route>
                     <Route path="/user/:catId" component={UserPage}></Route>
                     <Route exact path="/upload-image">
                         <UploadImage />
