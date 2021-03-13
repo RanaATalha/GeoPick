@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import AddAvatar from './AddAvatar.png';
@@ -31,10 +31,16 @@ const SmallAvatar = withStyles((theme) => ({
     },
 }))(Avatar);
 
-const user = auth.checkUserLoggedIn();
+
 
 export default function ProfileOverview(props: any) {
-    
+    const [user, setUser] = useState(auth.checkUserLoggedIn());
+    useEffect(() => {
+        const authU = auth.checkUserLoggedIn();
+        if(authU != undefined){
+            setUser(authU);
+        }
+    })
 
     const Followers = () => {
         const [Follow, setFollow] = useState(false);
