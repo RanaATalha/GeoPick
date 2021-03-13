@@ -13,6 +13,10 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import TextField from '../../components/Inputs/TextField';
+import Tags from '../../components/Inputs/tags';
+import Places from '../../components/Inputs/Places';
+import { RegularBtn } from '../../components/Buttons/RegularBtn';
 
 export interface EditPostViewState {
     newComment: string;
@@ -26,6 +30,9 @@ export interface EditPostViewState {
     post_uid: string;
     post_user: any;
     comments: any;
+    tags: any;
+    location: any;
+    coordinates: any;
 }
 
 export interface EditPostViewProps {
@@ -33,10 +40,12 @@ export interface EditPostViewProps {
 }
 
 export default class PostViewScreen extends Component<EditPostViewProps, EditPostViewState> {
+    updateCaption: any;
     constructor(PostViewProps: any) {
         super(PostViewProps);
         this.state = {
             favourited: false,
+            location: {},
             user: {},
             Image: '',
             caption: '',
@@ -47,10 +56,33 @@ export default class PostViewScreen extends Component<EditPostViewProps, EditPos
             post_uid: '',
             post_user: {},
             comments: [],
+            tags: [],
+            coordinates:{},
         };
         this.handleColorChange = this.handleColorChange.bind(this);
     }
 
+    selectedTags = (tagses: any) => {
+        this.setState({ tags: tagses });
+    };
+
+    updateLocation = (address: string) => {
+        this.setState({ location: address });
+        // this.setState({ : event.target.value });
+        console.log(this.state.location);
+    };
+
+    updateCoordinates = (coordinates: any) => {
+        const coord = {
+            latitude: coordinates.lat,
+            longtitude: coordinates.lng,
+        };
+        this.setState({ coordinates: coordinates });
+        // this.setState({ : event.target.value });
+        console.log(this.state.coordinates);
+    };
+
+ 
     async componentDidMount() {
         const path = window.location.pathname.split('/');
         const pid = path[path.length - 1];
@@ -92,6 +124,8 @@ export default class PostViewScreen extends Component<EditPostViewProps, EditPos
                 }
             });
 
+             
+        
         console.log(this.state.post_uid);
         fb.firestore()
             .collection('users')
@@ -165,7 +199,7 @@ export default class PostViewScreen extends Component<EditPostViewProps, EditPos
                 comments: [...this.state.comments, comment],
             });*/
         };
-
+        
         return (
             <Card
                 style={{
@@ -253,53 +287,26 @@ export default class PostViewScreen extends Component<EditPostViewProps, EditPos
                     </CardActions>
                 </Card>
                 <Divider variant="middle" style={{ background: '#fafafa', margin: '10px' }} />
-                <Grid container spacing={2} justify="flex-start" style={{ justifyItems: 'normal', marginLeft: '10%' }}>
-                    <Grid item style={{ color: 'white', fontSize: '12' }}>
-                        <Typography variant="h4" style={{ marginBottom: '20px', color: '#f56920' }}>
-                            Edit caption
-                        </Typography>
-                        <ul>
-                            {this.state.comments.map((val: string, index: any) => {
-                                return (
-                                    <li key={index}>
-                                        <Typography variant="body2" style={{ textAlign: 'left', color: 'white' }}>
-                                            {val}
-                                        </Typography>
-                                    </li>
-                                );
-                            })}
-                        </ul>
-                    </Grid>
-                </Grid>
-                <InputBase
-                    onChange={handleChange}
-                    placeholder="Start typing..."
-                    style={{
-                        width: '80%',
-                        // marginRight: '-12%',
-                        margin: 'auto',
-                        marginTop: '20px',
-                        marginBottom: '20px',
-                        textDecorationColor: '#FAFAFA',
-                        border: '1px solid #FAFAFA',
-                        borderRadius: '10px',
-                        height: '50px',
-                        padding: '10px',
-                        color: '#fafafa',
-                    }}
-                    endAdornment={
-                        <IconButton
-                            onClick={handleClick}
-                            aria-label="upload"
-                            type="submit"
-                            style={{ color: '#FAFAFA', alignContent: 'end' }}
-                        >
-                            <PublishRoundedIcon />
-                        </IconButton>
-                    }
-                />
 
-                
+                <TextField
+                        name="caption"
+                        id="caption"
+                        label="Edit Caption"
+                        type="caption"
+                        onChange={this.updateCaption}
+                    />
+                    <br></br>
+              <Tags selectedTags={this.selectedTags} />
+<br></br>
+              <Places updateLocation={this.updateLocation} updateCoordinates={this.updateCoordinates} />
+             <br></br>
+             <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
+                    <RegularBtn 
+                    //onClick={deletepost}
+                     type="submit" colorType="orange" style={{ width: '40%', borderRadius: '15px' }}>
+                        Edit Post
+                    </RegularBtn>
+                </Grid>
             </Card>
         );
     }
