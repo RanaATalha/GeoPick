@@ -5,6 +5,7 @@ import firebase from 'firebase';
 import cred from '../constants/firebase-creds.json';
 import 'dot-env';
 import 'firebase/storage';
+// import '@firebase/messaging';
 //import './sign-in screen';
 const prodConfig = {
     apiKey: cred.REACT_APP_API_KEY,
@@ -76,9 +77,28 @@ if (!firebase.apps.length) {
 //     })
 // }
 
+// let messaging;
+
+// // we need to check if messaging is supported by the browser
+// if(firebase.messaging.isSupported()) {
+//     messaging = firebase.messaging();
+// }
+
+// if ('serviceWorker' in navigator) {
+//     window.addEventListener('load', async () => {
+//         const registration = await navigator.serviceWorker.register('/firebase-messaging-sw.js', {
+//             updateViaCache: 'none'
+//         });
+//         messaging.useServiceWorker(registration);
+//     });
+// }
+
 
 export const auth = firebase.auth();
 export const GoogleProvider = new firebase.auth.GoogleAuthProvider();
 export const db = firebase.database();
 export default auth;
 export const storage = firebase.storage();
+// export {
+//     messaging
+// };

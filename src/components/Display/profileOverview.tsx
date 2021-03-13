@@ -8,6 +8,9 @@ import { Avatar, Button, Card, CardContent, CardHeader, Grid, Typography } from 
 import { Link } from 'react-router-dom';
 import AvatarSmall from '../../components/Display/avatarSmall';
 import { truncate } from 'fs';
+import firebase from 'firebase';
+import fb from 'firebase/app';
+import { auth } from '../../firebase';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -28,52 +31,117 @@ const SmallAvatar = withStyles((theme) => ({
     },
 }))(Avatar);
 
-const Followers = () => {
-    // const [Follow, setFollowed] = useState('Follow');
-    const [Follow, setFollow] = useState(false);
-    const [color, setColor] = useState(false);
-
-    return (
-        <Button
-            variant="contained"
-            // style={{
-            //     padding: '5px 10px 5px 10px',
-            //     marginRight: '5px',
-            //     borderRadius: '20px',
-            //     float: 'right',
-            //     background: '#f56920',
-            //     color: '#fafafa',
-            // }}
-            style={
-                !color
-                    ? {
-                          padding: '5px 10px 5px 10px',
-                          marginRight: '5px',
-                          borderRadius: '20px',
-                          float: 'right',
-                          background: '#f56920',
-                          color: '#fafafa',
-                      }
-                    : {
-                          padding: '5px 10px 5px 10px',
-                          marginRight: '5px',
-                          borderRadius: '20px',
-                          float: 'right',
-                          background: '#fafafa',
-                          color: '#f56920',
-                      }
-            }
-            onClick={() => setFollow(!Follow)}
-            onClickCapture={() => setColor(!color)}
-        >
-            {Follow ? <div>Following</div> : <div>Follow</div>}
-        </Button>
-    );
-};
+const user = auth.checkUserLoggedIn();
 
 export default function ProfileOverview(props: any) {
+    
+
+    const Followers = () => {
+        const [Follow, setFollow] = useState(false);
+        const [color, setColor] = useState(false);
+        if (!user) return;
+        const FollowingCheck = fb.firestore().collection('users/').doc(`${user.uid}/`).collection("Following").doc(`${props.uid}/`).get();
+        
+        if(FollowingCheck == null)
+        {
+            setFollow(false);
+        }
+        else
+        {
+            setFollow(true);
+        }
+
+        const FollowUpdate = () => {
+
+            if (!user) return;
+            setFollow(!Follow);
+    
+            const increment = fb.firestore.FieldValue.increment(1);
+            const decrement = fb.firestore.FieldValue.increment(-1);
+    
+            if(Follow == true)
+            {
+            fb.firestore().collection('users/').doc(`${user.uid}/`).collection("Following").doc(`${props.uid}/`).update({
+                UserId: props.uid,
+            });
+    
+            fb.firestore().collection('users/').doc(`${props.uid}/`).collection("Followers").doc(`${user.uid}/`).update({
+                UserId: user.uid,
+            });
+    
+            fb.firestore().collection('users/').doc(`${user.uid}/`).update({
+                Following: increment,
+            })
+    
+            fb.firestore().collection('users/').doc(`${props.uid}/`).update({
+                Followers: increment,
+            });
+    
+          }
+          else{
+            fb.firestore().collection('users/').doc(`${user.uid}/`).collection("Following").doc(`${props.uid}/`).delete();
+            fb.firestore().collection('users/').doc(`${props.uid}/`).collection("Followers").doc(`${user.uid}/`).delete();
+    
+            fb.firestore().collection('users/').doc(`${user.uid}/`).update({
+                Following: decrement,
+            })
+    
+            fb.firestore().collection('users/').doc(`${props.uid}/`).update({
+                Followers: decrement,
+            });
+          }
+    
+          }
+    
+        
+        // const [Follow, setFollowed] = useState('Follow');
+          
+        return (
+
+            <Button
+                variant="contained"
+                // style={{
+                //     padding: '5px 10px 5px 10px',
+                //     marginRight: '5px',
+                //     borderRadius: '20px',
+                //     float: 'right',
+                //     background: '#f56920',
+                //     color: '#fafafa',
+                // }}
+                style={
+                    !color
+                        ? {
+                              padding: '5px 10px 5px 10px',
+                              marginRight: '5px',
+                              borderRadius: '20px',
+                              float: 'right',
+                              background: '#f56920',
+                              color: '#fafafa',
+                          }
+                        : {
+                              padding: '5px 10px 5px 10px',
+                              marginRight: '5px',
+                              borderRadius: '20px',
+                              float: 'right',
+                              background: '#fafafa',
+                              color: '#f56920',
+                          }
+                }
+                onClick={() => FollowUpdate()
+                }
+
+            
+                onClickCapture={() => setColor(!color)}
+            >
+                {Follow ? <div>Following</div> : <div>Follow</div>}
+            </Button>
+        );
+    };
+
+
     // const classes = useStyles();
     if (props.followers === true) {
+        
         return (
             <Card
                 style={{
@@ -98,9 +166,9 @@ export default function ProfileOverview(props: any) {
                             Size={props.Size}
                         />
                     </Grid>
-                    {/* <Typography style={{ color: '#fafafa', fontSize: 'calc(12px + 2vw)' }}>
+                    <Typography style={{ color: '#fafafa', fontSize: 'calc(12px + 2vw)' }}>
                         Hi,<br></br>
-                    </Typography> */}
+                    </Typography>
                     <Typography style={{ color: '#f56920', fontSize: '2vw' }}>{props.User_name}</Typography>
                     {/* </Grid>
                                 <Grid item></Grid> */}
@@ -124,11 +192,12 @@ export default function ProfileOverview(props: any) {
                         </Typography>
                         {/* Number of posts by user */}
                     </Button>
-                    <Followers />
+                    {/* <Followers /> */}
                 </CardContent>
             </Card>
         );
     }
+
     return (
         <Card
             style={{
@@ -178,3 +247,4 @@ export default function ProfileOverview(props: any) {
         </Card>
     );
 }
+
