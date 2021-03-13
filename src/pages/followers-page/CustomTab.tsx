@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SwipeableViews from 'react-swipeable-views';
+// import SwipeableViews from 'react-swipeable-views';
 import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -134,30 +134,30 @@ export default function FullWidthTabs() {
                     {/* <Tab label="Item Three" {...a11yProps(2)} /> */}
                 </Tabs>
             </AppBar>
-            <SwipeableViews
+            {/* <SwipeableViews
                 axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
                 index={value}
                 onChangeIndex={handleChangeIndex}
-            >
-                <TabPanel value={value} index={0} dir={theme.direction}>
-                    {users.length > 0 &&
-                        users.map((data) => {
-                            // console.log(data);
-                            <ProfileOverview
-                                key={data.id}
-                                uid={data.id}
-                                User_name={data.User_name}
-                                Avatar={data.Avatar}
-                                Size="small"
-                                User={data}
-                                followers
-                            />;
-                        })}
-                </TabPanel>
-                <TabPanel value={value} index={1} dir={theme.direction}>
-                    Item Two
-                </TabPanel>
-            </SwipeableViews>
+            > */}
+            <TabPanel value={value} index={0} dir={theme.direction}>
+                {users.length > 0 &&
+                    users.map((data) => {
+                        // console.log(data);
+                        <ProfileOverview
+                            key={data.id}
+                            uid={data.id}
+                            User_name={data.User_name}
+                            Avatar={data.Avatar}
+                            Size="small"
+                            User={data}
+                            followers
+                        />;
+                    })}
+            </TabPanel>
+            <TabPanel value={value} index={1} dir={theme.direction}>
+                Item Two
+            </TabPanel>
+            {/* </SwipeableViews> */}
         </div>
     );
 }

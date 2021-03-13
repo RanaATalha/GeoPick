@@ -3,8 +3,7 @@ import { Component } from 'react';
 import Card from '../../components/Layouts/Card';
 import { Box } from '@material-ui/core';
 import CustomTab from './CustomTab';
-import WhiteLogo from '../welcome screen/WhiteLogo.svg';
-
+import WhiteLogo from '../../pages/welcome screen/WhiteLogo.svg';
 export interface ViewFollowersProps {}
 
 export interface ViewFollowersState {}
