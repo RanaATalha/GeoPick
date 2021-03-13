@@ -35,6 +35,10 @@ const CssTextField = withStyles({
 const Tags = (props: any) => {
     const [tags, setTags] = React.useState(Array());
 
+    // if(props.alreadyTags){
+    //     setTags(props.alreadyTags);
+    // } 
+
     const addTags = (event: any) => {
         if (event.key === 'Enter' && event.target.value !== '') {
             setTags([...tags, event.target.value.toLowerCase()]);

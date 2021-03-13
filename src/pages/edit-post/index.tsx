@@ -17,6 +17,8 @@ import TextField from '../../components/Inputs/TextField';
 import Tags from '../../components/Inputs/tags';
 import Places from '../../components/Inputs/Places';
 import { RegularBtn } from '../../components/Buttons/RegularBtn';
+import { Link } from 'react-router-dom';
+
 
 export interface EditPostViewState {
     newComment: string;
@@ -40,7 +42,6 @@ export interface EditPostViewProps {
 }
 
 export default class PostViewScreen extends Component<EditPostViewProps, EditPostViewState> {
-    updateCaption: any;
     constructor(PostViewProps: any) {
         super(PostViewProps);
         this.state = {
@@ -59,11 +60,16 @@ export default class PostViewScreen extends Component<EditPostViewProps, EditPos
             tags: [],
             coordinates:{},
         };
-        this.handleColorChange = this.handleColorChange.bind(this);
     }
 
+    updateCaption = (event: React.ChangeEvent<HTMLInputElement>) => {
+        this.setState({ caption: event.target.value });
+    };
+
     selectedTags = (tagses: any) => {
-        this.setState({ tags: tagses });
+        this.setState(prevState => ({
+            tags: prevState.tags.concat(tagses)
+        }));
     };
 
     updateLocation = (address: string) => {
@@ -120,6 +126,9 @@ export default class PostViewScreen extends Component<EditPostViewProps, EditPos
                         user_name: data.user_name,
                         post_uid: data.uid,
                         comments: data.comments,
+                        tags: data.tags,
+                        coordinates: data.coordinates,
+                        location: data.location,
                     });
                 }
             });
@@ -144,31 +153,43 @@ export default class PostViewScreen extends Component<EditPostViewProps, EditPos
         });
     }
 
-    handleColorChange = () => {
+    // handleColorChange = () => {
+    //     const path = window.location.pathname.split('/');
+    //     const pid = path[path.length - 1];
+    //     this.setState({
+    //         favourited: !this.state.favourited,
+    //     });
+
+    //     const increment = fb.firestore.FieldValue.increment(1);
+    //     const decrement = fb.firestore.FieldValue.increment(-1);
+
+    //     if (this.state.favourited === false) {
+    //         fb.firestore().collection('Posts').doc(pid).update({
+    //             likes_count: increment,
+    //         });
+    //         this.setState({
+    //             likes_count: this.state.likes_count + 1,
+    //         });
+    //     } else {
+    //         fb.firestore().collection('Posts').doc(pid).update({
+    //             likes_count: decrement,
+    //         });
+    //         this.setState({
+    //             likes_count: this.state.likes_count - 1,
+    //         });
+    //     }
+    // };
+
+    handleSubmit = () => {
         const path = window.location.pathname.split('/');
         const pid = path[path.length - 1];
-        this.setState({
-            favourited: !this.state.favourited,
+
+        fb.firestore().collection('Posts').doc(pid).update({
+            tags: this.state.tags,
+            location: this.state.location,
+            coordinates: this.state.coordinates,
+            caption: this.state.caption,
         });
-
-        const increment = fb.firestore.FieldValue.increment(1);
-        const decrement = fb.firestore.FieldValue.increment(-1);
-
-        if (this.state.favourited === false) {
-            fb.firestore().collection('Posts').doc(pid).update({
-                likes_count: increment,
-            });
-            this.setState({
-                likes_count: this.state.likes_count + 1,
-            });
-        } else {
-            fb.firestore().collection('Posts').doc(pid).update({
-                likes_count: decrement,
-            });
-            this.setState({
-                likes_count: this.state.likes_count - 1,
-            });
-        }
     };
 
     render() {
@@ -266,7 +287,6 @@ export default class PostViewScreen extends Component<EditPostViewProps, EditPos
                         <IconButton
                             aria-label="add to favorites"
                             style={this.state.favourited ? { color: '#dc143c' } : { color: '#FAFAFA' }}
-                            onClick={this.handleColorChange}
                         >
                             <FavoriteIcon />
                             {<Typography style={{ color: '#fafafa' }}>{this.state.likes_count}</Typography>}
@@ -301,11 +321,13 @@ export default class PostViewScreen extends Component<EditPostViewProps, EditPos
               <Places updateLocation={this.updateLocation} updateCoordinates={this.updateCoordinates} />
              <br></br>
              <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
+                <Link to={{ pathname: `/user/${this.state.post_uid}`, state: this.state.post_uid }}>
                     <RegularBtn 
-                    //onClick={deletepost}
+                    onClick={this.handleSubmit}
                      type="submit" colorType="orange" style={{ width: '40%', borderRadius: '15px' }}>
                         Edit Post
                     </RegularBtn>
+                </Link>
                 </Grid>
             </Card>
         );

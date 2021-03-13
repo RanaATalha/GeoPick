@@ -14,6 +14,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { RegularBtn } from '../../components/Buttons/RegularBtn';
+import { Link } from 'react-router-dom';
+
 export interface DeletePostViewState {
     newComment: string;
     user: any;
@@ -140,30 +142,13 @@ export default class DeletePostViewScreen extends Component<DeletePostViewProps,
     render() {
         const path = window.location.pathname.split('/');
         const pid = path[path.length - 1];
-        // console.log(uid);
-        const handleChange = (event: any) => {
-            // console.log(event.target.value);
-            this.setState({
-                newComment: event.target.value as string,
-                // user: checkUserLoggedIn(),
-            });
-        };
 
         const deletepost = (event: any) => {
-            /*const FieldValue = fb.firestore.FieldValue;
-            const comment = `${this.state.user.User_name} : ${this.state.newComment}`;
-            fb.firestore()
-                .collection('Posts')
-                .doc(pid)
-                .update({
-                    comments: FieldValue.arrayUnion(comment),
-                    comments_count: fb.firestore.FieldValue.increment(1),
-                });
-            // console.log(`${this.state.user.User_name} : ${comment}`);
-            // console.log(this.state.user);
-            this.setState({
-                comments: [...this.state.comments, comment],
-            });*/
+            fb.firestore().collection('Posts').doc(pid).delete().then(() => {
+                console.log("post deleted successfully" + pid);
+            }).catch((err) => {
+                console.log("error:",err)
+            })
         };
 
         return (
@@ -255,9 +240,12 @@ export default class DeletePostViewScreen extends Component<DeletePostViewProps,
                
             
                 <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
+                <Link to={{ pathname: `/user/${this.state.post_uid}`, state: this.state.post_uid }}>
+
                     <RegularBtn onClick={deletepost} type="submit" colorType="orange" style={{ width: '40%', borderRadius: '15px' }}>
                         delete post
                     </RegularBtn>
+                </Link>
                 </Grid>
            
             </Card>

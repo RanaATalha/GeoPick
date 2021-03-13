@@ -10,8 +10,8 @@ export default function Places(props: any) {
         lng: null,
     });
 
-    // console.log(coordinates);
-    // console.log(address);
+    console.log(coordinates);
+    console.log(address);
 
     const handleSelect = async (value: any) => {
         geocodeByAddress(value)
@@ -19,7 +19,7 @@ export default function Places(props: any) {
             .then((latLng) => props.updateCoordinates(latLng))
             .catch((error) => console.error('Error', error));
         setAddress(value);
-        props.updateLocation(address);
+        props.updateLocation(value);
     };
 
     return (
