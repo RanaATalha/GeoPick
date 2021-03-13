@@ -27,7 +27,7 @@ import ViewPoints from './pages/view-points-screen/points';
 import EditProfile from './pages/edit-profile/editProfile';
 import LocationPicker from './components/Inputs/LocationPicker';
 import Camera from './components/Inputs/Camera';
-
+import ViewFollowers from './pages/followers-page/ViewFollowers';
 import WebCamFun from './pages/camera/index';
 // import GTLexpanded from './components/Display/GTLexpanded';
 function App(): JSX.Element {
@@ -100,9 +100,9 @@ function App(): JSX.Element {
                     <Route exact path="/Camera">
                         <Camera />
                     </Route>
-                    {/* <Route exact path="/GTLexpanded">
-                        <GTLexpanded />
-                    </Route> */}
+                    <Route exact path="/ViewFollowers">
+                        <ViewFollowers />
+                    </Route>
                 </Switch>
             </Router>
             {/* need to populate the places in this */}
@@ -178,10 +178,9 @@ function Nav() {
                     <li>
                         <Link to="/explore">Explore</Link>
                     </li>
-
-                    {/* <li>
-                        <Link to="/GTLexpanded">GTL Expanded component</Link>
-                    </li> */}
+                    <li>
+                        <Link to="/ViewFollowers">ViewFollowers</Link>
+                    </li>
                 </ul>
             </nav>
         </div>

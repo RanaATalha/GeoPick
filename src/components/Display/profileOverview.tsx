@@ -98,9 +98,9 @@ export default function ProfileOverview(props: any) {
                             Size={props.Size}
                         />
                     </Grid>
-                    <Typography style={{ color: '#fafafa', fontSize: 'calc(12px + 2vw)' }}>
+                    {/* <Typography style={{ color: '#fafafa', fontSize: 'calc(12px + 2vw)' }}>
                         Hi,<br></br>
-                    </Typography>
+                    </Typography> */}
                     <Typography style={{ color: '#f56920', fontSize: '2vw' }}>{props.User_name}</Typography>
                     {/* </Grid>
                                 <Grid item></Grid> */}

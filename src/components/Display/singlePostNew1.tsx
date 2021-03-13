@@ -333,7 +333,7 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
                     <IconButton aria-label="share">
                         <SharePost sharedURL={`${root}${this.state.path_name}`} />
                     </IconButton>
-                    <div
+                    {/* <div
                         style={{ float: 'right', marginRight: '10px', marginLeft: 'auto' }}
                         onClick={this.handleClickRandomizer}
                     >
@@ -344,7 +344,7 @@ class SinglePostNew extends Component<SinglePostNewProps, SinglePostNewState> {
                             order={this.state.random}
                             uid={this.props.uid}
                         />
-                    </div>
+                    </div> */}
 
                     {/* {this.state.displayQuestions &&
                         this.state.questions.map( 
