@@ -34,12 +34,12 @@ export default function Places(props: any) {
 
                             {suggestions.map((suggestion) => {
                                 const style = {
-                                    backgroundColor: suggestion.active ? '#67836' : '#fff',
+                                    backgroundColor: suggestion.active ? '#f56920' : '#F59158',
                                 };
 
                                 return (
                                     <div className="suggestion" {...getSuggestionItemProps(suggestion, { style })}>
-                                        <i className="material-icons">location_on</i>
+                                        <i className="material-icons">add_location</i>
                                         {suggestion.description}
                                     </div>
                                 );
