@@ -30,7 +30,7 @@ export default function Places(props: any) {
                         <TextField {...getInputProps({ placeholder: 'Add Location', className: 'search' })} />
 
                         <div>
-                            {loading ? <div>...loading</div> : null}
+                            {loading ? <div className="load">...loading</div> : null}
 
                             {suggestions.map((suggestion) => {
                                 const style = {
@@ -39,7 +39,7 @@ export default function Places(props: any) {
 
                                 return (
                                     <div className="suggestion" {...getSuggestionItemProps(suggestion, { style })}>
-                                        <i className="material-icons">add_location</i>
+                                        <i className="material-icons">location_on</i>
                                         {suggestion.description}
                                     </div>
                                 );
