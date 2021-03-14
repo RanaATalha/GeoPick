@@ -7,6 +7,8 @@ import { RegularBtn } from '../../components/Buttons/RegularBtn';
 import { auth } from '../../firebase';
 import { useForm } from 'react-hook-form';
 import { Link, useHistory } from 'react-router-dom';
+import ReCAPTCHA from 'react-google-recaptcha';
+import { useState } from 'react';
 
 export interface SignUpProps {}
 
@@ -96,6 +98,9 @@ const SignUpForm = () => {
             alert('type the same password in conformation password');
         }
     };
+    function onChange(value: any) {
+        console.log('Captcha value:', value);
+    }
 
     return (
         <>
@@ -104,6 +109,9 @@ const SignUpForm = () => {
                 <Grid item container spacing={3}>
                     <br />
                     <br />
+                    <div style={{ marginLeft: 'auto', marginRight: 'auto', marginTop: '20px', marginBottom: '10px' }}>
+                        <ReCAPTCHA sitekey="6Lco434aAAAAAMfd6uv2gnxsxpcVdA-mI7BlA2Pr" onChange={onChange} />
+                    </div>
                     <label style={{ color: 'white' }}>
                         <input type="checkbox" name="Accept" required />
                         By signing up I conform that I have read and accepted the{' '}
