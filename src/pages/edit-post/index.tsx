@@ -153,33 +153,6 @@ export default class PostViewScreen extends Component<EditPostViewProps, EditPos
         });
     }
 
-    // handleColorChange = () => {
-    //     const path = window.location.pathname.split('/');
-    //     const pid = path[path.length - 1];
-    //     this.setState({
-    //         favourited: !this.state.favourited,
-    //     });
-
-    //     const increment = fb.firestore.FieldValue.increment(1);
-    //     const decrement = fb.firestore.FieldValue.increment(-1);
-
-    //     if (this.state.favourited === false) {
-    //         fb.firestore().collection('Posts').doc(pid).update({
-    //             likes_count: increment,
-    //         });
-    //         this.setState({
-    //             likes_count: this.state.likes_count + 1,
-    //         });
-    //     } else {
-    //         fb.firestore().collection('Posts').doc(pid).update({
-    //             likes_count: decrement,
-    //         });
-    //         this.setState({
-    //             likes_count: this.state.likes_count - 1,
-    //         });
-    //     }
-    // };
-
     handleSubmit = () => {
         const path = window.location.pathname.split('/');
         const pid = path[path.length - 1];
@@ -290,9 +263,6 @@ export default class PostViewScreen extends Component<EditPostViewProps, EditPos
                         >
                             <FavoriteIcon />
                             {<Typography style={{ color: '#fafafa' }}>{this.state.likes_count}</Typography>}
-                        </IconButton>
-                        <IconButton aria-label="share">
-                            <SharePost sharedURL={window.location.href} />
                         </IconButton>
                         {/* <IconButton
                 className={clsx(classes.expand, {
