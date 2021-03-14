@@ -31,79 +31,93 @@ const SmallAvatar = withStyles((theme) => ({
     },
 }))(Avatar);
 
-
-
 export default function ProfileOverview(props: any) {
     const [user, setUser] = useState(auth.checkUserLoggedIn());
     useEffect(() => {
         const authU = auth.checkUserLoggedIn();
-        if(authU != undefined){
+        if (authU != undefined) {
             setUser(authU);
         }
-    })
+    });
 
     const Followers = () => {
         const [Follow, setFollow] = useState(false);
         const [color, setColor] = useState(false);
-        if (!user) return;
-        const FollowingCheck = fb.firestore().collection('users/').doc(`${user.uid}/`).collection("Following").doc(`${props.uid}/`).get();
-        
-        if(FollowingCheck == null)
-        {
+        if (!user) return null;
+        const FollowingCheck = fb
+            .firestore()
+            .collection('users/')
+            .doc(`${user.uid}/`)
+            .collection('Following')
+            .doc(`${props.uid}/`)
+            .get();
+
+        if (FollowingCheck == null) {
             setFollow(false);
-        }
-        else
-        {
+        } else {
             setFollow(true);
         }
 
         const FollowUpdate = () => {
-
             if (!user) return;
             setFollow(!Follow);
-    
+
             const increment = fb.firestore.FieldValue.increment(1);
             const decrement = fb.firestore.FieldValue.increment(-1);
-    
-            if(Follow == true)
-            {
-            fb.firestore().collection('users/').doc(`${user.uid}/`).collection("Following").doc(`${props.uid}/`).update({
-                UserId: props.uid,
-            });
-    
-            fb.firestore().collection('users/').doc(`${props.uid}/`).collection("Followers").doc(`${user.uid}/`).update({
-                UserId: user.uid,
-            });
-    
-            fb.firestore().collection('users/').doc(`${user.uid}/`).update({
-                Following: increment,
-            })
-    
-            fb.firestore().collection('users/').doc(`${props.uid}/`).update({
-                Followers: increment,
-            });
-    
-          }
-          else{
-            fb.firestore().collection('users/').doc(`${user.uid}/`).collection("Following").doc(`${props.uid}/`).delete();
-            fb.firestore().collection('users/').doc(`${props.uid}/`).collection("Followers").doc(`${user.uid}/`).delete();
-    
-            fb.firestore().collection('users/').doc(`${user.uid}/`).update({
-                Following: decrement,
-            })
-    
-            fb.firestore().collection('users/').doc(`${props.uid}/`).update({
-                Followers: decrement,
-            });
-          }
-    
-          }
-    
-        
-        // const [Follow, setFollowed] = useState('Follow');
-          
-        return (
 
+            if (Follow == true) {
+                fb.firestore()
+                    .collection('users/')
+                    .doc(`${user.uid}/`)
+                    .collection('Following')
+                    .doc(`${props.uid}/`)
+                    .update({
+                        UserId: props.uid,
+                    });
+
+                fb.firestore()
+                    .collection('users/')
+                    .doc(`${props.uid}/`)
+                    .collection('Followers')
+                    .doc(`${user.uid}/`)
+                    .update({
+                        UserId: user.uid,
+                    });
+
+                fb.firestore().collection('users/').doc(`${user.uid}/`).update({
+                    Following: increment,
+                });
+
+                fb.firestore().collection('users/').doc(`${props.uid}/`).update({
+                    Followers: increment,
+                });
+            } else {
+                fb.firestore()
+                    .collection('users/')
+                    .doc(`${user.uid}/`)
+                    .collection('Following')
+                    .doc(`${props.uid}/`)
+                    .delete();
+                fb.firestore()
+                    .collection('users/')
+                    .doc(`${props.uid}/`)
+                    .collection('Followers')
+                    .doc(`${user.uid}/`)
+                    .delete();
+
+                fb.firestore().collection('users/').doc(`${user.uid}/`).update({
+                    Following: decrement,
+                });
+
+                fb.firestore().collection('users/').doc(`${props.uid}/`).update({
+                    Followers: decrement,
+                });
+            }
+        };
+
+        // const [Follow, setFollowed] = useState('Follow');
+
+        return (
             <Button
                 variant="contained"
                 // style={{
@@ -133,10 +147,7 @@ export default function ProfileOverview(props: any) {
                               color: '#f56920',
                           }
                 }
-                onClick={() => FollowUpdate()
-                }
-
-            
+                onClick={() => FollowUpdate()}
                 onClickCapture={() => setColor(!color)}
             >
                 {Follow ? <div>Following</div> : <div>Follow</div>}
@@ -144,10 +155,8 @@ export default function ProfileOverview(props: any) {
         );
     };
 
-
     // const classes = useStyles();
     if (props.followers === true) {
-        
         return (
             <Card
                 style={{
@@ -253,4 +262,3 @@ export default function ProfileOverview(props: any) {
         </Card>
     );
 }
-

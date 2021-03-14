@@ -4,11 +4,12 @@ import Card from '../../components/Layouts/Card';
 import { RegularBtn } from '../../components/Buttons/RegularBtn';
 import TextField from '../../components/Inputs/TextField';
 import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
-import { Box } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 import firebase from 'firebase';
 import ProfileOverview from '../../components/Display/profileOverview';
 import Button from '@material-ui/core/Button';
-import SinglePostNew from '../../components/Display/singlePostNew';
+import SinglePostNew1 from '../../components/Display/singlePostNew1';
+import './search.scss';
 
 export interface SearchProps {}
 
@@ -88,19 +89,14 @@ export default function SearchScreen() {
                     />
                     <br></br>
                     <Box>
-                        <Button
-                            variant="contained"
-                            style={{ float: 'left', borderRadius: '20px' }}
-                            onClick={toggleUser}
-                        >
-                            Users
+                        <Typography variant="h5" style={{ float: 'left', color: '#fafafa' }}>
+                            Based on
+                        </Typography>
+                        <Button variant="contained" className="tags-button" onClick={togglePost}>
+                            Tags
                         </Button>
-                        <Button
-                            variant="contained"
-                            style={{ float: 'right', borderRadius: '20px' }}
-                            onClick={togglePost}
-                        >
-                            Posts
+                        <Button variant="contained" className="users-button" onClick={toggleUser}>
+                            Users
                         </Button>
                     </Box>
                     <br />
@@ -130,7 +126,7 @@ export default function SearchScreen() {
                             // console.log(data);
                             return (
                                 <div>
-                                    <SinglePostNew
+                                    <SinglePostNew1
                                         key={data.id}
                                         id={data.id}
                                         // profileUrl={post.profileUrl}
