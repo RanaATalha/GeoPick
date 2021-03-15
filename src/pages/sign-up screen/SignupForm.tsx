@@ -7,7 +7,7 @@ import { RegularBtn } from '../../components/Buttons/RegularBtn';
 import { auth } from '../../firebase';
 import { useForm } from 'react-hook-form';
 import { Link, useHistory } from 'react-router-dom';
-import ReCAPTCHA from 'react-google-recaptcha';
+import Recaptcha from 'react-recaptcha';
 import { useState } from 'react';
 
 export interface SignUpProps {}
@@ -81,6 +81,7 @@ const SignUpFields = ({ register, errors }: { register: any; errors: any }) => {
 
 const SignUpForm = () => {
     const { handleSubmit, errors, register } = useForm();
+    const [verified, setVerified] = useState(false);
     const { push } = useHistory();
     const onSubmit = (data: any) => {
         console.log('trying ');
@@ -95,11 +96,33 @@ const SignUpForm = () => {
                     alert(err);
                 });
         } else {
-            alert('type the same password in conformation password');
+            alert('type the same password in confirmation password');
         }
     };
+
+    
     function onChange(value: any) {
+        if(value) setVerified(true)
         console.log('Captcha value:', value);
+    }
+
+    function handleChange() {
+        if (verified) {
+            alert('Verified');
+        } else {
+            alert('Please Verify to Carry On');
+        }
+    }
+
+    function loaded() {
+        console.log('Captcha Loaded');
+    }
+
+    function verifyCallback(response: any) {
+        console.log(response);
+        if (response) {
+            setVerified(true)
+        }
     }
 
     return (
@@ -110,7 +133,13 @@ const SignUpForm = () => {
                     <br />
                     <br />
                     <div style={{ marginLeft: 'auto', marginRight: 'auto', marginTop: '20px', marginBottom: '10px' }}>
-                        <ReCAPTCHA sitekey="6Lco434aAAAAAMfd6uv2gnxsxpcVdA-mI7BlA2Pr" onChange={onChange} />
+                        <Recaptcha
+                            sitekey="6Lco434aAAAAAMfd6uv2gnxsxpcVdA-mI7BlA2Pr"
+                            onChange={onChange}
+                            render="explicit"
+                            onloadCallback={loaded}
+                            verifyCallback={verifyCallback}
+                        />
                     </div>
                     <label style={{ color: 'white' }}>
                         <input type="checkbox" name="Accept" required />
@@ -120,7 +149,12 @@ const SignUpForm = () => {
                     <br />
                 </Grid>
                 <Grid item xs={12} alignItems="center" justify="center" style={{ textAlign: 'center' }}>
-                    <RegularBtn type="submit" colorType="white" style={{ width: '50%', borderRadius: '15px' }}>
+                    <RegularBtn
+                        type="submit"
+                        colorType="white"
+                        style={{ width: '50%', borderRadius: '15px' }}
+                        onClick={handleChange}
+                    >
                         Sign Up!
                     </RegularBtn>
                 </Grid>
@@ -137,3 +171,10 @@ const SignUpForm = () => {
         </>
     );
 };
+
+function handleChange() {
+    throw new Error('Function not implemented.');
+}
+function setState(arg0: { isVerified: boolean }) {
+    throw new Error('Function not implemented.');
+}
