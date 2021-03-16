@@ -172,3 +172,42 @@ function App() {
 document.body.innerHTML = "<div id='root'></div>";
 const rootElement = document.getElementById("root");
 ReactDOM.render(<App />, rootElement);
+
+class editAvatar extends React.Component {
+
+    constructor(props) {
+      super(props)
+      const src = './example/einshtein.jpg'
+      this.state = {
+        preview: null,
+        src
+      }
+      this.onCrop = this.onCrop.bind(this)
+      this.onClose = this.onClose.bind(this)
+      this.onBeforeFileLoad = this.onBeforeFileLoad.bind(this)
+    }
+    
+    onClose() {
+      this.setState({preview: null})
+    }
+    
+    onCrop(preview) {
+      this.setState({preview})
+    }
+  
+    onBeforeFileLoad(elem) {
+      if(elem.target.files[0].size > 71680){
+        alert("File is too big!");
+        elem.target.value = "";
+      };
+    }
+    
+    render () {
+      return (
+        <div>
+        </div>
+      )
+    }
+  }
+  
+  ReactDOM.render(<App /> , document.getElementById('root'))
